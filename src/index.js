@@ -1,22 +1,22 @@
-const mock = require("./mock.json");
 const fs = require("fs");
 
 const {
   getPathParametersByIn,
-  parseType,
-  parseSchemaRef,
+  formatSchemaRefName,
   capitalize,
   breakLine,
   printTypesParamsObject,
   addTab,
+  parseSwaggerType,
 } = require("./common");
 
-const PATH_API = "./api/index.js";
-const PATH_API_D_TS = "./api/index.d.ts";
+function swaggerapi(apiJson) {
+  console.time("✨ swaggerapi");
 
-function generapi(apiJson) {
   const paths = buildPaths(apiJson);
   const definitions = buildDefinitions(apiJson);
+
+  console.timeEnd("✨ swaggerapi");
 
   return { paths, definitions };
 }
@@ -92,37 +92,18 @@ function buildDefinitions(apiJson) {
 }
 
 function buildDefinitionsTypesScope(params) {
-  const name = parseSchemaRef(params.name);
+  const name = formatSchemaRefName(params.name);
   const properties = [];
 
   if (params.definition.properties) {
     Object.keys(params.definition.properties).forEach((propName) => {
       const property = params.definition.properties[propName];
 
-      let type = parseType(property.type);
+      const type = parseSwaggerType(property);
 
       const isRequired = params.definition.required
         ? params.definition.required.includes(propName)
         : true;
-
-      if (property.type) {
-        switch (property.type) {
-          case "array":
-            if (property.items["$ref"]) {
-              type = `${parseSchemaRef(property.items["$ref"])}[]`;
-            } else {
-              type = `${parseType(property.items.type)}[]`;
-            }
-            break;
-          case "object":
-            type = `{ [nameProp: string]: ${parseType(
-              property.additionalProperties.type
-            )} }`;
-            break;
-        }
-      } else if (property["$ref"]) {
-        type = parseSchemaRef(property["$ref"]);
-      }
 
       properties.push({ name: propName, type, isRequired });
     });
@@ -136,6 +117,7 @@ function printDefinitionsTypes(scope) {
 
   scope.properties.forEach(({ name, type, isRequired }) => {
     const required = isRequired ? "" : "?";
+
     result += `  ${name}${required}: ${type};\n`;
   });
 
@@ -177,22 +159,19 @@ function buildPathTypesScopeParams(params) {
 }
 
 function buildPathTypesScopeParameter(parameter) {
-  const { name, schema } = parameter;
-  let type = "any";
-
-  if (schema) {
-    type = parseSchemaRef(schema["$ref"]);
-  } else {
-    type = parseType(parameter.type);
-  }
-
-  return { name, type };
+  return {
+    name: parameter.name,
+    type: parseSwaggerType(parameter),
+    isRequired: parameter.required,
+  };
 }
 
 function buildPathTypesScopeResult(params) {
-  const { schema } = params.config.responses["200"];
+  if (params.config.responses && params.config.responses["200"]) {
+    return parseSwaggerType(params.config.responses["200"], "void");
+  }
 
-  return schema ? parseSchemaRef(schema["$ref"]) : "";
+  return "";
 }
 
 function printPathTypes(scope) {
@@ -208,46 +187,33 @@ function printPathTypes(scope) {
 }
 
 function printPathTypesParams(scope) {
-  const path = printPathTypesParamsPath(scope);
-  const pathString = `${addTab(path)}${breakLine(path)}`;
+  let params = Object.keys(scope.typesParams).reduce((memo, type) => {
+    const typeParams = scope.typesParams[type] || [];
+    let result = printTypesParamsObject(type, typeParams);
 
-  const header = printPathTypesParamsHeader(scope);
-  const headerString = `${addTab(header)}${breakLine(header)}`;
+    switch (type) {
+      case "body":
+        result = printPathTypesParamsBody(typeParams);
+        break;
+    }
 
-  const query = printPathTypesParamsQuery(scope);
-  const queryString = `${addTab(query)}${breakLine(query)}`;
-
-  const body = printPathTypesParamsBody(scope);
-  const bodyString = `${addTab(body)}${breakLine(body)}`;
+    return `${memo}${addTab(result)}${breakLine(result)}`;
+  }, "");
 
   let result = "";
 
-  if (header || query || path || body) {
+  if (params.length > 0) {
     result = `type ${scope.nameParams} = {
-${headerString}${queryString}${pathString}${bodyString}};`;
+${params}};`;
   }
 
   return result;
 }
 
-function printPathTypesParamsPath(scope) {
-  return printTypesParamsObject("path", scope.typesParams.path || []);
-}
-
-function printPathTypesParamsHeader(scope) {
-  return printTypesParamsObject("header", scope.typesParams.header || []);
-}
-
-function printPathTypesParamsQuery(scope) {
-  return printTypesParamsObject("query", scope.typesParams.query || []);
-}
-
-function printPathTypesParamsBody(scope) {
+function printPathTypesParamsBody(typeParams) {
   // TODO I didn't find body with length more 2 elements
-  const body = scope.typesParams.body || [];
-
-  if (body && body.length === 1) {
-    return `body: ${body[0].type};`;
+  if (typeParams && typeParams.length === 1) {
+    return `body: ${typeParams[0].type};`;
   }
 
   return "";
@@ -267,18 +233,12 @@ function printPathTypesMethod(scope) {
     typesParams.path ||
       typesParams.header ||
       typesParams.query ||
-      typesParams.body
+      typesParams.body,
   );
   const paramsString = isExistTypesParams ? `params: ${nameParams}` : "";
-  const resultString = typeResult ? nameResult : "any";
+  const resultString = typeResult ? nameResult : "void";
 
   return `export function ${name}(${paramsString}): Promise<${resultString}>;`;
 }
 
-console.time("✨  generapi");
-
-const { paths, definitions } = generapi(mock);
-fs.writeFileSync(PATH_API, paths.code);
-fs.writeFileSync(PATH_API_D_TS, `${definitions}\n\n${paths.types}`);
-
-console.timeEnd("✨  generapi");
+module.exports = { swaggerapi };

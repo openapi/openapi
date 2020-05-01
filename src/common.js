@@ -1,7 +1,7 @@
 function getPathParametersByIn(parameters) {
   return parameters.reduce((memo, parameter) => {
     if (memo[parameter.in]) {
-      memo[parameter.in].push(parameters);
+      memo[parameter.in].push(parameter);
     } else {
       memo[parameter.in] = [parameter];
     }
@@ -22,7 +22,7 @@ function breakLine(value, pre = "") {
   return value ? `\n${pre}` : "";
 }
 
-function parseType(type) {
+function parseType(type, defaultValue = "any") {
   if (type) {
     switch (type) {
       case "string":
@@ -35,29 +35,63 @@ function parseType(type) {
         return "boolean";
       case "object":
         return "object";
+      case "file":
+        return "File";
       default:
         console.warn(`Type didn't detect. [${type}]`);
-        return "any";
+        return defaultValue;
     }
   }
 
-  return "any";
+  return defaultValue;
 }
 
-function parseDefinition(value) {
-  return value.replace(/«/g, "_").replace(/,/g, "__");
+function parseSwaggerType(item, defaultValue = "any") {
+  let type = parseType(item.type);
+
+  if (item.type) {
+    switch (item.type) {
+      case "array":
+        if (item.items["$ref"]) {
+          type = `${formatSchemaRefName(item.items["$ref"])}[]`;
+        } else {
+          type = `${parseType(item.items.type, defaultValue)}[]`;
+        }
+        break;
+      case "object":
+        type = `{ [nameProp: string]: ${parseType(
+          item.additionalProperties.type,
+          defaultValue,
+        )} }`;
+        break;
+    }
+  } else if (item["$ref"]) {
+    type = formatSchemaRefName(item["$ref"]);
+  } else if (item.schema) {
+    type = parseSwaggerType(item.schema, defaultValue);
+  }
+
+  return type;
 }
 
-function parseSchemaRef(value) {
-  return parseDefinition(value.replace(/(#\/definitions\/)|»/g, ""));
+function formatDefinitionName(value) {
+  return value ? value.replace(/«/g, "_").replace(/,/g, "__") : "";
+}
+
+function formatSchemaRefName(value) {
+  return value
+    ? formatDefinitionName(value.replace(/(#\/definitions\/)|»/g, ""))
+    : "";
 }
 
 function printTypesParamsObject(objectName, types) {
   if (types.length > 0) {
     let result = `${objectName}: {\n`;
 
-    types.forEach(({ name, type }) => {
-      result += `  "${name}": ${type};\n`;
+    types.forEach(({ name, type, isRequired }) => {
+      const required = isRequired ? "" : "?";
+
+      result += `  "${name}"${required}: ${type};\n`;
     });
 
     result += "};";
@@ -77,8 +111,9 @@ module.exports = {
   capitalize,
   breakLine,
   parseType,
-  parseDefinition,
-  parseSchemaRef,
+  formatDefinitionName,
+  formatSchemaRefName,
   printTypesParamsObject,
   addTab,
+  parseSwaggerType,
 };
