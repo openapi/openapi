@@ -4,8 +4,6 @@ const mockV1 = require("./mocks/mock-v1.json");
 test("parse-v1", () => {
   const result = swaggerapi(mockV1);
 
-  console.log(result);
-
   expect(result).toMatchInlineSnapshot(`
     Object {
       "definitions": "type ApiResponse = {
@@ -140,6 +138,10 @@ test("parse-v1", () => {
       path: {
         \\"petId\\": number;
       };
+      formData: {
+        \\"additionalMetadata\\"?: string;
+        \\"file\\"?: File;
+      };
     };
     type UploadFileResult = ApiResponse;
     export function uploadFile(params: UploadFileParams): Promise<UploadFileResult>;
@@ -147,26 +149,28 @@ test("parse-v1", () => {
     type AddPetParams = {
       body: Pet;
     };
-    export function addPet(params: AddPetParams): Promise<any>;
+    export function addPet(params: AddPetParams): Promise<void>;
 
     type UpdatePetParams = {
       body: Pet;
     };
-    export function updatePet(params: UpdatePetParams): Promise<any>;
+    export function updatePet(params: UpdatePetParams): Promise<void>;
 
     type FindPetsByStatusParams = {
       query: {
-        \\"status\\": any[];
+        \\"status\\": string[];
       };
     };
-    export function findPetsByStatus(params: FindPetsByStatusParams): Promise<any>;
+    type FindPetsByStatusResult = Pet[];
+    export function findPetsByStatus(params: FindPetsByStatusParams): Promise<FindPetsByStatusResult>;
 
     type FindPetsByTagsParams = {
       query: {
-        \\"tags\\": any[];
+        \\"tags\\": string[];
       };
     };
-    export function findPetsByTags(params: FindPetsByTagsParams): Promise<any>;
+    type FindPetsByTagsResult = Pet[];
+    export function findPetsByTags(params: FindPetsByTagsParams): Promise<FindPetsByTagsResult>;
 
     type GetPetByIdParams = {
       path: {
@@ -180,18 +184,22 @@ test("parse-v1", () => {
       path: {
         \\"petId\\": number;
       };
+      formData: {
+        \\"name\\"?: string;
+        \\"status\\"?: string;
+      };
     };
-    export function updatePetWithForm(params: UpdatePetWithFormParams): Promise<any>;
+    export function updatePetWithForm(params: UpdatePetWithFormParams): Promise<void>;
 
     type DeletePetParams = {
       header: {
-        \\"api_key\\": string;
+        \\"api_key\\"?: string;
       };
       path: {
         \\"petId\\": number;
       };
     };
-    export function deletePet(params: DeletePetParams): Promise<any>;
+    export function deletePet(params: DeletePetParams): Promise<void>;
 
     type PlaceOrderParams = {
       body: Order;
@@ -212,19 +220,20 @@ test("parse-v1", () => {
         \\"orderId\\": number;
       };
     };
-    export function deleteOrder(params: DeleteOrderParams): Promise<any>;
+    export function deleteOrder(params: DeleteOrderParams): Promise<void>;
 
-    export function getInventory(): Promise<any>;
+    type GetInventoryResult = { [nameProp: string]: number };
+    export function getInventory(): Promise<GetInventoryResult>;
 
     type CreateUsersWithArrayInputParams = {
-      body: ;
+      body: User[];
     };
-    export function createUsersWithArrayInput(params: CreateUsersWithArrayInputParams): Promise<any>;
+    export function createUsersWithArrayInput(params: CreateUsersWithArrayInputParams): Promise<void>;
 
     type CreateUsersWithListInputParams = {
-      body: ;
+      body: User[];
     };
-    export function createUsersWithListInput(params: CreateUsersWithListInputParams): Promise<any>;
+    export function createUsersWithListInput(params: CreateUsersWithListInputParams): Promise<void>;
 
     type GetUserByNameParams = {
       path: {
@@ -240,29 +249,30 @@ test("parse-v1", () => {
       };
       body: User;
     };
-    export function updateUser(params: UpdateUserParams): Promise<any>;
+    export function updateUser(params: UpdateUserParams): Promise<void>;
 
     type DeleteUserParams = {
       path: {
         \\"username\\": string;
       };
     };
-    export function deleteUser(params: DeleteUserParams): Promise<any>;
+    export function deleteUser(params: DeleteUserParams): Promise<void>;
 
     type LoginUserParams = {
       query: {
         \\"username\\": string;
-        \\"undefined\\": any;
+        \\"password\\": string;
       };
     };
-    export function loginUser(params: LoginUserParams): Promise<any>;
+    type LoginUserResult = string;
+    export function loginUser(params: LoginUserParams): Promise<LoginUserResult>;
 
-    export function logoutUser(): Promise<any>;
+    export function logoutUser(): Promise<void>;
 
     type CreateUserParams = {
       body: User;
     };
-    export function createUser(params: CreateUserParams): Promise<any>;
+    export function createUser(params: CreateUserParams): Promise<void>;
 
     ",
       },
