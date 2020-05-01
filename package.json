@@ -15,7 +15,9 @@
   "scripts": {
     "test": "jest"
   },
-  "bin": "./src/run.js",
+  "bin": {
+    "swaggerapi": "./src/run.js"
+  },
   "dependencies": {
     "commander": "^5.1.0"
   }

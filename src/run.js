@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const { program } = require("commander");
 const { swaggerapi } = require("./index");
 const path = require("path");
