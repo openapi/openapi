@@ -16,10 +16,10 @@ const {
   parseSwaggerType,
 } = require("./common");
 
-function swaggerapi(apiJson) {
+function swaggerapi(apiJson, config = {}) {
   console.time("✨ swaggerapi");
 
-  const paths = buildPaths(apiJson);
+  const paths = buildPaths(apiJson, config);
   const definitions = buildDefinitions(apiJson);
 
   const pathRequestCode = path.resolve(path.dirname(__filename), "request.js");
@@ -49,17 +49,16 @@ function swaggerapi(apiJson) {
 }
 
 // Code
-function buildPaths(apiJson) {
+function buildPaths(apiJson, config = {}) {
   const code = [];
   const types = [];
 
   Object.keys(apiJson.paths).forEach((path) => {
     Object.keys(apiJson.paths[path]).forEach((method) => {
-      const config = apiJson.paths[path][method];
-      const params = { path, method, config };
+      const params = { path, method, config: apiJson.paths[path][method] };
 
-      code.push(printPathCode(buildPathCodeScope(params)));
-      types.push(printPathTypes(buildPathTypesScope(params)));
+      code.push(printPathCode(buildPathCodeScope(params), config));
+      types.push(printPathTypes(buildPathTypesScope(params), config));
     });
   });
 
@@ -77,6 +76,7 @@ function buildPathCodeScope(params) {
     url: buildPathCodeScopeUrl(params),
     accept: buildPathCodeScopeAccept(params),
     contentType: buildPathCodeScopeContentType(params),
+    isDeprecated: Boolean(params.config.deprecated),
   };
 }
 
@@ -109,13 +109,28 @@ function buildPathCodeScopeContentType(params) {
   return null;
 }
 
-function printPathCode(scope) {
+function printPathCode(scope, config) {
+  let deprecatedWarning = "";
+
+  if (scope.isDeprecated) {
+    if (config.deprecated) {
+      if (config.deprecated === "exception") {
+        return "";
+      } else if (config.deprecated === "warning") {
+        deprecatedWarning = printPathCodeDeprecatedWarning(scope);
+      }
+    } else {
+      deprecatedWarning = printPathCodeDeprecatedWarning(scope);
+    }
+  }
+
   const { name, isExistParameters, method, url } = scope;
   const params = isExistParameters ? "params" : "";
   const addedParams = printPathCodeAddedParams(scope);
   const addedParamsString = addedParams ? `, ${addedParams}` : "";
 
   return `export function ${name}(${params}) {
+    ${deprecatedWarning}
     return request("${method}", \`${url}\`${addedParamsString})(${params});
   }\n\n`;
 }
@@ -141,6 +156,10 @@ function printPathCodeAddedParams(scope) {
   }
 
   return result;
+}
+
+function printPathCodeDeprecatedWarning(scope) {
+  return `console.warn("Api method '${scope.name}' is deprecated");`;
 }
 
 // Definitions
@@ -204,6 +223,7 @@ function buildPathTypesScope(params) {
     nameResult: `${capitalizeName}Result`,
     typesParams: buildPathTypesScopeParams(params),
     typeResult: buildPathTypesScopeResult(params),
+    isDeprecated: Boolean(params.config.deprecated),
   };
 }
 
@@ -281,11 +301,13 @@ function buildPathTypesScopeResult(params) {
   return "";
 }
 
-function printPathTypes(scope) {
+function printPathTypes(scope, config) {
+  if (scope.isDeprecated && config.deprecated === "exception") {
+    return "";
+  }
+
   const params = printPathTypesParams(scope);
-
   const result = printPathTypesResult(scope);
-
   const method = printPathTypesMethod(scope);
 
   return `${params}${result}${method}\n\n`;

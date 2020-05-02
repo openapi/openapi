@@ -15,6 +15,10 @@ program
   .option(
     "--output-dir <path>",
     `Output directory js api with types (default: "${defaultOutputDir}")`,
+  )
+  .option(
+    "--deprecated <type>",
+    "Deprecated: 'warning' | 'ignore' | 'exception' (default: 'warning')",
   );
 
 program.parse(process.argv);
@@ -26,6 +30,9 @@ const config = {
   outputDir:
     (program.outputDir ? program.outputDir : swaggerapiConfig.outputDir) ||
     defaultOutputDir,
+  deprecated: program.deprecated
+    ? program.deprecated
+    : swaggerapiConfig.deprecated,
 };
 
 if (config.file) {
@@ -41,7 +48,9 @@ if (config.file) {
   }
 
   const fileApi = require(pathFile);
-  const { paths, definitions } = swaggerapi(fileApi);
+  const { paths, definitions } = swaggerapi(fileApi, {
+    deprecated: config.deprecated,
+  });
 
   writeFileSync(pathIndex, paths.code);
   writeFileSync(pathTypes, `${definitions}\n// Methods\n${paths.types}`);
