@@ -5,8 +5,10 @@ const { swaggerapi } = require("./index");
 const path = require("path");
 const { existsSync, writeFileSync } = require("fs");
 const { execSync } = require("child_process");
+const { version } = require("../package.json");
 
 program
+  .version(version)
   .option("--file <path>", "Swagger JSON file with api")
   .option("--output-dir <path>", "Output directory js api with types", "./api");
 

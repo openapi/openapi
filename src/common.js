@@ -18,10 +18,6 @@ function capitalize(value) {
   return "";
 }
 
-function breakLine(value, pre = "") {
-  return value ? `\n${pre}` : "";
-}
-
 function parseType(type, defaultValue = "any") {
   if (type) {
     switch (type) {
@@ -86,12 +82,12 @@ function formatSchemaRefName(value) {
 
 function printTypesParamsObject(objectName, types) {
   if (types.length > 0) {
-    let result = `${objectName}: {\n`;
+    let result = `${objectName}: {`;
 
     types.forEach(({ name, type, isRequired }) => {
       const required = isRequired ? "" : "?";
 
-      result += `  "${name}"${required}: ${type};\n`;
+      result += `"${name}"${required}: ${type};`;
     });
 
     result += "};";
@@ -102,18 +98,12 @@ function printTypesParamsObject(objectName, types) {
   return "";
 }
 
-function addTab(value, tab = "  ") {
-  return value ? value.replace(/^/gm, tab) : "";
-}
-
 module.exports = {
   getPathParametersByIn,
   capitalize,
-  breakLine,
   parseType,
   formatDefinitionName,
   formatSchemaRefName,
   printTypesParamsObject,
-  addTab,
   parseSwaggerType,
 };

@@ -1,12 +1,18 @@
-const fs = require("fs");
+const prettier = require("prettier");
+const { readFileSync } = require("fs");
+const path = require("path");
+
+const prettierOptions = {
+  printWidth: 80,
+  trailingComma: "all",
+  arrowParens: "always",
+};
 
 const {
   getPathParametersByIn,
   formatSchemaRefName,
   capitalize,
-  breakLine,
   printTypesParamsObject,
-  addTab,
   parseSwaggerType,
 } = require("./common");
 
@@ -16,9 +22,30 @@ function swaggerapi(apiJson) {
   const paths = buildPaths(apiJson);
   const definitions = buildDefinitions(apiJson);
 
+  const pathRequestCode = path.resolve(path.dirname(__filename), "request.js");
+  const requestCode = readFileSync(pathRequestCode);
+  const code = `${requestCode}\n\n${paths.code}`;
+
+  const result = {
+    paths: {
+      code: prettier.format(code, {
+        ...prettierOptions,
+        parser: "babel",
+      }),
+      types: prettier.format(paths.types, {
+        ...prettierOptions,
+        parser: "typescript",
+      }),
+    },
+    definitions: prettier.format(definitions, {
+      ...prettierOptions,
+      parser: "typescript",
+    }),
+  };
+
   console.timeEnd("✨ swaggerapi");
 
-  return { paths, definitions };
+  return result;
 }
 
 // Code
@@ -48,6 +75,8 @@ function buildPathCodeScope(params) {
     method: params.method,
     name: params.config.operationId,
     url: buildPathCodeScopeUrl(params),
+    accept: buildPathCodeScopeAccept(params),
+    contentType: buildPathCodeScopeContentType(params),
   };
 }
 
@@ -64,16 +93,54 @@ function buildPathCodeScopeUrl(params) {
   return result;
 }
 
+function buildPathCodeScopeAccept(params) {
+  if (params.config.consumes && params.config.consumes.length === 1) {
+    return params.config.consumes[0];
+  }
+
+  return null;
+}
+
+function buildPathCodeScopeContentType(params) {
+  if (params.config.produces && params.config.produces.length === 1) {
+    return params.config.produces[0];
+  }
+
+  return null;
+}
+
 function printPathCode(scope) {
   const { name, isExistParameters, method, url } = scope;
   const params = isExistParameters ? "params" : "";
-  const requestParams = isExistParameters ? ", params" : "";
+  const addedParams = printPathCodeAddedParams(scope);
+  const addedParamsString = addedParams ? `, ${addedParams}` : "";
 
   return `export function ${name}(${params}) {
-  return request("${method}", \`${url}\`${requestParams});
+    return request("${method}", \`${url}\`${addedParamsString})(${params});
+  }\n\n`;
 }
 
-`;
+function printPathCodeAddedParams(scope) {
+  let result = "";
+  let header = "";
+
+  if (scope.accept) {
+    header += `"accept": "${scope.accept}",`;
+  }
+
+  if (scope.contentType) {
+    header += `"Content-Type": "${scope.contentType}",`;
+  }
+
+  if (header.length) {
+    result += `header: {${header}}`;
+  }
+
+  if (result) {
+    result = `{${result}}`;
+  }
+
+  return result;
 }
 
 // Definitions
@@ -113,12 +180,12 @@ function buildDefinitionsTypesScope(params) {
 }
 
 function printDefinitionsTypes(scope) {
-  let result = `type ${scope.name} = {\n`;
+  let result = `type ${scope.name} = {`;
 
   scope.properties.forEach(({ name, type, isRequired }) => {
     const required = isRequired ? "" : "?";
 
-    result += `  ${name}${required}: ${type};\n`;
+    result += `${name}${required}: ${type};`;
   });
 
   result += `};\n\n`;
@@ -145,6 +212,16 @@ function buildPathTypesScopeParams(params) {
 
   const parametersByIn = getPathParametersByIn(params.config.parameters);
 
+  const addToHeader = (value) => {
+    if (value) {
+      if (result.header === undefined) {
+        result.header = [];
+      }
+
+      result.header.push(value);
+    }
+  };
+
   Object.keys(parametersByIn).forEach((inName) => {
     if (result[inName] === undefined) {
       result[inName] = [];
@@ -155,7 +232,37 @@ function buildPathTypesScopeParams(params) {
     });
   });
 
+  // Process config.consumes
+  addToHeader(
+    buildPathTypesScopeConsumesProduces({
+      nameProp: "consumes",
+      valueProp: params.config.consumes,
+    }),
+  );
+
+  // Process config.produces
+  addToHeader(
+    buildPathTypesScopeConsumesProduces({
+      nameProp: "produces",
+      valueProp: params.config.produces,
+    }),
+  );
+
   return result;
+}
+
+function buildPathTypesScopeConsumesProduces({ nameProp, valueProp }) {
+  if (valueProp && valueProp.length > 1) {
+    const name = nameProp === "consumes" ? "accept" : "Content-Type";
+
+    return {
+      name,
+      type: valueProp.map((value) => `"${value}"`).join(" | "),
+      isRequired: true,
+    };
+  }
+
+  return null;
 }
 
 function buildPathTypesScopeParameter(parameter) {
@@ -176,14 +283,12 @@ function buildPathTypesScopeResult(params) {
 
 function printPathTypes(scope) {
   const params = printPathTypesParams(scope);
-  const paramsString = `${params}${breakLine(params)}`;
 
   const result = printPathTypesResult(scope);
-  const resultString = `${result}${breakLine(result)}`;
 
   const method = printPathTypesMethod(scope);
 
-  return `${paramsString}${resultString}${method}\n\n`;
+  return `${params}${result}${method}\n\n`;
 }
 
 function printPathTypesParams(scope) {
@@ -197,14 +302,13 @@ function printPathTypesParams(scope) {
         break;
     }
 
-    return `${memo}${addTab(result)}${breakLine(result)}`;
+    return `${memo}${result}`;
   }, "");
 
   let result = "";
 
   if (params.length > 0) {
-    result = `type ${scope.nameParams} = {
-${params}};`;
+    result = `type ${scope.nameParams} = {${params}};`;
   }
 
   return result;
