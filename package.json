@@ -20,7 +20,9 @@
     "url": "https://github.com/EvgenyiFedotov/swaggerapi/issues"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "prepack": "yarn test && rm -fr ./src/mocks ./src/index.test.js",
+    "postpack": "git reset HEAD --hard"
   },
   "bin": {
     "swaggerapi": "./src/run.js"
