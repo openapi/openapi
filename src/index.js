@@ -24,28 +24,19 @@ function swaggerapi(apiJson, config = {}) {
 
   const pathRequestCode = path.resolve(path.dirname(__filename), "request.js");
   const requestCode = readFileSync(pathRequestCode);
-  const code = `${requestCode}\n\n${paths.code}`;
 
-  const result = {
-    paths: {
-      code: prettier.format(code, {
-        ...prettierOptions,
-        parser: "babel",
-      }),
-      types: prettier.format(paths.types, {
-        ...prettierOptions,
-        parser: "typescript",
-      }),
-    },
-    definitions: prettier.format(definitions, {
-      ...prettierOptions,
-      parser: "typescript",
-    }),
-  };
+  const code = prettier.format(`${requestCode}\n\n${paths.code}`, {
+    ...prettierOptions,
+    parser: "babel",
+  });
+  const types = prettier.format(`${definitions}\n\n${paths.types}`, {
+    ...prettierOptions,
+    parser: "typescript",
+  });
 
   console.timeEnd("✨ swaggerapi");
 
-  return result;
+  return { code, types };
 }
 
 // Code

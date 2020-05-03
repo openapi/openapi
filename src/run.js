@@ -11,14 +11,14 @@ const defaultOutputDir = "./api";
 
 program
   .version(version)
-  .option("--file <path>", "Swagger JSON file with api")
+  .option("--file <path>", "Path swagger JSON file with api")
   .option(
     "--output-dir <path>",
-    `Output directory js api with types (default: "${defaultOutputDir}")`,
+    `Path output directory js api with types (default: "${defaultOutputDir}")`,
   )
   .option(
     "--deprecated <type>",
-    "Deprecated: 'warning' | 'ignore' | 'exception' (default: 'warning')",
+    "Action for deprecated methods: 'warning' | 'ignore' | 'exception' (default: 'warning')",
   );
 
 program.parse(process.argv);
@@ -48,12 +48,12 @@ if (config.file) {
   }
 
   const fileApi = require(pathFile);
-  const { paths, definitions } = swaggerapi(fileApi, {
+  const { code, types } = swaggerapi(fileApi, {
     deprecated: config.deprecated,
   });
 
-  writeFileSync(pathIndex, paths.code);
-  writeFileSync(pathTypes, `${definitions}\n// Methods\n${paths.types}`);
+  writeFileSync(pathIndex, code);
+  writeFileSync(pathTypes, types);
 } else {
   throw new Error("Setup path to file with swagger api");
 }

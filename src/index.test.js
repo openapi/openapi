@@ -6,43 +6,7 @@ test("parse-v1", () => {
 
   expect(result).toMatchInlineSnapshot(`
     Object {
-      "definitions": "type ApiResponse = { code: number; type: string; message: string };
-
-    type Category = { id: number; name: string };
-
-    type Pet = {
-      id?: number;
-      category?: Category;
-      name: string;
-      photoUrls: string[];
-      tags?: Tag[];
-      status?: string;
-    };
-
-    type Tag = { id: number; name: string };
-
-    type Order = {
-      id: number;
-      petId: number;
-      quantity: number;
-      shipDate: string;
-      status: string;
-      complete: boolean;
-    };
-
-    type User = {
-      id: number;
-      username: string;
-      firstName: string;
-      lastName: string;
-      email: string;
-      password: string;
-      phone: string;
-      userStatus: number;
-    };
-    ",
-      "paths": Object {
-        "code": "function request(method, url, defaultParams = {}) {
+      "code": "function request(method, url, defaultParams = {}) {
       return (params = {}) => {
         const query = new URLSearchParams(params.query).toString();
 
@@ -171,7 +135,42 @@ test("parse-v1", () => {
       );
     }
     ",
-        "types": "type UploadFileParams = {
+      "types": "type ApiResponse = { code: number; type: string; message: string };
+
+    type Category = { id: number; name: string };
+
+    type Pet = {
+      id?: number;
+      category?: Category;
+      name: string;
+      photoUrls: string[];
+      tags?: Tag[];
+      status?: string;
+    };
+
+    type Tag = { id: number; name: string };
+
+    type Order = {
+      id: number;
+      petId: number;
+      quantity: number;
+      shipDate: string;
+      status: string;
+      complete: boolean;
+    };
+
+    type User = {
+      id: number;
+      username: string;
+      firstName: string;
+      lastName: string;
+      email: string;
+      password: string;
+      phone: string;
+      userStatus: number;
+    };
+
+    type UploadFileParams = {
       path: { petId: number };
       formData: { additionalMetadata?: string; file?: File };
     };
@@ -320,7 +319,6 @@ test("parse-v1", () => {
     };
     export function createUser(params: CreateUserParams): Promise<void>;
     ",
-      },
     }
   `);
 });
@@ -332,43 +330,7 @@ test("parse-deprecated-ignore", () => {
 
   expect(result).toMatchInlineSnapshot(`
     Object {
-      "definitions": "type ApiResponse = { code: number; type: string; message: string };
-
-    type Category = { id: number; name: string };
-
-    type Pet = {
-      id?: number;
-      category?: Category;
-      name: string;
-      photoUrls: string[];
-      tags?: Tag[];
-      status?: string;
-    };
-
-    type Tag = { id: number; name: string };
-
-    type Order = {
-      id: number;
-      petId: number;
-      quantity: number;
-      shipDate: string;
-      status: string;
-      complete: boolean;
-    };
-
-    type User = {
-      id: number;
-      username: string;
-      firstName: string;
-      lastName: string;
-      email: string;
-      password: string;
-      phone: string;
-      userStatus: number;
-    };
-    ",
-      "paths": Object {
-        "code": "function request(method, url, defaultParams = {}) {
+      "code": "function request(method, url, defaultParams = {}) {
       return (params = {}) => {
         const query = new URLSearchParams(params.query).toString();
 
@@ -496,7 +458,42 @@ test("parse-deprecated-ignore", () => {
       );
     }
     ",
-        "types": "type UploadFileParams = {
+      "types": "type ApiResponse = { code: number; type: string; message: string };
+
+    type Category = { id: number; name: string };
+
+    type Pet = {
+      id?: number;
+      category?: Category;
+      name: string;
+      photoUrls: string[];
+      tags?: Tag[];
+      status?: string;
+    };
+
+    type Tag = { id: number; name: string };
+
+    type Order = {
+      id: number;
+      petId: number;
+      quantity: number;
+      shipDate: string;
+      status: string;
+      complete: boolean;
+    };
+
+    type User = {
+      id: number;
+      username: string;
+      firstName: string;
+      lastName: string;
+      email: string;
+      password: string;
+      phone: string;
+      userStatus: number;
+    };
+
+    type UploadFileParams = {
       path: { petId: number };
       formData: { additionalMetadata?: string; file?: File };
     };
@@ -645,7 +642,6 @@ test("parse-deprecated-ignore", () => {
     };
     export function createUser(params: CreateUserParams): Promise<void>;
     ",
-      },
     }
   `);
 });
@@ -657,43 +653,7 @@ test("parse-deprecated-ignore", () => {
 
   expect(result).toMatchInlineSnapshot(`
     Object {
-      "definitions": "type ApiResponse = { code: number; type: string; message: string };
-
-    type Category = { id: number; name: string };
-
-    type Pet = {
-      id?: number;
-      category?: Category;
-      name: string;
-      photoUrls: string[];
-      tags?: Tag[];
-      status?: string;
-    };
-
-    type Tag = { id: number; name: string };
-
-    type Order = {
-      id: number;
-      petId: number;
-      quantity: number;
-      shipDate: string;
-      status: string;
-      complete: boolean;
-    };
-
-    type User = {
-      id: number;
-      username: string;
-      firstName: string;
-      lastName: string;
-      email: string;
-      password: string;
-      phone: string;
-      userStatus: number;
-    };
-    ",
-      "paths": Object {
-        "code": "function request(method, url, defaultParams = {}) {
+      "code": "function request(method, url, defaultParams = {}) {
       return (params = {}) => {
         const query = new URLSearchParams(params.query).toString();
 
@@ -817,7 +777,42 @@ test("parse-deprecated-ignore", () => {
       );
     }
     ",
-        "types": "type UploadFileParams = {
+      "types": "type ApiResponse = { code: number; type: string; message: string };
+
+    type Category = { id: number; name: string };
+
+    type Pet = {
+      id?: number;
+      category?: Category;
+      name: string;
+      photoUrls: string[];
+      tags?: Tag[];
+      status?: string;
+    };
+
+    type Tag = { id: number; name: string };
+
+    type Order = {
+      id: number;
+      petId: number;
+      quantity: number;
+      shipDate: string;
+      status: string;
+      complete: boolean;
+    };
+
+    type User = {
+      id: number;
+      username: string;
+      firstName: string;
+      lastName: string;
+      email: string;
+      password: string;
+      phone: string;
+      userStatus: number;
+    };
+
+    type UploadFileParams = {
       path: { petId: number };
       formData: { additionalMetadata?: string; file?: File };
     };
@@ -957,7 +952,6 @@ test("parse-deprecated-ignore", () => {
     };
     export function createUser(params: CreateUserParams): Promise<void>;
     ",
-      },
     }
   `);
 });
