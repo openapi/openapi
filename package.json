@@ -1,0 +1,39 @@
+{
+  "name": "swaggerapi",
+  "version": "0.0.1",
+  "description": "⚡️ Convert swagger json api to js (with types fo typescript)",
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "repository": "git@github.com:EvgenyiFedotov/swaggerapi.git",
+  "author": "e.fedotov <fedotov1290@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "convert",
+    "swagger",
+    "api",
+    "js",
+    "types",
+    "typescript"
+  ],
+  "homepage": "https://github.com/EvgenyiFedotov/swaggerapi",
+  "bugs": {
+    "url": "https://github.com/EvgenyiFedotov/swaggerapi/issues"
+  },
+  "scripts": {
+    "test": "jest",
+    "prepack": "yarn test && rm -fr ./src/mocks ./src/index.test.js",
+    "postpack": "git reset HEAD --hard"
+  },
+  "bin": {
+    "swaggerapi": "./src/run.js"
+  },
+  "dependencies": {
+    "commander": "^5.1.0",
+    "prettier": "^2.0.5"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-plugin-prettier": "^3.1.3",
+    "jest": "^25.5.3"
+  }
+}
