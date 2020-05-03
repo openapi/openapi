@@ -1,8 +1,8 @@
-const { swaggerapi } = require("./index");
+const { swaggerToJs } = require("./index");
 const mockV1 = require("./mocks/mock-v1.json");
 
 test("parse-v1", () => {
-  const result = swaggerapi(mockV1);
+  const result = swaggerToJs(mockV1);
 
   expect(result).toMatchInlineSnapshot(`
     Object {
@@ -324,7 +324,7 @@ test("parse-v1", () => {
 });
 
 test("parse-deprecated-ignore", () => {
-  const result = swaggerapi(mockV1, {
+  const result = swaggerToJs(mockV1, {
     deprecated: "ignore",
   });
 
@@ -647,7 +647,7 @@ test("parse-deprecated-ignore", () => {
 });
 
 test("parse-deprecated-ignore", () => {
-  const result = swaggerapi(mockV1, {
+  const result = swaggerToJs(mockV1, {
     deprecated: "exception",
   });
 

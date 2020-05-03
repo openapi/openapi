@@ -16,7 +16,7 @@ const {
   parseSwaggerType,
 } = require("./common");
 
-function swaggerapi(apiJson, config = {}) {
+function swaggerToJs(apiJson, config = {}) {
   console.time("✨ swaggerapi");
 
   const paths = buildPaths(apiJson, config);
@@ -358,4 +358,4 @@ function printPathTypesMethod(scope) {
   return `export function ${name}(${paramsString}): Promise<${resultString}>;`;
 }
 
-module.exports = { swaggerapi };
+module.exports = { swaggerToJs };

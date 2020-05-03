@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const { program } = require("commander");
-const { swaggerapi } = require("./index");
+const { swaggerToJs } = require("./index");
 const path = require("path");
 const { existsSync, writeFileSync } = require("fs");
 const { execSync } = require("child_process");
@@ -24,15 +24,15 @@ program
 program.parse(process.argv);
 
 const pathPackageJson = path.resolve(process.cwd(), "package.json");
-const { swaggerapi: swaggerapiConfig = {} } = require(pathPackageJson) || {};
+const { "swagger-to-js": packageConfig = {} } = require(pathPackageJson) || {};
 const config = {
-  file: program.file ? program.file : swaggerapiConfig.file,
+  file: program.file ? program.file : packageConfig.file,
   outputDir:
-    (program.outputDir ? program.outputDir : swaggerapiConfig.outputDir) ||
+    (program.outputDir ? program.outputDir : packageConfig.outputDir) ||
     defaultOutputDir,
   deprecated: program.deprecated
     ? program.deprecated
-    : swaggerapiConfig.deprecated,
+    : packageConfig.deprecated,
 };
 
 if (config.file) {
@@ -48,7 +48,7 @@ if (config.file) {
   }
 
   const fileApi = require(pathFile);
-  const { code, types } = swaggerapi(fileApi, {
+  const { code, types } = swaggerToJs(fileApi, {
     deprecated: config.deprecated,
   });
 
