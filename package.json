@@ -1,6 +1,6 @@
 {
   "name": "swagger-to-js",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "⚡️ Convert swagger json api to js (with types fo typescript)",
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
@@ -28,6 +28,7 @@
     "swagger-to-js": "./src/run.js"
   },
   "dependencies": {
+    "@babel/parser": "^7.9.6",
     "commander": "^5.1.0",
     "prettier": "^2.0.5"
   },
