@@ -26,9 +26,9 @@ Options:
 ```json
 {
   "swaggerapi": {
-    "file": "./swagger-api.json", // Path swagger JSON file with api
-    "outputDir": "./src/api", // Path output directory js api with types (default: "./api")
-    "deprecated": "exception" // Action for deprecated methods: 'warning' | 'ignore' | 'exception' (default: 'warning')
+    "file": "./swagger-api.json",
+    "outputDir": "./api",
+    "deprecated": "warning"
   }
 }
 ```
