@@ -1,4 +1,3 @@
-const prettier = require("prettier");
 const { readFileSync } = require("fs");
 const path = require("path");
 
@@ -25,14 +24,8 @@ function swaggerToJs(apiJson, config = {}) {
   const pathRequestCode = path.resolve(path.dirname(__filename), "request.js");
   const requestCode = readFileSync(pathRequestCode);
 
-  const code = prettier.format(`${requestCode}\n\n${paths.code}`, {
-    ...prettierOptions,
-    parser: "babel",
-  });
-  const types = prettier.format(`${definitions}\n\n${paths.types}`, {
-    ...prettierOptions,
-    parser: "typescript",
-  });
+  const code = `${requestCode}\n\n${paths.code}`;
+  const types = `${definitions}\n\n${paths.types}`;
 
   console.timeEnd("✨ swaggerapi");
 
@@ -121,9 +114,9 @@ function printPathCode(scope, config) {
   const addedParamsString = addedParams ? `, ${addedParams}` : "";
 
   return `export function ${name}(${params}) {
-    ${deprecatedWarning}
-    return request("${method}", \`${url}\`${addedParamsString})(${params});
-  }\n\n`;
+  ${deprecatedWarning}
+  return request("${method}", \`${url}\`${addedParamsString})(${params});
+}\n\n`;
 }
 
 function printPathCodeAddedParams(scope) {
