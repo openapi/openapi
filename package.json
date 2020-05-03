@@ -1,6 +1,6 @@
 {
   "name": "swaggerapi",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "⚡️ Convert swagger json api to js (with types fo typescript)",
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
