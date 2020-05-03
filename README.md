@@ -7,7 +7,7 @@ Convert swagger json api to js (with types fo typescript)
 ```sh
 npm install -g swagger-to-js
 # or
-yarn globabl add swagger-to-js
+yarn global add swagger-to-js
 ```
 
 ## Usage CLI
