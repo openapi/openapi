@@ -52,8 +52,8 @@ const config = {
 const { code, types } = swaggerToJs(apiJson, config);
 
 console.log(code);
-// => formatted js code
+// => js code
 
 console.log(types);
-// => formatted typescript types
+// => typescript types
 ```
