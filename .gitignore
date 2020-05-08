@@ -1,4 +1,7 @@
 node_modules
 yarn-error.log
 mocks-result
-api
+api-draft
+api-v2
+api-v3
+src-old

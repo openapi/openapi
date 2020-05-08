@@ -2,6 +2,12 @@
 
 Convert swagger json api to js (with types fo typescript)
 
+## Next
+
+- [ ] headers into params to camel case, and into request to cebab case
+- [ ] enums into parameters
+- [ ] api.yml
+
 ## Install
 
 ```sh

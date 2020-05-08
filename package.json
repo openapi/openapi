@@ -22,21 +22,22 @@
   "scripts": {
     "test": "jest",
     "prepack": "yarn test && rm -fr ./src/mocks ./src/index.test.js",
-    "postpack": "git reset HEAD --hard"
+    "postpack": "git reset HEAD --hard",
+    "tojs2": "swagger-to-js --file ./src/mocks/petstore-v2.json --output-dir ./api-v2",
+    "tojs3": "swagger-to-js --file ./src/mocks/petstore-v3.json --output-dir ./api-v3"
   },
   "bin": {
-    "swagger-to-js": "./src/run.js"
+    "swagger-to-js": "./src/cli.js"
   },
   "dependencies": {
-    "commander": "^5.1.0"
+    "commander": "^5.1.0",
+    "cosmiconfig": "^6.0.0",
+    "object-hash": "^2.0.3"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
     "eslint-plugin-prettier": "^3.1.3",
     "jest": "^25.5.3",
     "prettier": "^2.0.5"
-  },
-  "swagger-to-js": {
-    "file": "./src/mocks/mock-v1.json"
   }
 }
