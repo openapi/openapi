@@ -18,11 +18,13 @@ function printCode(store, config = {}) {
     const requestFile = readFile("../request.js");
     const js2xmlFile = readFile("../lib/js2xml.js");
     const xml2jsFile = readFile("../lib/xml2js.js");
+    const kebabCase = readFile("../lib/kebab-case.js");
 
     const requestFileByLines = requestFile.split("\n").slice(0, -2);
 
     requestFileByLines[0] = js2xmlFile.split("\n").slice(0, -2).join("\n");
-    requestFileByLines[1] = xml2jsFile.split("\n").slice(0, -3).join("\n");
+    requestFileByLines[1] = xml2jsFile.split("\n").slice(0, -2).join("\n");
+    requestFileByLines[2] = kebabCase.split("\n").slice(0, -3).join("\n");
 
     result += requestFileByLines.join("\n") + "\n";
   }

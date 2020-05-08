@@ -156,7 +156,7 @@ function buildPathVariantAddedParams({ consume, produce }) {
     }
 
     if (produce) {
-      addedParams.header["Content-Type"] = {
+      addedParams.header.contentType = {
         type: `"${produce}"`,
         required: true,
       };
@@ -281,8 +281,6 @@ function toJsType(type, defaultValue = "any") {
       console.warn(`Type didn't detect. [${type}]`);
       return defaultValue;
   }
-
-  return defaultValue;
 }
 
 function getRefByLink(object, link) {

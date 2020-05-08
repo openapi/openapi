@@ -1,10 +1,16 @@
 const { js2xml } = require("./lib/js2xml");
 const { xml2js } = require("./lib/xml2js");
+const { kebabCase } = require("./lib/kebab-case");
 
 function request(method, url, defaultParams = {}) {
   return (params = {}) => {
     const query = new URLSearchParams(params.query).toString();
-    const headers = { ...defaultParams.header, ...params.header };
+    const mergedHeaders = { ...defaultParams.header, ...params.header };
+    const headers = Object.keys(mergedHeaders).reduce((memo, key) => {
+      memo[kebabCase(key)] = mergedHeaders[key];
+
+      return memo;
+    }, {});
 
     let body;
 
@@ -19,7 +25,7 @@ function request(method, url, defaultParams = {}) {
     };
 
     if (params.body) {
-      switch (headers.accept) {
+      switch (mergedHeaders.accept) {
         case "multipart/form-data":
           body = buildFormData(params.body);
           break;
