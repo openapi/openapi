@@ -219,6 +219,9 @@ function buildTypeByObjectType(object, options = {}) {
     case "object":
       type = parseObjectTypeObject(object, options);
       break;
+    case "string":
+      type = parseObjectTypeString(object, options);
+      break;
     default:
       type = toJsType(object.type, defaultValue);
       break;
@@ -271,6 +274,14 @@ function parseObjectTypeObject(object, options = {}) {
   }
 
   return type;
+}
+
+function parseObjectTypeString(object) {
+  if (object.enum) {
+    return object.enum.map((value) => `"${value}"`).join(" | ");
+  }
+
+  return "string";
 }
 
 function toJsType(type, defaultValue = "any") {

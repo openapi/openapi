@@ -65,5 +65,5 @@ console.log(types);
 
 ## Next
 
-- [ ] enums into parameters
+- [ ] v3 (open api)
 - [ ] api.yml
