@@ -2,12 +2,6 @@
 
 Convert swagger json api to js (with types fo typescript)
 
-## Next
-
-- [ ] enums into parameters
-- [ ] imports in request by files and one
-- [ ] api.yml
-
 ## Install
 
 ```sh
@@ -63,3 +57,13 @@ console.log(code);
 console.log(types);
 // => typescript types
 ```
+
+## Notes
+
+- If you will use this package after application created, you will have problem with generated api,
+  because current api in your app will have different with your swagger api maybe.
+
+## Next
+
+- [ ] enums into parameters
+- [ ] api.yml

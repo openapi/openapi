@@ -37,7 +37,7 @@ program.parse(process.argv);
 const exlorerConfig = cosmiconfigSync("swagger-to-js");
 const loadedConfig = program.config
   ? exlorerConfig.load(program.config).config
-  : exlorerConfig.search().config;
+  : (exlorerConfig.search() || {}).config || {};
 
 const config = {
   file: program.file || loadedConfig.file,
@@ -57,8 +57,6 @@ if (config.file) {
   // Paths
   const pathFile = path.resolve(process.cwd(), config.file);
   const pathOutputDir = path.resolve(process.cwd(), config.outputDir);
-  const pathIndex = path.resolve(pathOutputDir, "index.js");
-  const pathTypes = path.resolve(pathOutputDir, "index.d.ts");
 
   // Check output dir
   if (existsSync(pathOutputDir) === false) {
@@ -66,10 +64,14 @@ if (config.file) {
   }
 
   const fileApi = require(pathFile);
-  const { code, types } = swaggerToJs(fileApi, config);
+  const outputFiles = swaggerToJs(fileApi, config);
 
-  writeFileSync(pathIndex, code);
-  writeFileSync(pathTypes, types);
+  Object.keys(outputFiles).forEach((fileName) => {
+    const filePath = path.resolve(pathOutputDir, fileName);
+    const fileContent = outputFiles[fileName];
+
+    writeFileSync(filePath, fileContent);
+  });
 } else {
   throw new Error("Setup path to file with swagger api");
 }

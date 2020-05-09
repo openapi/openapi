@@ -1,5 +1,6 @@
 const objectHash = require("object-hash");
 
+const { camelCase } = require("../lib/camel-case");
 const { getRefName } = require("./common");
 
 function build(apiJson, config = {}) {
@@ -121,6 +122,15 @@ function buildPathVariantParams({ pathConfig }, options = {}, config = {}) {
     if (bodyKeys.length === 1) {
       params.body = params.body[bodyKeys[0]];
     }
+  }
+
+  // Params header to calelCase
+  if (params.header) {
+    params.header = Object.keys(params.header).reduce((memo, key) => {
+      memo[camelCase(key)] = params.header[key];
+
+      return memo;
+    }, {});
   }
 
   return Object.keys(params).length ? params : null;

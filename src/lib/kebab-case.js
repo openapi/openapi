@@ -1,5 +1,5 @@
 function kebabCase(value) {
-  let result = value
+  const result = value
     .split("")
     .map((letter) => {
       if (letter === letter.toUpperCase()) {
