@@ -16,10 +16,10 @@ function printObjectType(properties, callback = (value) => value) {
   if (properties.length) {
     return (
       properties.reduce((memo, [name, property]) => {
-        const { requried = true } = property;
-        const requriedStr = requried ? "" : "?";
+        const { required = true } = property;
+        const requiredStr = required ? "" : "?";
 
-        memo += ` "${name}"${requriedStr}: ${callback(property.value)};`;
+        memo += ` "${name}"${requiredStr}: ${callback(property.value)};`;
 
         return memo;
       }, "{") + " }"
