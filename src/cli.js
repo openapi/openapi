@@ -17,40 +17,44 @@ program
     "--output-dir <path>",
     `Path output directory js api with types (default: '${defaultOutputDir}')`,
   )
-  .option(
-    "--deprecated <type>",
-    "Action for deprecated methods: 'warning' | 'ignore' | 'exception' (default: 'warning')",
-  )
   .option("--config <path>", "Path to config")
   .option(
     "--mode <type>",
     "Mode for build added comments: 'prod' | 'dev' (default: 'prod')",
   )
   .option(
-    "--short-body",
-    "If request body have one element so this element move to root body",
+    "--deprecated <type>",
+    "Action for deprecated methods: 'warning' | 'ignore' | 'exception' (default: 'warning')",
   )
-  .option("--import-request", "Import request code in out code");
+  .option("--import-request", "Import request code in out code")
+  .option("--original-body", "Build with original request body");
 
 program.parse(process.argv);
 
 const exlorerConfig = cosmiconfigSync("swagger-to-js");
-const loadedConfig = program.config
-  ? exlorerConfig.load(program.config).config
-  : (exlorerConfig.search() || {}).config || {};
+const searchedConfig = program.config
+  ? exlorerConfig.load(program.config)
+  : exlorerConfig.search() || {};
+const loadedConfig = searchedConfig.config || {};
 
 const config = {
   file: program.file || loadedConfig.file,
   outputDir: program.outputDir || loadedConfig.outputDir || defaultOutputDir,
 
-  deprecated: program.deprecated || loadedConfig.deprecated,
   mode: program.mode || loadedConfig.mode,
-  shortBody: program.shortBody || loadedConfig.shortBody,
+  deprecated: program.deprecated || loadedConfig.deprecated,
   importRequest: program.importRequest || loadedConfig.importRequest,
+  originalBody: program.originalBody || loadedConfig.originalBody,
 };
 
 if (config.mode === "dev") {
-  console.log(config);
+  const pathConfig = program.config || searchedConfig.filepath;
+
+  if (pathConfig) {
+    console.log("configPath:", pathConfig);
+  }
+
+  console.log("config:", config);
 }
 
 if (config.file) {

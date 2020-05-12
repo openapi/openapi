@@ -1,16 +1,10 @@
-const { js2xml } = require("./lib/js2xml");
-const { xml2js } = require("./lib/xml2js");
-const { kebabCase } = require("./lib/kebab-case");
+const { jsonToXml } = require("./json-to-xml");
+const { xmlToJson } = require("./xml-to-json");
 
 function request(method, url, defaultParams = {}) {
   return (params = {}) => {
     const query = new URLSearchParams(params.query).toString();
-    const mergedHeaders = { ...defaultParams.header, ...params.header };
-    const headers = Object.keys(mergedHeaders).reduce((memo, key) => {
-      memo[kebabCase(key)] = mergedHeaders[key];
-
-      return memo;
-    }, {});
+    const headers = { ...defaultParams.header, ...params.header };
 
     let body;
 
@@ -25,12 +19,12 @@ function request(method, url, defaultParams = {}) {
     };
 
     if (params.body) {
-      switch (mergedHeaders.accept) {
+      switch (headers.accept) {
         case "multipart/form-data":
           body = buildFormData(params.body);
           break;
         case "application/xml":
-          body = js2xml(params.body);
+          body = jsonToXml(params.body);
           break;
         case "application/json":
           body = JSON.stringify(params.body);
@@ -60,7 +54,7 @@ function request(method, url, defaultParams = {}) {
           data = await response.formData();
           break;
         case "application/xml":
-          data = xml2js(await response.text());
+          data = xmlToJson(await response.text());
           break;
         case "application/json":
           data = await response.json();

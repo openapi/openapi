@@ -1,4 +1,4 @@
-function js2xml(o) {
+function jsonToXml(o) {
   if (
     typeof o === "object" &&
     o.constructor === Object &&
@@ -74,4 +74,4 @@ function js2xml(o) {
   }
 }
 
-module.exports = { js2xml };
+module.exports = { jsonToXml };

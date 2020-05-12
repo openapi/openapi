@@ -3,12 +3,12 @@ const { swaggerV3ToJs } = require("./v3");
 
 function swaggerToJs(apiJson, config = {}) {
   const {
-    deprecated = "warning",
     mode = "prod",
-    shortBody = false,
+    deprecated = "warning",
     importRequest = false,
+    originalBody = false,
   } = config;
-  const nextConfig = { deprecated, mode, shortBody, importRequest };
+  const nextConfig = { deprecated, mode, originalBody, importRequest };
 
   if (apiJson.openapi) {
     return time(() => swaggerV3ToJs(apiJson, nextConfig));

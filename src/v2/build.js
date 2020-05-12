@@ -1,313 +1,267 @@
 const objectHash = require("object-hash");
 
-const { camelCase } = require("../lib/camel-case");
-const { getRefName } = require("./common");
+const { printObject, objectToArray } = require("../lib/print-object");
+const { printSwaggerType } = require("../common/print-swagger-type");
+const { capitalize } = require("../lib/capitalize");
+const { lineJoin } = require("../lib/lines-join");
 
 function build(apiJson, config = {}) {
-  const store = {
-    refs: new Map(),
-    params: new Map(),
-    addedParams: new Map(),
-    results: new Map(),
-    requests: new Map(),
+  const store = new Map();
+  const setStore = (value) => {
+    const key = objectHash(value);
+    store.set(key, value);
+    return key;
   };
+  const content = { code: "", types: "" };
+  const state = { apiJson, config, store, setStore, content };
+
+  content.types +=
+    "type RequestResult<Data> = Promise<{ response: Response; data: Data; }>;\n\n";
+
+  buildPaths(state);
+
+  return content;
+}
+
+function buildPaths(state) {
+  const { apiJson } = state;
 
   Object.keys(apiJson.paths).forEach((url) => {
     Object.keys(apiJson.paths[url]).forEach((method) => {
       const pathConfig = apiJson.paths[url][method];
-      const isException =
-        config.deprecated === "exception" && Boolean(pathConfig.deprecated);
+      const pathParams = { url, method, pathConfig };
 
-      if (isException) {
-        return;
-      }
+      const isException = getIsPathException(pathParams, state);
 
-      buildPath({ store, url, method, pathConfig, apiJson }, config);
+      if (isException) return;
+
+      printPathCode(pathParams, state);
+      printPathTypes(pathParams, state);
     });
   });
-
-  return store;
 }
 
-function buildPath(params, config = {}) {
-  const { pathConfig, store, apiJson } = params;
-  const variants = new Map();
-
-  const checkRef = (link) => {
-    const ref = buildRef({ link, apiJson }, { checkRef });
-
-    store.refs.set(link, ref);
-  };
-
-  (pathConfig.consumes || [null]).forEach((consume) => {
-    (pathConfig.produces || [null]).forEach((produce) => {
-      const variant = buildPathVariant(
-        { pathConfig, consume, produce },
-        { checkRef },
-        config,
-      );
-      const variantKeys = buildVariantKeys(variant);
-
-      if (variantKeys.params) {
-        store.params.set(variantKeys.params, variant.params);
-      }
-
-      if (variantKeys.addedParams) {
-        store.addedParams.set(variantKeys.addedParams, variant.addedParams);
-      }
-
-      if (variantKeys.result) {
-        store.results.set(variantKeys.result, variant.result);
-      }
-
-      variants.set(objectHash(variantKeys), variantKeys);
-    });
-  });
-
-  const request = {
-    url: params.url,
-    method: params.method,
-    deprecated: Boolean(pathConfig.deprecated),
-    variants,
-  };
-
-  store.requests.set(pathConfig.operationId, request);
+function getIsPathException(pathParams, state) {
+  return (
+    state.config.deprecated === "exception" &&
+    Boolean(pathParams.pathConfig.deprecated)
+  );
 }
 
-function buildPathVariant(params, options = {}, config = {}) {
-  return {
-    params: buildPathVariantParams(params, options, config),
-    addedParams: buildPathVariantAddedParams(params, options, config),
-    result: buildPathVariantResult(params, options, config),
-  };
+function printPathCode(pathParams, state) {
+  const { pathConfig } = pathParams;
+  const name = pathConfig.operationId;
+  const existParams = (pathConfig.parameters || []).length > 0;
+  const params = existParams ? "params" : "";
+  const requestParams = [
+    `"${pathParams.method}"`,
+    `\`${pathParams.url.replace(/\{(.*)\}/g, "${params.path.$1}")}\``,
+    printPathCodeDefaultParams(pathParams),
+  ];
+
+  const body = lineJoin(
+    [
+      printPathCodeWarningDeprecated(pathParams, state),
+      `return request(${requestParams.filter(Boolean).join(", ")})(${params});`,
+    ],
+    { beforeLine: "  ", separator: "\n" },
+  );
+
+  state.content.code += lineJoin(
+    [`export function ${name}(${params}) {`, body, "}\n\n"],
+    { separator: "\n" },
+  );
 }
 
-function buildVariantKeys(variant) {
-  return {
-    params: variant.params ? objectHash(variant.params) : null,
-    addedParams: variant.addedParams ? objectHash(variant.addedParams) : null,
-    result: variant.result ? objectHash(variant.result) : null,
-  };
-}
+function printPathCodeDefaultParams(pathParams) {
+  const variants = getPathVariants(pathParams);
 
-function buildRef(params, options = {}) {
-  const { link, apiJson } = params;
-  const refConfig = getRefByLink(apiJson, link);
-
-  return buildType(refConfig, options);
-}
-
-function buildPathVariantParams({ pathConfig }, options = {}, config = {}) {
-  const { parameters = [] } = pathConfig;
-
-  const params = parameters.reduce((memo, originalParameter) => {
-    const parameter = parsePathVariantParamsParameter(
-      originalParameter,
-      options,
-    );
-
-    if (!memo[parameter.in]) {
-      memo[parameter.in] = {};
-    }
-
-    memo[parameter.in][parameter.name] = parameter.type;
-
-    return memo;
-  }, {});
-
-  // Check body, if have one element so push up to root body
-  if (params.body && config.shortBody) {
-    const bodyKeys = Object.keys(params.body);
-
-    if (bodyKeys.length === 1) {
-      params.body = params.body[bodyKeys[0]];
-    }
-  }
-
-  // Params header to calelCase
-  if (params.header) {
-    params.header = Object.keys(params.header).reduce((memo, key) => {
-      memo[camelCase(key)] = params.header[key];
-
-      return memo;
-    }, {});
-  }
-
-  return Object.keys(params).length ? params : null;
-}
-
-function parsePathVariantParamsParameter(parameter, options = {}) {
-  let { in: parameterIn } = parameter;
-
-  // TODO It is resolve in 'request'
-  // It is mistake maybe =)
-  if (parameterIn === "formData") {
-    parameterIn = "body";
-  }
-
-  return {
-    name: parameter.name,
-    in: parameterIn,
-    type: buildType(parameter, options),
-  };
-}
-
-function buildPathVariantAddedParams({ consume, produce }) {
-  const addedParams = {};
-
-  if (consume || produce) {
-    addedParams.header = {};
+  if (variants.length === 1) {
+    const { consume, produce } = variants[0];
+    const header = {};
 
     if (consume) {
-      addedParams.header.accept = {
-        type: `"${consume}"`,
-        required: true,
-      };
+      header.accept = `"${consume}"`;
     }
 
     if (produce) {
-      addedParams.header.contentType = {
-        type: `"${produce}"`,
-        required: true,
-      };
+      header["Content-Type"] = `"${produce}"`;
+    }
+
+    if (Object.keys(header).length) {
+      return printObject(objectToArray({ header }), (propValue) =>
+        printObject(objectToArray(propValue)),
+      );
     }
   }
 
-  return Object.keys(addedParams).length ? addedParams : null;
+  return "";
 }
 
-function buildPathVariantResult({ pathConfig }, options = {}) {
-  const defaultValue = "void";
-  // let result = { type: defaultValue, required: false };
-  let result = null;
+function printPathCodeWarningDeprecated(pathParams, state) {
+  const { pathConfig } = pathParams;
 
-  if (pathConfig.responses && pathConfig.responses["200"]) {
-    result = buildType(pathConfig.responses["200"], {
-      ...options,
-      defaultValue,
-    });
+  if (pathConfig.deprecated && state.config.deprecated !== "ignore") {
+    return `console.warn("Api method '${pathConfig.operationId}' is deprecated");`;
   }
 
-  return result;
+  return "";
 }
 
-function buildType(object, options = {}) {
-  const { defaultValue = "any", checkRef = () => {} } = options;
-  const required = Boolean(object.required);
+function printPathTypes(pathParams, state) {
+  const name = pathParams.pathConfig.operationId;
+  const variants = getPathVariants(pathParams);
 
-  if (object["$ref"]) {
-    checkRef(object["$ref"]);
-    return { type: getRefName(object["$ref"]), required };
-  } else if (object.schema) {
-    return buildType({ ...object.schema, required }, options);
-  } else if (object.type) {
-    return buildTypeByObjectType(object, options);
-  }
+  variants.forEach((variant, index) => {
+    const nameParams = `${capitalize(name)}Params${index}`;
+    const params = printPathParamsTypes(variant, pathParams, state);
 
-  return { type: defaultValue, required };
+    const nameAddedParams = `${capitalize(name)}AddedParams${index}`;
+    const addedParams =
+      variants.length > 1
+        ? printPathParamsTypesAdded(variant, pathParams, state)
+        : "";
+
+    const nameResult = `${capitalize(name)}Result${index}`;
+    const result = printPathResultTypes(variant, pathParams, state);
+
+    let pathArgs = "";
+
+    if (params.length) {
+      state.content.types += `type ${nameParams} = ${params};\n`;
+      pathArgs += `params: ${nameParams}`;
+    }
+
+    if (addedParams.length) {
+      state.content.types += `type ${nameAddedParams} = ${addedParams}\n`;
+
+      if (params.length) {
+        pathArgs += ` & ${nameAddedParams}`;
+      } else {
+        pathArgs = `params: ${nameAddedParams}`;
+      }
+    }
+
+    state.content.types += `type ${nameResult} = RequestResult<${
+      result || "null"
+    }>;\n`;
+
+    state.content.types += `export function ${name}(${pathArgs}): ${nameResult};\n\n`;
+  });
 }
 
-function buildTypeByObjectType(object, options = {}) {
-  const { defaultValue = "any" } = options;
-  let type = defaultValue;
-  const required = Boolean(object.required);
+function printPathParamsTypes(variant, pathParams, state) {
+  const { pathConfig } = pathParams;
+  const { config } = state;
+  const { parameters = [] } = pathConfig;
+  const parametersByIn = parameters.reduce(
+    (memo, parameter) => {
+      if (!memo.properties[parameter.in]) {
+        memo.properties[parameter.in] = {};
+      }
 
-  switch (object.type) {
-    case "array":
-      type = parseObjectTypeArray(object, options);
-      break;
-    case "object":
-      type = parseObjectTypeObject(object, options);
-      break;
-    case "string":
-      type = parseObjectTypeString(object, options);
-      break;
-    default:
-      type = toJsType(object.type, defaultValue);
-      break;
-  }
-
-  return { type, required };
-}
-
-function parseObjectTypeArray(object, options = {}) {
-  const { defaultValue = "any", checkRef = () => {} } = options;
-  const ref = object.items["$ref"] || null;
-  let type = defaultValue;
-
-  if (ref) {
-    type = `${getRefName(ref)}[]`;
-  } else {
-    type = `${toJsType(object.items.type, defaultValue)}[]`;
-  }
-
-  if (ref) {
-    checkRef(ref);
-  }
-
-  return type;
-}
-
-function parseObjectTypeObject(object, options = {}) {
-  const { additionalProperties, properties, required = [] } = object;
-  const { defaultValue = "any" } = options;
-  let type = defaultValue;
-
-  if (additionalProperties) {
-    return `{ [nameProp: string]: ${toJsType(
-      additionalProperties.type,
-      defaultValue,
-    )} }`;
-  } else if (properties) {
-    const propKeys = Object.keys(properties);
-
-    type = propKeys.reduce((memo, propName) => {
-      const isRequired = required.length
-        ? required.indexOf(propName) !== -1
-        : true;
-      const nextObject = { ...properties[propName], required: isRequired };
-
-      memo[propName] = buildType(nextObject, options);
+      memo.properties[parameter.in][parameter.name] = parameter;
 
       return memo;
-    }, {});
+    },
+    {
+      type: "object",
+      properties: {},
+    },
+  );
+
+  // Detect required for 'parametersByIn'
+  const required = Object.keys(parametersByIn.properties).reduce(
+    (result, propName) => {
+      const propValue = parametersByIn.properties[propName];
+      const isRequired = Object.keys(propValue).reduce((memo, parameterKey) => {
+        const parameter = propValue[parameterKey];
+        return memo || Boolean(parameter.required);
+      }, false);
+
+      if (isRequired) {
+        result.push(propName);
+      }
+
+      return result;
+    },
+    [],
+  );
+
+  if (required.length) {
+    parametersByIn.required = required;
   }
 
-  return type;
-}
+  if (config.originalBody === false) {
+    // Check exist 'formData' if exist move tot 'body'
+    if (parametersByIn.properties.formData) {
+      parametersByIn.properties.body = parametersByIn.properties.formData;
+      delete parametersByIn.properties.formData;
+    }
 
-function parseObjectTypeString(object) {
-  if (object.enum) {
-    return object.enum.map((value) => `"${value}"`).join(" | ");
+    // Check body, if have one element so push up to root body
+    if (parametersByIn.properties.body) {
+      const bodyKeys = Object.keys(parametersByIn.properties.body);
+
+      if (bodyKeys.length === 1) {
+        parametersByIn.properties.body =
+          parametersByIn.properties.body[bodyKeys[0]];
+      }
+    }
   }
 
-  return "string";
+  return Object.keys(parametersByIn).length
+    ? printSwaggerType(getModePrintSwaggerType(variant), parametersByIn, state)
+    : "";
 }
 
-function toJsType(type, defaultValue = "any") {
-  switch (type) {
-    case "string":
-      return "string";
-    case "integer":
-      return "number";
-    case "array":
-      return "any[]";
-    case "boolean":
-      return "boolean";
-    case "object":
-      return "object";
-    case "file":
-      return "File";
-    default:
-      console.warn(`Type didn't detect. [${type}]`);
-      return defaultValue;
+function printPathParamsTypesAdded(variant) {
+  const { consume, produce } = variant;
+  const header = {};
+
+  if (consume) {
+    header.accept = { type: "string", enum: [consume] };
   }
+
+  if (produce) {
+    header["Content-Type"] = { type: "string", enum: [produce] };
+  }
+
+  if (Object.keys(header)) {
+    return printSwaggerType("json", { header });
+  }
+
+  return "";
 }
 
-function getRefByLink(object, link) {
-  const linkArr = link.split("/").slice(1);
+function printPathResultTypes(variant, pathParams, state) {
+  const { pathConfig } = pathParams;
 
-  return linkArr.reduce((memo, key) => memo[key], object);
+  if (pathConfig.responses && pathConfig.responses["200"]) {
+    return printSwaggerType(
+      getModePrintSwaggerType(variant),
+      pathConfig.responses["200"],
+      state,
+    );
+  }
+
+  return "";
+}
+
+function getModePrintSwaggerType(variant) {
+  return variant.consume === "application/xml" ? "xml" : "json";
+}
+
+function getPathVariants(pathParams) {
+  const { pathConfig } = pathParams;
+  const { consumes = [null], produces = [null] } = pathConfig;
+  const variants = [];
+
+  consumes.forEach((consume) => {
+    produces.forEach((produce) => variants.push({ consume, produce }));
+  });
+
+  return variants;
 }
 
 module.exports = { build };

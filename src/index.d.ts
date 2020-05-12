@@ -3,10 +3,10 @@ type JsonValue = string | number | null;
 type Json = { [propName: string]: JsonValue | JsonValue[] | Json };
 
 type Config = {
-  deprecated?: "warning" | "ignore" | "exception"; // detault: "warning"
   mode?: "prod" | "dev"; // default: "prod"
-  shortBody?: boolean; // default: false (xml won't work)
+  deprecated?: "warning" | "ignore" | "exception"; // detault: "warning"
   importRequest?: boolean; // default: false
+  originalBody?: boolean; // default: false
 };
 
 type Result = {

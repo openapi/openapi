@@ -1,3 +1,3 @@
-const { request } = require("./src/request");
+const { request } = require("./src/lib/request");
 
 module.exports = { request };

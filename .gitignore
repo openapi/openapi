@@ -5,3 +5,9 @@ api-draft
 api-v2
 api-v3
 src-old
+src/v2-old
+config-v2.json
+test-v2.ts
+test.ts
+t.xml
+test-to-xml.js

@@ -1,4 +1,4 @@
-function xml2js(xmlStr) {
+function xmlToJson(xmlStr) {
   const parser = (xml) => {
     // Create the return object
     var obj = {};
@@ -51,4 +51,4 @@ function xml2js(xmlStr) {
   return parser(new DOMParser().parseFromString(xmlStr, "text/xml"));
 }
 
-module.exports = { xml2js };
+module.exports = { xmlToJson };
