@@ -11,3 +11,5 @@ test-v2.ts
 test.ts
 t.xml
 test-to-xml.js
+api-public-api
+src/mocks/public-api.openapi.*
