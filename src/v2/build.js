@@ -1,9 +1,12 @@
 const objectHash = require("object-hash");
 
-const { printObject, objectToArray } = require("../lib/print-object");
-const { printSwaggerType } = require("../common/print-swagger-type");
-const { capitalize } = require("../lib/capitalize");
-const { lineJoin } = require("../lib/lines-join");
+const { isPathException } = require("../common/is-path-exception");
+const { templateRequestCode } = require("../common/templates/request-code");
+const { pathDefaultParams } = require("../common/path-default-params");
+const { pathParametersByIn } = require("../common/path-parameters-by-in");
+const { buildObjectByRefs } = require("../common/build-object-by-refs");
+const { tempateRequestTypes } = require("../common/templates/request-types");
+const { getMode } = require("../common/get-mode");
 
 function build(apiJson, config = {}) {
   const store = new Map();
@@ -31,9 +34,7 @@ function buildPaths(state) {
       const pathConfig = apiJson.paths[url][method];
       const pathParams = { url, method, pathConfig };
 
-      const isException = getIsPathException(pathParams, state);
-
-      if (isException) return;
+      if (isPathException(pathParams, state)) return;
 
       printPathCode(pathParams, state);
       printPathTypes(pathParams, state);
@@ -41,181 +42,57 @@ function buildPaths(state) {
   });
 }
 
-function getIsPathException(pathParams, state) {
-  return (
-    state.config.deprecated === "exception" &&
-    Boolean(pathParams.pathConfig.deprecated)
-  );
-}
-
 function printPathCode(pathParams, state) {
   const { pathConfig } = pathParams;
-  const name = pathConfig.operationId;
-  const existParams = (pathConfig.parameters || []).length > 0;
-  const params = existParams ? "params" : "";
-  const requestParams = [
-    `"${pathParams.method}"`,
-    `\`${pathParams.url.replace(/\{(.*)\}/g, "${params.path.$1}")}\``,
-    printPathCodeDefaultParams(pathParams),
-  ];
 
-  const body = lineJoin(
-    [
-      printPathCodeWarningDeprecated(pathParams, state),
-      `return request(${requestParams.filter(Boolean).join(", ")})(${params});`,
-    ],
-    { beforeLine: "  ", separator: "\n" },
-  );
-
-  state.content.code += lineJoin(
-    [`export function ${name}(${params}) {`, body, "}\n\n"],
-    { separator: "\n" },
-  );
-}
-
-function printPathCodeDefaultParams(pathParams) {
-  const variants = getPathVariants(pathParams);
-
-  if (variants.length === 1) {
-    const { consume, produce } = variants[0];
-    const header = {};
-
-    if (consume) {
-      header.accept = `"${consume}"`;
-    }
-
-    if (produce) {
-      header["Content-Type"] = `"${produce}"`;
-    }
-
-    if (Object.keys(header).length) {
-      return printObject(objectToArray({ header }), (propValue) =>
-        printObject(objectToArray(propValue)),
-      );
-    }
-  }
-
-  return "";
-}
-
-function printPathCodeWarningDeprecated(pathParams, state) {
-  const { pathConfig } = pathParams;
-
-  if (pathConfig.deprecated && state.config.deprecated !== "ignore") {
-    return `console.warn("Api method '${pathConfig.operationId}' is deprecated");`;
-  }
-
-  return "";
+  state.content.code += templateRequestCode({
+    name: pathConfig.operationId,
+    isExistParams: (pathConfig.parameters || []).length > 0,
+    method: pathParams.method,
+    url: pathParams.url,
+    isWarningDeprecated:
+      pathConfig.deprecated && state.config.deprecated !== "ignore",
+    defaultParams: pathDefaultParams(getPathVariants(pathParams)),
+  });
+  state.content.code += "\n\n";
 }
 
 function printPathTypes(pathParams, state) {
   const name = pathParams.pathConfig.operationId;
   const variants = getPathVariants(pathParams);
+  const countVariants = variants.length;
+  const isMoreOneVariant = countVariants > 1;
 
   variants.forEach((variant, index) => {
-    const nameParams = `${capitalize(name)}Params${index}`;
-    const params = printPathParamsTypes(variant, pathParams, state);
+    const params = buildPathParamsTypes(variant, pathParams, state);
+    const addedParams = isMoreOneVariant
+      ? buildPathAddedParamsTypes(variant)
+      : null;
+    const result = buildPathResultTypes(variant, pathParams, state);
 
-    const nameAddedParams = `${capitalize(name)}AddedParams${index}`;
-    const addedParams =
-      variants.length > 1
-        ? printPathParamsTypesAdded(variant, pathParams, state)
-        : "";
-
-    const nameResult = `${capitalize(name)}Result${index}`;
-    const result = printPathResultTypes(variant, pathParams, state);
-
-    let pathArgs = "";
-
-    if (params.length) {
-      state.content.types += `type ${nameParams} = ${params};\n`;
-      pathArgs += `params: ${nameParams}`;
-    }
-
-    if (addedParams.length) {
-      state.content.types += `type ${nameAddedParams} = ${addedParams}\n`;
-
-      if (params.length) {
-        pathArgs += ` & ${nameAddedParams}`;
-      } else {
-        pathArgs = `params: ${nameAddedParams}`;
-      }
-    }
-
-    state.content.types += `type ${nameResult} = RequestResult<${
-      result || "null"
-    }>;\n`;
-
-    state.content.types += `export function ${name}(${pathArgs}): ${nameResult};\n\n`;
+    state.content.types += tempateRequestTypes({
+      name,
+      countVariants,
+      index,
+      params,
+      addedParams,
+      result,
+    });
+    state.content.types += "\n\n";
   });
 }
 
-function printPathParamsTypes(variant, pathParams, state) {
-  const { pathConfig } = pathParams;
-  const { config } = state;
-  const { parameters = [] } = pathConfig;
-  const parametersByIn = parameters.reduce(
-    (memo, parameter) => {
-      if (!memo.properties[parameter.in]) {
-        memo.properties[parameter.in] = {};
-      }
+function buildPathParamsTypes(variant, pathParams, state) {
+  const parametersByIn = pathParametersByIn(pathParams, state);
 
-      memo.properties[parameter.in][parameter.name] = parameter;
-
-      return memo;
-    },
-    {
-      type: "object",
-      properties: {},
-    },
-  );
-
-  // Detect required for 'parametersByIn'
-  const required = Object.keys(parametersByIn.properties).reduce(
-    (result, propName) => {
-      const propValue = parametersByIn.properties[propName];
-      const isRequired = Object.keys(propValue).reduce((memo, parameterKey) => {
-        const parameter = propValue[parameterKey];
-        return memo || Boolean(parameter.required);
-      }, false);
-
-      if (isRequired) {
-        result.push(propName);
-      }
-
-      return result;
-    },
-    [],
-  );
-
-  if (required.length) {
-    parametersByIn.required = required;
+  if (Object.keys(parametersByIn).length) {
+    return buildObjectByRefs(getMode(variant.consume), parametersByIn, state);
   }
 
-  if (config.originalBody === false) {
-    // Check exist 'formData' if exist move tot 'body'
-    if (parametersByIn.properties.formData) {
-      parametersByIn.properties.body = parametersByIn.properties.formData;
-      delete parametersByIn.properties.formData;
-    }
-
-    // Check body, if have one element so push up to root body
-    if (parametersByIn.properties.body) {
-      const bodyKeys = Object.keys(parametersByIn.properties.body);
-
-      if (bodyKeys.length === 1) {
-        parametersByIn.properties.body =
-          parametersByIn.properties.body[bodyKeys[0]];
-      }
-    }
-  }
-
-  return Object.keys(parametersByIn).length
-    ? printSwaggerType(getModePrintSwaggerType(variant), parametersByIn, state)
-    : "";
+  return null;
 }
 
-function printPathParamsTypesAdded(variant) {
+function buildPathAddedParamsTypes(variant) {
   const { consume, produce } = variant;
   const header = {};
 
@@ -227,29 +104,24 @@ function printPathParamsTypesAdded(variant) {
     header["Content-Type"] = { type: "string", enum: [produce] };
   }
 
-  if (Object.keys(header)) {
-    return printSwaggerType("json", { header });
+  if (Object.keys(header).length) {
+    return { header };
   }
 
-  return "";
+  return null;
 }
 
-function printPathResultTypes(variant, pathParams, state) {
+function buildPathResultTypes(variant, pathParams, state) {
   const { pathConfig } = pathParams;
+  const object = pathConfig.responses
+    ? pathConfig.responses["200"] || null
+    : null;
 
-  if (pathConfig.responses && pathConfig.responses["200"]) {
-    return printSwaggerType(
-      getModePrintSwaggerType(variant),
-      pathConfig.responses["200"],
-      state,
-    );
+  if (object) {
+    return buildObjectByRefs(getMode(variant.produce), object, state);
   }
 
-  return "";
-}
-
-function getModePrintSwaggerType(variant) {
-  return variant.consume === "application/xml" ? "xml" : "json";
+  return null;
 }
 
 function getPathVariants(pathParams) {
