@@ -1,15 +1,18 @@
-const { printObjectType, objectToArrayType } = require("../lib/print-object");
+const {
+  printObjectType,
+  objectToArrayType,
+} = require("../../lib/print-object");
 
-function printSwaggerType(object) {
+function templateSwaggerType(object) {
   let type = "unknown";
 
   if (object.type) {
     type = printObjectTypeByType(object);
   } else if (object.schema) {
-    type = printSwaggerType(object.schema);
+    type = templateSwaggerType(object.schema);
   } else if (typeof object === "object") {
     type = printObjectType(objectToArrayType(object), (propValue) =>
-      printSwaggerType(propValue),
+      templateSwaggerType(propValue),
     );
   }
 
@@ -38,7 +41,7 @@ function printObjectTypeByType(object) {
 
 function printObjectTypeHowObject(object) {
   if (object.additionalProperties) {
-    const itemType = printSwaggerType(object.additionalProperties);
+    const itemType = templateSwaggerType(object.additionalProperties);
 
     return `{ [nameProp: string]: ${itemType}; }`;
   } else if (object.properties) {
@@ -52,7 +55,7 @@ function printObjectTypeHowObject(object) {
       return [propName, { value, required }];
     });
 
-    return printObjectType(properties, (value) => printSwaggerType(value));
+    return printObjectType(properties, (value) => templateSwaggerType(value));
   }
 
   return "object";
@@ -60,7 +63,7 @@ function printObjectTypeHowObject(object) {
 
 function printObjectTypeHowArray(object) {
   if (object.items) {
-    return `(${printSwaggerType(object.items)})[]`;
+    return `(${templateSwaggerType(object.items)})[]`;
   }
 
   return "any[]";
@@ -74,4 +77,4 @@ function printObjectTypeHowString(object) {
   return "string";
 }
 
-module.exports = { printSwaggerType };
+module.exports = { templateSwaggerType };

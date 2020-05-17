@@ -3,38 +3,40 @@ const path = require("path");
 
 function buildFiles({ code, types }, config = {}) {
   const files = {
-    "index.d.ts": types,
+    "index.d.ts": {
+      content: types,
+    },
   };
 
   if (config.importRequest) {
-    files["index.js"] = `import { request } from 'swagger-to-js/request';\n\n`;
-    files["index.js"] += code;
+    files["index.js"] = {
+      content: `import { request } from 'swagger-to-js/request';\n\n${code}`,
+    };
   } else {
-    files["index.js"] = `import { request } from './request';\n\n`;
-    files["index.js"] += code;
+    files["index.js"] = {
+      content: `import { request } from './request';\n\n${code}`,
+    };
 
-    files["request.js"] = readFile("../lib/request.js", (content) => {
-      const contentLines = content.split("\n").slice(0, -2);
+    files["request.js"] = {
+      content: readFile("../lib/request.js", (content) => {
+        const contentLines = content.split("\n").slice(0, -2);
 
-      contentLines[0] = "import { jsonToXml } from './json-to-xml';";
-      contentLines[1] = "import { xmlToJson } from './xml-to-json';";
+        contentLines[0] = "import { jsonToXml } from './json-to-xml';";
+        contentLines[1] = "import { xmlToJson } from './xml-to-json';";
 
-      contentLines[3] = `export ${contentLines[3]}`;
+        contentLines[3] = `export ${contentLines[3]}`;
 
-      return contentLines.join("\n");
-    });
-    files["xml-to-json.js"] = readFile(
-      "../lib/xml-to-json.js",
-      exportOneFunction,
-    );
-    files["json-to-xml.js"] = readFile(
-      "../lib/json-to-xml.js",
-      exportOneFunction,
-    );
-    files["kebab-case.js"] = readFile(
-      "../lib/kebab-case.js",
-      exportOneFunction,
-    );
+        return contentLines.join("\n");
+      }),
+      dependencies: {
+        "xml-to-json.js": {
+          content: readFile("../lib/xml-to-json.js", exportOneFunction),
+        },
+        "json-to-xml.js": {
+          content: readFile("../lib/json-to-xml.js", exportOneFunction),
+        },
+      },
+    };
   }
 
   return files;
