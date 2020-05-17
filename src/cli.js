@@ -9,6 +9,7 @@ const { version } = require("../package.json");
 const { cosmiconfigSync } = require("cosmiconfig");
 
 const defaultOutputDir = "./api";
+const changeAlways = ["index.js", "index.d.ts"];
 
 program
   .version(version)
@@ -70,12 +71,25 @@ if (config.file) {
   const fileApi = require(pathFile);
   const outputFiles = swaggerToJs(fileApi, config);
 
-  Object.keys(outputFiles).forEach((fileName) => {
-    const filePath = path.resolve(pathOutputDir, fileName);
-    const fileContent = outputFiles[fileName];
-
-    writeFileSync(filePath, fileContent);
-  });
+  console.time("✨ swagger-to-js");
+  writeFilesSync(outputFiles, pathOutputDir);
+  console.timeEnd("✨ swagger-to-js");
 } else {
   throw new Error("Setup path to file with swagger api");
+}
+
+function writeFilesSync(files, outputDir = "") {
+  Object.keys(files).forEach((fileName) => {
+    const filePath = path.resolve(outputDir, fileName);
+
+    if (existsSync(filePath) === false || changeAlways.includes(fileName)) {
+      const fileConfig = files[fileName];
+
+      writeFileSync(filePath, fileConfig.content);
+
+      if (fileConfig.dependencies) {
+        writeFilesSync(fileConfig.dependencies, outputDir);
+      }
+    }
+  });
 }

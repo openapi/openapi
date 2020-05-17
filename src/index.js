@@ -11,22 +11,12 @@ function swaggerToJs(apiJson, config = {}) {
   const nextConfig = { deprecated, mode, originalBody, importRequest };
 
   if (apiJson.openapi) {
-    return time(() => swaggerV3ToJs(apiJson, nextConfig));
+    return swaggerV3ToJs(apiJson, nextConfig);
   } else if (apiJson.swagger) {
-    return time(() => swaggerV2ToJs(apiJson, nextConfig));
+    return swaggerV2ToJs(apiJson, nextConfig);
   }
 
   throw new Error("Swagger version didn't detect");
-}
-
-function time(callback) {
-  console.time("✨ swaggerapi");
-
-  const result = callback();
-
-  console.timeEnd("✨ swaggerapi");
-
-  return result;
 }
 
 module.exports = { swaggerToJs };
