@@ -60,7 +60,7 @@ test("without config", () => {
 
     type FindPetsByStatusParams1 = { \\"query\\": { \\"status\\": (\\"available\\" | \\"pending\\" | \\"sold\\")[]; }; };
     type FindPetsByStatusAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type FindPetsByStatusResult1 = RequestResult<({ \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; })[]>;
+    type FindPetsByStatusResult1 = RequestResult<{ \\"Pet\\": ({ \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
     export function findPetsByStatus(params: FindPetsByStatusParams1 & FindPetsByStatusAddedParams1): FindPetsByStatusResult1;
 
     type FindPetsByTagsParams0 = { \\"query\\": { \\"tags\\": (string)[]; }; };
@@ -70,7 +70,7 @@ test("without config", () => {
 
     type FindPetsByTagsParams1 = { \\"query\\": { \\"tags\\": (string)[]; }; };
     type FindPetsByTagsAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type FindPetsByTagsResult1 = RequestResult<({ \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; })[]>;
+    type FindPetsByTagsResult1 = RequestResult<{ \\"Pet\\": ({ \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
     export function findPetsByTags(params: FindPetsByTagsParams1 & FindPetsByTagsAddedParams1): FindPetsByTagsResult1;
 
     type GetPetByIdParams0 = { \\"path\\": { \\"petId\\": number; }; };
@@ -574,7 +574,7 @@ test("deprecated=ignore", () => {
 
     type FindPetsByStatusParams1 = { \\"query\\": { \\"status\\": (\\"available\\" | \\"pending\\" | \\"sold\\")[]; }; };
     type FindPetsByStatusAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type FindPetsByStatusResult1 = RequestResult<({ \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; })[]>;
+    type FindPetsByStatusResult1 = RequestResult<{ \\"Pet\\": ({ \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
     export function findPetsByStatus(params: FindPetsByStatusParams1 & FindPetsByStatusAddedParams1): FindPetsByStatusResult1;
 
     type FindPetsByTagsParams0 = { \\"query\\": { \\"tags\\": (string)[]; }; };
@@ -584,7 +584,7 @@ test("deprecated=ignore", () => {
 
     type FindPetsByTagsParams1 = { \\"query\\": { \\"tags\\": (string)[]; }; };
     type FindPetsByTagsAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type FindPetsByTagsResult1 = RequestResult<({ \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; })[]>;
+    type FindPetsByTagsResult1 = RequestResult<{ \\"Pet\\": ({ \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
     export function findPetsByTags(params: FindPetsByTagsParams1 & FindPetsByTagsAddedParams1): FindPetsByTagsResult1;
 
     type GetPetByIdParams0 = { \\"path\\": { \\"petId\\": number; }; };
@@ -1087,7 +1087,7 @@ test("deprecated=exception", () => {
 
     type FindPetsByStatusParams1 = { \\"query\\": { \\"status\\": (\\"available\\" | \\"pending\\" | \\"sold\\")[]; }; };
     type FindPetsByStatusAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type FindPetsByStatusResult1 = RequestResult<({ \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; })[]>;
+    type FindPetsByStatusResult1 = RequestResult<{ \\"Pet\\": ({ \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
     export function findPetsByStatus(params: FindPetsByStatusParams1 & FindPetsByStatusAddedParams1): FindPetsByStatusResult1;
 
     type GetPetByIdParams0 = { \\"path\\": { \\"petId\\": number; }; };
@@ -1586,7 +1586,7 @@ test("importRequest=true", () => {
 
     type FindPetsByStatusParams1 = { \\"query\\": { \\"status\\": (\\"available\\" | \\"pending\\" | \\"sold\\")[]; }; };
     type FindPetsByStatusAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type FindPetsByStatusResult1 = RequestResult<({ \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; })[]>;
+    type FindPetsByStatusResult1 = RequestResult<{ \\"Pet\\": ({ \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
     export function findPetsByStatus(params: FindPetsByStatusParams1 & FindPetsByStatusAddedParams1): FindPetsByStatusResult1;
 
     type FindPetsByTagsParams0 = { \\"query\\": { \\"tags\\": (string)[]; }; };
@@ -1596,7 +1596,7 @@ test("importRequest=true", () => {
 
     type FindPetsByTagsParams1 = { \\"query\\": { \\"tags\\": (string)[]; }; };
     type FindPetsByTagsAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type FindPetsByTagsResult1 = RequestResult<({ \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; })[]>;
+    type FindPetsByTagsResult1 = RequestResult<{ \\"Pet\\": ({ \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
     export function findPetsByTags(params: FindPetsByTagsParams1 & FindPetsByTagsAddedParams1): FindPetsByTagsResult1;
 
     type GetPetByIdParams0 = { \\"path\\": { \\"petId\\": number; }; };
@@ -1893,7 +1893,7 @@ test("originalBody=true", () => {
 
     type FindPetsByStatusParams1 = { \\"query\\": { \\"status\\": (\\"available\\" | \\"pending\\" | \\"sold\\")[]; }; };
     type FindPetsByStatusAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type FindPetsByStatusResult1 = RequestResult<({ \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; })[]>;
+    type FindPetsByStatusResult1 = RequestResult<{ \\"Pet\\": ({ \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
     export function findPetsByStatus(params: FindPetsByStatusParams1 & FindPetsByStatusAddedParams1): FindPetsByStatusResult1;
 
     type FindPetsByTagsParams0 = { \\"query\\": { \\"tags\\": (string)[]; }; };
@@ -1903,7 +1903,7 @@ test("originalBody=true", () => {
 
     type FindPetsByTagsParams1 = { \\"query\\": { \\"tags\\": (string)[]; }; };
     type FindPetsByTagsAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type FindPetsByTagsResult1 = RequestResult<({ \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; })[]>;
+    type FindPetsByTagsResult1 = RequestResult<{ \\"Pet\\": ({ \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
     export function findPetsByTags(params: FindPetsByTagsParams1 & FindPetsByTagsAddedParams1): FindPetsByTagsResult1;
 
     type GetPetByIdParams0 = { \\"path\\": { \\"petId\\": number; }; };

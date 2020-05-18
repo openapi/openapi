@@ -4,9 +4,10 @@ const { isPathException } = require("../common/is-path-exception");
 const { templateRequestCode } = require("../common/templates/request-code");
 const { pathDefaultParams } = require("../common/path-default-params");
 const { pathParametersByIn } = require("../common/path-parameters-by-in");
-const { buildObjectByRefs } = require("../common/build-object-by-refs");
 const { tempateRequestTypes } = require("../common/templates/request-types");
 const { getMode } = require("../common/get-mode");
+const { buildObjectByRefs } = require("../common/build-object-by-refs");
+const { buildObjectByMode } = require("../common/build-object-by-mode");
 
 function build(apiJson, config = {}) {
   const store = new Map();
@@ -86,7 +87,11 @@ function buildPathParamsTypes(variant, pathParams, state) {
   const parametersByIn = pathParametersByIn(pathParams, state);
 
   if (Object.keys(parametersByIn).length) {
-    return buildObjectByRefs(getMode(variant.consume), parametersByIn, state);
+    const mode = getMode(variant.consume);
+    const objectByRefs = buildObjectByRefs(parametersByIn, state);
+    const objectByMode = buildObjectByMode(objectByRefs, mode);
+
+    return objectByMode;
   }
 
   return null;
@@ -118,7 +123,11 @@ function buildPathResultTypes(variant, pathParams, state) {
     : null;
 
   if (object) {
-    return buildObjectByRefs(getMode(variant.produce), object, state);
+    const mode = getMode(variant.produce);
+    const objectByRefs = buildObjectByRefs(object, state);
+    const objectByMode = buildObjectByMode(objectByRefs, mode);
+
+    return objectByMode;
   }
 
   return null;
