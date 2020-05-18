@@ -30,6 +30,7 @@
     "swagger-to-js": "./src/cli.js"
   },
   "dependencies": {
+    "change-case": "^4.1.1",
     "commander": "^5.1.0",
     "cosmiconfig": "^6.0.0",
     "object-hash": "^2.0.3"
