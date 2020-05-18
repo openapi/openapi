@@ -1,4 +1,5 @@
 const objectHash = require("object-hash");
+const { camelCase } = require("change-case");
 
 const { isPathException } = require("../common/is-path-exception");
 const { templateRequestCode } = require("../common/templates/request-code");
@@ -47,7 +48,7 @@ function printPathCode(pathParams, state) {
   const { pathConfig } = pathParams;
 
   state.content.code += templateRequestCode({
-    name: pathConfig.operationId,
+    name: camelCase(pathConfig.operationId),
     isExistParams: (pathConfig.parameters || []).length > 0,
     method: pathParams.method,
     url: pathParams.url,
@@ -59,7 +60,7 @@ function printPathCode(pathParams, state) {
 }
 
 function printPathTypes(pathParams, state) {
-  const name = pathParams.pathConfig.operationId;
+  const name = camelCase(pathParams.pathConfig.operationId);
   const variants = getPathVariants(pathParams);
   const countVariants = variants.length;
   const isMoreOneVariant = countVariants > 1;
