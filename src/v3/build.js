@@ -5,8 +5,9 @@ const { templateRequestCode } = require("../common/templates/request-code");
 const { pathDefaultParams } = require("../common/path-default-params");
 const { tempateRequestTypes } = require("../common/templates/request-types");
 const { pathParametersByIn } = require("../common/path-parameters-by-in");
-const { buildObjectByRefs } = require("../common/build-object-by-refs");
 const { getMode } = require("../common/get-mode");
+const { buildObjectByRefs } = require("../common/build-object-by-refs");
+const { buildObjectByMode } = require("../common/build-object-by-mode");
 
 function build(apiJson, config = {}) {
   const store = new Map();
@@ -56,14 +57,14 @@ function printPathCode(pathParams, state) {
     url: pathParams.url,
     isWarningDeprecated,
     isExistParams,
-    defaultParams: pathDefaultParams(getPathVariants(pathParams)),
+    defaultParams: pathDefaultParams(getPathVariants(pathParams, state)),
   });
   state.content.code += "\n\n";
 }
 
 function printPathTypes(pathParams, state) {
   const name = pathParams.pathConfig.operationId;
-  const variants = getPathVariants(pathParams);
+  const variants = getPathVariants(pathParams, state);
   const countVariants = variants.length;
   const isMoreOneVariant = countVariants > 1;
 
@@ -88,7 +89,7 @@ function printPathTypes(pathParams, state) {
 
 function buildPathParamsTypes(variant, pathParams, state) {
   if (variant.consume) {
-    let body = getPathRequestBody(pathParams)[variant.consume];
+    let body = getPathRequestBody(pathParams, state)[variant.consume];
 
     if (body) {
       body = { in: "body", name: "body", ...body };
@@ -104,7 +105,11 @@ function buildPathParamsTypes(variant, pathParams, state) {
   const parametersByIn = pathParametersByIn(pathParams, state);
 
   if (Object.keys(parametersByIn).length) {
-    return buildObjectByRefs(getMode(variant.consume), parametersByIn, state);
+    const mode = getMode(variant.consume);
+    const objectByRefs = buildObjectByRefs(parametersByIn, state);
+    const objectByMode = buildObjectByMode(objectByRefs, mode);
+
+    return objectByMode;
   }
 
   return null;
@@ -131,17 +136,21 @@ function buildPathAddedParamsTypes(variant) {
 
 function buildPathResultTypes(variant, pathParams, state) {
   if (variant.produce) {
-    const result = getPathResponses(pathParams)[variant.produce];
+    const result = getPathResponses(pathParams, state)[variant.produce];
 
     if (result) {
-      return buildObjectByRefs(getMode(variant.produce), result, state);
+      const mode = getMode(variant.produce);
+      const objectByRefs = buildObjectByRefs(result, state);
+      const objectByMode = buildObjectByMode(objectByRefs, mode);
+
+      return objectByMode;
     }
   }
 }
 
-function eachPathVariant(pathParams, callback) {
-  const requestBody = getPathRequestBody(pathParams);
-  const responses = getPathResponses(pathParams);
+function eachPathVariant(pathParams, state, callback) {
+  const requestBody = getPathRequestBody(pathParams, state);
+  const responses = getPathResponses(pathParams, state);
 
   const consumes = requestBody ? Object.keys(requestBody) : [null];
   const produces = responses ? Object.keys(responses) : [null];
@@ -153,24 +162,38 @@ function eachPathVariant(pathParams, callback) {
   });
 }
 
-function getPathRequestBody(pathParams) {
+function getPathRequestBody(pathParams, state) {
   const { pathConfig } = pathParams;
 
-  return pathConfig.requestBody ? pathConfig.requestBody.content : null;
+  if (pathConfig.requestBody) {
+    const requestBody = buildObjectByRefs(pathConfig.requestBody, state);
+
+    if (requestBody) {
+      return requestBody.content;
+    }
+  }
+
+  return null;
 }
 
-function getPathResponses(pathParams) {
+function getPathResponses(pathParams, state) {
   const { pathConfig } = pathParams;
 
-  return pathConfig.responses && pathConfig.responses["200"]
-    ? pathConfig.responses["200"].content
-    : null;
+  if (pathConfig.responses && pathConfig.responses["200"]) {
+    const result = buildObjectByRefs(pathConfig.responses["200"], state);
+
+    if (result) {
+      return result.content;
+    }
+  }
+
+  return null;
 }
 
-function getPathVariants(pathParams) {
+function getPathVariants(pathParams, state) {
   const variants = [];
 
-  eachPathVariant(pathParams, (variant) => variants.push(variant));
+  eachPathVariant(pathParams, state, (variant) => variants.push(variant));
 
   return variants;
 }

@@ -11,7 +11,7 @@ test("without config", () => {
 
     type UpdatePetParams0 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
     type UpdatePetAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
-    type UpdatePetResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+    type UpdatePetResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function updatePet(params: UpdatePetParams0 & UpdatePetAddedParams0): UpdatePetResult0;
 
     type UpdatePetParams1 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
@@ -19,19 +19,19 @@ test("without config", () => {
     type UpdatePetResult1 = RequestResult<{ \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }>;
     export function updatePet(params: UpdatePetParams1 & UpdatePetAddedParams1): UpdatePetResult1;
 
-    type UpdatePetParams2 = { \\"body\\": { \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type UpdatePetParams2 = { \\"body\\": { \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
     type UpdatePetAddedParams2 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
-    type UpdatePetResult2 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+    type UpdatePetResult2 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function updatePet(params: UpdatePetParams2 & UpdatePetAddedParams2): UpdatePetResult2;
 
-    type UpdatePetParams3 = { \\"body\\": { \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type UpdatePetParams3 = { \\"body\\": { \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
     type UpdatePetAddedParams3 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type UpdatePetResult3 = RequestResult<{ \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }>;
     export function updatePet(params: UpdatePetParams3 & UpdatePetAddedParams3): UpdatePetResult3;
 
     type UpdatePetParams4 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
     type UpdatePetAddedParams4 = { \\"header\\": { \\"accept\\": \\"application/x-www-form-urlencoded\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
-    type UpdatePetResult4 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+    type UpdatePetResult4 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function updatePet(params: UpdatePetParams4 & UpdatePetAddedParams4): UpdatePetResult4;
 
     type UpdatePetParams5 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
@@ -41,7 +41,7 @@ test("without config", () => {
 
     type AddPetParams0 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
     type AddPetAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
-    type AddPetResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+    type AddPetResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function addPet(params: AddPetParams0 & AddPetAddedParams0): AddPetResult0;
 
     type AddPetParams1 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
@@ -49,19 +49,19 @@ test("without config", () => {
     type AddPetResult1 = RequestResult<{ \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }>;
     export function addPet(params: AddPetParams1 & AddPetAddedParams1): AddPetResult1;
 
-    type AddPetParams2 = { \\"body\\": { \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type AddPetParams2 = { \\"body\\": { \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
     type AddPetAddedParams2 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
-    type AddPetResult2 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+    type AddPetResult2 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function addPet(params: AddPetParams2 & AddPetAddedParams2): AddPetResult2;
 
-    type AddPetParams3 = { \\"body\\": { \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type AddPetParams3 = { \\"body\\": { \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
     type AddPetAddedParams3 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type AddPetResult3 = RequestResult<{ \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }>;
     export function addPet(params: AddPetParams3 & AddPetAddedParams3): AddPetResult3;
 
     type AddPetParams4 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
     type AddPetAddedParams4 = { \\"header\\": { \\"accept\\": \\"application/x-www-form-urlencoded\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
-    type AddPetResult4 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+    type AddPetResult4 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function addPet(params: AddPetParams4 & AddPetAddedParams4): AddPetResult4;
 
     type AddPetParams5 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
@@ -71,7 +71,7 @@ test("without config", () => {
 
     type FindPetsByStatusParams0 = { \\"query\\": { \\"status\\": \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
     type FindPetsByStatusAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type FindPetsByStatusResult0 = RequestResult<({ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; })[]>;
+    type FindPetsByStatusResult0 = RequestResult<{ \\"pet\\": ({ \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
     export function findPetsByStatus(params: FindPetsByStatusParams0 & FindPetsByStatusAddedParams0): FindPetsByStatusResult0;
 
     type FindPetsByStatusParams1 = { \\"query\\": { \\"status\\": \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
@@ -81,7 +81,7 @@ test("without config", () => {
 
     type FindPetsByTagsParams0 = { \\"query\\": { \\"tags\\": (string)[]; }; };
     type FindPetsByTagsAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type FindPetsByTagsResult0 = RequestResult<({ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; })[]>;
+    type FindPetsByTagsResult0 = RequestResult<{ \\"pet\\": ({ \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
     export function findPetsByTags(params: FindPetsByTagsParams0 & FindPetsByTagsAddedParams0): FindPetsByTagsResult0;
 
     type FindPetsByTagsParams1 = { \\"query\\": { \\"tags\\": (string)[]; }; };
@@ -91,7 +91,7 @@ test("without config", () => {
 
     type GetPetByIdParams0 = { \\"path\\": { \\"petId\\": number; }; };
     type GetPetByIdAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type GetPetByIdResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+    type GetPetByIdResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function getPetById(params: GetPetByIdParams0 & GetPetByIdAddedParams0): GetPetByIdResult0;
 
     type GetPetByIdParams1 = { \\"path\\": { \\"petId\\": number; }; };
@@ -516,7 +516,7 @@ test("deprecated=ignore", () => {
 
     type UpdatePetParams0 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
     type UpdatePetAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
-    type UpdatePetResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+    type UpdatePetResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function updatePet(params: UpdatePetParams0 & UpdatePetAddedParams0): UpdatePetResult0;
 
     type UpdatePetParams1 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
@@ -524,19 +524,19 @@ test("deprecated=ignore", () => {
     type UpdatePetResult1 = RequestResult<{ \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }>;
     export function updatePet(params: UpdatePetParams1 & UpdatePetAddedParams1): UpdatePetResult1;
 
-    type UpdatePetParams2 = { \\"body\\": { \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type UpdatePetParams2 = { \\"body\\": { \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
     type UpdatePetAddedParams2 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
-    type UpdatePetResult2 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+    type UpdatePetResult2 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function updatePet(params: UpdatePetParams2 & UpdatePetAddedParams2): UpdatePetResult2;
 
-    type UpdatePetParams3 = { \\"body\\": { \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type UpdatePetParams3 = { \\"body\\": { \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
     type UpdatePetAddedParams3 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type UpdatePetResult3 = RequestResult<{ \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }>;
     export function updatePet(params: UpdatePetParams3 & UpdatePetAddedParams3): UpdatePetResult3;
 
     type UpdatePetParams4 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
     type UpdatePetAddedParams4 = { \\"header\\": { \\"accept\\": \\"application/x-www-form-urlencoded\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
-    type UpdatePetResult4 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+    type UpdatePetResult4 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function updatePet(params: UpdatePetParams4 & UpdatePetAddedParams4): UpdatePetResult4;
 
     type UpdatePetParams5 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
@@ -546,7 +546,7 @@ test("deprecated=ignore", () => {
 
     type AddPetParams0 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
     type AddPetAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
-    type AddPetResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+    type AddPetResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function addPet(params: AddPetParams0 & AddPetAddedParams0): AddPetResult0;
 
     type AddPetParams1 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
@@ -554,19 +554,19 @@ test("deprecated=ignore", () => {
     type AddPetResult1 = RequestResult<{ \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }>;
     export function addPet(params: AddPetParams1 & AddPetAddedParams1): AddPetResult1;
 
-    type AddPetParams2 = { \\"body\\": { \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type AddPetParams2 = { \\"body\\": { \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
     type AddPetAddedParams2 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
-    type AddPetResult2 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+    type AddPetResult2 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function addPet(params: AddPetParams2 & AddPetAddedParams2): AddPetResult2;
 
-    type AddPetParams3 = { \\"body\\": { \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type AddPetParams3 = { \\"body\\": { \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
     type AddPetAddedParams3 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type AddPetResult3 = RequestResult<{ \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }>;
     export function addPet(params: AddPetParams3 & AddPetAddedParams3): AddPetResult3;
 
     type AddPetParams4 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
     type AddPetAddedParams4 = { \\"header\\": { \\"accept\\": \\"application/x-www-form-urlencoded\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
-    type AddPetResult4 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+    type AddPetResult4 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function addPet(params: AddPetParams4 & AddPetAddedParams4): AddPetResult4;
 
     type AddPetParams5 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
@@ -576,7 +576,7 @@ test("deprecated=ignore", () => {
 
     type FindPetsByStatusParams0 = { \\"query\\": { \\"status\\": \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
     type FindPetsByStatusAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type FindPetsByStatusResult0 = RequestResult<({ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; })[]>;
+    type FindPetsByStatusResult0 = RequestResult<{ \\"pet\\": ({ \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
     export function findPetsByStatus(params: FindPetsByStatusParams0 & FindPetsByStatusAddedParams0): FindPetsByStatusResult0;
 
     type FindPetsByStatusParams1 = { \\"query\\": { \\"status\\": \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
@@ -586,7 +586,7 @@ test("deprecated=ignore", () => {
 
     type FindPetsByTagsParams0 = { \\"query\\": { \\"tags\\": (string)[]; }; };
     type FindPetsByTagsAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type FindPetsByTagsResult0 = RequestResult<({ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; })[]>;
+    type FindPetsByTagsResult0 = RequestResult<{ \\"pet\\": ({ \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
     export function findPetsByTags(params: FindPetsByTagsParams0 & FindPetsByTagsAddedParams0): FindPetsByTagsResult0;
 
     type FindPetsByTagsParams1 = { \\"query\\": { \\"tags\\": (string)[]; }; };
@@ -596,7 +596,7 @@ test("deprecated=ignore", () => {
 
     type GetPetByIdParams0 = { \\"path\\": { \\"petId\\": number; }; };
     type GetPetByIdAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type GetPetByIdResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+    type GetPetByIdResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function getPetById(params: GetPetByIdParams0 & GetPetByIdAddedParams0): GetPetByIdResult0;
 
     type GetPetByIdParams1 = { \\"path\\": { \\"petId\\": number; }; };
@@ -1021,7 +1021,7 @@ test("deprecated=exception", () => {
 
     type UpdatePetParams0 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
     type UpdatePetAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
-    type UpdatePetResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+    type UpdatePetResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function updatePet(params: UpdatePetParams0 & UpdatePetAddedParams0): UpdatePetResult0;
 
     type UpdatePetParams1 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
@@ -1029,19 +1029,19 @@ test("deprecated=exception", () => {
     type UpdatePetResult1 = RequestResult<{ \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }>;
     export function updatePet(params: UpdatePetParams1 & UpdatePetAddedParams1): UpdatePetResult1;
 
-    type UpdatePetParams2 = { \\"body\\": { \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type UpdatePetParams2 = { \\"body\\": { \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
     type UpdatePetAddedParams2 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
-    type UpdatePetResult2 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+    type UpdatePetResult2 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function updatePet(params: UpdatePetParams2 & UpdatePetAddedParams2): UpdatePetResult2;
 
-    type UpdatePetParams3 = { \\"body\\": { \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type UpdatePetParams3 = { \\"body\\": { \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
     type UpdatePetAddedParams3 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type UpdatePetResult3 = RequestResult<{ \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }>;
     export function updatePet(params: UpdatePetParams3 & UpdatePetAddedParams3): UpdatePetResult3;
 
     type UpdatePetParams4 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
     type UpdatePetAddedParams4 = { \\"header\\": { \\"accept\\": \\"application/x-www-form-urlencoded\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
-    type UpdatePetResult4 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+    type UpdatePetResult4 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function updatePet(params: UpdatePetParams4 & UpdatePetAddedParams4): UpdatePetResult4;
 
     type UpdatePetParams5 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
@@ -1051,7 +1051,7 @@ test("deprecated=exception", () => {
 
     type AddPetParams0 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
     type AddPetAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
-    type AddPetResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+    type AddPetResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function addPet(params: AddPetParams0 & AddPetAddedParams0): AddPetResult0;
 
     type AddPetParams1 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
@@ -1059,19 +1059,19 @@ test("deprecated=exception", () => {
     type AddPetResult1 = RequestResult<{ \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }>;
     export function addPet(params: AddPetParams1 & AddPetAddedParams1): AddPetResult1;
 
-    type AddPetParams2 = { \\"body\\": { \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type AddPetParams2 = { \\"body\\": { \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
     type AddPetAddedParams2 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
-    type AddPetResult2 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+    type AddPetResult2 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function addPet(params: AddPetParams2 & AddPetAddedParams2): AddPetResult2;
 
-    type AddPetParams3 = { \\"body\\": { \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type AddPetParams3 = { \\"body\\": { \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
     type AddPetAddedParams3 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type AddPetResult3 = RequestResult<{ \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }>;
     export function addPet(params: AddPetParams3 & AddPetAddedParams3): AddPetResult3;
 
     type AddPetParams4 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
     type AddPetAddedParams4 = { \\"header\\": { \\"accept\\": \\"application/x-www-form-urlencoded\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
-    type AddPetResult4 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+    type AddPetResult4 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function addPet(params: AddPetParams4 & AddPetAddedParams4): AddPetResult4;
 
     type AddPetParams5 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
@@ -1081,7 +1081,7 @@ test("deprecated=exception", () => {
 
     type FindPetsByStatusParams0 = { \\"query\\": { \\"status\\": \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
     type FindPetsByStatusAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type FindPetsByStatusResult0 = RequestResult<({ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; })[]>;
+    type FindPetsByStatusResult0 = RequestResult<{ \\"pet\\": ({ \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
     export function findPetsByStatus(params: FindPetsByStatusParams0 & FindPetsByStatusAddedParams0): FindPetsByStatusResult0;
 
     type FindPetsByStatusParams1 = { \\"query\\": { \\"status\\": \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
@@ -1091,7 +1091,7 @@ test("deprecated=exception", () => {
 
     type FindPetsByTagsParams0 = { \\"query\\": { \\"tags\\": (string)[]; }; };
     type FindPetsByTagsAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type FindPetsByTagsResult0 = RequestResult<({ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; })[]>;
+    type FindPetsByTagsResult0 = RequestResult<{ \\"pet\\": ({ \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
     export function findPetsByTags(params: FindPetsByTagsParams0 & FindPetsByTagsAddedParams0): FindPetsByTagsResult0;
 
     type FindPetsByTagsParams1 = { \\"query\\": { \\"tags\\": (string)[]; }; };
@@ -1101,7 +1101,7 @@ test("deprecated=exception", () => {
 
     type GetPetByIdParams0 = { \\"path\\": { \\"petId\\": number; }; };
     type GetPetByIdAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type GetPetByIdResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+    type GetPetByIdResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function getPetById(params: GetPetByIdParams0 & GetPetByIdAddedParams0): GetPetByIdResult0;
 
     type GetPetByIdParams1 = { \\"path\\": { \\"petId\\": number; }; };
@@ -1526,7 +1526,7 @@ test("importRequest=true", () => {
 
     type UpdatePetParams0 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
     type UpdatePetAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
-    type UpdatePetResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+    type UpdatePetResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function updatePet(params: UpdatePetParams0 & UpdatePetAddedParams0): UpdatePetResult0;
 
     type UpdatePetParams1 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
@@ -1534,19 +1534,19 @@ test("importRequest=true", () => {
     type UpdatePetResult1 = RequestResult<{ \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }>;
     export function updatePet(params: UpdatePetParams1 & UpdatePetAddedParams1): UpdatePetResult1;
 
-    type UpdatePetParams2 = { \\"body\\": { \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type UpdatePetParams2 = { \\"body\\": { \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
     type UpdatePetAddedParams2 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
-    type UpdatePetResult2 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+    type UpdatePetResult2 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function updatePet(params: UpdatePetParams2 & UpdatePetAddedParams2): UpdatePetResult2;
 
-    type UpdatePetParams3 = { \\"body\\": { \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type UpdatePetParams3 = { \\"body\\": { \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
     type UpdatePetAddedParams3 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type UpdatePetResult3 = RequestResult<{ \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }>;
     export function updatePet(params: UpdatePetParams3 & UpdatePetAddedParams3): UpdatePetResult3;
 
     type UpdatePetParams4 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
     type UpdatePetAddedParams4 = { \\"header\\": { \\"accept\\": \\"application/x-www-form-urlencoded\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
-    type UpdatePetResult4 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+    type UpdatePetResult4 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function updatePet(params: UpdatePetParams4 & UpdatePetAddedParams4): UpdatePetResult4;
 
     type UpdatePetParams5 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
@@ -1556,7 +1556,7 @@ test("importRequest=true", () => {
 
     type AddPetParams0 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
     type AddPetAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
-    type AddPetResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+    type AddPetResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function addPet(params: AddPetParams0 & AddPetAddedParams0): AddPetResult0;
 
     type AddPetParams1 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
@@ -1564,19 +1564,19 @@ test("importRequest=true", () => {
     type AddPetResult1 = RequestResult<{ \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }>;
     export function addPet(params: AddPetParams1 & AddPetAddedParams1): AddPetResult1;
 
-    type AddPetParams2 = { \\"body\\": { \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type AddPetParams2 = { \\"body\\": { \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
     type AddPetAddedParams2 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
-    type AddPetResult2 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+    type AddPetResult2 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function addPet(params: AddPetParams2 & AddPetAddedParams2): AddPetResult2;
 
-    type AddPetParams3 = { \\"body\\": { \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type AddPetParams3 = { \\"body\\": { \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
     type AddPetAddedParams3 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type AddPetResult3 = RequestResult<{ \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }>;
     export function addPet(params: AddPetParams3 & AddPetAddedParams3): AddPetResult3;
 
     type AddPetParams4 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
     type AddPetAddedParams4 = { \\"header\\": { \\"accept\\": \\"application/x-www-form-urlencoded\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
-    type AddPetResult4 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+    type AddPetResult4 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function addPet(params: AddPetParams4 & AddPetAddedParams4): AddPetResult4;
 
     type AddPetParams5 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
@@ -1586,7 +1586,7 @@ test("importRequest=true", () => {
 
     type FindPetsByStatusParams0 = { \\"query\\": { \\"status\\": \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
     type FindPetsByStatusAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type FindPetsByStatusResult0 = RequestResult<({ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; })[]>;
+    type FindPetsByStatusResult0 = RequestResult<{ \\"pet\\": ({ \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
     export function findPetsByStatus(params: FindPetsByStatusParams0 & FindPetsByStatusAddedParams0): FindPetsByStatusResult0;
 
     type FindPetsByStatusParams1 = { \\"query\\": { \\"status\\": \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
@@ -1596,7 +1596,7 @@ test("importRequest=true", () => {
 
     type FindPetsByTagsParams0 = { \\"query\\": { \\"tags\\": (string)[]; }; };
     type FindPetsByTagsAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type FindPetsByTagsResult0 = RequestResult<({ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; })[]>;
+    type FindPetsByTagsResult0 = RequestResult<{ \\"pet\\": ({ \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
     export function findPetsByTags(params: FindPetsByTagsParams0 & FindPetsByTagsAddedParams0): FindPetsByTagsResult0;
 
     type FindPetsByTagsParams1 = { \\"query\\": { \\"tags\\": (string)[]; }; };
@@ -1606,7 +1606,7 @@ test("importRequest=true", () => {
 
     type GetPetByIdParams0 = { \\"path\\": { \\"petId\\": number; }; };
     type GetPetByIdAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type GetPetByIdResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+    type GetPetByIdResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function getPetById(params: GetPetByIdParams0 & GetPetByIdAddedParams0): GetPetByIdResult0;
 
     type GetPetByIdParams1 = { \\"path\\": { \\"petId\\": number; }; };
@@ -1824,7 +1824,7 @@ test("originalBody=true", () => {
 
     type UpdatePetParams0 = { \\"body\\": { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
     type UpdatePetAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
-    type UpdatePetResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+    type UpdatePetResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function updatePet(params: UpdatePetParams0 & UpdatePetAddedParams0): UpdatePetResult0;
 
     type UpdatePetParams1 = { \\"body\\": { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
@@ -1832,19 +1832,19 @@ test("originalBody=true", () => {
     type UpdatePetResult1 = RequestResult<{ \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }>;
     export function updatePet(params: UpdatePetParams1 & UpdatePetAddedParams1): UpdatePetResult1;
 
-    type UpdatePetParams2 = { \\"body\\": { \\"body\\": { \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; }; };
+    type UpdatePetParams2 = { \\"body\\": { \\"body\\": { \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; }; };
     type UpdatePetAddedParams2 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
-    type UpdatePetResult2 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+    type UpdatePetResult2 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function updatePet(params: UpdatePetParams2 & UpdatePetAddedParams2): UpdatePetResult2;
 
-    type UpdatePetParams3 = { \\"body\\": { \\"body\\": { \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; }; };
+    type UpdatePetParams3 = { \\"body\\": { \\"body\\": { \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; }; };
     type UpdatePetAddedParams3 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type UpdatePetResult3 = RequestResult<{ \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }>;
     export function updatePet(params: UpdatePetParams3 & UpdatePetAddedParams3): UpdatePetResult3;
 
     type UpdatePetParams4 = { \\"body\\": { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
     type UpdatePetAddedParams4 = { \\"header\\": { \\"accept\\": \\"application/x-www-form-urlencoded\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
-    type UpdatePetResult4 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+    type UpdatePetResult4 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function updatePet(params: UpdatePetParams4 & UpdatePetAddedParams4): UpdatePetResult4;
 
     type UpdatePetParams5 = { \\"body\\": { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
@@ -1854,7 +1854,7 @@ test("originalBody=true", () => {
 
     type AddPetParams0 = { \\"body\\": { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
     type AddPetAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
-    type AddPetResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+    type AddPetResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function addPet(params: AddPetParams0 & AddPetAddedParams0): AddPetResult0;
 
     type AddPetParams1 = { \\"body\\": { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
@@ -1862,19 +1862,19 @@ test("originalBody=true", () => {
     type AddPetResult1 = RequestResult<{ \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }>;
     export function addPet(params: AddPetParams1 & AddPetAddedParams1): AddPetResult1;
 
-    type AddPetParams2 = { \\"body\\": { \\"body\\": { \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; }; };
+    type AddPetParams2 = { \\"body\\": { \\"body\\": { \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; }; };
     type AddPetAddedParams2 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
-    type AddPetResult2 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+    type AddPetResult2 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function addPet(params: AddPetParams2 & AddPetAddedParams2): AddPetResult2;
 
-    type AddPetParams3 = { \\"body\\": { \\"body\\": { \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; }; };
+    type AddPetParams3 = { \\"body\\": { \\"body\\": { \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; }; };
     type AddPetAddedParams3 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type AddPetResult3 = RequestResult<{ \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }>;
     export function addPet(params: AddPetParams3 & AddPetAddedParams3): AddPetResult3;
 
     type AddPetParams4 = { \\"body\\": { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
     type AddPetAddedParams4 = { \\"header\\": { \\"accept\\": \\"application/x-www-form-urlencoded\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
-    type AddPetResult4 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+    type AddPetResult4 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function addPet(params: AddPetParams4 & AddPetAddedParams4): AddPetResult4;
 
     type AddPetParams5 = { \\"body\\": { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
@@ -1884,7 +1884,7 @@ test("originalBody=true", () => {
 
     type FindPetsByStatusParams0 = { \\"query\\": { \\"status\\": \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
     type FindPetsByStatusAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type FindPetsByStatusResult0 = RequestResult<({ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; })[]>;
+    type FindPetsByStatusResult0 = RequestResult<{ \\"pet\\": ({ \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
     export function findPetsByStatus(params: FindPetsByStatusParams0 & FindPetsByStatusAddedParams0): FindPetsByStatusResult0;
 
     type FindPetsByStatusParams1 = { \\"query\\": { \\"status\\": \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
@@ -1894,7 +1894,7 @@ test("originalBody=true", () => {
 
     type FindPetsByTagsParams0 = { \\"query\\": { \\"tags\\": (string)[]; }; };
     type FindPetsByTagsAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type FindPetsByTagsResult0 = RequestResult<({ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; })[]>;
+    type FindPetsByTagsResult0 = RequestResult<{ \\"pet\\": ({ \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
     export function findPetsByTags(params: FindPetsByTagsParams0 & FindPetsByTagsAddedParams0): FindPetsByTagsResult0;
 
     type FindPetsByTagsParams1 = { \\"query\\": { \\"tags\\": (string)[]; }; };
@@ -1904,7 +1904,7 @@ test("originalBody=true", () => {
 
     type GetPetByIdParams0 = { \\"path\\": { \\"petId\\": number; }; };
     type GetPetByIdAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type GetPetByIdResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: ({ \\"tag\\": { \\"id\\": number; \\"name\\": string; }; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+    type GetPetByIdResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function getPetById(params: GetPetByIdParams0 & GetPetByIdAddedParams0): GetPetByIdResult0;
 
     type GetPetByIdParams1 = { \\"path\\": { \\"petId\\": number; }; };
