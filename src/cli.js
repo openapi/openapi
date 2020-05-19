@@ -8,6 +8,8 @@ const { execSync } = require("child_process");
 const { version, name } = require("../package.json");
 const { cosmiconfigSync } = require("cosmiconfig");
 const yaml = require("js-yaml");
+const getIsUrl = require("is-url");
+const fetch = require("node-fetch");
 
 const timeLog = `✨ ${name}`;
 const defaultOutputDir = "./api";
@@ -15,16 +17,23 @@ const changeAlways = ["index.js", "index.d.ts"];
 
 program
   .version(version)
-  .option("--file <path>", "Path swagger JSON file with api")
+  // Cli options
+  .option("--file <path>", "Path to file with api (*.json, *.yaml, url)")
   .option(
     "--output-dir <path>",
     `Path output directory js api with types (default: '${defaultOutputDir}')`,
   )
+  .option(
+    "--authorization <value>",
+    "Auth for get api by url (it is header for request)",
+  )
   .option("--config <path>", "Path to config")
+  // Common options
   .option(
     "--mode <type>",
     "Mode for build added comments: 'prod' | 'dev' (default: 'prod')",
   )
+  // Api options
   .option(
     "--deprecated <type>",
     "Action for deprecated methods: 'warning' | 'ignore' | 'exception' (default: 'warning')",
@@ -43,6 +52,7 @@ const loadedConfig = searchedConfig.config || {};
 const config = {
   file: program.file || loadedConfig.file,
   outputDir: program.outputDir || loadedConfig.outputDir || defaultOutputDir,
+  authorization: program.authorization || loadedConfig.authorization,
 
   mode: program.mode || loadedConfig.mode,
   deprecated: program.deprecated || loadedConfig.deprecated,
@@ -50,47 +60,66 @@ const config = {
   originalBody: program.originalBody || loadedConfig.originalBody,
 };
 
-if (config.mode === "dev") {
-  const pathConfig = program.config || searchedConfig.filepath;
+async function main(config) {
+  if (config.mode === "dev") {
+    const pathConfig = program.config || searchedConfig.filepath;
 
-  if (pathConfig) {
-    console.log("configPath:", pathConfig);
+    if (pathConfig) {
+      console.log("configPath:", pathConfig);
+    }
+
+    console.log("config:", config);
   }
 
-  console.log("config:", config);
+  if (config.file) {
+    console.time(timeLog);
+
+    // Get apiJson
+    const apiJson = await readApiJson(config);
+
+    // Convert to js
+    const outputFiles = swaggerToJs(apiJson, config);
+
+    // Check and create output dir
+    const pathOutputDir = path.resolve(process.cwd(), config.outputDir);
+
+    if (existsSync(pathOutputDir) === false) {
+      execSync(`mkdir -p ${pathOutputDir}`);
+    }
+
+    // Write files
+    writeFilesSync(outputFiles, pathOutputDir);
+
+    console.timeEnd(timeLog);
+  } else {
+    throw new Error("Setup path to file with swagger api.");
+  }
 }
 
-if (config.file) {
-  console.time(timeLog);
+async function readApiJson(config) {
+  const isUrl = getIsUrl(config.file);
 
-  // Get apiJson
-  const apiJson = readApiJson(path.resolve(process.cwd(), config.file));
+  // By url
+  if (isUrl) {
+    return await fetch(config.file, {
+      headers: { authorization: config.authorization },
+    }).then((response) => {
+      if (response.status === 401) {
+        throw new Error("Unable to get file. Specify authorization settings.");
+      }
 
-  // Convert to js
-  const outputFiles = swaggerToJs(apiJson, config);
-
-  // Check and create output dir
-  const pathOutputDir = path.resolve(process.cwd(), config.outputDir);
-
-  if (existsSync(pathOutputDir) === false) {
-    execSync(`mkdir -p ${pathOutputDir}`);
+      return response.json();
+    });
   }
 
-  // Write files
-  writeFilesSync(outputFiles, pathOutputDir);
-
-  console.timeEnd(timeLog);
-} else {
-  throw new Error("Setup path to file with swagger api");
-}
-
-function readApiJson(path) {
+  // By local file
+  const apiPath = path.resolve(process.cwd(), config.file);
   const extname = path.extname(config.file).substr(1);
   const isJson = extname === "json";
   const isYaml = extname === "yaml" || extname === "yml";
 
   if (isJson || isYaml) {
-    const apiFile = readFileSync(pathFile, "utf8");
+    const apiFile = readFileSync(apiPath, "utf8");
     let apiJson = {};
 
     if (isYaml) {
@@ -102,7 +131,7 @@ function readApiJson(path) {
     return apiJson;
   }
 
-  throw new Error("Selected file have incorrect format");
+  throw new Error("Selected file have incorrect format.");
 }
 
 function writeFilesSync(files, outputDir = "") {
@@ -120,3 +149,5 @@ function writeFilesSync(files, outputDir = "") {
     }
   });
 }
+
+main(config);
