@@ -21,7 +21,7 @@
   },
   "scripts": {
     "test": "jest",
-    "prepack": "yarn test && rm -fr ./src/mocks ./src/index.test.js",
+    "prepack": "yarn test && rm -fr ./.github ./src/mocks ./src/**/*.test.js",
     "postpack": "git reset HEAD --hard",
     "tojs2": "swagger-to-js --file ./src/mocks/petstore-v2.json --output-dir ./api-v2",
     "tojs3": "swagger-to-js --file ./src/mocks/petstore-v3.json --output-dir ./api-v3"
