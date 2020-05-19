@@ -13,3 +13,4 @@ t.xml
 test-to-xml.js
 api-public-api
 src/mocks/public-api.openapi.*
+api-from-https
