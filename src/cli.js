@@ -3,11 +3,13 @@
 const { program } = require("commander");
 const { swaggerToJs } = require("./index");
 const path = require("path");
-const { existsSync, writeFileSync } = require("fs");
+const { existsSync, writeFileSync, readFileSync } = require("fs");
 const { execSync } = require("child_process");
-const { version } = require("../package.json");
+const { version, name } = require("../package.json");
 const { cosmiconfigSync } = require("cosmiconfig");
+const yaml = require("js-yaml");
 
+const timeLog = `✨ ${name}`;
 const defaultOutputDir = "./api";
 const changeAlways = ["index.js", "index.d.ts"];
 
@@ -59,23 +61,48 @@ if (config.mode === "dev") {
 }
 
 if (config.file) {
-  // Paths
-  const pathFile = path.resolve(process.cwd(), config.file);
+  console.time(timeLog);
+
+  // Get apiJson
+  const apiJson = readApiJson(path.resolve(process.cwd(), config.file));
+
+  // Convert to js
+  const outputFiles = swaggerToJs(apiJson, config);
+
+  // Check and create output dir
   const pathOutputDir = path.resolve(process.cwd(), config.outputDir);
 
-  // Check output dir
   if (existsSync(pathOutputDir) === false) {
     execSync(`mkdir -p ${pathOutputDir}`);
   }
 
-  const fileApi = require(pathFile);
-  const outputFiles = swaggerToJs(fileApi, config);
-
-  console.time("✨ swagger-to-js");
+  // Write files
   writeFilesSync(outputFiles, pathOutputDir);
-  console.timeEnd("✨ swagger-to-js");
+
+  console.timeEnd(timeLog);
 } else {
   throw new Error("Setup path to file with swagger api");
+}
+
+function readApiJson(path) {
+  const extname = path.extname(config.file).substr(1);
+  const isJson = extname === "json";
+  const isYaml = extname === "yaml" || extname === "yml";
+
+  if (isJson || isYaml) {
+    const apiFile = readFileSync(pathFile, "utf8");
+    let apiJson = {};
+
+    if (isYaml) {
+      apiJson = yaml.safeLoad(apiFile);
+    } else {
+      apiJson = JSON.parse(apiFile);
+    }
+
+    return apiJson;
+  }
+
+  throw new Error("Selected file have incorrect format");
 }
 
 function writeFilesSync(files, outputDir = "") {
