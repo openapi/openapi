@@ -1,4 +1,16 @@
 node_modules
 yarn-error.log
 mocks-result
-api
+api-draft
+api-v2
+api-v3
+src-old
+src/v2-old
+config-v2.json
+test-v2.ts
+test.ts
+t.xml
+test-to-xml.js
+api-public-api
+src/mocks/public-api.openapi.*
+api-from-https
