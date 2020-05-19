@@ -4,7 +4,7 @@ const path = require("path");
 function buildFiles({ code, types }, config = {}) {
   const files = {
     "index.d.ts": {
-      content: types,
+      content: `type RequestResult<Data> = Promise<{ response: Response; data: Data; }>;\n\n${types}`,
     },
   };
 

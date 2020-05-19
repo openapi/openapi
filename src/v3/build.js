@@ -20,9 +20,6 @@ function build(apiJson, config = {}) {
   const content = { code: "", types: "" };
   const state = { apiJson, config, store, setStore, content };
 
-  content.types +=
-    "type RequestResult<Data> = Promise<{ response: Response; data: Data; }>;\n\n";
-
   buildPaths(state);
 
   return content;
