@@ -25,13 +25,13 @@ program
   )
   .option(
     "--authorization <value>",
-    "Auth for get api by url (it is header for request)",
+    "Auth token for get api by url (it is header for request)",
   )
   .option("--config <path>", "Path to config")
   // Common options
   .option(
     "--mode <type>",
-    "Mode for build added comments: 'prod' | 'dev' (default: 'prod')",
+    "Mode for additional info: 'prod' | 'dev' (default: 'prod')",
   )
   // Api options
   .option(
