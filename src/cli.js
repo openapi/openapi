@@ -138,9 +138,7 @@ async function readApiJson(config) {
 function buildFiles({ code, types }, config = {}) {
   const { importRequest = false } = config;
   const files = {
-    "index.d.ts": {
-      content: `type RequestResult<Data> = Promise<{ response: Response; data: Data; }>;\n\n${types}`,
-    },
+    "index.d.ts": { content: types },
   };
 
   if (importRequest) {

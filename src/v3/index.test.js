@@ -83,7 +83,9 @@ test("without config", () => {
     }
 
     ",
-      "types": "type UpdatePetParams0 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
+      "types": "type RequestResult<Data> = Promise<{ response: Response; data: Data; }>;
+
+    type UpdatePetParams0 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
     type UpdatePetAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type UpdatePetResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function updatePet(params: UpdatePetParams0 & UpdatePetAddedParams0): UpdatePetResult0;
@@ -373,7 +375,9 @@ test("deprecated=ignore", () => {
     }
 
     ",
-      "types": "type UpdatePetParams0 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
+      "types": "type RequestResult<Data> = Promise<{ response: Response; data: Data; }>;
+
+    type UpdatePetParams0 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
     type UpdatePetAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type UpdatePetResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function updatePet(params: UpdatePetParams0 & UpdatePetAddedParams0): UpdatePetResult0;
@@ -663,7 +667,9 @@ test("deprecated=exception", () => {
     }
 
     ",
-      "types": "type UpdatePetParams0 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
+      "types": "type RequestResult<Data> = Promise<{ response: Response; data: Data; }>;
+
+    type UpdatePetParams0 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
     type UpdatePetAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type UpdatePetResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function updatePet(params: UpdatePetParams0 & UpdatePetAddedParams0): UpdatePetResult0;
@@ -953,7 +959,9 @@ test("importRequest=true", () => {
     }
 
     ",
-      "types": "type UpdatePetParams0 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
+      "types": "type RequestResult<Data> = Promise<{ response: Response; data: Data; }>;
+
+    type UpdatePetParams0 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
     type UpdatePetAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type UpdatePetResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function updatePet(params: UpdatePetParams0 & UpdatePetAddedParams0): UpdatePetResult0;
@@ -1243,7 +1251,9 @@ test("originalBody=true", () => {
     }
 
     ",
-      "types": "type UpdatePetParams0 = { \\"body\\": { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+      "types": "type RequestResult<Data> = Promise<{ response: Response; data: Data; }>;
+
+    type UpdatePetParams0 = { \\"body\\": { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
     type UpdatePetAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type UpdatePetResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function updatePet(params: UpdatePetParams0 & UpdatePetAddedParams0): UpdatePetResult0;

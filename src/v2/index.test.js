@@ -88,7 +88,9 @@ test("without config", () => {
     }
 
     ",
-      "types": "type UploadFileParams0 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"additionalMetadata\\": string; \\"file\\": File; }; };
+      "types": "type RequestResult<Data> = Promise<{ response: Response; data: Data; }>;
+
+    type UploadFileParams0 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"additionalMetadata\\": string; \\"file\\": File; }; };
     type UploadFileResult0 = RequestResult<{ \\"code\\": number; \\"type\\": string; \\"message\\": string; }>;
     export function uploadFile(params: UploadFileParams0): UploadFileResult0;
 
@@ -386,7 +388,9 @@ test("deprecated=ignore", () => {
     }
 
     ",
-      "types": "type UploadFileParams0 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"additionalMetadata\\": string; \\"file\\": File; }; };
+      "types": "type RequestResult<Data> = Promise<{ response: Response; data: Data; }>;
+
+    type UploadFileParams0 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"additionalMetadata\\": string; \\"file\\": File; }; };
     type UploadFileResult0 = RequestResult<{ \\"code\\": number; \\"type\\": string; \\"message\\": string; }>;
     export function uploadFile(params: UploadFileParams0): UploadFileResult0;
 
@@ -680,7 +684,9 @@ test("deprecated=exception", () => {
     }
 
     ",
-      "types": "type UploadFileParams0 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"additionalMetadata\\": string; \\"file\\": File; }; };
+      "types": "type RequestResult<Data> = Promise<{ response: Response; data: Data; }>;
+
+    type UploadFileParams0 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"additionalMetadata\\": string; \\"file\\": File; }; };
     type UploadFileResult0 = RequestResult<{ \\"code\\": number; \\"type\\": string; \\"message\\": string; }>;
     export function uploadFile(params: UploadFileParams0): UploadFileResult0;
 
@@ -969,7 +975,9 @@ test("importRequest=true", () => {
     }
 
     ",
-      "types": "type UploadFileParams0 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"additionalMetadata\\": string; \\"file\\": File; }; };
+      "types": "type RequestResult<Data> = Promise<{ response: Response; data: Data; }>;
+
+    type UploadFileParams0 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"additionalMetadata\\": string; \\"file\\": File; }; };
     type UploadFileResult0 = RequestResult<{ \\"code\\": number; \\"type\\": string; \\"message\\": string; }>;
     export function uploadFile(params: UploadFileParams0): UploadFileResult0;
 
@@ -1268,7 +1276,9 @@ test("originalBody=true", () => {
     }
 
     ",
-      "types": "type UploadFileParams0 = { \\"path\\": { \\"petId\\": number; }; \\"formData\\"?: { \\"additionalMetadata\\": string; \\"file\\": File; }; };
+      "types": "type RequestResult<Data> = Promise<{ response: Response; data: Data; }>;
+
+    type UploadFileParams0 = { \\"path\\": { \\"petId\\": number; }; \\"formData\\"?: { \\"additionalMetadata\\": string; \\"file\\": File; }; };
     type UploadFileResult0 = RequestResult<{ \\"code\\": number; \\"type\\": string; \\"message\\": string; }>;
     export function uploadFile(params: UploadFileParams0): UploadFileResult0;
 

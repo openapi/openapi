@@ -1,24 +1,22 @@
 const { camelCase } = require("change-case");
 
 const { isPathException } = require("../common/is-path-exception");
-const { templateRequestCode } = require("../common/templates/request-code");
 const { pathDefaultParams } = require("../common/path-default-params");
 const { pathParametersByIn } = require("../common/path-parameters-by-in");
-const { templateRequestTypes } = require("../common/templates/request-types");
 const { getMode } = require("../common/get-mode");
 const { buildObjectByRefs } = require("../common/build-object-by-refs");
 const { buildObjectByMode } = require("../common/build-object-by-mode");
+const { baseBuild } = require("../common/base-build");
 
 function swaggerV2ToJs(apiJson, config = {}) {
-  const content = { code: "", types: "" };
-
-  buildPaths(content, { apiJson, config });
-
-  return content;
+  return baseBuild(
+    (content) => buildPaths(content, { apiJson, config }),
+    config,
+  );
 }
 
 function buildPaths(content, state) {
-  const { apiJson } = state;
+  const { apiJson, config } = state;
 
   Object.keys(apiJson.paths).forEach((url) => {
     Object.keys(apiJson.paths[url]).forEach((method) => {
@@ -30,7 +28,7 @@ function buildPaths(content, state) {
       // Path code
       const pathCodeParams = buildPathCodeParams(pathParams, state);
 
-      content.code += templateRequestCode(pathCodeParams);
+      content.code += config.templateRequestCode(pathCodeParams);
       content.code += "\n\n";
 
       // Path types by variants
@@ -45,7 +43,7 @@ function buildPaths(content, state) {
           state,
         });
 
-        content.types += templateRequestTypes(pathVariantTypesParams);
+        content.types += config.templateRequestTypes(pathVariantTypesParams);
         content.types += "\n\n";
       });
     });
