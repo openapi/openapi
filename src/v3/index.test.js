@@ -6,10 +6,84 @@ test("without config", () => {
 
   expect(result).toMatchInlineSnapshot(`
     Object {
-      "index.d.ts": Object {
-        "content": "type RequestResult<Data> = Promise<{ response: Response; data: Data; }>;
+      "code": "export function updatePet(params) {
+      return request(\\"put\\", \`/pet\`)(params);
+    }
 
-    type UpdatePetParams0 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
+    export function addPet(params) {
+      return request(\\"post\\", \`/pet\`)(params);
+    }
+
+    export function findPetsByStatus(params) {
+      return request(\\"get\\", \`/pet/findByStatus\`)(params);
+    }
+
+    export function findPetsByTags(params) {
+      return request(\\"get\\", \`/pet/findByTags\`)(params);
+    }
+
+    export function getPetById(params) {
+      return request(\\"get\\", \`/pet/\${params.path.petId}\`)(params);
+    }
+
+    export function updatePetWithForm(params) {
+      return request(\\"post\\", \`/pet/\${params.path.petId}\`)(params);
+    }
+
+    export function deletePet(params) {
+      return request(\\"delete\\", \`/pet/\${params.path.petId}\`)(params);
+    }
+
+    export function uploadFile(params) {
+      return request(\\"post\\", \`/pet/\${params.path.petId}/uploadImage\`, { \\"header\\": { \\"accept\\": \\"application/octet-stream\\", \\"Content-Type\\": \\"application/json\\", }, })(params);
+    }
+
+    export function getInventory() {
+      return request(\\"get\\", \`/store/inventory\`, { \\"header\\": { \\"Content-Type\\": \\"application/json\\", }, })();
+    }
+
+    export function placeOrder(params) {
+      return request(\\"post\\", \`/store/order\`)(params);
+    }
+
+    export function getOrderById(params) {
+      return request(\\"get\\", \`/store/order/\${params.path.orderId}\`)(params);
+    }
+
+    export function deleteOrder(params) {
+      return request(\\"delete\\", \`/store/order/\${params.path.orderId}\`)(params);
+    }
+
+    export function createUser(params) {
+      return request(\\"post\\", \`/user\`)(params);
+    }
+
+    export function createUsersWithListInput(params) {
+      return request(\\"post\\", \`/user/createWithList\`)(params);
+    }
+
+    export function loginUser(params) {
+      return request(\\"get\\", \`/user/login\`)(params);
+    }
+
+    export function logoutUser() {
+      return request(\\"get\\", \`/user/logout\`)();
+    }
+
+    export function getUserByName(params) {
+      return request(\\"get\\", \`/user/\${params.path.username}\`)(params);
+    }
+
+    export function updateUser(params) {
+      return request(\\"put\\", \`/user/\${params.path.username}\`)(params);
+    }
+
+    export function deleteUser(params) {
+      return request(\\"delete\\", \`/user/\${params.path.username}\`)(params);
+    }
+
+    ",
+      "types": "type UpdatePetParams0 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
     type UpdatePetAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type UpdatePetResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function updatePet(params: UpdatePetParams0 & UpdatePetAddedParams0): UpdatePetResult0;
@@ -211,295 +285,6 @@ test("without config", () => {
     export function deleteUser(params: DeleteUserParams0): DeleteUserResult0;
 
     ",
-      },
-      "index.js": Object {
-        "content": "import { request } from './request';
-
-    export function updatePet(params) {
-      return request(\\"put\\", \`/pet\`)(params);
-    }
-
-    export function addPet(params) {
-      return request(\\"post\\", \`/pet\`)(params);
-    }
-
-    export function findPetsByStatus(params) {
-      return request(\\"get\\", \`/pet/findByStatus\`)(params);
-    }
-
-    export function findPetsByTags(params) {
-      return request(\\"get\\", \`/pet/findByTags\`)(params);
-    }
-
-    export function getPetById(params) {
-      return request(\\"get\\", \`/pet/\${params.path.petId}\`)(params);
-    }
-
-    export function updatePetWithForm(params) {
-      return request(\\"post\\", \`/pet/\${params.path.petId}\`)(params);
-    }
-
-    export function deletePet(params) {
-      return request(\\"delete\\", \`/pet/\${params.path.petId}\`)(params);
-    }
-
-    export function uploadFile(params) {
-      return request(\\"post\\", \`/pet/\${params.path.petId}/uploadImage\`, { \\"header\\": { \\"accept\\": \\"application/octet-stream\\", \\"Content-Type\\": \\"application/json\\", }, })(params);
-    }
-
-    export function getInventory() {
-      return request(\\"get\\", \`/store/inventory\`, { \\"header\\": { \\"Content-Type\\": \\"application/json\\", }, })();
-    }
-
-    export function placeOrder(params) {
-      return request(\\"post\\", \`/store/order\`)(params);
-    }
-
-    export function getOrderById(params) {
-      return request(\\"get\\", \`/store/order/\${params.path.orderId}\`)(params);
-    }
-
-    export function deleteOrder(params) {
-      return request(\\"delete\\", \`/store/order/\${params.path.orderId}\`)(params);
-    }
-
-    export function createUser(params) {
-      return request(\\"post\\", \`/user\`)(params);
-    }
-
-    export function createUsersWithListInput(params) {
-      return request(\\"post\\", \`/user/createWithList\`)(params);
-    }
-
-    export function loginUser(params) {
-      return request(\\"get\\", \`/user/login\`)(params);
-    }
-
-    export function logoutUser() {
-      return request(\\"get\\", \`/user/logout\`)();
-    }
-
-    export function getUserByName(params) {
-      return request(\\"get\\", \`/user/\${params.path.username}\`)(params);
-    }
-
-    export function updateUser(params) {
-      return request(\\"put\\", \`/user/\${params.path.username}\`)(params);
-    }
-
-    export function deleteUser(params) {
-      return request(\\"delete\\", \`/user/\${params.path.username}\`)(params);
-    }
-
-    ",
-      },
-      "request.js": Object {
-        "content": "import { jsonToXml } from './json-to-xml';
-    import { xmlToJson } from './xml-to-json';
-
-    export function request(method, url, defaultParams = {}) {
-      return (params = {}) => {
-        const query = new URLSearchParams(params.query).toString();
-        const headers = { ...defaultParams.header, ...params.header };
-
-        let body;
-
-        const buildFormData = (object) => {
-          const result = new FormData();
-
-          Object.keys(object).forEach((key) => {
-            result.append(key, object[key]);
-          });
-
-          return result;
-        };
-
-        if (params.body) {
-          switch (headers.accept) {
-            case \\"multipart/form-data\\":
-              body = buildFormData(params.body);
-              break;
-            case \\"application/xml\\":
-              body = jsonToXml(params.body);
-              break;
-            case \\"application/json\\":
-              body = JSON.stringify(params.body);
-              break;
-            default:
-              body = params.body;
-              break;
-          }
-        } else if (params.formData) {
-          body = buildFormData(params.formData);
-        }
-
-        return fetch(\`\${url}\${query ? \`?\${query}\` : \\"\\"}\`, {
-          method,
-          headers,
-          body,
-        }).then(async (response) => {
-          let data = null;
-
-          const headersValues = Object.values(headers);
-          const headersKeys = Object.keys(headers).map((value) =>
-            value.toLocaleLowerCase(),
-          );
-
-          switch (headersValues[headersKeys.indexOf(\\"content-type\\")]) {
-            case \\"multipart/form-data\\":
-              data = await response.formData();
-              break;
-            case \\"application/xml\\":
-              data = xmlToJson(await response.text());
-              break;
-            case \\"application/json\\":
-              data = await response.json();
-              break;
-            default:
-              break;
-          }
-
-          return { response, data };
-        });
-      };
-    }
-    ",
-        "dependencies": Object {
-          "json-to-xml.js": Object {
-            "content": "export function jsonToXml(o) {
-      if (
-        typeof o === \\"object\\" &&
-        o.constructor === Object &&
-        Object.keys(o).length === 1
-      ) {
-        for (var a in o) {
-          return toXML(a, o[a]);
-        }
-      } else {
-      }
-
-      function toXML(tag, o) {
-        var doc = \\"<\\" + tag;
-        if (typeof o === \\"undefined\\" || o === null) {
-          doc += \\"/>\\";
-          return doc;
-        }
-        if (typeof o !== \\"object\\") {
-          doc += \\">\\" + safeXMLValue(o) + \\"</\\" + tag + \\">\\";
-          return doc;
-        }
-        if (o.constructor === Object) {
-          for (var a in o) {
-            if (a.charAt(0) === \\"@\\") {
-              if (typeof o[a] !== \\"object\\") {
-                doc += \\" \\" + a.substring(1) + '=\\"' + o[a] + '\\"';
-                delete o[a];
-              } else {
-                throw new Error(typeof o[a] + \\" being attribute is not supported.\\");
-              }
-            }
-          }
-          if (Object.keys(o).length === 0) {
-            doc += \\"/>\\";
-            return doc;
-          } else {
-            doc += \\">\\";
-          }
-          if (typeof o[\\"#text\\"] !== \\"undefined\\") {
-            if (typeof o[\\"#text\\"] !== \\"object\\") {
-              doc += o[\\"#text\\"];
-              delete o[\\"#text\\"];
-            } else {
-              throw new Error(typeof o[\\"#text\\"] + \\" being #text is not supported.\\");
-            }
-          }
-          for (var b in o) {
-            if (o[b].constructor === Array) {
-              for (var i = 0; i < o[b].length; i++) {
-                if (typeof o[b][i] !== \\"object\\" || o[b][i].constructor === Object) {
-                  doc += toXML(b, o[b][i]);
-                } else {
-                  throw new Error(typeof o[b][i] + \\" is not supported.\\");
-                }
-              }
-            } else if (o[b].constructor === Object || typeof o[b] !== \\"object\\") {
-              doc += toXML(b, o[b]);
-            } else {
-              throw new Error(typeof o[b] + \\" is not supported.\\");
-            }
-          }
-          doc += \\"</\\" + tag + \\">\\";
-          return doc;
-        }
-      }
-      function safeXMLValue(value) {
-        var s = value.toString();
-        s = s.replace(\\"/&/g\\", \\"&amp;\\");
-        s = s.replace('/\\"/g', \\"&quot;\\");
-        s = s.replace(\\"/</g\\", \\"&lt;\\");
-        s = s.replace(\\"/>/g\\", \\"&gt;\\");
-        return s;
-      }
-    }
-    ",
-          },
-          "xml-to-json.js": Object {
-            "content": "export function xmlToJson(xmlStr) {
-      const parser = (xml) => {
-        // Create the return object
-        var obj = {};
-
-        if (xml.nodeType === 1) {
-          // element
-          // do attributes
-          if (xml.attributes.length > 0) {
-            obj[\\"@attributes\\"] = {};
-            for (var j = 0; j < xml.attributes.length; j++) {
-              var attribute = xml.attributes.item(j);
-              obj[\\"@attributes\\"][attribute.nodeName] = attribute.nodeValue;
-            }
-          }
-        } else if (xml.nodeType === 3) {
-          // text
-          obj = xml.nodeValue;
-        }
-
-        // do children
-        // If all text nodes inside, get concatenated text from them.
-        var textNodes = [].slice.call(xml.childNodes).filter(function (node) {
-          return node.nodeType === 3;
-        });
-
-        if (xml.hasChildNodes() && xml.childNodes.length === textNodes.length) {
-          obj = [].slice.call(xml.childNodes).reduce(function (text, node) {
-            return text + node.nodeValue;
-          }, \\"\\");
-        } else if (xml.hasChildNodes()) {
-          for (var i = 0; i < xml.childNodes.length; i++) {
-            var item = xml.childNodes.item(i);
-            var nodeName = item.nodeName;
-            if (typeof obj[nodeName] == \\"undefined\\") {
-              obj[nodeName] = parser(item);
-            } else {
-              if (typeof obj[nodeName].push == \\"undefined\\") {
-                var old = obj[nodeName];
-                obj[nodeName] = [];
-                obj[nodeName].push(old);
-              }
-              obj[nodeName].push(parser(item));
-            }
-          }
-        }
-
-        return obj;
-      };
-
-      return parser(new DOMParser().parseFromString(xmlStr, \\"text/xml\\"));
-    }
-    ",
-          },
-        },
-      },
     }
   `);
 });
@@ -511,10 +296,84 @@ test("deprecated=ignore", () => {
 
   expect(result).toMatchInlineSnapshot(`
     Object {
-      "index.d.ts": Object {
-        "content": "type RequestResult<Data> = Promise<{ response: Response; data: Data; }>;
+      "code": "export function updatePet(params) {
+      return request(\\"put\\", \`/pet\`)(params);
+    }
 
-    type UpdatePetParams0 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
+    export function addPet(params) {
+      return request(\\"post\\", \`/pet\`)(params);
+    }
+
+    export function findPetsByStatus(params) {
+      return request(\\"get\\", \`/pet/findByStatus\`)(params);
+    }
+
+    export function findPetsByTags(params) {
+      return request(\\"get\\", \`/pet/findByTags\`)(params);
+    }
+
+    export function getPetById(params) {
+      return request(\\"get\\", \`/pet/\${params.path.petId}\`)(params);
+    }
+
+    export function updatePetWithForm(params) {
+      return request(\\"post\\", \`/pet/\${params.path.petId}\`)(params);
+    }
+
+    export function deletePet(params) {
+      return request(\\"delete\\", \`/pet/\${params.path.petId}\`)(params);
+    }
+
+    export function uploadFile(params) {
+      return request(\\"post\\", \`/pet/\${params.path.petId}/uploadImage\`, { \\"header\\": { \\"accept\\": \\"application/octet-stream\\", \\"Content-Type\\": \\"application/json\\", }, })(params);
+    }
+
+    export function getInventory() {
+      return request(\\"get\\", \`/store/inventory\`, { \\"header\\": { \\"Content-Type\\": \\"application/json\\", }, })();
+    }
+
+    export function placeOrder(params) {
+      return request(\\"post\\", \`/store/order\`)(params);
+    }
+
+    export function getOrderById(params) {
+      return request(\\"get\\", \`/store/order/\${params.path.orderId}\`)(params);
+    }
+
+    export function deleteOrder(params) {
+      return request(\\"delete\\", \`/store/order/\${params.path.orderId}\`)(params);
+    }
+
+    export function createUser(params) {
+      return request(\\"post\\", \`/user\`)(params);
+    }
+
+    export function createUsersWithListInput(params) {
+      return request(\\"post\\", \`/user/createWithList\`)(params);
+    }
+
+    export function loginUser(params) {
+      return request(\\"get\\", \`/user/login\`)(params);
+    }
+
+    export function logoutUser() {
+      return request(\\"get\\", \`/user/logout\`)();
+    }
+
+    export function getUserByName(params) {
+      return request(\\"get\\", \`/user/\${params.path.username}\`)(params);
+    }
+
+    export function updateUser(params) {
+      return request(\\"put\\", \`/user/\${params.path.username}\`)(params);
+    }
+
+    export function deleteUser(params) {
+      return request(\\"delete\\", \`/user/\${params.path.username}\`)(params);
+    }
+
+    ",
+      "types": "type UpdatePetParams0 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
     type UpdatePetAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type UpdatePetResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function updatePet(params: UpdatePetParams0 & UpdatePetAddedParams0): UpdatePetResult0;
@@ -716,295 +575,6 @@ test("deprecated=ignore", () => {
     export function deleteUser(params: DeleteUserParams0): DeleteUserResult0;
 
     ",
-      },
-      "index.js": Object {
-        "content": "import { request } from './request';
-
-    export function updatePet(params) {
-      return request(\\"put\\", \`/pet\`)(params);
-    }
-
-    export function addPet(params) {
-      return request(\\"post\\", \`/pet\`)(params);
-    }
-
-    export function findPetsByStatus(params) {
-      return request(\\"get\\", \`/pet/findByStatus\`)(params);
-    }
-
-    export function findPetsByTags(params) {
-      return request(\\"get\\", \`/pet/findByTags\`)(params);
-    }
-
-    export function getPetById(params) {
-      return request(\\"get\\", \`/pet/\${params.path.petId}\`)(params);
-    }
-
-    export function updatePetWithForm(params) {
-      return request(\\"post\\", \`/pet/\${params.path.petId}\`)(params);
-    }
-
-    export function deletePet(params) {
-      return request(\\"delete\\", \`/pet/\${params.path.petId}\`)(params);
-    }
-
-    export function uploadFile(params) {
-      return request(\\"post\\", \`/pet/\${params.path.petId}/uploadImage\`, { \\"header\\": { \\"accept\\": \\"application/octet-stream\\", \\"Content-Type\\": \\"application/json\\", }, })(params);
-    }
-
-    export function getInventory() {
-      return request(\\"get\\", \`/store/inventory\`, { \\"header\\": { \\"Content-Type\\": \\"application/json\\", }, })();
-    }
-
-    export function placeOrder(params) {
-      return request(\\"post\\", \`/store/order\`)(params);
-    }
-
-    export function getOrderById(params) {
-      return request(\\"get\\", \`/store/order/\${params.path.orderId}\`)(params);
-    }
-
-    export function deleteOrder(params) {
-      return request(\\"delete\\", \`/store/order/\${params.path.orderId}\`)(params);
-    }
-
-    export function createUser(params) {
-      return request(\\"post\\", \`/user\`)(params);
-    }
-
-    export function createUsersWithListInput(params) {
-      return request(\\"post\\", \`/user/createWithList\`)(params);
-    }
-
-    export function loginUser(params) {
-      return request(\\"get\\", \`/user/login\`)(params);
-    }
-
-    export function logoutUser() {
-      return request(\\"get\\", \`/user/logout\`)();
-    }
-
-    export function getUserByName(params) {
-      return request(\\"get\\", \`/user/\${params.path.username}\`)(params);
-    }
-
-    export function updateUser(params) {
-      return request(\\"put\\", \`/user/\${params.path.username}\`)(params);
-    }
-
-    export function deleteUser(params) {
-      return request(\\"delete\\", \`/user/\${params.path.username}\`)(params);
-    }
-
-    ",
-      },
-      "request.js": Object {
-        "content": "import { jsonToXml } from './json-to-xml';
-    import { xmlToJson } from './xml-to-json';
-
-    export function request(method, url, defaultParams = {}) {
-      return (params = {}) => {
-        const query = new URLSearchParams(params.query).toString();
-        const headers = { ...defaultParams.header, ...params.header };
-
-        let body;
-
-        const buildFormData = (object) => {
-          const result = new FormData();
-
-          Object.keys(object).forEach((key) => {
-            result.append(key, object[key]);
-          });
-
-          return result;
-        };
-
-        if (params.body) {
-          switch (headers.accept) {
-            case \\"multipart/form-data\\":
-              body = buildFormData(params.body);
-              break;
-            case \\"application/xml\\":
-              body = jsonToXml(params.body);
-              break;
-            case \\"application/json\\":
-              body = JSON.stringify(params.body);
-              break;
-            default:
-              body = params.body;
-              break;
-          }
-        } else if (params.formData) {
-          body = buildFormData(params.formData);
-        }
-
-        return fetch(\`\${url}\${query ? \`?\${query}\` : \\"\\"}\`, {
-          method,
-          headers,
-          body,
-        }).then(async (response) => {
-          let data = null;
-
-          const headersValues = Object.values(headers);
-          const headersKeys = Object.keys(headers).map((value) =>
-            value.toLocaleLowerCase(),
-          );
-
-          switch (headersValues[headersKeys.indexOf(\\"content-type\\")]) {
-            case \\"multipart/form-data\\":
-              data = await response.formData();
-              break;
-            case \\"application/xml\\":
-              data = xmlToJson(await response.text());
-              break;
-            case \\"application/json\\":
-              data = await response.json();
-              break;
-            default:
-              break;
-          }
-
-          return { response, data };
-        });
-      };
-    }
-    ",
-        "dependencies": Object {
-          "json-to-xml.js": Object {
-            "content": "export function jsonToXml(o) {
-      if (
-        typeof o === \\"object\\" &&
-        o.constructor === Object &&
-        Object.keys(o).length === 1
-      ) {
-        for (var a in o) {
-          return toXML(a, o[a]);
-        }
-      } else {
-      }
-
-      function toXML(tag, o) {
-        var doc = \\"<\\" + tag;
-        if (typeof o === \\"undefined\\" || o === null) {
-          doc += \\"/>\\";
-          return doc;
-        }
-        if (typeof o !== \\"object\\") {
-          doc += \\">\\" + safeXMLValue(o) + \\"</\\" + tag + \\">\\";
-          return doc;
-        }
-        if (o.constructor === Object) {
-          for (var a in o) {
-            if (a.charAt(0) === \\"@\\") {
-              if (typeof o[a] !== \\"object\\") {
-                doc += \\" \\" + a.substring(1) + '=\\"' + o[a] + '\\"';
-                delete o[a];
-              } else {
-                throw new Error(typeof o[a] + \\" being attribute is not supported.\\");
-              }
-            }
-          }
-          if (Object.keys(o).length === 0) {
-            doc += \\"/>\\";
-            return doc;
-          } else {
-            doc += \\">\\";
-          }
-          if (typeof o[\\"#text\\"] !== \\"undefined\\") {
-            if (typeof o[\\"#text\\"] !== \\"object\\") {
-              doc += o[\\"#text\\"];
-              delete o[\\"#text\\"];
-            } else {
-              throw new Error(typeof o[\\"#text\\"] + \\" being #text is not supported.\\");
-            }
-          }
-          for (var b in o) {
-            if (o[b].constructor === Array) {
-              for (var i = 0; i < o[b].length; i++) {
-                if (typeof o[b][i] !== \\"object\\" || o[b][i].constructor === Object) {
-                  doc += toXML(b, o[b][i]);
-                } else {
-                  throw new Error(typeof o[b][i] + \\" is not supported.\\");
-                }
-              }
-            } else if (o[b].constructor === Object || typeof o[b] !== \\"object\\") {
-              doc += toXML(b, o[b]);
-            } else {
-              throw new Error(typeof o[b] + \\" is not supported.\\");
-            }
-          }
-          doc += \\"</\\" + tag + \\">\\";
-          return doc;
-        }
-      }
-      function safeXMLValue(value) {
-        var s = value.toString();
-        s = s.replace(\\"/&/g\\", \\"&amp;\\");
-        s = s.replace('/\\"/g', \\"&quot;\\");
-        s = s.replace(\\"/</g\\", \\"&lt;\\");
-        s = s.replace(\\"/>/g\\", \\"&gt;\\");
-        return s;
-      }
-    }
-    ",
-          },
-          "xml-to-json.js": Object {
-            "content": "export function xmlToJson(xmlStr) {
-      const parser = (xml) => {
-        // Create the return object
-        var obj = {};
-
-        if (xml.nodeType === 1) {
-          // element
-          // do attributes
-          if (xml.attributes.length > 0) {
-            obj[\\"@attributes\\"] = {};
-            for (var j = 0; j < xml.attributes.length; j++) {
-              var attribute = xml.attributes.item(j);
-              obj[\\"@attributes\\"][attribute.nodeName] = attribute.nodeValue;
-            }
-          }
-        } else if (xml.nodeType === 3) {
-          // text
-          obj = xml.nodeValue;
-        }
-
-        // do children
-        // If all text nodes inside, get concatenated text from them.
-        var textNodes = [].slice.call(xml.childNodes).filter(function (node) {
-          return node.nodeType === 3;
-        });
-
-        if (xml.hasChildNodes() && xml.childNodes.length === textNodes.length) {
-          obj = [].slice.call(xml.childNodes).reduce(function (text, node) {
-            return text + node.nodeValue;
-          }, \\"\\");
-        } else if (xml.hasChildNodes()) {
-          for (var i = 0; i < xml.childNodes.length; i++) {
-            var item = xml.childNodes.item(i);
-            var nodeName = item.nodeName;
-            if (typeof obj[nodeName] == \\"undefined\\") {
-              obj[nodeName] = parser(item);
-            } else {
-              if (typeof obj[nodeName].push == \\"undefined\\") {
-                var old = obj[nodeName];
-                obj[nodeName] = [];
-                obj[nodeName].push(old);
-              }
-              obj[nodeName].push(parser(item));
-            }
-          }
-        }
-
-        return obj;
-      };
-
-      return parser(new DOMParser().parseFromString(xmlStr, \\"text/xml\\"));
-    }
-    ",
-          },
-        },
-      },
     }
   `);
 });
@@ -1016,10 +586,84 @@ test("deprecated=exception", () => {
 
   expect(result).toMatchInlineSnapshot(`
     Object {
-      "index.d.ts": Object {
-        "content": "type RequestResult<Data> = Promise<{ response: Response; data: Data; }>;
+      "code": "export function updatePet(params) {
+      return request(\\"put\\", \`/pet\`)(params);
+    }
 
-    type UpdatePetParams0 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
+    export function addPet(params) {
+      return request(\\"post\\", \`/pet\`)(params);
+    }
+
+    export function findPetsByStatus(params) {
+      return request(\\"get\\", \`/pet/findByStatus\`)(params);
+    }
+
+    export function findPetsByTags(params) {
+      return request(\\"get\\", \`/pet/findByTags\`)(params);
+    }
+
+    export function getPetById(params) {
+      return request(\\"get\\", \`/pet/\${params.path.petId}\`)(params);
+    }
+
+    export function updatePetWithForm(params) {
+      return request(\\"post\\", \`/pet/\${params.path.petId}\`)(params);
+    }
+
+    export function deletePet(params) {
+      return request(\\"delete\\", \`/pet/\${params.path.petId}\`)(params);
+    }
+
+    export function uploadFile(params) {
+      return request(\\"post\\", \`/pet/\${params.path.petId}/uploadImage\`, { \\"header\\": { \\"accept\\": \\"application/octet-stream\\", \\"Content-Type\\": \\"application/json\\", }, })(params);
+    }
+
+    export function getInventory() {
+      return request(\\"get\\", \`/store/inventory\`, { \\"header\\": { \\"Content-Type\\": \\"application/json\\", }, })();
+    }
+
+    export function placeOrder(params) {
+      return request(\\"post\\", \`/store/order\`)(params);
+    }
+
+    export function getOrderById(params) {
+      return request(\\"get\\", \`/store/order/\${params.path.orderId}\`)(params);
+    }
+
+    export function deleteOrder(params) {
+      return request(\\"delete\\", \`/store/order/\${params.path.orderId}\`)(params);
+    }
+
+    export function createUser(params) {
+      return request(\\"post\\", \`/user\`)(params);
+    }
+
+    export function createUsersWithListInput(params) {
+      return request(\\"post\\", \`/user/createWithList\`)(params);
+    }
+
+    export function loginUser(params) {
+      return request(\\"get\\", \`/user/login\`)(params);
+    }
+
+    export function logoutUser() {
+      return request(\\"get\\", \`/user/logout\`)();
+    }
+
+    export function getUserByName(params) {
+      return request(\\"get\\", \`/user/\${params.path.username}\`)(params);
+    }
+
+    export function updateUser(params) {
+      return request(\\"put\\", \`/user/\${params.path.username}\`)(params);
+    }
+
+    export function deleteUser(params) {
+      return request(\\"delete\\", \`/user/\${params.path.username}\`)(params);
+    }
+
+    ",
+      "types": "type UpdatePetParams0 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
     type UpdatePetAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type UpdatePetResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function updatePet(params: UpdatePetParams0 & UpdatePetAddedParams0): UpdatePetResult0;
@@ -1221,295 +865,6 @@ test("deprecated=exception", () => {
     export function deleteUser(params: DeleteUserParams0): DeleteUserResult0;
 
     ",
-      },
-      "index.js": Object {
-        "content": "import { request } from './request';
-
-    export function updatePet(params) {
-      return request(\\"put\\", \`/pet\`)(params);
-    }
-
-    export function addPet(params) {
-      return request(\\"post\\", \`/pet\`)(params);
-    }
-
-    export function findPetsByStatus(params) {
-      return request(\\"get\\", \`/pet/findByStatus\`)(params);
-    }
-
-    export function findPetsByTags(params) {
-      return request(\\"get\\", \`/pet/findByTags\`)(params);
-    }
-
-    export function getPetById(params) {
-      return request(\\"get\\", \`/pet/\${params.path.petId}\`)(params);
-    }
-
-    export function updatePetWithForm(params) {
-      return request(\\"post\\", \`/pet/\${params.path.petId}\`)(params);
-    }
-
-    export function deletePet(params) {
-      return request(\\"delete\\", \`/pet/\${params.path.petId}\`)(params);
-    }
-
-    export function uploadFile(params) {
-      return request(\\"post\\", \`/pet/\${params.path.petId}/uploadImage\`, { \\"header\\": { \\"accept\\": \\"application/octet-stream\\", \\"Content-Type\\": \\"application/json\\", }, })(params);
-    }
-
-    export function getInventory() {
-      return request(\\"get\\", \`/store/inventory\`, { \\"header\\": { \\"Content-Type\\": \\"application/json\\", }, })();
-    }
-
-    export function placeOrder(params) {
-      return request(\\"post\\", \`/store/order\`)(params);
-    }
-
-    export function getOrderById(params) {
-      return request(\\"get\\", \`/store/order/\${params.path.orderId}\`)(params);
-    }
-
-    export function deleteOrder(params) {
-      return request(\\"delete\\", \`/store/order/\${params.path.orderId}\`)(params);
-    }
-
-    export function createUser(params) {
-      return request(\\"post\\", \`/user\`)(params);
-    }
-
-    export function createUsersWithListInput(params) {
-      return request(\\"post\\", \`/user/createWithList\`)(params);
-    }
-
-    export function loginUser(params) {
-      return request(\\"get\\", \`/user/login\`)(params);
-    }
-
-    export function logoutUser() {
-      return request(\\"get\\", \`/user/logout\`)();
-    }
-
-    export function getUserByName(params) {
-      return request(\\"get\\", \`/user/\${params.path.username}\`)(params);
-    }
-
-    export function updateUser(params) {
-      return request(\\"put\\", \`/user/\${params.path.username}\`)(params);
-    }
-
-    export function deleteUser(params) {
-      return request(\\"delete\\", \`/user/\${params.path.username}\`)(params);
-    }
-
-    ",
-      },
-      "request.js": Object {
-        "content": "import { jsonToXml } from './json-to-xml';
-    import { xmlToJson } from './xml-to-json';
-
-    export function request(method, url, defaultParams = {}) {
-      return (params = {}) => {
-        const query = new URLSearchParams(params.query).toString();
-        const headers = { ...defaultParams.header, ...params.header };
-
-        let body;
-
-        const buildFormData = (object) => {
-          const result = new FormData();
-
-          Object.keys(object).forEach((key) => {
-            result.append(key, object[key]);
-          });
-
-          return result;
-        };
-
-        if (params.body) {
-          switch (headers.accept) {
-            case \\"multipart/form-data\\":
-              body = buildFormData(params.body);
-              break;
-            case \\"application/xml\\":
-              body = jsonToXml(params.body);
-              break;
-            case \\"application/json\\":
-              body = JSON.stringify(params.body);
-              break;
-            default:
-              body = params.body;
-              break;
-          }
-        } else if (params.formData) {
-          body = buildFormData(params.formData);
-        }
-
-        return fetch(\`\${url}\${query ? \`?\${query}\` : \\"\\"}\`, {
-          method,
-          headers,
-          body,
-        }).then(async (response) => {
-          let data = null;
-
-          const headersValues = Object.values(headers);
-          const headersKeys = Object.keys(headers).map((value) =>
-            value.toLocaleLowerCase(),
-          );
-
-          switch (headersValues[headersKeys.indexOf(\\"content-type\\")]) {
-            case \\"multipart/form-data\\":
-              data = await response.formData();
-              break;
-            case \\"application/xml\\":
-              data = xmlToJson(await response.text());
-              break;
-            case \\"application/json\\":
-              data = await response.json();
-              break;
-            default:
-              break;
-          }
-
-          return { response, data };
-        });
-      };
-    }
-    ",
-        "dependencies": Object {
-          "json-to-xml.js": Object {
-            "content": "export function jsonToXml(o) {
-      if (
-        typeof o === \\"object\\" &&
-        o.constructor === Object &&
-        Object.keys(o).length === 1
-      ) {
-        for (var a in o) {
-          return toXML(a, o[a]);
-        }
-      } else {
-      }
-
-      function toXML(tag, o) {
-        var doc = \\"<\\" + tag;
-        if (typeof o === \\"undefined\\" || o === null) {
-          doc += \\"/>\\";
-          return doc;
-        }
-        if (typeof o !== \\"object\\") {
-          doc += \\">\\" + safeXMLValue(o) + \\"</\\" + tag + \\">\\";
-          return doc;
-        }
-        if (o.constructor === Object) {
-          for (var a in o) {
-            if (a.charAt(0) === \\"@\\") {
-              if (typeof o[a] !== \\"object\\") {
-                doc += \\" \\" + a.substring(1) + '=\\"' + o[a] + '\\"';
-                delete o[a];
-              } else {
-                throw new Error(typeof o[a] + \\" being attribute is not supported.\\");
-              }
-            }
-          }
-          if (Object.keys(o).length === 0) {
-            doc += \\"/>\\";
-            return doc;
-          } else {
-            doc += \\">\\";
-          }
-          if (typeof o[\\"#text\\"] !== \\"undefined\\") {
-            if (typeof o[\\"#text\\"] !== \\"object\\") {
-              doc += o[\\"#text\\"];
-              delete o[\\"#text\\"];
-            } else {
-              throw new Error(typeof o[\\"#text\\"] + \\" being #text is not supported.\\");
-            }
-          }
-          for (var b in o) {
-            if (o[b].constructor === Array) {
-              for (var i = 0; i < o[b].length; i++) {
-                if (typeof o[b][i] !== \\"object\\" || o[b][i].constructor === Object) {
-                  doc += toXML(b, o[b][i]);
-                } else {
-                  throw new Error(typeof o[b][i] + \\" is not supported.\\");
-                }
-              }
-            } else if (o[b].constructor === Object || typeof o[b] !== \\"object\\") {
-              doc += toXML(b, o[b]);
-            } else {
-              throw new Error(typeof o[b] + \\" is not supported.\\");
-            }
-          }
-          doc += \\"</\\" + tag + \\">\\";
-          return doc;
-        }
-      }
-      function safeXMLValue(value) {
-        var s = value.toString();
-        s = s.replace(\\"/&/g\\", \\"&amp;\\");
-        s = s.replace('/\\"/g', \\"&quot;\\");
-        s = s.replace(\\"/</g\\", \\"&lt;\\");
-        s = s.replace(\\"/>/g\\", \\"&gt;\\");
-        return s;
-      }
-    }
-    ",
-          },
-          "xml-to-json.js": Object {
-            "content": "export function xmlToJson(xmlStr) {
-      const parser = (xml) => {
-        // Create the return object
-        var obj = {};
-
-        if (xml.nodeType === 1) {
-          // element
-          // do attributes
-          if (xml.attributes.length > 0) {
-            obj[\\"@attributes\\"] = {};
-            for (var j = 0; j < xml.attributes.length; j++) {
-              var attribute = xml.attributes.item(j);
-              obj[\\"@attributes\\"][attribute.nodeName] = attribute.nodeValue;
-            }
-          }
-        } else if (xml.nodeType === 3) {
-          // text
-          obj = xml.nodeValue;
-        }
-
-        // do children
-        // If all text nodes inside, get concatenated text from them.
-        var textNodes = [].slice.call(xml.childNodes).filter(function (node) {
-          return node.nodeType === 3;
-        });
-
-        if (xml.hasChildNodes() && xml.childNodes.length === textNodes.length) {
-          obj = [].slice.call(xml.childNodes).reduce(function (text, node) {
-            return text + node.nodeValue;
-          }, \\"\\");
-        } else if (xml.hasChildNodes()) {
-          for (var i = 0; i < xml.childNodes.length; i++) {
-            var item = xml.childNodes.item(i);
-            var nodeName = item.nodeName;
-            if (typeof obj[nodeName] == \\"undefined\\") {
-              obj[nodeName] = parser(item);
-            } else {
-              if (typeof obj[nodeName].push == \\"undefined\\") {
-                var old = obj[nodeName];
-                obj[nodeName] = [];
-                obj[nodeName].push(old);
-              }
-              obj[nodeName].push(parser(item));
-            }
-          }
-        }
-
-        return obj;
-      };
-
-      return parser(new DOMParser().parseFromString(xmlStr, \\"text/xml\\"));
-    }
-    ",
-          },
-        },
-      },
     }
   `);
 });
@@ -1521,10 +876,84 @@ test("importRequest=true", () => {
 
   expect(result).toMatchInlineSnapshot(`
     Object {
-      "index.d.ts": Object {
-        "content": "type RequestResult<Data> = Promise<{ response: Response; data: Data; }>;
+      "code": "export function updatePet(params) {
+      return request(\\"put\\", \`/pet\`)(params);
+    }
 
-    type UpdatePetParams0 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
+    export function addPet(params) {
+      return request(\\"post\\", \`/pet\`)(params);
+    }
+
+    export function findPetsByStatus(params) {
+      return request(\\"get\\", \`/pet/findByStatus\`)(params);
+    }
+
+    export function findPetsByTags(params) {
+      return request(\\"get\\", \`/pet/findByTags\`)(params);
+    }
+
+    export function getPetById(params) {
+      return request(\\"get\\", \`/pet/\${params.path.petId}\`)(params);
+    }
+
+    export function updatePetWithForm(params) {
+      return request(\\"post\\", \`/pet/\${params.path.petId}\`)(params);
+    }
+
+    export function deletePet(params) {
+      return request(\\"delete\\", \`/pet/\${params.path.petId}\`)(params);
+    }
+
+    export function uploadFile(params) {
+      return request(\\"post\\", \`/pet/\${params.path.petId}/uploadImage\`, { \\"header\\": { \\"accept\\": \\"application/octet-stream\\", \\"Content-Type\\": \\"application/json\\", }, })(params);
+    }
+
+    export function getInventory() {
+      return request(\\"get\\", \`/store/inventory\`, { \\"header\\": { \\"Content-Type\\": \\"application/json\\", }, })();
+    }
+
+    export function placeOrder(params) {
+      return request(\\"post\\", \`/store/order\`)(params);
+    }
+
+    export function getOrderById(params) {
+      return request(\\"get\\", \`/store/order/\${params.path.orderId}\`)(params);
+    }
+
+    export function deleteOrder(params) {
+      return request(\\"delete\\", \`/store/order/\${params.path.orderId}\`)(params);
+    }
+
+    export function createUser(params) {
+      return request(\\"post\\", \`/user\`)(params);
+    }
+
+    export function createUsersWithListInput(params) {
+      return request(\\"post\\", \`/user/createWithList\`)(params);
+    }
+
+    export function loginUser(params) {
+      return request(\\"get\\", \`/user/login\`)(params);
+    }
+
+    export function logoutUser() {
+      return request(\\"get\\", \`/user/logout\`)();
+    }
+
+    export function getUserByName(params) {
+      return request(\\"get\\", \`/user/\${params.path.username}\`)(params);
+    }
+
+    export function updateUser(params) {
+      return request(\\"put\\", \`/user/\${params.path.username}\`)(params);
+    }
+
+    export function deleteUser(params) {
+      return request(\\"delete\\", \`/user/\${params.path.username}\`)(params);
+    }
+
+    ",
+      "types": "type UpdatePetParams0 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
     type UpdatePetAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type UpdatePetResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function updatePet(params: UpdatePetParams0 & UpdatePetAddedParams0): UpdatePetResult0;
@@ -1726,11 +1155,18 @@ test("importRequest=true", () => {
     export function deleteUser(params: DeleteUserParams0): DeleteUserResult0;
 
     ",
-      },
-      "index.js": Object {
-        "content": "import { request } from 'swagger-to-js/request';
+    }
+  `);
+});
 
-    export function updatePet(params) {
+test("originalBody=true", () => {
+  const result = swaggerToJs(apiJson, {
+    originalBody: true,
+  });
+
+  expect(result).toMatchInlineSnapshot(`
+    Object {
+      "code": "export function updatePet(params) {
       return request(\\"put\\", \`/pet\`)(params);
     }
 
@@ -1807,22 +1243,7 @@ test("importRequest=true", () => {
     }
 
     ",
-      },
-    }
-  `);
-});
-
-test("originalBody=true", () => {
-  const result = swaggerToJs(apiJson, {
-    originalBody: true,
-  });
-
-  expect(result).toMatchInlineSnapshot(`
-    Object {
-      "index.d.ts": Object {
-        "content": "type RequestResult<Data> = Promise<{ response: Response; data: Data; }>;
-
-    type UpdatePetParams0 = { \\"body\\": { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+      "types": "type UpdatePetParams0 = { \\"body\\": { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
     type UpdatePetAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type UpdatePetResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function updatePet(params: UpdatePetParams0 & UpdatePetAddedParams0): UpdatePetResult0;
@@ -2024,295 +1445,6 @@ test("originalBody=true", () => {
     export function deleteUser(params: DeleteUserParams0): DeleteUserResult0;
 
     ",
-      },
-      "index.js": Object {
-        "content": "import { request } from './request';
-
-    export function updatePet(params) {
-      return request(\\"put\\", \`/pet\`)(params);
-    }
-
-    export function addPet(params) {
-      return request(\\"post\\", \`/pet\`)(params);
-    }
-
-    export function findPetsByStatus(params) {
-      return request(\\"get\\", \`/pet/findByStatus\`)(params);
-    }
-
-    export function findPetsByTags(params) {
-      return request(\\"get\\", \`/pet/findByTags\`)(params);
-    }
-
-    export function getPetById(params) {
-      return request(\\"get\\", \`/pet/\${params.path.petId}\`)(params);
-    }
-
-    export function updatePetWithForm(params) {
-      return request(\\"post\\", \`/pet/\${params.path.petId}\`)(params);
-    }
-
-    export function deletePet(params) {
-      return request(\\"delete\\", \`/pet/\${params.path.petId}\`)(params);
-    }
-
-    export function uploadFile(params) {
-      return request(\\"post\\", \`/pet/\${params.path.petId}/uploadImage\`, { \\"header\\": { \\"accept\\": \\"application/octet-stream\\", \\"Content-Type\\": \\"application/json\\", }, })(params);
-    }
-
-    export function getInventory() {
-      return request(\\"get\\", \`/store/inventory\`, { \\"header\\": { \\"Content-Type\\": \\"application/json\\", }, })();
-    }
-
-    export function placeOrder(params) {
-      return request(\\"post\\", \`/store/order\`)(params);
-    }
-
-    export function getOrderById(params) {
-      return request(\\"get\\", \`/store/order/\${params.path.orderId}\`)(params);
-    }
-
-    export function deleteOrder(params) {
-      return request(\\"delete\\", \`/store/order/\${params.path.orderId}\`)(params);
-    }
-
-    export function createUser(params) {
-      return request(\\"post\\", \`/user\`)(params);
-    }
-
-    export function createUsersWithListInput(params) {
-      return request(\\"post\\", \`/user/createWithList\`)(params);
-    }
-
-    export function loginUser(params) {
-      return request(\\"get\\", \`/user/login\`)(params);
-    }
-
-    export function logoutUser() {
-      return request(\\"get\\", \`/user/logout\`)();
-    }
-
-    export function getUserByName(params) {
-      return request(\\"get\\", \`/user/\${params.path.username}\`)(params);
-    }
-
-    export function updateUser(params) {
-      return request(\\"put\\", \`/user/\${params.path.username}\`)(params);
-    }
-
-    export function deleteUser(params) {
-      return request(\\"delete\\", \`/user/\${params.path.username}\`)(params);
-    }
-
-    ",
-      },
-      "request.js": Object {
-        "content": "import { jsonToXml } from './json-to-xml';
-    import { xmlToJson } from './xml-to-json';
-
-    export function request(method, url, defaultParams = {}) {
-      return (params = {}) => {
-        const query = new URLSearchParams(params.query).toString();
-        const headers = { ...defaultParams.header, ...params.header };
-
-        let body;
-
-        const buildFormData = (object) => {
-          const result = new FormData();
-
-          Object.keys(object).forEach((key) => {
-            result.append(key, object[key]);
-          });
-
-          return result;
-        };
-
-        if (params.body) {
-          switch (headers.accept) {
-            case \\"multipart/form-data\\":
-              body = buildFormData(params.body);
-              break;
-            case \\"application/xml\\":
-              body = jsonToXml(params.body);
-              break;
-            case \\"application/json\\":
-              body = JSON.stringify(params.body);
-              break;
-            default:
-              body = params.body;
-              break;
-          }
-        } else if (params.formData) {
-          body = buildFormData(params.formData);
-        }
-
-        return fetch(\`\${url}\${query ? \`?\${query}\` : \\"\\"}\`, {
-          method,
-          headers,
-          body,
-        }).then(async (response) => {
-          let data = null;
-
-          const headersValues = Object.values(headers);
-          const headersKeys = Object.keys(headers).map((value) =>
-            value.toLocaleLowerCase(),
-          );
-
-          switch (headersValues[headersKeys.indexOf(\\"content-type\\")]) {
-            case \\"multipart/form-data\\":
-              data = await response.formData();
-              break;
-            case \\"application/xml\\":
-              data = xmlToJson(await response.text());
-              break;
-            case \\"application/json\\":
-              data = await response.json();
-              break;
-            default:
-              break;
-          }
-
-          return { response, data };
-        });
-      };
-    }
-    ",
-        "dependencies": Object {
-          "json-to-xml.js": Object {
-            "content": "export function jsonToXml(o) {
-      if (
-        typeof o === \\"object\\" &&
-        o.constructor === Object &&
-        Object.keys(o).length === 1
-      ) {
-        for (var a in o) {
-          return toXML(a, o[a]);
-        }
-      } else {
-      }
-
-      function toXML(tag, o) {
-        var doc = \\"<\\" + tag;
-        if (typeof o === \\"undefined\\" || o === null) {
-          doc += \\"/>\\";
-          return doc;
-        }
-        if (typeof o !== \\"object\\") {
-          doc += \\">\\" + safeXMLValue(o) + \\"</\\" + tag + \\">\\";
-          return doc;
-        }
-        if (o.constructor === Object) {
-          for (var a in o) {
-            if (a.charAt(0) === \\"@\\") {
-              if (typeof o[a] !== \\"object\\") {
-                doc += \\" \\" + a.substring(1) + '=\\"' + o[a] + '\\"';
-                delete o[a];
-              } else {
-                throw new Error(typeof o[a] + \\" being attribute is not supported.\\");
-              }
-            }
-          }
-          if (Object.keys(o).length === 0) {
-            doc += \\"/>\\";
-            return doc;
-          } else {
-            doc += \\">\\";
-          }
-          if (typeof o[\\"#text\\"] !== \\"undefined\\") {
-            if (typeof o[\\"#text\\"] !== \\"object\\") {
-              doc += o[\\"#text\\"];
-              delete o[\\"#text\\"];
-            } else {
-              throw new Error(typeof o[\\"#text\\"] + \\" being #text is not supported.\\");
-            }
-          }
-          for (var b in o) {
-            if (o[b].constructor === Array) {
-              for (var i = 0; i < o[b].length; i++) {
-                if (typeof o[b][i] !== \\"object\\" || o[b][i].constructor === Object) {
-                  doc += toXML(b, o[b][i]);
-                } else {
-                  throw new Error(typeof o[b][i] + \\" is not supported.\\");
-                }
-              }
-            } else if (o[b].constructor === Object || typeof o[b] !== \\"object\\") {
-              doc += toXML(b, o[b]);
-            } else {
-              throw new Error(typeof o[b] + \\" is not supported.\\");
-            }
-          }
-          doc += \\"</\\" + tag + \\">\\";
-          return doc;
-        }
-      }
-      function safeXMLValue(value) {
-        var s = value.toString();
-        s = s.replace(\\"/&/g\\", \\"&amp;\\");
-        s = s.replace('/\\"/g', \\"&quot;\\");
-        s = s.replace(\\"/</g\\", \\"&lt;\\");
-        s = s.replace(\\"/>/g\\", \\"&gt;\\");
-        return s;
-      }
-    }
-    ",
-          },
-          "xml-to-json.js": Object {
-            "content": "export function xmlToJson(xmlStr) {
-      const parser = (xml) => {
-        // Create the return object
-        var obj = {};
-
-        if (xml.nodeType === 1) {
-          // element
-          // do attributes
-          if (xml.attributes.length > 0) {
-            obj[\\"@attributes\\"] = {};
-            for (var j = 0; j < xml.attributes.length; j++) {
-              var attribute = xml.attributes.item(j);
-              obj[\\"@attributes\\"][attribute.nodeName] = attribute.nodeValue;
-            }
-          }
-        } else if (xml.nodeType === 3) {
-          // text
-          obj = xml.nodeValue;
-        }
-
-        // do children
-        // If all text nodes inside, get concatenated text from them.
-        var textNodes = [].slice.call(xml.childNodes).filter(function (node) {
-          return node.nodeType === 3;
-        });
-
-        if (xml.hasChildNodes() && xml.childNodes.length === textNodes.length) {
-          obj = [].slice.call(xml.childNodes).reduce(function (text, node) {
-            return text + node.nodeValue;
-          }, \\"\\");
-        } else if (xml.hasChildNodes()) {
-          for (var i = 0; i < xml.childNodes.length; i++) {
-            var item = xml.childNodes.item(i);
-            var nodeName = item.nodeName;
-            if (typeof obj[nodeName] == \\"undefined\\") {
-              obj[nodeName] = parser(item);
-            } else {
-              if (typeof obj[nodeName].push == \\"undefined\\") {
-                var old = obj[nodeName];
-                obj[nodeName] = [];
-                obj[nodeName].push(old);
-              }
-              obj[nodeName].push(parser(item));
-            }
-          }
-        }
-
-        return obj;
-      };
-
-      return parser(new DOMParser().parseFromString(xmlStr, \\"text/xml\\"));
-    }
-    ",
-          },
-        },
-      },
     }
   `);
 });

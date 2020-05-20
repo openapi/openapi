@@ -5,10 +5,9 @@ function swaggerToJs(apiJson, config = {}) {
   const {
     mode = "prod",
     deprecated = "warning",
-    importRequest = false,
     originalBody = false,
   } = config;
-  const nextConfig = { deprecated, mode, originalBody, importRequest };
+  const nextConfig = { deprecated, mode, originalBody };
 
   if (apiJson.openapi) {
     return swaggerV3ToJs(apiJson, nextConfig);

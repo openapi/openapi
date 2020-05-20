@@ -78,7 +78,8 @@ async function main(config) {
     const apiJson = await readApiJson(config);
 
     // Convert to js
-    const outputFiles = swaggerToJs(apiJson, config);
+    const apiResult = swaggerToJs(apiJson, config);
+    const outputFiles = buildFiles(apiResult, config);
 
     // Check and create output dir
     const pathOutputDir = path.resolve(process.cwd(), config.outputDir);
@@ -132,6 +133,62 @@ async function readApiJson(config) {
   }
 
   throw new Error("Selected file have incorrect format.");
+}
+
+function buildFiles({ code, types }, config = {}) {
+  const { importRequest = false } = config;
+  const files = {
+    "index.d.ts": {
+      content: `type RequestResult<Data> = Promise<{ response: Response; data: Data; }>;\n\n${types}`,
+    },
+  };
+
+  if (importRequest) {
+    files["index.js"] = {
+      content: `import { request } from 'swagger-to-js/request';\n\n${code}`,
+    };
+  } else {
+    files["index.js"] = {
+      content: `import { request } from './request';\n\n${code}`,
+    };
+
+    files["request.js"] = {
+      content: readFile("./lib/request.js", (content) => {
+        const contentLines = content.split("\n").slice(0, -2);
+
+        contentLines[0] = "import { jsonToXml } from './json-to-xml';";
+        contentLines[1] = "import { xmlToJson } from './xml-to-json';";
+
+        contentLines[3] = `export ${contentLines[3]}`;
+
+        return contentLines.join("\n");
+      }),
+      dependencies: {
+        "xml-to-json.js": {
+          content: readFile("./lib/xml-to-json.js", exportOneFunction),
+        },
+        "json-to-xml.js": {
+          content: readFile("./lib/json-to-xml.js", exportOneFunction),
+        },
+      },
+    };
+  }
+
+  return files;
+}
+
+function readFile(value, callback = (content) => content) {
+  const pathFile = path.resolve(path.dirname(__filename), value);
+
+  return callback(readFileSync(pathFile).toString());
+}
+
+function exportOneFunction(content) {
+  const contentLines = content.split("\n").slice(0, -2);
+
+  contentLines[0] = `export ${contentLines[0]}`;
+
+  return contentLines.join("\n");
 }
 
 function writeFilesSync(files, outputDir = "") {
