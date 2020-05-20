@@ -4,7 +4,7 @@ const { isPathException } = require("../common/is-path-exception");
 const { templateRequestCode } = require("../common/templates/request-code");
 const { pathDefaultParams } = require("../common/path-default-params");
 const { pathParametersByIn } = require("../common/path-parameters-by-in");
-const { tempateRequestTypes } = require("../common/templates/request-types");
+const { templateRequestTypes } = require("../common/templates/request-types");
 const { getMode } = require("../common/get-mode");
 const { buildObjectByRefs } = require("../common/build-object-by-refs");
 const { buildObjectByMode } = require("../common/build-object-by-mode");
@@ -45,7 +45,7 @@ function buildPaths(content, state) {
           state,
         });
 
-        content.types += tempateRequestTypes(pathVariantTypesParams);
+        content.types += templateRequestTypes(pathVariantTypesParams);
         content.types += "\n\n";
       });
     });

@@ -2,7 +2,7 @@ const { joinStrings } = require("../../lib/join-strings");
 const { templateSwaggerType } = require("./swagger-type");
 const { capitalize } = require("../../lib/capitalize");
 
-function tempateRequestTypes(props) {
+function templateRequestTypes(props) {
   const params = buildParams(props);
   const addedParams = buildAddedParams(props);
   const result = buildResult(props);
@@ -127,4 +127,4 @@ function templateNameResult(props) {
   return `${capitalize(name)}Result${index}`;
 }
 
-module.exports = { tempateRequestTypes };
+module.exports = { templateRequestTypes };
