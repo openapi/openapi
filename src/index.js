@@ -15,6 +15,8 @@ function swaggerToJs(apiJson, config = {}) {
     mode = "prod",
     deprecated = "warning",
     originalBody = false,
+    ignoreDescription = false,
+
     templateRequestCode = _templateRequestCode,
     templateRequestTypes = _templateRequestTypes,
     templateTypesBefore = _templateTypesBefore,

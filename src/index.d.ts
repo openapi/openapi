@@ -17,6 +17,8 @@ type TemplateRequestCodeParams = {
 
 type TemplateRequestTypesParams = {
   name: string;
+  summary: string;
+  description: string;
   countVariants: number;
   index: number;
   params: SwaggerType | null;
@@ -25,10 +27,14 @@ type TemplateRequestTypesParams = {
 };
 
 type Config = {
+  // Options
   mode?: "prod" | "dev"; // default: "prod"
   deprecated?: "warning" | "ignore" | "exception"; // detault: "warning"
   importRequest?: boolean; // default: false
   originalBody?: boolean; // default: false
+  ignoreDescription?: boolean; // default: false
+
+  // Templates
   templateCodeBefore?: () => string;
   templateCodeAfter?: () => string;
   templateTypesBefore?: () => string;

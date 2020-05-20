@@ -71,16 +71,25 @@ function buildPathVariantTypesParams({
   pathParams,
   state,
 }) {
+  const { pathConfig } = pathParams;
+  const { config } = state;
+
   const countVariants = variants.length;
   const isMoreOneVariant = countVariants > 1;
+  const isAddDescription = index === 0 && !config.ignoreDescription;
+
+  const summary = isAddDescription ? pathConfig.summary || "" : "";
+  const description = isAddDescription ? pathConfig.description || "" : "";
 
   return {
-    name: camelCase(pathParams.pathConfig.operationId),
+    name: camelCase(pathConfig.operationId),
     params: buildPathParamsTypes(variant, pathParams, state),
     addedParams: isMoreOneVariant ? buildPathAddedParamsTypes(variant) : null,
     result: buildPathResultTypes(variant, pathParams, state),
     countVariants,
     index,
+    summary,
+    description,
   };
 }
 

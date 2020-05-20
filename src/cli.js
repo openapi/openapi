@@ -39,7 +39,8 @@ program
     "Action for deprecated methods: 'warning' | 'ignore' | 'exception' (default: 'warning')",
   )
   .option("--import-request", "Import request code in out code")
-  .option("--original-body", "Build with original request body");
+  .option("--original-body", "Build with original request body")
+  .option("--ignore-description", "Print description of request");
 
 program.parse(process.argv);
 

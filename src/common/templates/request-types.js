@@ -14,10 +14,22 @@ function templateRequestTypes(props) {
       templateParams(params),
       templateAddedParams(addedParams),
       templateResult(result),
+      tempalteNote(props),
       method,
     ],
     lineConfig,
   );
+}
+
+function tempalteNote(props) {
+  const lineConfig = { separator: "\n", before: "* " };
+  const comments = joinStrings([props.summary, props.description], lineConfig);
+
+  if (comments) {
+    return `/**\n${comments}\n*/`;
+  }
+
+  return null;
 }
 
 function buildParams(props) {
