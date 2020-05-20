@@ -1,4 +1,3 @@
-const objectHash = require("object-hash");
 const { camelCase } = require("change-case");
 
 const { isPathException } = require("../common/is-path-exception");
@@ -11,21 +10,14 @@ const { buildObjectByRefs } = require("../common/build-object-by-refs");
 const { buildObjectByMode } = require("../common/build-object-by-mode");
 
 function swaggerV3ToJs(apiJson, config = {}) {
-  const store = new Map();
-  const setStore = (value) => {
-    const key = objectHash(value);
-    store.set(key, value);
-    return key;
-  };
   const content = { code: "", types: "" };
-  const state = { apiJson, config, store, setStore, content };
 
-  buildPaths(state);
+  buildPaths(content, { apiJson, config });
 
   return content;
 }
 
-function buildPaths(state) {
+function buildPaths(content, state) {
   const { apiJson } = state;
 
   Object.keys(apiJson.paths).forEach((url) => {
@@ -35,13 +27,32 @@ function buildPaths(state) {
 
       if (isPathException(pathParams, state)) return;
 
-      printPathCode(pathParams, state);
-      printPathTypes(pathParams, state);
+      // Path code
+      const pathCodeParams = buildPathCodeParams(pathParams, state);
+
+      content.code += templateRequestCode(pathCodeParams);
+      content.code += "\n\n";
+
+      // Path types by variants
+      const pathVariants = getPathVariants(pathParams, state);
+
+      pathVariants.forEach((variant, index, variants) => {
+        const pathVariantTypesParams = buildPathVariantTypesParams({
+          variant,
+          index,
+          variants,
+          pathParams,
+          state,
+        });
+
+        content.types += tempateRequestTypes(pathVariantTypesParams);
+        content.types += "\n\n";
+      });
     });
   });
 }
 
-function printPathCode(pathParams, state) {
+function buildPathCodeParams(pathParams, state) {
   const { pathConfig } = pathParams;
   const isWarningDeprecated =
     pathConfig.deprecated && state.config.deprecated !== "ignore";
@@ -49,40 +60,34 @@ function printPathCode(pathParams, state) {
     Boolean(pathConfig.requestBody && pathConfig.requestBody.content) ||
     (pathConfig.parameters || []).length > 0;
 
-  state.content.code += templateRequestCode({
+  return {
     name: camelCase(pathConfig.operationId),
     method: pathParams.method,
     url: pathParams.url,
     isWarningDeprecated,
     isExistParams,
     defaultParams: pathDefaultParams(getPathVariants(pathParams, state)),
-  });
-  state.content.code += "\n\n";
+  };
 }
 
-function printPathTypes(pathParams, state) {
-  const name = camelCase(pathParams.pathConfig.operationId);
-  const variants = getPathVariants(pathParams, state);
+function buildPathVariantTypesParams({
+  variant,
+  index,
+  variants,
+  pathParams,
+  state,
+}) {
   const countVariants = variants.length;
   const isMoreOneVariant = countVariants > 1;
 
-  variants.forEach((variant, index) => {
-    const params = buildPathParamsTypes(variant, pathParams, state);
-    const addedParams = isMoreOneVariant
-      ? buildPathAddedParamsTypes(variant)
-      : null;
-    const result = buildPathResultTypes(variant, pathParams, state);
-
-    state.content.types += tempateRequestTypes({
-      name,
-      countVariants,
-      index,
-      params,
-      addedParams,
-      result,
-    });
-    state.content.types += "\n\n";
-  });
+  return {
+    name: camelCase(pathParams.pathConfig.operationId),
+    countVariants,
+    index,
+    params: buildPathParamsTypes(variant, pathParams, state),
+    addedParams: isMoreOneVariant ? buildPathAddedParamsTypes(variant) : null,
+    result: buildPathResultTypes(variant, pathParams, state),
+  };
 }
 
 function buildPathParamsTypes(variant, pathParams, state) {

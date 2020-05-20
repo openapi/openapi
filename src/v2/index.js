@@ -1,4 +1,3 @@
-const objectHash = require("object-hash");
 const { camelCase } = require("change-case");
 
 const { isPathException } = require("../common/is-path-exception");
@@ -11,21 +10,14 @@ const { buildObjectByRefs } = require("../common/build-object-by-refs");
 const { buildObjectByMode } = require("../common/build-object-by-mode");
 
 function swaggerV2ToJs(apiJson, config = {}) {
-  const store = new Map();
-  const setStore = (value) => {
-    const key = objectHash(value);
-    store.set(key, value);
-    return key;
-  };
   const content = { code: "", types: "" };
-  const state = { apiJson, config, store, setStore, content };
 
-  buildPaths(state);
+  buildPaths(content, { apiJson, config });
 
   return content;
 }
 
-function buildPaths(state) {
+function buildPaths(content, state) {
   const { apiJson } = state;
 
   Object.keys(apiJson.paths).forEach((url) => {
@@ -35,16 +27,35 @@ function buildPaths(state) {
 
       if (isPathException(pathParams, state)) return;
 
-      printPathCode(pathParams, state);
-      printPathTypes(pathParams, state);
+      // Path code
+      const pathCodeParams = buildPathCodeParams(pathParams, state);
+
+      content.code += templateRequestCode(pathCodeParams);
+      content.code += "\n\n";
+
+      // Path types by variants
+      const pathVariants = getPathVariants(pathParams);
+
+      pathVariants.forEach((variant, index, variants) => {
+        const pathVariantTypesParams = buildPathVariantTypesParams({
+          variant,
+          index,
+          variants,
+          pathParams,
+          state,
+        });
+
+        content.types += tempateRequestTypes(pathVariantTypesParams);
+        content.types += "\n\n";
+      });
     });
   });
 }
 
-function printPathCode(pathParams, state) {
+function buildPathCodeParams(pathParams, state) {
   const { pathConfig } = pathParams;
 
-  state.content.code += templateRequestCode({
+  return {
     name: camelCase(pathConfig.operationId),
     isExistParams: (pathConfig.parameters || []).length > 0,
     method: pathParams.method,
@@ -52,33 +63,27 @@ function printPathCode(pathParams, state) {
     isWarningDeprecated:
       pathConfig.deprecated && state.config.deprecated !== "ignore",
     defaultParams: pathDefaultParams(getPathVariants(pathParams)),
-  });
-  state.content.code += "\n\n";
+  };
 }
 
-function printPathTypes(pathParams, state) {
-  const name = camelCase(pathParams.pathConfig.operationId);
-  const variants = getPathVariants(pathParams);
+function buildPathVariantTypesParams({
+  variant,
+  index,
+  variants,
+  pathParams,
+  state,
+}) {
   const countVariants = variants.length;
   const isMoreOneVariant = countVariants > 1;
 
-  variants.forEach((variant, index) => {
-    const params = buildPathParamsTypes(variant, pathParams, state);
-    const addedParams = isMoreOneVariant
-      ? buildPathAddedParamsTypes(variant)
-      : null;
-    const result = buildPathResultTypes(variant, pathParams, state);
-
-    state.content.types += tempateRequestTypes({
-      name,
-      countVariants,
-      index,
-      params,
-      addedParams,
-      result,
-    });
-    state.content.types += "\n\n";
-  });
+  return {
+    name: camelCase(pathParams.pathConfig.operationId),
+    params: buildPathParamsTypes(variant, pathParams, state),
+    addedParams: isMoreOneVariant ? buildPathAddedParamsTypes(variant) : null,
+    result: buildPathResultTypes(variant, pathParams, state),
+    countVariants,
+    index,
+  };
 }
 
 function buildPathParamsTypes(variant, pathParams, state) {
@@ -131,14 +136,19 @@ function buildPathResultTypes(variant, pathParams, state) {
   return null;
 }
 
-function getPathVariants(pathParams) {
+function eachPathVariant(pathParams, callback) {
   const { pathConfig } = pathParams;
   const { consumes = [null], produces = [null] } = pathConfig;
-  const variants = [];
 
   consumes.forEach((consume) => {
-    produces.forEach((produce) => variants.push({ consume, produce }));
+    produces.forEach((produce) => callback({ consume, produce }));
   });
+}
+
+function getPathVariants(pathParams) {
+  const variants = [];
+
+  eachPathVariant(pathParams, (variant) => variants.push(variant));
 
   return variants;
 }
