@@ -113,6 +113,5 @@ console.log(outputFiles["request.js"]);
 
 ## Next
 
-- [ ] Generate comments with titles, descriptions
 - [ ] Using multiple api files
-- [ ] Revert result api swaggerToJs
+- [ ] Struct by files by tags
