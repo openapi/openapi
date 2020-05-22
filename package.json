@@ -36,7 +36,8 @@
     "is-url": "^1.2.4",
     "js-yaml": "^3.13.1",
     "node-fetch": "^2.6.0",
-    "object-hash": "^2.0.3"
+    "object-hash": "^2.0.3",
+    "url-parse": "^1.4.7"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
