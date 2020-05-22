@@ -72,27 +72,23 @@ async function main(config) {
     console.log("config:", config);
   }
 
-  if (config.file) {
-    console.time(timeLog);
+  console.time(timeLog);
 
-    // Convert to js
-    const apiResult = await swaggerToJs(config);
-    const outputFiles = buildFiles(apiResult, config);
+  // Convert to js
+  const apiResult = await swaggerToJs(config);
+  const outputFiles = buildFiles(apiResult, config);
 
-    // Check and create output dir
-    const pathOutputDir = path.resolve(process.cwd(), config.outputDir);
+  // Check and create output dir
+  const pathOutputDir = path.resolve(process.cwd(), config.outputDir);
 
-    if (existsSync(pathOutputDir) === false) {
-      execSync(`mkdir -p ${pathOutputDir}`);
-    }
-
-    // Write files
-    writeFilesSync(outputFiles, pathOutputDir);
-
-    console.timeEnd(timeLog);
-  } else {
-    throw new Error("Setup path to file with swagger api.");
+  if (existsSync(pathOutputDir) === false) {
+    execSync(`mkdir -p ${pathOutputDir}`);
   }
+
+  // Write files
+  writeFilesSync(outputFiles, pathOutputDir);
+
+  console.timeEnd(timeLog);
 }
 
 function buildFiles({ code, types }, config = {}) {
