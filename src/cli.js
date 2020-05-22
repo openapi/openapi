@@ -7,9 +7,6 @@ const { existsSync, writeFileSync, readFileSync } = require("fs");
 const { execSync } = require("child_process");
 const { version, name } = require("../package.json");
 const { cosmiconfigSync } = require("cosmiconfig");
-const yaml = require("js-yaml");
-const getIsUrl = require("is-url");
-const fetch = require("node-fetch");
 
 const timeLog = `✨ ${name}`;
 const defaultOutputDir = "./api";
@@ -17,23 +14,26 @@ const changeAlways = ["index.js", "index.d.ts"];
 
 program
   .version(version)
+
   // Cli options
-  .option("--file <path>", "Path to file with api (*.json, *.yaml, url)")
   .option(
     "--output-dir <path>",
     `Path output directory js api with types (default: '${defaultOutputDir}')`,
   )
-  .option(
-    "--authorization <value>",
-    "Auth token for get api by url (it is header for request)",
-  )
   .option("--config <path>", "Path to config")
+
   // Common options
   .option(
     "--mode <type>",
     "Mode for additional info: 'prod' | 'dev' (default: 'prod')",
   )
+
   // Api options
+  .option("--file <path>", "Path to file with api (*.json, *.yaml, url)")
+  .option(
+    "--authorization <value>",
+    "Auth token for get api by url (it is header for request)",
+  )
   .option(
     "--deprecated <type>",
     "Action for deprecated methods: 'warning' | 'ignore' | 'exception' (default: 'warning')",
@@ -75,11 +75,8 @@ async function main(config) {
   if (config.file) {
     console.time(timeLog);
 
-    // Get apiJson
-    const apiJson = await readApiJson(config);
-
     // Convert to js
-    const apiResult = swaggerToJs(apiJson, config);
+    const apiResult = await swaggerToJs(config);
     const outputFiles = buildFiles(apiResult, config);
 
     // Check and create output dir
@@ -96,44 +93,6 @@ async function main(config) {
   } else {
     throw new Error("Setup path to file with swagger api.");
   }
-}
-
-async function readApiJson(config) {
-  const isUrl = getIsUrl(config.file);
-
-  // By url
-  if (isUrl) {
-    return await fetch(config.file, {
-      headers: { authorization: config.authorization },
-    }).then((response) => {
-      if (response.status === 401) {
-        throw new Error("Unable to get file. Specify authorization settings.");
-      }
-
-      return response.json();
-    });
-  }
-
-  // By local file
-  const apiPath = path.resolve(process.cwd(), config.file);
-  const extname = path.extname(config.file).substr(1);
-  const isJson = extname === "json";
-  const isYaml = extname === "yaml" || extname === "yml";
-
-  if (isJson || isYaml) {
-    const apiFile = readFileSync(apiPath, "utf8");
-    let apiJson = {};
-
-    if (isYaml) {
-      apiJson = yaml.safeLoad(apiFile);
-    } else {
-      apiJson = JSON.parse(apiFile);
-    }
-
-    return apiJson;
-  }
-
-  throw new Error("Selected file have incorrect format.");
 }
 
 function buildFiles({ code, types }, config = {}) {

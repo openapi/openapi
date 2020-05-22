@@ -1,8 +1,11 @@
 const { swaggerToJs } = require("../index");
-const apiJson = require("../mocks/petstore-v3.json");
 
-test("without config", () => {
-  const result = swaggerToJs(apiJson);
+const baseConfig = {
+  file: "./src/mocks/petstore-v3.json",
+};
+
+test("without config", async () => {
+  const result = await swaggerToJs(baseConfig);
 
   expect(result).toMatchInlineSnapshot(`
     Object {
@@ -361,8 +364,9 @@ test("without config", () => {
   `);
 });
 
-test("deprecated=ignore", () => {
-  const result = swaggerToJs(apiJson, {
+test("deprecated=ignore", async () => {
+  const result = await swaggerToJs({
+    ...baseConfig,
     deprecated: "ignore",
   });
 
@@ -723,8 +727,9 @@ test("deprecated=ignore", () => {
   `);
 });
 
-test("deprecated=exception", () => {
-  const result = swaggerToJs(apiJson, {
+test("deprecated=exception", async () => {
+  const result = await swaggerToJs({
+    ...baseConfig,
     deprecated: "exception",
   });
 
@@ -1085,8 +1090,9 @@ test("deprecated=exception", () => {
   `);
 });
 
-test("importRequest=true", () => {
-  const result = swaggerToJs(apiJson, {
+test("importRequest=true", async () => {
+  const result = await swaggerToJs({
+    ...baseConfig,
     importRequest: true,
   });
 
@@ -1447,8 +1453,9 @@ test("importRequest=true", () => {
   `);
 });
 
-test("originalBody=true", () => {
-  const result = swaggerToJs(apiJson, {
+test("originalBody=true", async () => {
+  const result = await swaggerToJs({
+    ...baseConfig,
     originalBody: true,
   });
 
@@ -1809,8 +1816,9 @@ test("originalBody=true", () => {
   `);
 });
 
-test("ignoreDescription=true", () => {
-  const result = swaggerToJs(apiJson, {
+test("ignoreDescription=true", async () => {
+  const result = await swaggerToJs({
+    ...baseConfig,
     ignoreDescription: true,
   });
 
@@ -1898,10 +1906,6 @@ test("ignoreDescription=true", () => {
     type UpdatePetParams0 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
     type UpdatePetAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type UpdatePetResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
-    /**
-    * Update an existing pet
-    * Update an existing pet by Id
-    */
     export function updatePet(params: UpdatePetParams0 & UpdatePetAddedParams0): UpdatePetResult0;
 
     type UpdatePetParams1 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
@@ -1932,10 +1936,6 @@ test("ignoreDescription=true", () => {
     type AddPetParams0 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
     type AddPetAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type AddPetResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
-    /**
-    * Add a new pet to the store
-    * Add a new pet to the store
-    */
     export function addPet(params: AddPetParams0 & AddPetAddedParams0): AddPetResult0;
 
     type AddPetParams1 = { \\"body\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
@@ -1966,10 +1966,6 @@ test("ignoreDescription=true", () => {
     type FindPetsByStatusParams0 = { \\"query\\": { \\"status\\": \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
     type FindPetsByStatusAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
     type FindPetsByStatusResult0 = RequestResult<{ \\"pet\\": ({ \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
-    /**
-    * Finds Pets by status
-    * Multiple status values can be provided with comma separated strings
-    */
     export function findPetsByStatus(params: FindPetsByStatusParams0 & FindPetsByStatusAddedParams0): FindPetsByStatusResult0;
 
     type FindPetsByStatusParams1 = { \\"query\\": { \\"status\\": \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
@@ -1980,10 +1976,6 @@ test("ignoreDescription=true", () => {
     type FindPetsByTagsParams0 = { \\"query\\": { \\"tags\\": (string)[]; }; };
     type FindPetsByTagsAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
     type FindPetsByTagsResult0 = RequestResult<{ \\"pet\\": ({ \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
-    /**
-    * Finds Pets by tags
-    * Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
-    */
     export function findPetsByTags(params: FindPetsByTagsParams0 & FindPetsByTagsAddedParams0): FindPetsByTagsResult0;
 
     type FindPetsByTagsParams1 = { \\"query\\": { \\"tags\\": (string)[]; }; };
@@ -1994,10 +1986,6 @@ test("ignoreDescription=true", () => {
     type GetPetByIdParams0 = { \\"path\\": { \\"petId\\": number; }; };
     type GetPetByIdAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
     type GetPetByIdResult0 = RequestResult<{ \\"pet\\": { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
-    /**
-    * Find pet by ID
-    * Returns a single pet
-    */
     export function getPetById(params: GetPetByIdParams0 & GetPetByIdAddedParams0): GetPetByIdResult0;
 
     type GetPetByIdParams1 = { \\"path\\": { \\"petId\\": number; }; };
@@ -2007,39 +1995,22 @@ test("ignoreDescription=true", () => {
 
     type UpdatePetWithFormParams0 = { \\"path\\": { \\"petId\\": number; }; \\"query\\"?: { \\"name\\": string; \\"status\\": string; }; };
     type UpdatePetWithFormResult0 = RequestResult<null>;
-    /**
-    * Updates a pet in the store with form data
-    */
     export function updatePetWithForm(params: UpdatePetWithFormParams0): UpdatePetWithFormResult0;
 
     type DeletePetParams0 = { \\"header\\"?: { \\"api_key\\": string; }; \\"path\\": { \\"petId\\": number; }; };
     type DeletePetResult0 = RequestResult<null>;
-    /**
-    * Deletes a pet
-    */
     export function deletePet(params: DeletePetParams0): DeletePetResult0;
 
     type UploadFileParams0 = { \\"path\\": { \\"petId\\": number; }; \\"query\\"?: { \\"additionalMetadata\\": string; }; \\"body\\"?: string; };
     type UploadFileResult0 = RequestResult<{ \\"code\\": number; \\"type\\": string; \\"message\\": string; }>;
-    /**
-    * uploads an image
-    */
     export function uploadFile(params: UploadFileParams0): UploadFileResult0;
 
     type GetInventoryResult0 = RequestResult<{ [nameProp: string]: number; }>;
-    /**
-    * Returns pet inventories by status
-    * Returns a map of status codes to quantities
-    */
     export function getInventory(): GetInventoryResult0;
 
     type PlaceOrderParams0 = { \\"body\\": { \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }; };
     type PlaceOrderAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type PlaceOrderResult0 = RequestResult<{ \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }>;
-    /**
-    * Place an order for a pet
-    * Place a new order in the store
-    */
     export function placeOrder(params: PlaceOrderParams0 & PlaceOrderAddedParams0): PlaceOrderResult0;
 
     type PlaceOrderParams1 = { \\"body\\": { \\"order\\": { \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }; }; };
@@ -2055,10 +2026,6 @@ test("ignoreDescription=true", () => {
     type GetOrderByIdParams0 = { \\"path\\": { \\"orderId\\": number; }; };
     type GetOrderByIdAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
     type GetOrderByIdResult0 = RequestResult<{ \\"order\\": { \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }; }>;
-    /**
-    * Find purchase order by ID
-    * For valid response try integer IDs with value <= 5 or > 10. Other values will generated exceptions
-    */
     export function getOrderById(params: GetOrderByIdParams0 & GetOrderByIdAddedParams0): GetOrderByIdResult0;
 
     type GetOrderByIdParams1 = { \\"path\\": { \\"orderId\\": number; }; };
@@ -2068,19 +2035,11 @@ test("ignoreDescription=true", () => {
 
     type DeleteOrderParams0 = { \\"path\\": { \\"orderId\\": number; }; };
     type DeleteOrderResult0 = RequestResult<null>;
-    /**
-    * Delete purchase order by ID
-    * For valid response try integer IDs with value < 1000. Anything above 1000 or nonintegers will generate API errors
-    */
     export function deleteOrder(params: DeleteOrderParams0): DeleteOrderResult0;
 
     type CreateUserParams0 = { \\"body\\": { \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }; };
     type CreateUserAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; }; };
     type CreateUserResult0 = RequestResult<null>;
-    /**
-    * Create user
-    * This can only be done by the logged in user.
-    */
     export function createUser(params: CreateUserParams0 & CreateUserAddedParams0): CreateUserResult0;
 
     type CreateUserParams1 = { \\"body\\": { \\"user\\": { \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }; }; };
@@ -2096,10 +2055,6 @@ test("ignoreDescription=true", () => {
     type CreateUsersWithListInputParams0 = { \\"body\\": ({ \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; })[]; };
     type CreateUsersWithListInputAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type CreateUsersWithListInputResult0 = RequestResult<{ \\"user\\": { \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }; }>;
-    /**
-    * Creates list of users with given input array
-    * Creates list of users with given input array
-    */
     export function createUsersWithListInput(params: CreateUsersWithListInputParams0 & CreateUsersWithListInputAddedParams0): CreateUsersWithListInputResult0;
 
     type CreateUsersWithListInputParams1 = { \\"body\\": ({ \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; })[]; };
@@ -2110,9 +2065,6 @@ test("ignoreDescription=true", () => {
     type LoginUserParams0 = { \\"query\\": { \\"username\\": string; \\"password\\": string; }; };
     type LoginUserAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
     type LoginUserResult0 = RequestResult<string>;
-    /**
-    * Logs user into the system
-    */
     export function loginUser(params: LoginUserParams0 & LoginUserAddedParams0): LoginUserResult0;
 
     type LoginUserParams1 = { \\"query\\": { \\"username\\": string; \\"password\\": string; }; };
@@ -2121,17 +2073,11 @@ test("ignoreDescription=true", () => {
     export function loginUser(params: LoginUserParams1 & LoginUserAddedParams1): LoginUserResult1;
 
     type LogoutUserResult0 = RequestResult<null>;
-    /**
-    * Logs out current logged in user session
-    */
     export function logoutUser(): LogoutUserResult0;
 
     type GetUserByNameParams0 = { \\"path\\": { \\"username\\": string; }; };
     type GetUserByNameAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
     type GetUserByNameResult0 = RequestResult<{ \\"user\\": { \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }; }>;
-    /**
-    * Get user by user name
-    */
     export function getUserByName(params: GetUserByNameParams0 & GetUserByNameAddedParams0): GetUserByNameResult0;
 
     type GetUserByNameParams1 = { \\"path\\": { \\"username\\": string; }; };
@@ -2142,10 +2088,6 @@ test("ignoreDescription=true", () => {
     type UpdateUserParams0 = { \\"path\\": { \\"username\\": string; }; \\"body\\"?: { \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }; };
     type UpdateUserAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; }; };
     type UpdateUserResult0 = RequestResult<null>;
-    /**
-    * Update user
-    * This can only be done by the logged in user.
-    */
     export function updateUser(params: UpdateUserParams0 & UpdateUserAddedParams0): UpdateUserResult0;
 
     type UpdateUserParams1 = { \\"path\\": { \\"username\\": string; }; \\"body\\"?: { \\"user\\": { \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }; }; };
@@ -2160,10 +2102,6 @@ test("ignoreDescription=true", () => {
 
     type DeleteUserParams0 = { \\"path\\": { \\"username\\": string; }; };
     type DeleteUserResult0 = RequestResult<null>;
-    /**
-    * Delete user
-    * This can only be done by the logged in user.
-    */
     export function deleteUser(params: DeleteUserParams0): DeleteUserResult0;
 
     ",

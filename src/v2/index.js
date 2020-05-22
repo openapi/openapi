@@ -1,5 +1,3 @@
-const { camelCase } = require("change-case");
-
 const { isPathException } = require("../common/is-path-exception");
 const { pathDefaultParams } = require("../common/path-default-params");
 const { pathParametersByIn } = require("../common/path-parameters-by-in");
@@ -7,10 +5,13 @@ const { getMode } = require("../common/get-mode");
 const { buildObjectByRefs } = require("../common/build-object-by-refs");
 const { buildObjectByMode } = require("../common/build-object-by-mode");
 const { baseBuild } = require("../common/base-build");
+const { buildPathName } = require("../common/build-path-name");
 
 function swaggerV2ToJs(apiJson, config = {}) {
+  const nextApiJson = buildObjectByRefs(apiJson, { apiJson, config });
+
   return baseBuild(
-    (content) => buildPaths(content, { apiJson, config }),
+    (content) => buildPaths(content, { apiJson: nextApiJson, config }),
     config,
   );
 }
@@ -24,6 +25,9 @@ function buildPaths(content, state) {
       const pathParams = { url, method, pathConfig };
 
       if (isPathException(pathParams, state)) return;
+
+      // Path name
+      pathParams.name = buildPathName(pathParams);
 
       // Path code
       const pathCodeParams = buildPathCodeParams(pathParams, state);
@@ -54,7 +58,7 @@ function buildPathCodeParams(pathParams, state) {
   const { pathConfig } = pathParams;
 
   return {
-    name: camelCase(pathConfig.operationId),
+    name: pathParams.name,
     isExistParams: (pathConfig.parameters || []).length > 0,
     method: pathParams.method,
     url: pathParams.url,
@@ -82,7 +86,7 @@ function buildPathVariantTypesParams({
   const description = isAddDescription ? pathConfig.description || "" : "";
 
   return {
-    name: camelCase(pathConfig.operationId),
+    name: pathParams.name,
     params: buildPathParamsTypes(variant, pathParams, state),
     addedParams: isMoreOneVariant ? buildPathAddedParamsTypes(variant) : null,
     result: buildPathResultTypes(variant, pathParams, state),
@@ -133,6 +137,8 @@ function buildPathResultTypes(variant, pathParams, state) {
     : null;
 
   if (object) {
+    object.type = object.type || "swagger-to-js/path-result";
+
     const mode = getMode(variant.produce);
     const objectByRefs = buildObjectByRefs(object, state);
     const objectByMode = buildObjectByMode(objectByRefs, mode);

@@ -1,6 +1,11 @@
+const getIsUrl = require("is-url");
+const path = require("path");
+const { readFileSync } = require("fs");
+
 const { getRef } = require("../lib/get-ref");
 const { isObject } = require("../lib/is-object");
 const { rebuildObject } = require("../lib/rebuild-object");
+const { contentToJson } = require("../lib/content-to-json");
 
 function buildObjectByRefs(object, state) {
   if (isObject(object)) {
@@ -25,8 +30,40 @@ function buildObjectByRefs(object, state) {
 }
 
 function checkGetRef(object, state) {
-  if (object["$ref"]) {
-    return getRef(state.apiJson, object["$ref"]);
+  const { config } = state;
+  const ref = object["$ref"];
+
+  if (ref) {
+    const isCurrentFile = ref[0] === "#";
+    const isUrl = getIsUrl(ref);
+
+    if (isCurrentFile) {
+      return getRef(state.apiJson, ref);
+    } else if (isUrl) {
+    } else {
+      if (config.file) {
+        const refArr = ref.split("#");
+        const subRef = refArr[1] || null;
+        const dirName = path.dirname(config.file);
+        const pathFile = path.resolve(dirName, refArr[0]);
+
+        const content = contentToJson(pathFile, () =>
+          readFileSync(pathFile, "utf8"),
+        );
+
+        const nextObject = subRef ? getRef(content, `#${subRef}`) : content;
+
+        return buildObjectByRefs(nextObject, {
+          ...state,
+          apiJson: content,
+          config: { ...config, file: pathFile },
+        });
+      } else {
+        throw new Error(
+          "In this api exist links to other files, insert to config prop 'file' path to root file.",
+        );
+      }
+    }
   }
 
   return null;

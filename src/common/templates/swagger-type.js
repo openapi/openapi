@@ -33,6 +33,8 @@ function printObjectTypeByType(object) {
       return "boolean";
     case "file":
       return "File";
+    case "swagger-to-js/path-result":
+      return "null";
     default:
       console.warn(`Type didn't detect. [${object.type}]`);
       return "any";
