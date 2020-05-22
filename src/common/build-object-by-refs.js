@@ -24,6 +24,8 @@ function buildObjectByRefs(object, state) {
     }
 
     return next;
+  } else if (object instanceof Array) {
+    return object.map((item) => buildObjectByRefs(item, state));
   }
 
   return object;
