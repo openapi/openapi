@@ -56,9 +56,10 @@ function buildObjectTypeHowObject(object, mode) {
 function buildObjectTypeHowArray(object, mode) {
   if (object.items) {
     const itemsXml = mode === "xml" ? object.items.xml : null;
+    let items = { ...object.items };
 
-    delete object.items.xml;
-    object.items = buildObjectByMode(object.items, mode);
+    delete items.xml;
+    object.items = buildObjectByMode(items, mode);
 
     if (itemsXml && itemsXml.name) {
       return {
@@ -75,9 +76,10 @@ function buildObjectTypeHowArray(object, mode) {
 
 function rebuildObjectValue(mode) {
   return (value) => {
-    delete value.xml;
+    const next = { ...value };
+    delete next.xml;
 
-    return buildObjectByMode(value, mode);
+    return buildObjectByMode(next, mode);
   };
 }
 

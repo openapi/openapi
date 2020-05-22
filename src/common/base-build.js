@@ -1,4 +1,4 @@
-function baseBuild(build, config = {}) {
+async function baseBuild(build, config = {}) {
   const content = { code: "", types: "" };
 
   if (config.templateCodeBefore) {
@@ -9,7 +9,7 @@ function baseBuild(build, config = {}) {
     content.types += config.templateTypesBefore();
   }
 
-  build(content);
+  await build(content);
 
   if (config.templateCodeAfter) {
     content.code += config.templateCodeAfter();
