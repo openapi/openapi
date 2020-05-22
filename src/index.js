@@ -1,9 +1,4 @@
-const path = require("path");
-const getIsUrl = require("is-url");
-const fetch = require("node-fetch");
-const { contentToJson } = require("./lib/content-to-json");
-const { readFileSync } = require("fs");
-
+const { loadApiJson } = require("./common/load-api-json");
 const {
   templateRequestCode: _templateRequestCode,
 } = require("./common/templates/request-code");
@@ -21,7 +16,7 @@ async function swaggerToJs(_config = {}) {
 
   validConfig(config);
 
-  const apiJson = await getApiJson(config);
+  const apiJson = await loadApiJson(config);
 
   return byVersion(apiJson, config);
 }
@@ -65,43 +60,11 @@ function validConfig(config) {
   }
 }
 
-async function getApiJson(config) {
-  if (config.apiJson) {
-    return config.apiJson;
-  }
-
-  const isUrl = getIsUrl(config.file);
-
-  // By url
-  if (isUrl) {
-    return fetchApi(config);
-  }
-
-  // By local file
-  const apiPath = path.resolve(process.cwd(), config.file);
-
-  return contentToJson(apiPath, () => readFileSync(apiPath, "utf8"));
-}
-
-function fetchApi(config) {
-  return fetch(config.file, {
-    headers: { authorization: config.authorization },
-  })
-    .then((response) => {
-      if (response.status === 401) {
-        throw new Error("Unable to get file. Specify authorization settings.");
-      }
-
-      return response.text();
-    })
-    .then((content) => contentToJson(config.file, () => content));
-}
-
-function byVersion(apiJson, config) {
+async function byVersion(apiJson, config) {
   if (apiJson.openapi) {
-    return swaggerV3ToJs(apiJson, config);
+    return await swaggerV3ToJs(apiJson, config);
   } else if (apiJson.swagger) {
-    return swaggerV2ToJs(apiJson, config);
+    return await swaggerV2ToJs(apiJson, config);
   }
 
   throw new Error("Swagger version didn't detect");
