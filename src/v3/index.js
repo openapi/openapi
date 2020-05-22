@@ -7,9 +7,11 @@ const { buildObjectByMode } = require("../common/build-object-by-mode");
 const { baseBuild } = require("../common/base-build");
 const { buildPathName } = require("../common/build-path-name");
 
-function swaggerV3ToJs(apiJson, config = {}) {
+async function swaggerV3ToJs(apiJson, config = {}) {
+  const nextApiJson = await buildObjectByRefs(apiJson, { apiJson, config });
+
   return baseBuild(
-    (content) => buildPaths(content, { apiJson, config }),
+    (content) => buildPaths(content, { apiJson: nextApiJson, config }),
     config,
   );
 }
@@ -122,10 +124,8 @@ function buildPathParamsTypes(variant, pathParams, state) {
 
   if (Object.keys(parametersByIn).length) {
     const mode = getMode(variant.consume);
-    const objectByRefs = buildObjectByRefs(parametersByIn, state);
-    const objectByMode = buildObjectByMode(objectByRefs, mode);
 
-    return objectByMode;
+    return buildObjectByMode(parametersByIn, mode);
   }
 
   return null;
@@ -158,10 +158,8 @@ function buildPathResultTypes(variant, pathParams, state) {
       result.type = result.type || "swagger-to-js/path-result";
 
       const mode = getMode(variant.produce);
-      const objectByRefs = buildObjectByRefs(result, state);
-      const objectByMode = buildObjectByMode(objectByRefs, mode);
 
-      return objectByMode;
+      return buildObjectByMode(result, mode);
     }
   }
 }
@@ -184,7 +182,7 @@ function getPathRequestBody(pathParams, state) {
   const { pathConfig } = pathParams;
 
   if (pathConfig.requestBody) {
-    const requestBody = buildObjectByRefs(pathConfig.requestBody, state);
+    const requestBody = pathConfig.requestBody;
 
     if (requestBody) {
       return requestBody.content;
@@ -198,7 +196,7 @@ function getPathResponses(pathParams, state) {
   const { pathConfig } = pathParams;
 
   if (pathConfig.responses && pathConfig.responses["200"]) {
-    const result = buildObjectByRefs(pathConfig.responses["200"], state);
+    const result = pathConfig.responses["200"];
 
     if (result) {
       return result.content;

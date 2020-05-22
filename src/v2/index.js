@@ -7,8 +7,8 @@ const { buildObjectByMode } = require("../common/build-object-by-mode");
 const { baseBuild } = require("../common/base-build");
 const { buildPathName } = require("../common/build-path-name");
 
-function swaggerV2ToJs(apiJson, config = {}) {
-  const nextApiJson = buildObjectByRefs(apiJson, { apiJson, config });
+async function swaggerV2ToJs(apiJson, config = {}) {
+  const nextApiJson = await buildObjectByRefs(apiJson, { apiJson, config });
 
   return baseBuild(
     (content) => buildPaths(content, { apiJson: nextApiJson, config }),
@@ -102,10 +102,8 @@ function buildPathParamsTypes(variant, pathParams, state) {
 
   if (Object.keys(parametersByIn).length) {
     const mode = getMode(variant.consume);
-    const objectByRefs = buildObjectByRefs(parametersByIn, state);
-    const objectByMode = buildObjectByMode(objectByRefs, mode);
 
-    return objectByMode;
+    return buildObjectByMode(parametersByIn, mode);
   }
 
   return null;
@@ -140,10 +138,8 @@ function buildPathResultTypes(variant, pathParams, state) {
     object.type = object.type || "swagger-to-js/path-result";
 
     const mode = getMode(variant.produce);
-    const objectByRefs = buildObjectByRefs(object, state);
-    const objectByMode = buildObjectByMode(objectByRefs, mode);
 
-    return objectByMode;
+    return buildObjectByMode(object, mode);
   }
 
   return null;
