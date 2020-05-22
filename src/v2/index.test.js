@@ -2530,3 +2530,28 @@ test("apiJson important than file", async () => {
 
   expect(result).toEqual(resultByBaseConfig);
 });
+
+test("use yaml", async () => {
+  const result = await swaggerToJs({ file: "./src/mocks/petstore-v2.yaml" });
+  const resultByBaseConfig = await swaggerToJs(baseConfig);
+
+  expect(result).toEqual(resultByBaseConfig);
+});
+
+test("use url in prop file", async () => {
+  const result = await swaggerToJs({
+    file: "https://petstore.swagger.io/v2/swagger.yaml",
+  });
+  const resultByBaseConfig = await swaggerToJs(baseConfig);
+
+  expect(result).toEqual(resultByBaseConfig);
+});
+
+test("multifile", async () => {
+  const result = await swaggerToJs({
+    file: "./src/mocks/petstore-v2-multi-file.yaml",
+  });
+  const resultByBaseConfig = await swaggerToJs(baseConfig);
+
+  expect(result).toEqual(resultByBaseConfig);
+});
