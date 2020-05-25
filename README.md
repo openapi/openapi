@@ -111,10 +111,12 @@ module.exports = {
    *  description: string;
    *  countVariants: number;
    *  index: number;
-   *  params: object | null;
-   *  addedParams: object | null;
-   *  result: object | null;
+   *  params: SwaggerData | null;
+   *  addedParams: SwaggerData | null;
+   *  result: SwaggerData | null;
    * }} params
+   *
+   * @type {https://swagger.io/docs/specification/data-models/} SwaggerData
    */
   templateRequestTypes: (param) => "",
 
