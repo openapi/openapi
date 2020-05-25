@@ -39,11 +39,12 @@ type Config = {
 
   // Templates
   templateCodeBefore?: () => string;
-  templateCodeAfter?: () => string;
-  templateTypesBefore?: () => string;
-  templateTypesAfter?: () => string;
   templateRequestCode?: (_: TemplateRequestCodeParams) => string;
+  templateCodeAfter?: () => string;
+
+  templateTypesBefore?: () => string;
   templateRequestTypes?: (_: TemplateRequestTypesParams) => string;
+  templateTypesAfter?: () => string;
 };
 
 type Result = {
