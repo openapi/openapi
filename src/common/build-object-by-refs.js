@@ -52,34 +52,61 @@ async function checkGetRef(object, state) {
     if (isCurrentFile) {
       return getRef(state.apiJson, ref);
     } else if (isUrl) {
+      return await checkGetRefIsUrl(ref, state);
     } else {
-      if (config.file) {
-        const fileRef = parseFileRef(ref);
-        const pathFile = getPathFile(config, fileRef);
-
-        const content = await loadApiJson({
-          file: pathFile,
-          authorization: config.authorization,
-        });
-
-        const nextObject = fileRef.subRef
-          ? getRef(content, `#${fileRef.subRef}`)
-          : content;
-
-        return await buildObjectByRefs(nextObject, {
-          ...state,
-          apiJson: content,
-          config: { ...config, file: pathFile },
-        });
-      } else {
-        throw new Error(
-          "In this api exist links to other files, insert to config prop 'file' path to root file.",
-        );
-      }
+      return await checkGetRefIsLocalFile(ref, state);
     }
   }
 
   return null;
+}
+
+async function checkGetRefIsUrl(ref, state) {
+  const { config } = state;
+  const fileRef = parseFileRef(ref);
+
+  const content = await loadApiJson({
+    file: fileRef.path,
+    authorization: config.authorization,
+  });
+
+  const nextObject = fileRef.subRef
+    ? getRef(content, `#${fileRef.subRef}`)
+    : content;
+
+  return await buildObjectByRefs(nextObject, {
+    ...state,
+    apiJson: content,
+    config: { ...config, file: fileRef.path },
+  });
+}
+
+async function checkGetRefIsLocalFile(ref, state) {
+  const { config } = state;
+
+  if (config.file) {
+    const fileRef = parseFileRef(ref);
+    const pathFile = getPathFile(config, fileRef);
+
+    const content = await loadApiJson({
+      file: pathFile,
+      authorization: config.authorization,
+    });
+
+    const nextObject = fileRef.subRef
+      ? getRef(content, `#${fileRef.subRef}`)
+      : content;
+
+    return await buildObjectByRefs(nextObject, {
+      ...state,
+      apiJson: content,
+      config: { ...config, file: pathFile },
+    });
+  }
+
+  throw new Error(
+    "In this api exist links to other files, insert to config prop 'file' path to root file.",
+  );
 }
 
 function parseFileRef(ref) {
