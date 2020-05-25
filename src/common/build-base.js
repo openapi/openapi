@@ -1,4 +1,4 @@
-async function baseBuild(build, config = {}) {
+async function buildBase(build, config = {}) {
   const content = { code: "", types: "" };
 
   if (config.templateCodeBefore) {
@@ -22,4 +22,4 @@ async function baseBuild(build, config = {}) {
   return content;
 }
 
-module.exports = { baseBuild };
+module.exports = { buildBase };
