@@ -178,7 +178,7 @@ function eachPathVariant(pathParams, state, callback) {
   });
 }
 
-function getPathRequestBody(pathParams, state) {
+function getPathRequestBody(pathParams) {
   const { pathConfig } = pathParams;
 
   if (pathConfig.requestBody) {
@@ -192,7 +192,7 @@ function getPathRequestBody(pathParams, state) {
   return null;
 }
 
-function getPathResponses(pathParams, state) {
+function getPathResponses(pathParams) {
   const { pathConfig } = pathParams;
 
   if (pathConfig.responses && pathConfig.responses["200"]) {

@@ -128,7 +128,7 @@ function buildPathAddedParamsTypes(variant) {
   return null;
 }
 
-function buildPathResultTypes(variant, pathParams, state) {
+function buildPathResultTypes(variant, pathParams) {
   const { pathConfig } = pathParams;
   const object = pathConfig.responses
     ? pathConfig.responses["200"] || null

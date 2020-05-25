@@ -1,12 +1,9 @@
 const getIsUrl = require("is-url");
 const path = require("path");
-const { readFileSync } = require("fs");
 const parseUrl = require("url-parse");
 
 const { getRef } = require("../lib/get-ref");
 const { isObject } = require("../lib/is-object");
-const { rebuildObject } = require("../lib/rebuild-object");
-const { contentToJson } = require("../lib/content-to-json");
 const { loadApiJson } = require("./load-api-json");
 const { asyncMap } = require("../lib/async-map");
 const { asyncRebuildObject } = require("../lib/async-rebuild-object");
@@ -42,7 +39,6 @@ async function buildObjectByRefs(object, state) {
 }
 
 async function checkGetRef(object, state) {
-  const { config } = state;
   const ref = object["$ref"];
 
   if (ref) {
