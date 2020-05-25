@@ -23,9 +23,11 @@ function buildPaths(buildOptions) {
 
         // Path code
         const pathCodeParams = buildPathCodeParams(pathParams, state);
+        const resultRequestCode = config.templateRequestCode(pathCodeParams);
 
-        content.code += config.templateRequestCode(pathCodeParams);
-        content.code += "\n\n";
+        if (resultRequestCode) {
+          content.code += `${resultRequestCode}\n\n`;
+        }
 
         // Path types by variants
         const pathVariants = getPathVariants(pathParams, state);
@@ -39,8 +41,13 @@ function buildPaths(buildOptions) {
             state,
           });
 
-          content.types += config.templateRequestTypes(pathVariantTypesParams);
-          content.types += "\n\n";
+          const resultRequestTypes = config.templateRequestTypes(
+            pathVariantTypesParams,
+          );
+
+          if (resultRequestTypes) {
+            content.types += `${resultRequestTypes}\n\n`;
+          }
         });
       });
     });
