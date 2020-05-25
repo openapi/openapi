@@ -53,34 +53,74 @@ This package use [`cosmiconfig`](https://github.com/davidtheclark/cosmiconfig) f
 - a swagger-to-js.config.js file exporting a JS object
 
 ```js
-{
+module.exports = {
   // Path to file with api (*.json, *.yaml, url)
-  "file": "./swagger-api.json", // string
+  file: "./swagger-api.json", // string
 
   // Api in json (if not use option 'file', more important than path to file)
-  "apiJson": { ... },
+  apiJson: { ... },
 
   // Auth token for get api by url (it is header for request)
-  "authorization": "Token 123qwerty", // string
+  authorization: "Token 123qwerty", // string
 
   // Path output directory js api with types
-  "outputDir": "./api", // string (default: "./api")
+  outputDir: "./api", // string (default: "./api")
 
   // Mode for additional info
-  "mode": "prod", // "prod" | "dev" (default: "prod")
+  mode: "prod", // "prod" | "dev" (default: "prod")
 
   // Action for deprecated methods
-  "deprecated": "warning", // "warning" | "ignore" | "exception" (default: "warning")
+  deprecated: "warning", // "warning" | "ignore" | "exception" (default: "warning")
 
   // Import request code in out code
-  "importRequest": true, // (default: false)
+  importRequest: true, // (default: false)
 
   // Build with original request body
-  "originalBody": true, // (default: false)
+  originalBody: true, // (default: false)
 
   // Ignore description of requests
-  "ignoreDescription": true // default: false
-}
+  ignoreDescription: true, // default: false
+
+  // Template before main block code
+  templateCodeBefore: () => "",
+
+  /**
+   * Template request code
+   * @param {{
+   *  name: string;
+   *  method: string;
+   *  url: string;
+   *  isWarningDeprecated: boolean;
+   *  isExistParams: boolean;
+   *  defaultParams: object;
+   * }} params
+   */
+  templateRequestCode: (params) => "",
+
+  // Template after maon block code
+  templateCodeAfter: () => "",
+
+  // Template before main block types
+  templateTypesBefore: () => "",
+
+  /**
+   * Template request types
+   * @param {{
+   *  name: string;
+   *  summary: string;
+   *  description: string;
+   *  countVariants: number;
+   *  index: number;
+   *  params: object | null;
+   *  addedParams: object | null;
+   *  result: object | null;
+   * }} params
+   */
+  templateRequestTypes: (param) => "",
+
+  // Template after main block types
+  templateTypesAfter: () => "",
+};
 ```
 
 ## API
