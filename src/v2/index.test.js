@@ -2565,3 +2565,12 @@ test("multifile and root file by url", async () => {
 
   expect(result).toEqual(resultByBaseConfig);
 });
+
+test("multifile with ref how url", async () => {
+  const result = await swaggerToJs({
+    file: "./src/mocks/petstore-v2-ref-url.yaml",
+  });
+  const resultByBaseConfig = await swaggerToJs(baseConfig);
+
+  expect(result).toEqual(resultByBaseConfig);
+});
