@@ -2555,3 +2555,13 @@ test("multifile", async () => {
 
   expect(result).toEqual(resultByBaseConfig);
 });
+
+test("multifile and root file by url", async () => {
+  const result = await swaggerToJs({
+    file:
+      "https://raw.githubusercontent.com/EvgenyiFedotov/swagger-to-js/next/src/mocks/petstore-v2-multi-file.yaml",
+  });
+  const resultByBaseConfig = await swaggerToJs(baseConfig);
+
+  expect(result).toEqual(resultByBaseConfig);
+});
