@@ -99,6 +99,8 @@ console.log(types);
 // => typescript types
 ```
 
+[More examples](https://github.com/EvgenyiFedotov/swagger-to-js/tree/next/examples/api)
+
 ## Additional notes
 
 - If you will use this package after application created, you will have problem with generated api,
