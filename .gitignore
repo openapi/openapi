@@ -15,6 +15,8 @@ api-public-api
 src/mocks/public-api.openapi.*
 api-from-https
 package
-api
+/api
 api-multi-file
 ttt.js
+*/**/code.js
+*/**/code.d.ts
