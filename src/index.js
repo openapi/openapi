@@ -30,9 +30,13 @@ function buildConfig(config = {}) {
     originalBody = false,
     ignoreDescription = false,
 
+    templateCodeBefore,
     templateRequestCode = _templateRequestCode,
-    templateRequestTypes = _templateRequestTypes,
+    templateCodeAfter,
+
     templateTypesBefore = _templateTypesBefore,
+    templateRequestTypes = _templateRequestTypes,
+    templateTypesAfter,
   } = config;
 
   return {
@@ -43,9 +47,12 @@ function buildConfig(config = {}) {
     originalBody,
     ignoreDescription,
 
+    templateCodeBefore,
     templateRequestCode,
-    templateRequestTypes,
+    templateCodeAfter,
     templateTypesBefore,
+    templateRequestTypes,
+    templateTypesAfter,
   };
 }
 
