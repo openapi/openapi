@@ -21,11 +21,19 @@
   },
   "scripts": {
     "test": "jest",
-    "prepack": "yarn test && rm -fr ./.github ./src/mocks ./src/**/*.test.js",
-    "postpack": "git reset HEAD --hard",
-    "tojs2": "swagger-to-js --file ./src/mocks/petstore-v2.json --output-dir ./api-v2",
-    "tojs3": "swagger-to-js --file ./src/mocks/petstore-v3.json --output-dir ./api-v3"
+    "prepack": "yarn test",
+    "test-pack": "rm -rf test-pack && yarn pack --filename package-pack.tgz && mkdir -pv test-pack && tar -xvzf package-pack.tgz -C test-pack && rm package-pack.tgz"
   },
+  "files": [
+    "src/common",
+    "src/lib",
+    "src/v2/index.js",
+    "src/v3/index.js",
+    "src/cli.js",
+    "src/index.d.ts",
+    "src/index.js",
+    "request.js"
+  ],
   "bin": {
     "swagger-to-js": "./src/cli.js"
   },
