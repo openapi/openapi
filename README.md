@@ -141,7 +141,7 @@ console.log(types);
 // => typescript types
 ```
 
-[More examples](https://github.com/EvgenyiFedotov/swagger-to-js/tree/next/examples/api)
+[More examples](https://github.com/EvgenyiFedotov/swagger-to-js/tree/next/examples)
 
 ## Additional notes
 
