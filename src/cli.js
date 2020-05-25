@@ -40,7 +40,7 @@ program
   )
   .option("--import-request", "Import request code in out code")
   .option("--original-body", "Build with original request body")
-  .option("--ignore-description", "Print description of request");
+  .option("--ignore-description", "Ignore description of requests");
 
 program.parse(process.argv);
 
