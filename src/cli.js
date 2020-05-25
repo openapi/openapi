@@ -59,6 +59,14 @@ const config = {
   deprecated: program.deprecated || loadedConfig.deprecated,
   importRequest: program.importRequest || loadedConfig.importRequest,
   originalBody: program.originalBody || loadedConfig.originalBody,
+
+  templateCodeBefore: loadedConfig.templateCodeBefore,
+  templateRequestCode: loadedConfig.templateRequestCode,
+  templateCodeAfter: loadedConfig.templateCodeAfter,
+
+  templateTypesBefore: loadedConfig.templateTypesBefore,
+  templateRequestTypes: loadedConfig.templateRequestTypes,
+  templateTypesAfter: loadedConfig.templateTypesAfter,
 };
 
 async function main(config) {
