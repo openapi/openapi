@@ -20,3 +20,4 @@ api-multi-file
 ttt.js
 */**/code.js
 */**/code.d.ts
+examples/**/api
