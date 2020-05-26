@@ -2,7 +2,7 @@ const { joinStrings } = require("../../lib/join-strings");
 const { templateSwaggerType } = require("./swagger-type");
 const { capitalize } = require("../../lib/capitalize");
 
-function tempateRequestTypes(props) {
+function templateRequestTypes(props) {
   const params = buildParams(props);
   const addedParams = buildAddedParams(props);
   const result = buildResult(props);
@@ -14,10 +14,22 @@ function tempateRequestTypes(props) {
       templateParams(params),
       templateAddedParams(addedParams),
       templateResult(result),
+      tempalteNote(props),
       method,
     ],
     lineConfig,
   );
+}
+
+function tempalteNote(props) {
+  const lineConfig = { separator: "\n", before: "* " };
+  const comments = joinStrings([props.summary, props.description], lineConfig);
+
+  if (comments) {
+    return `/**\n${comments}\n*/`;
+  }
+
+  return null;
 }
 
 function buildParams(props) {
@@ -127,4 +139,4 @@ function templateNameResult(props) {
   return `${capitalize(name)}Result${index}`;
 }
 
-module.exports = { tempateRequestTypes };
+module.exports = { templateRequestTypes };

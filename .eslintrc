@@ -1,86 +1,19 @@
 {
-  "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint"],
+  "parser": "babel-eslint",
   "rules": {
-    "@typescript-eslint/no-unused-vars": [
+    "no-unused-vars": [
       "error",
-      { "varsIgnorePattern": "^_" }
-    ],
-    "@typescript-eslint/arrow-return-shorthand": true,
-    "@typescript-eslint/callable-types": true,
-    "@typescript-eslint/class-name": true,
-    "@typescript-eslint/comment-format": [true, "check-space"],
-    "@typescript-eslint/curly": [true, "ignore-same-line"],
-    "@typescript-eslint/eofline": true,
-    "@typescript-eslint/forin": true,
-    "@typescript-eslint/import-blacklist": [true, "rxjs", "rxjs/Rx"],
-    "@typescript-eslint/import-spacing": true,
-    "@typescript-eslint/indent": [true, "spaces"],
-    "@typescript-eslint/interface-over-type-literal": false,
-    "@typescript-eslint/label-position": true,
-    "@typescript-eslint/max-line-length": [true, 140],
-    "@typescript-eslint/member-access": false,
-    "@typescript-eslint/no-arg": true,
-    "@typescript-eslint/no-bitwise": false,
-    "@typescript-eslint/no-console": [
-      true,
-      "debug",
-      "info",
-      "time",
-      "timeEnd",
-      "trace"
-    ],
-    "@typescript-eslint/no-construct": true,
-    "@typescript-eslint/no-debugger": false,
-    "@typescript-eslint/no-duplicate-super": true,
-    "@typescript-eslint/no-empty": false,
-    "@typescript-eslint/no-empty-interface": true,
-    "@typescript-eslint/no-eval": true,
-    "@typescript-eslint/no-misused-new": true,
-    "@typescript-eslint/no-non-null-assertion": true,
-    "@typescript-eslint/no-shadowed-variable": true,
-    "@typescript-eslint/no-string-literal": false,
-    "@typescript-eslint/no-string-throw": true,
-    "@typescript-eslint/no-switch-case-fall-through": true,
-    "@typescript-eslint/no-trailing-whitespace": false,
-    "@typescript-eslint/no-unnecessary-initializer": true,
-    "@typescript-eslint/no-unused-expression": true,
-    "@typescript-eslint/no-use-before-declare": true,
-    "@typescript-eslint/no-var-keyword": true,
-    "@typescript-eslint/object-literal-sort-keys": false,
-    "@typescript-eslint/one-line": [
-      true,
-      "check-open-brace",
-      "check-catch",
-      "check-else",
-      "check-whitespace"
-    ],
-    "@typescript-eslint/prefer-const": true,
-    "@typescript-eslint/quotemark": [true, "double"],
-    "@typescript-eslint/radix": true,
-    "@typescript-eslint/semicolon": [false, "always"],
-    "@typescript-eslint/triple-equals": [true, "allow-null-check"],
-    "@typescript-eslint/typedef-whitespace": [
-      true,
       {
-        "call-signature": "nospace",
-        "index-signature": "nospace",
-        "parameter": "nospace",
-        "property-declaration": "nospace",
-        "variable-declaration": "nospace"
+        "vars": "all",
+        "args": "after-used",
+        "ignoreRestSiblings": false
       }
-    ],
-    "@typescript-eslint/unified-signatures": true,
-    "@typescript-eslint/variable-name": false,
-    "@typescript-eslint/whitespace": [
-      true,
-      "check-branch",
-      "check-decl",
-      "check-operator",
-      "check-separator",
-      "check-type"
-    ],
-    "@typescript-eslint/jsx-boolean-value": false,
-    "@typescript-eslint/jsx-no-lambda": false
+    ]
+  },
+  "parserOptions": {
+    "ecmaVersion": 2017
+  },
+  "env": {
+    "es6": true
   }
 }
