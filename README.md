@@ -1,6 +1,6 @@
 # Swagger-to-js
 
-Convert swagger api to js (with types fo typescript)
+Convert swagger api to js (with types for typescript)
 
 ## Install
 
