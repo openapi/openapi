@@ -2540,7 +2540,8 @@ test("use yaml", async () => {
 
 test("use url in prop file", async () => {
   const result = await swaggerToJs({
-    file: "https://petstore.swagger.io/v2/swagger.yaml",
+    file:
+      "https://raw.githubusercontent.com/EvgenyiFedotov/swagger-to-js/next/src/mocks/petstore-v2-multi-file.yaml",
   });
   const resultByBaseConfig = await swaggerToJs(baseConfig);
 
