@@ -51,7 +51,7 @@ function printObjectTypeHowObject(object) {
       const objectRequired = object.required || [];
       const required = objectRequired.length
         ? objectRequired.includes(propName)
-        : true;
+        : false;
       let value = object.properties[propName];
 
       return [propName, { value, required }];

@@ -25,6 +25,8 @@ function buildConfig(config = {}) {
   const {
     file = "",
     apiJson = "",
+    authorization,
+
     mode = "prod",
     deprecated = "warning",
     originalBody = false,
@@ -42,6 +44,8 @@ function buildConfig(config = {}) {
   return {
     file,
     apiJson,
+    authorization,
+
     deprecated,
     mode,
     originalBody,

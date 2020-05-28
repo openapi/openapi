@@ -96,18 +96,20 @@ function buildPathParamsTypes(variant, pathParams, state) {
 
 function buildPathAddedParamsTypes(variant) {
   const { consume, produce } = variant;
-  const header = {};
+  const header = { type: "object", properties: {}, required: [] };
 
   if (consume) {
-    header.accept = { type: "string", enum: [consume] };
+    header.properties.accept = { type: "string", enum: [consume] };
+    header.required.push("accept");
   }
 
   if (produce) {
-    header["Content-Type"] = { type: "string", enum: [produce] };
+    header.properties["Content-Type"] = { type: "string", enum: [produce] };
+    header.required.push("Content-Type");
   }
 
   if (Object.keys(header).length) {
-    return { header };
+    return { type: "object", properties: { header } };
   }
 
   return null;

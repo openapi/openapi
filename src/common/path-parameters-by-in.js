@@ -7,10 +7,18 @@ function pathParametersByIn(pathParams, state) {
   };
   const paramsByIn = parameters.reduce((memo, parameter) => {
     if (!memo.properties[parameter.in]) {
-      memo.properties[parameter.in] = {};
+      memo.properties[parameter.in] = {
+        type: "object",
+        properties: {},
+        required: [],
+      };
     }
 
-    memo.properties[parameter.in][parameter.name] = parameter;
+    memo.properties[parameter.in].properties[parameter.name] = parameter;
+
+    if (parameter.required) {
+      memo.properties[parameter.in].required.push(parameter.name);
+    }
 
     return memo;
   }, defaultValue);
@@ -31,10 +39,11 @@ function pathParametersByIn(pathParams, state) {
 
     // Check body, if have one element so push up to root body
     if (paramsByIn.properties.body) {
-      const bodyKeys = Object.keys(paramsByIn.properties.body);
+      const bodyKeys = Object.keys(paramsByIn.properties.body.properties);
 
       if (bodyKeys.length === 1) {
-        paramsByIn.properties.body = paramsByIn.properties.body[bodyKeys[0]];
+        paramsByIn.properties.body =
+          paramsByIn.properties.body.properties[bodyKeys[0]];
       }
     }
   }
@@ -44,7 +53,7 @@ function pathParametersByIn(pathParams, state) {
 
 function getRequired({ properties }) {
   return Object.keys(properties).reduce((result, propName) => {
-    const propValue = properties[propName];
+    const propValue = properties[propName].properties;
     const isRequired = Object.keys(propValue).reduce((memo, parameterKey) => {
       const parameter = propValue[parameterKey];
 

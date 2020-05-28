@@ -95,62 +95,62 @@ test("without config", async () => {
     ",
       "types": "type RequestResult<Data> = Promise<{ response: Response; data: Data; }>;
 
-    type UploadFileParams0 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"additionalMetadata\\": string; \\"file\\": File; }; };
-    type UploadFileResult0 = RequestResult<{ \\"code\\": number; \\"type\\": string; \\"message\\": string; }>;
+    type UploadFileParams0 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"additionalMetadata\\"?: string; \\"file\\"?: File; }; };
+    type UploadFileResult0 = RequestResult<{ \\"code\\"?: number; \\"type\\"?: string; \\"message\\"?: string; }>;
     /**
     * uploads an image
     */
     export function uploadFile(params: UploadFileParams0): UploadFileResult0;
 
-    type AddPetParams0 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
-    type AddPetAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type AddPetParams0 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
+    type AddPetAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type AddPetResult0 = RequestResult<null>;
     /**
     * Add a new pet to the store
     */
     export function addPet(params: AddPetParams0 & AddPetAddedParams0): AddPetResult0;
 
-    type AddPetParams1 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
-    type AddPetAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type AddPetParams1 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
+    type AddPetAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type AddPetResult1 = RequestResult<null>;
     export function addPet(params: AddPetParams1 & AddPetAddedParams1): AddPetResult1;
 
-    type AddPetParams2 = { \\"body\\": { \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
-    type AddPetAddedParams2 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type AddPetParams2 = { \\"body\\": { \\"Pet\\"?: { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type AddPetAddedParams2 = { \\"header\\"?: { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type AddPetResult2 = RequestResult<null>;
     export function addPet(params: AddPetParams2 & AddPetAddedParams2): AddPetResult2;
 
-    type AddPetParams3 = { \\"body\\": { \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
-    type AddPetAddedParams3 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type AddPetParams3 = { \\"body\\": { \\"Pet\\"?: { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type AddPetAddedParams3 = { \\"header\\"?: { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type AddPetResult3 = RequestResult<null>;
     export function addPet(params: AddPetParams3 & AddPetAddedParams3): AddPetResult3;
 
-    type UpdatePetParams0 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
-    type UpdatePetAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type UpdatePetParams0 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
+    type UpdatePetAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type UpdatePetResult0 = RequestResult<null>;
     /**
     * Update an existing pet
     */
     export function updatePet(params: UpdatePetParams0 & UpdatePetAddedParams0): UpdatePetResult0;
 
-    type UpdatePetParams1 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
-    type UpdatePetAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type UpdatePetParams1 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
+    type UpdatePetAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type UpdatePetResult1 = RequestResult<null>;
     export function updatePet(params: UpdatePetParams1 & UpdatePetAddedParams1): UpdatePetResult1;
 
-    type UpdatePetParams2 = { \\"body\\": { \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
-    type UpdatePetAddedParams2 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type UpdatePetParams2 = { \\"body\\": { \\"Pet\\"?: { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type UpdatePetAddedParams2 = { \\"header\\"?: { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type UpdatePetResult2 = RequestResult<null>;
     export function updatePet(params: UpdatePetParams2 & UpdatePetAddedParams2): UpdatePetResult2;
 
-    type UpdatePetParams3 = { \\"body\\": { \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
-    type UpdatePetAddedParams3 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type UpdatePetParams3 = { \\"body\\": { \\"Pet\\"?: { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type UpdatePetAddedParams3 = { \\"header\\"?: { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type UpdatePetResult3 = RequestResult<null>;
     export function updatePet(params: UpdatePetParams3 & UpdatePetAddedParams3): UpdatePetResult3;
 
     type FindPetsByStatusParams0 = { \\"query\\": { \\"status\\": (\\"available\\" | \\"pending\\" | \\"sold\\")[]; }; };
-    type FindPetsByStatusAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
-    type FindPetsByStatusResult0 = RequestResult<({ \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]>;
+    type FindPetsByStatusAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
+    type FindPetsByStatusResult0 = RequestResult<({ \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]>;
     /**
     * Finds Pets by status
     * Multiple status values can be provided with comma separated strings
@@ -158,13 +158,13 @@ test("without config", async () => {
     export function findPetsByStatus(params: FindPetsByStatusParams0 & FindPetsByStatusAddedParams0): FindPetsByStatusResult0;
 
     type FindPetsByStatusParams1 = { \\"query\\": { \\"status\\": (\\"available\\" | \\"pending\\" | \\"sold\\")[]; }; };
-    type FindPetsByStatusAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type FindPetsByStatusResult1 = RequestResult<{ \\"Pet\\": ({ \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
+    type FindPetsByStatusAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type FindPetsByStatusResult1 = RequestResult<{ \\"Pet\\"?: ({ \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
     export function findPetsByStatus(params: FindPetsByStatusParams1 & FindPetsByStatusAddedParams1): FindPetsByStatusResult1;
 
     type FindPetsByTagsParams0 = { \\"query\\": { \\"tags\\": (string)[]; }; };
-    type FindPetsByTagsAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
-    type FindPetsByTagsResult0 = RequestResult<({ \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]>;
+    type FindPetsByTagsAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
+    type FindPetsByTagsResult0 = RequestResult<({ \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]>;
     /**
     * Finds Pets by tags
     * Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
@@ -172,13 +172,13 @@ test("without config", async () => {
     export function findPetsByTags(params: FindPetsByTagsParams0 & FindPetsByTagsAddedParams0): FindPetsByTagsResult0;
 
     type FindPetsByTagsParams1 = { \\"query\\": { \\"tags\\": (string)[]; }; };
-    type FindPetsByTagsAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type FindPetsByTagsResult1 = RequestResult<{ \\"Pet\\": ({ \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
+    type FindPetsByTagsAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type FindPetsByTagsResult1 = RequestResult<{ \\"Pet\\"?: ({ \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
     export function findPetsByTags(params: FindPetsByTagsParams1 & FindPetsByTagsAddedParams1): FindPetsByTagsResult1;
 
     type GetPetByIdParams0 = { \\"path\\": { \\"petId\\": number; }; };
-    type GetPetByIdAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
-    type GetPetByIdResult0 = RequestResult<{ \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }>;
+    type GetPetByIdAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
+    type GetPetByIdResult0 = RequestResult<{ \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }>;
     /**
     * Find pet by ID
     * Returns a single pet
@@ -186,52 +186,52 @@ test("without config", async () => {
     export function getPetById(params: GetPetByIdParams0 & GetPetByIdAddedParams0): GetPetByIdResult0;
 
     type GetPetByIdParams1 = { \\"path\\": { \\"petId\\": number; }; };
-    type GetPetByIdAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type GetPetByIdResult1 = RequestResult<{ \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+    type GetPetByIdAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type GetPetByIdResult1 = RequestResult<{ \\"Pet\\"?: { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function getPetById(params: GetPetByIdParams1 & GetPetByIdAddedParams1): GetPetByIdResult1;
 
-    type UpdatePetWithFormParams0 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"name\\": string; \\"status\\": string; }; };
-    type UpdatePetWithFormAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/x-www-form-urlencoded\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type UpdatePetWithFormParams0 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"name\\"?: string; \\"status\\"?: string; }; };
+    type UpdatePetWithFormAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/x-www-form-urlencoded\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type UpdatePetWithFormResult0 = RequestResult<null>;
     /**
     * Updates a pet in the store with form data
     */
     export function updatePetWithForm(params: UpdatePetWithFormParams0 & UpdatePetWithFormAddedParams0): UpdatePetWithFormResult0;
 
-    type UpdatePetWithFormParams1 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"name\\": string; \\"status\\": string; }; };
-    type UpdatePetWithFormAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/x-www-form-urlencoded\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type UpdatePetWithFormParams1 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"name\\"?: string; \\"status\\"?: string; }; };
+    type UpdatePetWithFormAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/x-www-form-urlencoded\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type UpdatePetWithFormResult1 = RequestResult<null>;
     export function updatePetWithForm(params: UpdatePetWithFormParams1 & UpdatePetWithFormAddedParams1): UpdatePetWithFormResult1;
 
-    type DeletePetParams0 = { \\"header\\"?: { \\"api_key\\": string; }; \\"path\\": { \\"petId\\": number; }; };
-    type DeletePetAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
+    type DeletePetParams0 = { \\"header\\"?: { \\"api_key\\"?: string; }; \\"path\\": { \\"petId\\": number; }; };
+    type DeletePetAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
     type DeletePetResult0 = RequestResult<null>;
     /**
     * Deletes a pet
     */
     export function deletePet(params: DeletePetParams0 & DeletePetAddedParams0): DeletePetResult0;
 
-    type DeletePetParams1 = { \\"header\\"?: { \\"api_key\\": string; }; \\"path\\": { \\"petId\\": number; }; };
-    type DeletePetAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type DeletePetParams1 = { \\"header\\"?: { \\"api_key\\"?: string; }; \\"path\\": { \\"petId\\": number; }; };
+    type DeletePetAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
     type DeletePetResult1 = RequestResult<null>;
     export function deletePet(params: DeletePetParams1 & DeletePetAddedParams1): DeletePetResult1;
 
-    type PlaceOrderParams0 = { \\"body\\": { \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }; };
-    type PlaceOrderAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
-    type PlaceOrderResult0 = RequestResult<{ \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }>;
+    type PlaceOrderParams0 = { \\"body\\": { \\"id\\"?: number; \\"petId\\"?: number; \\"quantity\\"?: number; \\"shipDate\\"?: string; \\"status\\"?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\"?: boolean; }; };
+    type PlaceOrderAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type PlaceOrderResult0 = RequestResult<{ \\"id\\"?: number; \\"petId\\"?: number; \\"quantity\\"?: number; \\"shipDate\\"?: string; \\"status\\"?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\"?: boolean; }>;
     /**
     * Place an order for a pet
     */
     export function placeOrder(params: PlaceOrderParams0 & PlaceOrderAddedParams0): PlaceOrderResult0;
 
-    type PlaceOrderParams1 = { \\"body\\": { \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }; };
-    type PlaceOrderAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
-    type PlaceOrderResult1 = RequestResult<{ \\"Order\\": { \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }; }>;
+    type PlaceOrderParams1 = { \\"body\\": { \\"id\\"?: number; \\"petId\\"?: number; \\"quantity\\"?: number; \\"shipDate\\"?: string; \\"status\\"?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\"?: boolean; }; };
+    type PlaceOrderAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type PlaceOrderResult1 = RequestResult<{ \\"Order\\"?: { \\"id\\"?: number; \\"petId\\"?: number; \\"quantity\\"?: number; \\"shipDate\\"?: string; \\"status\\"?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\"?: boolean; }; }>;
     export function placeOrder(params: PlaceOrderParams1 & PlaceOrderAddedParams1): PlaceOrderResult1;
 
     type GetOrderByIdParams0 = { \\"path\\": { \\"orderId\\": number; }; };
-    type GetOrderByIdAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
-    type GetOrderByIdResult0 = RequestResult<{ \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }>;
+    type GetOrderByIdAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
+    type GetOrderByIdResult0 = RequestResult<{ \\"id\\"?: number; \\"petId\\"?: number; \\"quantity\\"?: number; \\"shipDate\\"?: string; \\"status\\"?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\"?: boolean; }>;
     /**
     * Find purchase order by ID
     * For valid response try integer IDs with value >= 1 and <= 10. Other values will generated exceptions
@@ -239,12 +239,12 @@ test("without config", async () => {
     export function getOrderById(params: GetOrderByIdParams0 & GetOrderByIdAddedParams0): GetOrderByIdResult0;
 
     type GetOrderByIdParams1 = { \\"path\\": { \\"orderId\\": number; }; };
-    type GetOrderByIdAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type GetOrderByIdResult1 = RequestResult<{ \\"Order\\": { \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }; }>;
+    type GetOrderByIdAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type GetOrderByIdResult1 = RequestResult<{ \\"Order\\"?: { \\"id\\"?: number; \\"petId\\"?: number; \\"quantity\\"?: number; \\"shipDate\\"?: string; \\"status\\"?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\"?: boolean; }; }>;
     export function getOrderById(params: GetOrderByIdParams1 & GetOrderByIdAddedParams1): GetOrderByIdResult1;
 
     type DeleteOrderParams0 = { \\"path\\": { \\"orderId\\": number; }; };
-    type DeleteOrderAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
+    type DeleteOrderAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
     type DeleteOrderResult0 = RequestResult<null>;
     /**
     * Delete purchase order by ID
@@ -253,7 +253,7 @@ test("without config", async () => {
     export function deleteOrder(params: DeleteOrderParams0 & DeleteOrderAddedParams0): DeleteOrderResult0;
 
     type DeleteOrderParams1 = { \\"path\\": { \\"orderId\\": number; }; };
-    type DeleteOrderAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type DeleteOrderAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
     type DeleteOrderResult1 = RequestResult<null>;
     export function deleteOrder(params: DeleteOrderParams1 & DeleteOrderAddedParams1): DeleteOrderResult1;
 
@@ -264,47 +264,47 @@ test("without config", async () => {
     */
     export function getInventory(): GetInventoryResult0;
 
-    type CreateUsersWithArrayInputParams0 = { \\"body\\": ({ \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; })[]; };
-    type CreateUsersWithArrayInputAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type CreateUsersWithArrayInputParams0 = { \\"body\\": ({ \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; })[]; };
+    type CreateUsersWithArrayInputAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type CreateUsersWithArrayInputResult0 = RequestResult<null>;
     /**
     * Creates list of users with given input array
     */
     export function createUsersWithArrayInput(params: CreateUsersWithArrayInputParams0 & CreateUsersWithArrayInputAddedParams0): CreateUsersWithArrayInputResult0;
 
-    type CreateUsersWithArrayInputParams1 = { \\"body\\": ({ \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; })[]; };
-    type CreateUsersWithArrayInputAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type CreateUsersWithArrayInputParams1 = { \\"body\\": ({ \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; })[]; };
+    type CreateUsersWithArrayInputAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type CreateUsersWithArrayInputResult1 = RequestResult<null>;
     export function createUsersWithArrayInput(params: CreateUsersWithArrayInputParams1 & CreateUsersWithArrayInputAddedParams1): CreateUsersWithArrayInputResult1;
 
-    type CreateUsersWithListInputParams0 = { \\"body\\": ({ \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; })[]; };
-    type CreateUsersWithListInputAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type CreateUsersWithListInputParams0 = { \\"body\\": ({ \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; })[]; };
+    type CreateUsersWithListInputAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type CreateUsersWithListInputResult0 = RequestResult<null>;
     /**
     * Creates list of users with given input array
     */
     export function createUsersWithListInput(params: CreateUsersWithListInputParams0 & CreateUsersWithListInputAddedParams0): CreateUsersWithListInputResult0;
 
-    type CreateUsersWithListInputParams1 = { \\"body\\": ({ \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; })[]; };
-    type CreateUsersWithListInputAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type CreateUsersWithListInputParams1 = { \\"body\\": ({ \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; })[]; };
+    type CreateUsersWithListInputAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type CreateUsersWithListInputResult1 = RequestResult<null>;
     export function createUsersWithListInput(params: CreateUsersWithListInputParams1 & CreateUsersWithListInputAddedParams1): CreateUsersWithListInputResult1;
 
     type GetUserByNameParams0 = { \\"path\\": { \\"username\\": string; }; };
-    type GetUserByNameAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
-    type GetUserByNameResult0 = RequestResult<{ \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }>;
+    type GetUserByNameAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
+    type GetUserByNameResult0 = RequestResult<{ \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; }>;
     /**
     * Get user by user name
     */
     export function getUserByName(params: GetUserByNameParams0 & GetUserByNameAddedParams0): GetUserByNameResult0;
 
     type GetUserByNameParams1 = { \\"path\\": { \\"username\\": string; }; };
-    type GetUserByNameAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type GetUserByNameResult1 = RequestResult<{ \\"User\\": { \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }; }>;
+    type GetUserByNameAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type GetUserByNameResult1 = RequestResult<{ \\"User\\"?: { \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; }; }>;
     export function getUserByName(params: GetUserByNameParams1 & GetUserByNameAddedParams1): GetUserByNameResult1;
 
-    type UpdateUserParams0 = { \\"path\\": { \\"username\\": string; }; \\"body\\": { \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }; };
-    type UpdateUserAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type UpdateUserParams0 = { \\"path\\": { \\"username\\": string; }; \\"body\\": { \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; }; };
+    type UpdateUserAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type UpdateUserResult0 = RequestResult<null>;
     /**
     * Updated user
@@ -312,13 +312,13 @@ test("without config", async () => {
     */
     export function updateUser(params: UpdateUserParams0 & UpdateUserAddedParams0): UpdateUserResult0;
 
-    type UpdateUserParams1 = { \\"path\\": { \\"username\\": string; }; \\"body\\": { \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }; };
-    type UpdateUserAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type UpdateUserParams1 = { \\"path\\": { \\"username\\": string; }; \\"body\\": { \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; }; };
+    type UpdateUserAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type UpdateUserResult1 = RequestResult<null>;
     export function updateUser(params: UpdateUserParams1 & UpdateUserAddedParams1): UpdateUserResult1;
 
     type DeleteUserParams0 = { \\"path\\": { \\"username\\": string; }; };
-    type DeleteUserAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
+    type DeleteUserAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
     type DeleteUserResult0 = RequestResult<null>;
     /**
     * Delete user
@@ -327,12 +327,12 @@ test("without config", async () => {
     export function deleteUser(params: DeleteUserParams0 & DeleteUserAddedParams0): DeleteUserResult0;
 
     type DeleteUserParams1 = { \\"path\\": { \\"username\\": string; }; };
-    type DeleteUserAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type DeleteUserAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
     type DeleteUserResult1 = RequestResult<null>;
     export function deleteUser(params: DeleteUserParams1 & DeleteUserAddedParams1): DeleteUserResult1;
 
     type LoginUserParams0 = { \\"query\\": { \\"username\\": string; \\"password\\": string; }; };
-    type LoginUserAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
+    type LoginUserAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
     type LoginUserResult0 = RequestResult<string>;
     /**
     * Logs user into the system
@@ -340,23 +340,23 @@ test("without config", async () => {
     export function loginUser(params: LoginUserParams0 & LoginUserAddedParams0): LoginUserResult0;
 
     type LoginUserParams1 = { \\"query\\": { \\"username\\": string; \\"password\\": string; }; };
-    type LoginUserAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type LoginUserAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
     type LoginUserResult1 = RequestResult<string>;
     export function loginUser(params: LoginUserParams1 & LoginUserAddedParams1): LoginUserResult1;
 
-    type LogoutUserAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
+    type LogoutUserAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
     type LogoutUserResult0 = RequestResult<null>;
     /**
     * Logs out current logged in user session
     */
     export function logoutUser(params: LogoutUserAddedParams0): LogoutUserResult0;
 
-    type LogoutUserAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type LogoutUserAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
     type LogoutUserResult1 = RequestResult<null>;
     export function logoutUser(params: LogoutUserAddedParams1): LogoutUserResult1;
 
-    type CreateUserParams0 = { \\"body\\": { \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }; };
-    type CreateUserAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type CreateUserParams0 = { \\"body\\": { \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; }; };
+    type CreateUserAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type CreateUserResult0 = RequestResult<null>;
     /**
     * Create user
@@ -364,8 +364,8 @@ test("without config", async () => {
     */
     export function createUser(params: CreateUserParams0 & CreateUserAddedParams0): CreateUserResult0;
 
-    type CreateUserParams1 = { \\"body\\": { \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }; };
-    type CreateUserAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type CreateUserParams1 = { \\"body\\": { \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; }; };
+    type CreateUserAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type CreateUserResult1 = RequestResult<null>;
     export function createUser(params: CreateUserParams1 & CreateUserAddedParams1): CreateUserResult1;
 
@@ -465,62 +465,62 @@ test("deprecated=ignore", async () => {
     ",
       "types": "type RequestResult<Data> = Promise<{ response: Response; data: Data; }>;
 
-    type UploadFileParams0 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"additionalMetadata\\": string; \\"file\\": File; }; };
-    type UploadFileResult0 = RequestResult<{ \\"code\\": number; \\"type\\": string; \\"message\\": string; }>;
+    type UploadFileParams0 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"additionalMetadata\\"?: string; \\"file\\"?: File; }; };
+    type UploadFileResult0 = RequestResult<{ \\"code\\"?: number; \\"type\\"?: string; \\"message\\"?: string; }>;
     /**
     * uploads an image
     */
     export function uploadFile(params: UploadFileParams0): UploadFileResult0;
 
-    type AddPetParams0 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
-    type AddPetAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type AddPetParams0 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
+    type AddPetAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type AddPetResult0 = RequestResult<null>;
     /**
     * Add a new pet to the store
     */
     export function addPet(params: AddPetParams0 & AddPetAddedParams0): AddPetResult0;
 
-    type AddPetParams1 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
-    type AddPetAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type AddPetParams1 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
+    type AddPetAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type AddPetResult1 = RequestResult<null>;
     export function addPet(params: AddPetParams1 & AddPetAddedParams1): AddPetResult1;
 
-    type AddPetParams2 = { \\"body\\": { \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
-    type AddPetAddedParams2 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type AddPetParams2 = { \\"body\\": { \\"Pet\\"?: { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type AddPetAddedParams2 = { \\"header\\"?: { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type AddPetResult2 = RequestResult<null>;
     export function addPet(params: AddPetParams2 & AddPetAddedParams2): AddPetResult2;
 
-    type AddPetParams3 = { \\"body\\": { \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
-    type AddPetAddedParams3 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type AddPetParams3 = { \\"body\\": { \\"Pet\\"?: { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type AddPetAddedParams3 = { \\"header\\"?: { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type AddPetResult3 = RequestResult<null>;
     export function addPet(params: AddPetParams3 & AddPetAddedParams3): AddPetResult3;
 
-    type UpdatePetParams0 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
-    type UpdatePetAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type UpdatePetParams0 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
+    type UpdatePetAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type UpdatePetResult0 = RequestResult<null>;
     /**
     * Update an existing pet
     */
     export function updatePet(params: UpdatePetParams0 & UpdatePetAddedParams0): UpdatePetResult0;
 
-    type UpdatePetParams1 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
-    type UpdatePetAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type UpdatePetParams1 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
+    type UpdatePetAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type UpdatePetResult1 = RequestResult<null>;
     export function updatePet(params: UpdatePetParams1 & UpdatePetAddedParams1): UpdatePetResult1;
 
-    type UpdatePetParams2 = { \\"body\\": { \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
-    type UpdatePetAddedParams2 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type UpdatePetParams2 = { \\"body\\": { \\"Pet\\"?: { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type UpdatePetAddedParams2 = { \\"header\\"?: { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type UpdatePetResult2 = RequestResult<null>;
     export function updatePet(params: UpdatePetParams2 & UpdatePetAddedParams2): UpdatePetResult2;
 
-    type UpdatePetParams3 = { \\"body\\": { \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
-    type UpdatePetAddedParams3 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type UpdatePetParams3 = { \\"body\\": { \\"Pet\\"?: { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type UpdatePetAddedParams3 = { \\"header\\"?: { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type UpdatePetResult3 = RequestResult<null>;
     export function updatePet(params: UpdatePetParams3 & UpdatePetAddedParams3): UpdatePetResult3;
 
     type FindPetsByStatusParams0 = { \\"query\\": { \\"status\\": (\\"available\\" | \\"pending\\" | \\"sold\\")[]; }; };
-    type FindPetsByStatusAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
-    type FindPetsByStatusResult0 = RequestResult<({ \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]>;
+    type FindPetsByStatusAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
+    type FindPetsByStatusResult0 = RequestResult<({ \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]>;
     /**
     * Finds Pets by status
     * Multiple status values can be provided with comma separated strings
@@ -528,13 +528,13 @@ test("deprecated=ignore", async () => {
     export function findPetsByStatus(params: FindPetsByStatusParams0 & FindPetsByStatusAddedParams0): FindPetsByStatusResult0;
 
     type FindPetsByStatusParams1 = { \\"query\\": { \\"status\\": (\\"available\\" | \\"pending\\" | \\"sold\\")[]; }; };
-    type FindPetsByStatusAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type FindPetsByStatusResult1 = RequestResult<{ \\"Pet\\": ({ \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
+    type FindPetsByStatusAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type FindPetsByStatusResult1 = RequestResult<{ \\"Pet\\"?: ({ \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
     export function findPetsByStatus(params: FindPetsByStatusParams1 & FindPetsByStatusAddedParams1): FindPetsByStatusResult1;
 
     type FindPetsByTagsParams0 = { \\"query\\": { \\"tags\\": (string)[]; }; };
-    type FindPetsByTagsAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
-    type FindPetsByTagsResult0 = RequestResult<({ \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]>;
+    type FindPetsByTagsAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
+    type FindPetsByTagsResult0 = RequestResult<({ \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]>;
     /**
     * Finds Pets by tags
     * Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
@@ -542,13 +542,13 @@ test("deprecated=ignore", async () => {
     export function findPetsByTags(params: FindPetsByTagsParams0 & FindPetsByTagsAddedParams0): FindPetsByTagsResult0;
 
     type FindPetsByTagsParams1 = { \\"query\\": { \\"tags\\": (string)[]; }; };
-    type FindPetsByTagsAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type FindPetsByTagsResult1 = RequestResult<{ \\"Pet\\": ({ \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
+    type FindPetsByTagsAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type FindPetsByTagsResult1 = RequestResult<{ \\"Pet\\"?: ({ \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
     export function findPetsByTags(params: FindPetsByTagsParams1 & FindPetsByTagsAddedParams1): FindPetsByTagsResult1;
 
     type GetPetByIdParams0 = { \\"path\\": { \\"petId\\": number; }; };
-    type GetPetByIdAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
-    type GetPetByIdResult0 = RequestResult<{ \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }>;
+    type GetPetByIdAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
+    type GetPetByIdResult0 = RequestResult<{ \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }>;
     /**
     * Find pet by ID
     * Returns a single pet
@@ -556,52 +556,52 @@ test("deprecated=ignore", async () => {
     export function getPetById(params: GetPetByIdParams0 & GetPetByIdAddedParams0): GetPetByIdResult0;
 
     type GetPetByIdParams1 = { \\"path\\": { \\"petId\\": number; }; };
-    type GetPetByIdAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type GetPetByIdResult1 = RequestResult<{ \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+    type GetPetByIdAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type GetPetByIdResult1 = RequestResult<{ \\"Pet\\"?: { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function getPetById(params: GetPetByIdParams1 & GetPetByIdAddedParams1): GetPetByIdResult1;
 
-    type UpdatePetWithFormParams0 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"name\\": string; \\"status\\": string; }; };
-    type UpdatePetWithFormAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/x-www-form-urlencoded\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type UpdatePetWithFormParams0 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"name\\"?: string; \\"status\\"?: string; }; };
+    type UpdatePetWithFormAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/x-www-form-urlencoded\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type UpdatePetWithFormResult0 = RequestResult<null>;
     /**
     * Updates a pet in the store with form data
     */
     export function updatePetWithForm(params: UpdatePetWithFormParams0 & UpdatePetWithFormAddedParams0): UpdatePetWithFormResult0;
 
-    type UpdatePetWithFormParams1 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"name\\": string; \\"status\\": string; }; };
-    type UpdatePetWithFormAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/x-www-form-urlencoded\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type UpdatePetWithFormParams1 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"name\\"?: string; \\"status\\"?: string; }; };
+    type UpdatePetWithFormAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/x-www-form-urlencoded\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type UpdatePetWithFormResult1 = RequestResult<null>;
     export function updatePetWithForm(params: UpdatePetWithFormParams1 & UpdatePetWithFormAddedParams1): UpdatePetWithFormResult1;
 
-    type DeletePetParams0 = { \\"header\\"?: { \\"api_key\\": string; }; \\"path\\": { \\"petId\\": number; }; };
-    type DeletePetAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
+    type DeletePetParams0 = { \\"header\\"?: { \\"api_key\\"?: string; }; \\"path\\": { \\"petId\\": number; }; };
+    type DeletePetAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
     type DeletePetResult0 = RequestResult<null>;
     /**
     * Deletes a pet
     */
     export function deletePet(params: DeletePetParams0 & DeletePetAddedParams0): DeletePetResult0;
 
-    type DeletePetParams1 = { \\"header\\"?: { \\"api_key\\": string; }; \\"path\\": { \\"petId\\": number; }; };
-    type DeletePetAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type DeletePetParams1 = { \\"header\\"?: { \\"api_key\\"?: string; }; \\"path\\": { \\"petId\\": number; }; };
+    type DeletePetAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
     type DeletePetResult1 = RequestResult<null>;
     export function deletePet(params: DeletePetParams1 & DeletePetAddedParams1): DeletePetResult1;
 
-    type PlaceOrderParams0 = { \\"body\\": { \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }; };
-    type PlaceOrderAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
-    type PlaceOrderResult0 = RequestResult<{ \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }>;
+    type PlaceOrderParams0 = { \\"body\\": { \\"id\\"?: number; \\"petId\\"?: number; \\"quantity\\"?: number; \\"shipDate\\"?: string; \\"status\\"?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\"?: boolean; }; };
+    type PlaceOrderAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type PlaceOrderResult0 = RequestResult<{ \\"id\\"?: number; \\"petId\\"?: number; \\"quantity\\"?: number; \\"shipDate\\"?: string; \\"status\\"?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\"?: boolean; }>;
     /**
     * Place an order for a pet
     */
     export function placeOrder(params: PlaceOrderParams0 & PlaceOrderAddedParams0): PlaceOrderResult0;
 
-    type PlaceOrderParams1 = { \\"body\\": { \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }; };
-    type PlaceOrderAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
-    type PlaceOrderResult1 = RequestResult<{ \\"Order\\": { \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }; }>;
+    type PlaceOrderParams1 = { \\"body\\": { \\"id\\"?: number; \\"petId\\"?: number; \\"quantity\\"?: number; \\"shipDate\\"?: string; \\"status\\"?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\"?: boolean; }; };
+    type PlaceOrderAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type PlaceOrderResult1 = RequestResult<{ \\"Order\\"?: { \\"id\\"?: number; \\"petId\\"?: number; \\"quantity\\"?: number; \\"shipDate\\"?: string; \\"status\\"?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\"?: boolean; }; }>;
     export function placeOrder(params: PlaceOrderParams1 & PlaceOrderAddedParams1): PlaceOrderResult1;
 
     type GetOrderByIdParams0 = { \\"path\\": { \\"orderId\\": number; }; };
-    type GetOrderByIdAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
-    type GetOrderByIdResult0 = RequestResult<{ \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }>;
+    type GetOrderByIdAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
+    type GetOrderByIdResult0 = RequestResult<{ \\"id\\"?: number; \\"petId\\"?: number; \\"quantity\\"?: number; \\"shipDate\\"?: string; \\"status\\"?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\"?: boolean; }>;
     /**
     * Find purchase order by ID
     * For valid response try integer IDs with value >= 1 and <= 10. Other values will generated exceptions
@@ -609,12 +609,12 @@ test("deprecated=ignore", async () => {
     export function getOrderById(params: GetOrderByIdParams0 & GetOrderByIdAddedParams0): GetOrderByIdResult0;
 
     type GetOrderByIdParams1 = { \\"path\\": { \\"orderId\\": number; }; };
-    type GetOrderByIdAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type GetOrderByIdResult1 = RequestResult<{ \\"Order\\": { \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }; }>;
+    type GetOrderByIdAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type GetOrderByIdResult1 = RequestResult<{ \\"Order\\"?: { \\"id\\"?: number; \\"petId\\"?: number; \\"quantity\\"?: number; \\"shipDate\\"?: string; \\"status\\"?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\"?: boolean; }; }>;
     export function getOrderById(params: GetOrderByIdParams1 & GetOrderByIdAddedParams1): GetOrderByIdResult1;
 
     type DeleteOrderParams0 = { \\"path\\": { \\"orderId\\": number; }; };
-    type DeleteOrderAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
+    type DeleteOrderAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
     type DeleteOrderResult0 = RequestResult<null>;
     /**
     * Delete purchase order by ID
@@ -623,7 +623,7 @@ test("deprecated=ignore", async () => {
     export function deleteOrder(params: DeleteOrderParams0 & DeleteOrderAddedParams0): DeleteOrderResult0;
 
     type DeleteOrderParams1 = { \\"path\\": { \\"orderId\\": number; }; };
-    type DeleteOrderAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type DeleteOrderAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
     type DeleteOrderResult1 = RequestResult<null>;
     export function deleteOrder(params: DeleteOrderParams1 & DeleteOrderAddedParams1): DeleteOrderResult1;
 
@@ -634,47 +634,47 @@ test("deprecated=ignore", async () => {
     */
     export function getInventory(): GetInventoryResult0;
 
-    type CreateUsersWithArrayInputParams0 = { \\"body\\": ({ \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; })[]; };
-    type CreateUsersWithArrayInputAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type CreateUsersWithArrayInputParams0 = { \\"body\\": ({ \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; })[]; };
+    type CreateUsersWithArrayInputAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type CreateUsersWithArrayInputResult0 = RequestResult<null>;
     /**
     * Creates list of users with given input array
     */
     export function createUsersWithArrayInput(params: CreateUsersWithArrayInputParams0 & CreateUsersWithArrayInputAddedParams0): CreateUsersWithArrayInputResult0;
 
-    type CreateUsersWithArrayInputParams1 = { \\"body\\": ({ \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; })[]; };
-    type CreateUsersWithArrayInputAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type CreateUsersWithArrayInputParams1 = { \\"body\\": ({ \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; })[]; };
+    type CreateUsersWithArrayInputAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type CreateUsersWithArrayInputResult1 = RequestResult<null>;
     export function createUsersWithArrayInput(params: CreateUsersWithArrayInputParams1 & CreateUsersWithArrayInputAddedParams1): CreateUsersWithArrayInputResult1;
 
-    type CreateUsersWithListInputParams0 = { \\"body\\": ({ \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; })[]; };
-    type CreateUsersWithListInputAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type CreateUsersWithListInputParams0 = { \\"body\\": ({ \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; })[]; };
+    type CreateUsersWithListInputAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type CreateUsersWithListInputResult0 = RequestResult<null>;
     /**
     * Creates list of users with given input array
     */
     export function createUsersWithListInput(params: CreateUsersWithListInputParams0 & CreateUsersWithListInputAddedParams0): CreateUsersWithListInputResult0;
 
-    type CreateUsersWithListInputParams1 = { \\"body\\": ({ \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; })[]; };
-    type CreateUsersWithListInputAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type CreateUsersWithListInputParams1 = { \\"body\\": ({ \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; })[]; };
+    type CreateUsersWithListInputAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type CreateUsersWithListInputResult1 = RequestResult<null>;
     export function createUsersWithListInput(params: CreateUsersWithListInputParams1 & CreateUsersWithListInputAddedParams1): CreateUsersWithListInputResult1;
 
     type GetUserByNameParams0 = { \\"path\\": { \\"username\\": string; }; };
-    type GetUserByNameAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
-    type GetUserByNameResult0 = RequestResult<{ \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }>;
+    type GetUserByNameAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
+    type GetUserByNameResult0 = RequestResult<{ \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; }>;
     /**
     * Get user by user name
     */
     export function getUserByName(params: GetUserByNameParams0 & GetUserByNameAddedParams0): GetUserByNameResult0;
 
     type GetUserByNameParams1 = { \\"path\\": { \\"username\\": string; }; };
-    type GetUserByNameAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type GetUserByNameResult1 = RequestResult<{ \\"User\\": { \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }; }>;
+    type GetUserByNameAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type GetUserByNameResult1 = RequestResult<{ \\"User\\"?: { \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; }; }>;
     export function getUserByName(params: GetUserByNameParams1 & GetUserByNameAddedParams1): GetUserByNameResult1;
 
-    type UpdateUserParams0 = { \\"path\\": { \\"username\\": string; }; \\"body\\": { \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }; };
-    type UpdateUserAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type UpdateUserParams0 = { \\"path\\": { \\"username\\": string; }; \\"body\\": { \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; }; };
+    type UpdateUserAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type UpdateUserResult0 = RequestResult<null>;
     /**
     * Updated user
@@ -682,13 +682,13 @@ test("deprecated=ignore", async () => {
     */
     export function updateUser(params: UpdateUserParams0 & UpdateUserAddedParams0): UpdateUserResult0;
 
-    type UpdateUserParams1 = { \\"path\\": { \\"username\\": string; }; \\"body\\": { \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }; };
-    type UpdateUserAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type UpdateUserParams1 = { \\"path\\": { \\"username\\": string; }; \\"body\\": { \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; }; };
+    type UpdateUserAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type UpdateUserResult1 = RequestResult<null>;
     export function updateUser(params: UpdateUserParams1 & UpdateUserAddedParams1): UpdateUserResult1;
 
     type DeleteUserParams0 = { \\"path\\": { \\"username\\": string; }; };
-    type DeleteUserAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
+    type DeleteUserAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
     type DeleteUserResult0 = RequestResult<null>;
     /**
     * Delete user
@@ -697,12 +697,12 @@ test("deprecated=ignore", async () => {
     export function deleteUser(params: DeleteUserParams0 & DeleteUserAddedParams0): DeleteUserResult0;
 
     type DeleteUserParams1 = { \\"path\\": { \\"username\\": string; }; };
-    type DeleteUserAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type DeleteUserAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
     type DeleteUserResult1 = RequestResult<null>;
     export function deleteUser(params: DeleteUserParams1 & DeleteUserAddedParams1): DeleteUserResult1;
 
     type LoginUserParams0 = { \\"query\\": { \\"username\\": string; \\"password\\": string; }; };
-    type LoginUserAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
+    type LoginUserAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
     type LoginUserResult0 = RequestResult<string>;
     /**
     * Logs user into the system
@@ -710,23 +710,23 @@ test("deprecated=ignore", async () => {
     export function loginUser(params: LoginUserParams0 & LoginUserAddedParams0): LoginUserResult0;
 
     type LoginUserParams1 = { \\"query\\": { \\"username\\": string; \\"password\\": string; }; };
-    type LoginUserAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type LoginUserAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
     type LoginUserResult1 = RequestResult<string>;
     export function loginUser(params: LoginUserParams1 & LoginUserAddedParams1): LoginUserResult1;
 
-    type LogoutUserAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
+    type LogoutUserAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
     type LogoutUserResult0 = RequestResult<null>;
     /**
     * Logs out current logged in user session
     */
     export function logoutUser(params: LogoutUserAddedParams0): LogoutUserResult0;
 
-    type LogoutUserAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type LogoutUserAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
     type LogoutUserResult1 = RequestResult<null>;
     export function logoutUser(params: LogoutUserAddedParams1): LogoutUserResult1;
 
-    type CreateUserParams0 = { \\"body\\": { \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }; };
-    type CreateUserAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type CreateUserParams0 = { \\"body\\": { \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; }; };
+    type CreateUserAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type CreateUserResult0 = RequestResult<null>;
     /**
     * Create user
@@ -734,8 +734,8 @@ test("deprecated=ignore", async () => {
     */
     export function createUser(params: CreateUserParams0 & CreateUserAddedParams0): CreateUserResult0;
 
-    type CreateUserParams1 = { \\"body\\": { \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }; };
-    type CreateUserAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type CreateUserParams1 = { \\"body\\": { \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; }; };
+    type CreateUserAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type CreateUserResult1 = RequestResult<null>;
     export function createUser(params: CreateUserParams1 & CreateUserAddedParams1): CreateUserResult1;
 
@@ -831,62 +831,62 @@ test("deprecated=exception", async () => {
     ",
       "types": "type RequestResult<Data> = Promise<{ response: Response; data: Data; }>;
 
-    type UploadFileParams0 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"additionalMetadata\\": string; \\"file\\": File; }; };
-    type UploadFileResult0 = RequestResult<{ \\"code\\": number; \\"type\\": string; \\"message\\": string; }>;
+    type UploadFileParams0 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"additionalMetadata\\"?: string; \\"file\\"?: File; }; };
+    type UploadFileResult0 = RequestResult<{ \\"code\\"?: number; \\"type\\"?: string; \\"message\\"?: string; }>;
     /**
     * uploads an image
     */
     export function uploadFile(params: UploadFileParams0): UploadFileResult0;
 
-    type AddPetParams0 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
-    type AddPetAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type AddPetParams0 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
+    type AddPetAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type AddPetResult0 = RequestResult<null>;
     /**
     * Add a new pet to the store
     */
     export function addPet(params: AddPetParams0 & AddPetAddedParams0): AddPetResult0;
 
-    type AddPetParams1 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
-    type AddPetAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type AddPetParams1 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
+    type AddPetAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type AddPetResult1 = RequestResult<null>;
     export function addPet(params: AddPetParams1 & AddPetAddedParams1): AddPetResult1;
 
-    type AddPetParams2 = { \\"body\\": { \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
-    type AddPetAddedParams2 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type AddPetParams2 = { \\"body\\": { \\"Pet\\"?: { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type AddPetAddedParams2 = { \\"header\\"?: { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type AddPetResult2 = RequestResult<null>;
     export function addPet(params: AddPetParams2 & AddPetAddedParams2): AddPetResult2;
 
-    type AddPetParams3 = { \\"body\\": { \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
-    type AddPetAddedParams3 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type AddPetParams3 = { \\"body\\": { \\"Pet\\"?: { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type AddPetAddedParams3 = { \\"header\\"?: { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type AddPetResult3 = RequestResult<null>;
     export function addPet(params: AddPetParams3 & AddPetAddedParams3): AddPetResult3;
 
-    type UpdatePetParams0 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
-    type UpdatePetAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type UpdatePetParams0 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
+    type UpdatePetAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type UpdatePetResult0 = RequestResult<null>;
     /**
     * Update an existing pet
     */
     export function updatePet(params: UpdatePetParams0 & UpdatePetAddedParams0): UpdatePetResult0;
 
-    type UpdatePetParams1 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
-    type UpdatePetAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type UpdatePetParams1 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
+    type UpdatePetAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type UpdatePetResult1 = RequestResult<null>;
     export function updatePet(params: UpdatePetParams1 & UpdatePetAddedParams1): UpdatePetResult1;
 
-    type UpdatePetParams2 = { \\"body\\": { \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
-    type UpdatePetAddedParams2 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type UpdatePetParams2 = { \\"body\\": { \\"Pet\\"?: { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type UpdatePetAddedParams2 = { \\"header\\"?: { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type UpdatePetResult2 = RequestResult<null>;
     export function updatePet(params: UpdatePetParams2 & UpdatePetAddedParams2): UpdatePetResult2;
 
-    type UpdatePetParams3 = { \\"body\\": { \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
-    type UpdatePetAddedParams3 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type UpdatePetParams3 = { \\"body\\": { \\"Pet\\"?: { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type UpdatePetAddedParams3 = { \\"header\\"?: { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type UpdatePetResult3 = RequestResult<null>;
     export function updatePet(params: UpdatePetParams3 & UpdatePetAddedParams3): UpdatePetResult3;
 
     type FindPetsByStatusParams0 = { \\"query\\": { \\"status\\": (\\"available\\" | \\"pending\\" | \\"sold\\")[]; }; };
-    type FindPetsByStatusAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
-    type FindPetsByStatusResult0 = RequestResult<({ \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]>;
+    type FindPetsByStatusAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
+    type FindPetsByStatusResult0 = RequestResult<({ \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]>;
     /**
     * Finds Pets by status
     * Multiple status values can be provided with comma separated strings
@@ -894,13 +894,13 @@ test("deprecated=exception", async () => {
     export function findPetsByStatus(params: FindPetsByStatusParams0 & FindPetsByStatusAddedParams0): FindPetsByStatusResult0;
 
     type FindPetsByStatusParams1 = { \\"query\\": { \\"status\\": (\\"available\\" | \\"pending\\" | \\"sold\\")[]; }; };
-    type FindPetsByStatusAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type FindPetsByStatusResult1 = RequestResult<{ \\"Pet\\": ({ \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
+    type FindPetsByStatusAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type FindPetsByStatusResult1 = RequestResult<{ \\"Pet\\"?: ({ \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
     export function findPetsByStatus(params: FindPetsByStatusParams1 & FindPetsByStatusAddedParams1): FindPetsByStatusResult1;
 
     type GetPetByIdParams0 = { \\"path\\": { \\"petId\\": number; }; };
-    type GetPetByIdAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
-    type GetPetByIdResult0 = RequestResult<{ \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }>;
+    type GetPetByIdAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
+    type GetPetByIdResult0 = RequestResult<{ \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }>;
     /**
     * Find pet by ID
     * Returns a single pet
@@ -908,52 +908,52 @@ test("deprecated=exception", async () => {
     export function getPetById(params: GetPetByIdParams0 & GetPetByIdAddedParams0): GetPetByIdResult0;
 
     type GetPetByIdParams1 = { \\"path\\": { \\"petId\\": number; }; };
-    type GetPetByIdAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type GetPetByIdResult1 = RequestResult<{ \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+    type GetPetByIdAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type GetPetByIdResult1 = RequestResult<{ \\"Pet\\"?: { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function getPetById(params: GetPetByIdParams1 & GetPetByIdAddedParams1): GetPetByIdResult1;
 
-    type UpdatePetWithFormParams0 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"name\\": string; \\"status\\": string; }; };
-    type UpdatePetWithFormAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/x-www-form-urlencoded\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type UpdatePetWithFormParams0 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"name\\"?: string; \\"status\\"?: string; }; };
+    type UpdatePetWithFormAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/x-www-form-urlencoded\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type UpdatePetWithFormResult0 = RequestResult<null>;
     /**
     * Updates a pet in the store with form data
     */
     export function updatePetWithForm(params: UpdatePetWithFormParams0 & UpdatePetWithFormAddedParams0): UpdatePetWithFormResult0;
 
-    type UpdatePetWithFormParams1 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"name\\": string; \\"status\\": string; }; };
-    type UpdatePetWithFormAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/x-www-form-urlencoded\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type UpdatePetWithFormParams1 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"name\\"?: string; \\"status\\"?: string; }; };
+    type UpdatePetWithFormAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/x-www-form-urlencoded\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type UpdatePetWithFormResult1 = RequestResult<null>;
     export function updatePetWithForm(params: UpdatePetWithFormParams1 & UpdatePetWithFormAddedParams1): UpdatePetWithFormResult1;
 
-    type DeletePetParams0 = { \\"header\\"?: { \\"api_key\\": string; }; \\"path\\": { \\"petId\\": number; }; };
-    type DeletePetAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
+    type DeletePetParams0 = { \\"header\\"?: { \\"api_key\\"?: string; }; \\"path\\": { \\"petId\\": number; }; };
+    type DeletePetAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
     type DeletePetResult0 = RequestResult<null>;
     /**
     * Deletes a pet
     */
     export function deletePet(params: DeletePetParams0 & DeletePetAddedParams0): DeletePetResult0;
 
-    type DeletePetParams1 = { \\"header\\"?: { \\"api_key\\": string; }; \\"path\\": { \\"petId\\": number; }; };
-    type DeletePetAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type DeletePetParams1 = { \\"header\\"?: { \\"api_key\\"?: string; }; \\"path\\": { \\"petId\\": number; }; };
+    type DeletePetAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
     type DeletePetResult1 = RequestResult<null>;
     export function deletePet(params: DeletePetParams1 & DeletePetAddedParams1): DeletePetResult1;
 
-    type PlaceOrderParams0 = { \\"body\\": { \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }; };
-    type PlaceOrderAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
-    type PlaceOrderResult0 = RequestResult<{ \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }>;
+    type PlaceOrderParams0 = { \\"body\\": { \\"id\\"?: number; \\"petId\\"?: number; \\"quantity\\"?: number; \\"shipDate\\"?: string; \\"status\\"?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\"?: boolean; }; };
+    type PlaceOrderAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type PlaceOrderResult0 = RequestResult<{ \\"id\\"?: number; \\"petId\\"?: number; \\"quantity\\"?: number; \\"shipDate\\"?: string; \\"status\\"?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\"?: boolean; }>;
     /**
     * Place an order for a pet
     */
     export function placeOrder(params: PlaceOrderParams0 & PlaceOrderAddedParams0): PlaceOrderResult0;
 
-    type PlaceOrderParams1 = { \\"body\\": { \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }; };
-    type PlaceOrderAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
-    type PlaceOrderResult1 = RequestResult<{ \\"Order\\": { \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }; }>;
+    type PlaceOrderParams1 = { \\"body\\": { \\"id\\"?: number; \\"petId\\"?: number; \\"quantity\\"?: number; \\"shipDate\\"?: string; \\"status\\"?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\"?: boolean; }; };
+    type PlaceOrderAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type PlaceOrderResult1 = RequestResult<{ \\"Order\\"?: { \\"id\\"?: number; \\"petId\\"?: number; \\"quantity\\"?: number; \\"shipDate\\"?: string; \\"status\\"?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\"?: boolean; }; }>;
     export function placeOrder(params: PlaceOrderParams1 & PlaceOrderAddedParams1): PlaceOrderResult1;
 
     type GetOrderByIdParams0 = { \\"path\\": { \\"orderId\\": number; }; };
-    type GetOrderByIdAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
-    type GetOrderByIdResult0 = RequestResult<{ \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }>;
+    type GetOrderByIdAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
+    type GetOrderByIdResult0 = RequestResult<{ \\"id\\"?: number; \\"petId\\"?: number; \\"quantity\\"?: number; \\"shipDate\\"?: string; \\"status\\"?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\"?: boolean; }>;
     /**
     * Find purchase order by ID
     * For valid response try integer IDs with value >= 1 and <= 10. Other values will generated exceptions
@@ -961,12 +961,12 @@ test("deprecated=exception", async () => {
     export function getOrderById(params: GetOrderByIdParams0 & GetOrderByIdAddedParams0): GetOrderByIdResult0;
 
     type GetOrderByIdParams1 = { \\"path\\": { \\"orderId\\": number; }; };
-    type GetOrderByIdAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type GetOrderByIdResult1 = RequestResult<{ \\"Order\\": { \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }; }>;
+    type GetOrderByIdAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type GetOrderByIdResult1 = RequestResult<{ \\"Order\\"?: { \\"id\\"?: number; \\"petId\\"?: number; \\"quantity\\"?: number; \\"shipDate\\"?: string; \\"status\\"?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\"?: boolean; }; }>;
     export function getOrderById(params: GetOrderByIdParams1 & GetOrderByIdAddedParams1): GetOrderByIdResult1;
 
     type DeleteOrderParams0 = { \\"path\\": { \\"orderId\\": number; }; };
-    type DeleteOrderAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
+    type DeleteOrderAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
     type DeleteOrderResult0 = RequestResult<null>;
     /**
     * Delete purchase order by ID
@@ -975,7 +975,7 @@ test("deprecated=exception", async () => {
     export function deleteOrder(params: DeleteOrderParams0 & DeleteOrderAddedParams0): DeleteOrderResult0;
 
     type DeleteOrderParams1 = { \\"path\\": { \\"orderId\\": number; }; };
-    type DeleteOrderAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type DeleteOrderAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
     type DeleteOrderResult1 = RequestResult<null>;
     export function deleteOrder(params: DeleteOrderParams1 & DeleteOrderAddedParams1): DeleteOrderResult1;
 
@@ -986,47 +986,47 @@ test("deprecated=exception", async () => {
     */
     export function getInventory(): GetInventoryResult0;
 
-    type CreateUsersWithArrayInputParams0 = { \\"body\\": ({ \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; })[]; };
-    type CreateUsersWithArrayInputAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type CreateUsersWithArrayInputParams0 = { \\"body\\": ({ \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; })[]; };
+    type CreateUsersWithArrayInputAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type CreateUsersWithArrayInputResult0 = RequestResult<null>;
     /**
     * Creates list of users with given input array
     */
     export function createUsersWithArrayInput(params: CreateUsersWithArrayInputParams0 & CreateUsersWithArrayInputAddedParams0): CreateUsersWithArrayInputResult0;
 
-    type CreateUsersWithArrayInputParams1 = { \\"body\\": ({ \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; })[]; };
-    type CreateUsersWithArrayInputAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type CreateUsersWithArrayInputParams1 = { \\"body\\": ({ \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; })[]; };
+    type CreateUsersWithArrayInputAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type CreateUsersWithArrayInputResult1 = RequestResult<null>;
     export function createUsersWithArrayInput(params: CreateUsersWithArrayInputParams1 & CreateUsersWithArrayInputAddedParams1): CreateUsersWithArrayInputResult1;
 
-    type CreateUsersWithListInputParams0 = { \\"body\\": ({ \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; })[]; };
-    type CreateUsersWithListInputAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type CreateUsersWithListInputParams0 = { \\"body\\": ({ \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; })[]; };
+    type CreateUsersWithListInputAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type CreateUsersWithListInputResult0 = RequestResult<null>;
     /**
     * Creates list of users with given input array
     */
     export function createUsersWithListInput(params: CreateUsersWithListInputParams0 & CreateUsersWithListInputAddedParams0): CreateUsersWithListInputResult0;
 
-    type CreateUsersWithListInputParams1 = { \\"body\\": ({ \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; })[]; };
-    type CreateUsersWithListInputAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type CreateUsersWithListInputParams1 = { \\"body\\": ({ \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; })[]; };
+    type CreateUsersWithListInputAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type CreateUsersWithListInputResult1 = RequestResult<null>;
     export function createUsersWithListInput(params: CreateUsersWithListInputParams1 & CreateUsersWithListInputAddedParams1): CreateUsersWithListInputResult1;
 
     type GetUserByNameParams0 = { \\"path\\": { \\"username\\": string; }; };
-    type GetUserByNameAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
-    type GetUserByNameResult0 = RequestResult<{ \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }>;
+    type GetUserByNameAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
+    type GetUserByNameResult0 = RequestResult<{ \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; }>;
     /**
     * Get user by user name
     */
     export function getUserByName(params: GetUserByNameParams0 & GetUserByNameAddedParams0): GetUserByNameResult0;
 
     type GetUserByNameParams1 = { \\"path\\": { \\"username\\": string; }; };
-    type GetUserByNameAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type GetUserByNameResult1 = RequestResult<{ \\"User\\": { \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }; }>;
+    type GetUserByNameAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type GetUserByNameResult1 = RequestResult<{ \\"User\\"?: { \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; }; }>;
     export function getUserByName(params: GetUserByNameParams1 & GetUserByNameAddedParams1): GetUserByNameResult1;
 
-    type UpdateUserParams0 = { \\"path\\": { \\"username\\": string; }; \\"body\\": { \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }; };
-    type UpdateUserAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type UpdateUserParams0 = { \\"path\\": { \\"username\\": string; }; \\"body\\": { \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; }; };
+    type UpdateUserAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type UpdateUserResult0 = RequestResult<null>;
     /**
     * Updated user
@@ -1034,13 +1034,13 @@ test("deprecated=exception", async () => {
     */
     export function updateUser(params: UpdateUserParams0 & UpdateUserAddedParams0): UpdateUserResult0;
 
-    type UpdateUserParams1 = { \\"path\\": { \\"username\\": string; }; \\"body\\": { \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }; };
-    type UpdateUserAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type UpdateUserParams1 = { \\"path\\": { \\"username\\": string; }; \\"body\\": { \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; }; };
+    type UpdateUserAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type UpdateUserResult1 = RequestResult<null>;
     export function updateUser(params: UpdateUserParams1 & UpdateUserAddedParams1): UpdateUserResult1;
 
     type DeleteUserParams0 = { \\"path\\": { \\"username\\": string; }; };
-    type DeleteUserAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
+    type DeleteUserAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
     type DeleteUserResult0 = RequestResult<null>;
     /**
     * Delete user
@@ -1049,12 +1049,12 @@ test("deprecated=exception", async () => {
     export function deleteUser(params: DeleteUserParams0 & DeleteUserAddedParams0): DeleteUserResult0;
 
     type DeleteUserParams1 = { \\"path\\": { \\"username\\": string; }; };
-    type DeleteUserAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type DeleteUserAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
     type DeleteUserResult1 = RequestResult<null>;
     export function deleteUser(params: DeleteUserParams1 & DeleteUserAddedParams1): DeleteUserResult1;
 
     type LoginUserParams0 = { \\"query\\": { \\"username\\": string; \\"password\\": string; }; };
-    type LoginUserAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
+    type LoginUserAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
     type LoginUserResult0 = RequestResult<string>;
     /**
     * Logs user into the system
@@ -1062,23 +1062,23 @@ test("deprecated=exception", async () => {
     export function loginUser(params: LoginUserParams0 & LoginUserAddedParams0): LoginUserResult0;
 
     type LoginUserParams1 = { \\"query\\": { \\"username\\": string; \\"password\\": string; }; };
-    type LoginUserAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type LoginUserAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
     type LoginUserResult1 = RequestResult<string>;
     export function loginUser(params: LoginUserParams1 & LoginUserAddedParams1): LoginUserResult1;
 
-    type LogoutUserAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
+    type LogoutUserAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
     type LogoutUserResult0 = RequestResult<null>;
     /**
     * Logs out current logged in user session
     */
     export function logoutUser(params: LogoutUserAddedParams0): LogoutUserResult0;
 
-    type LogoutUserAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type LogoutUserAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
     type LogoutUserResult1 = RequestResult<null>;
     export function logoutUser(params: LogoutUserAddedParams1): LogoutUserResult1;
 
-    type CreateUserParams0 = { \\"body\\": { \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }; };
-    type CreateUserAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type CreateUserParams0 = { \\"body\\": { \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; }; };
+    type CreateUserAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type CreateUserResult0 = RequestResult<null>;
     /**
     * Create user
@@ -1086,8 +1086,8 @@ test("deprecated=exception", async () => {
     */
     export function createUser(params: CreateUserParams0 & CreateUserAddedParams0): CreateUserResult0;
 
-    type CreateUserParams1 = { \\"body\\": { \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }; };
-    type CreateUserAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type CreateUserParams1 = { \\"body\\": { \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; }; };
+    type CreateUserAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type CreateUserResult1 = RequestResult<null>;
     export function createUser(params: CreateUserParams1 & CreateUserAddedParams1): CreateUserResult1;
 
@@ -1188,62 +1188,62 @@ test("importRequest=true", async () => {
     ",
       "types": "type RequestResult<Data> = Promise<{ response: Response; data: Data; }>;
 
-    type UploadFileParams0 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"additionalMetadata\\": string; \\"file\\": File; }; };
-    type UploadFileResult0 = RequestResult<{ \\"code\\": number; \\"type\\": string; \\"message\\": string; }>;
+    type UploadFileParams0 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"additionalMetadata\\"?: string; \\"file\\"?: File; }; };
+    type UploadFileResult0 = RequestResult<{ \\"code\\"?: number; \\"type\\"?: string; \\"message\\"?: string; }>;
     /**
     * uploads an image
     */
     export function uploadFile(params: UploadFileParams0): UploadFileResult0;
 
-    type AddPetParams0 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
-    type AddPetAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type AddPetParams0 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
+    type AddPetAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type AddPetResult0 = RequestResult<null>;
     /**
     * Add a new pet to the store
     */
     export function addPet(params: AddPetParams0 & AddPetAddedParams0): AddPetResult0;
 
-    type AddPetParams1 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
-    type AddPetAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type AddPetParams1 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
+    type AddPetAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type AddPetResult1 = RequestResult<null>;
     export function addPet(params: AddPetParams1 & AddPetAddedParams1): AddPetResult1;
 
-    type AddPetParams2 = { \\"body\\": { \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
-    type AddPetAddedParams2 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type AddPetParams2 = { \\"body\\": { \\"Pet\\"?: { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type AddPetAddedParams2 = { \\"header\\"?: { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type AddPetResult2 = RequestResult<null>;
     export function addPet(params: AddPetParams2 & AddPetAddedParams2): AddPetResult2;
 
-    type AddPetParams3 = { \\"body\\": { \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
-    type AddPetAddedParams3 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type AddPetParams3 = { \\"body\\": { \\"Pet\\"?: { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type AddPetAddedParams3 = { \\"header\\"?: { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type AddPetResult3 = RequestResult<null>;
     export function addPet(params: AddPetParams3 & AddPetAddedParams3): AddPetResult3;
 
-    type UpdatePetParams0 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
-    type UpdatePetAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type UpdatePetParams0 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
+    type UpdatePetAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type UpdatePetResult0 = RequestResult<null>;
     /**
     * Update an existing pet
     */
     export function updatePet(params: UpdatePetParams0 & UpdatePetAddedParams0): UpdatePetResult0;
 
-    type UpdatePetParams1 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
-    type UpdatePetAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type UpdatePetParams1 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
+    type UpdatePetAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type UpdatePetResult1 = RequestResult<null>;
     export function updatePet(params: UpdatePetParams1 & UpdatePetAddedParams1): UpdatePetResult1;
 
-    type UpdatePetParams2 = { \\"body\\": { \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
-    type UpdatePetAddedParams2 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type UpdatePetParams2 = { \\"body\\": { \\"Pet\\"?: { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type UpdatePetAddedParams2 = { \\"header\\"?: { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type UpdatePetResult2 = RequestResult<null>;
     export function updatePet(params: UpdatePetParams2 & UpdatePetAddedParams2): UpdatePetResult2;
 
-    type UpdatePetParams3 = { \\"body\\": { \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
-    type UpdatePetAddedParams3 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type UpdatePetParams3 = { \\"body\\": { \\"Pet\\"?: { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type UpdatePetAddedParams3 = { \\"header\\"?: { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type UpdatePetResult3 = RequestResult<null>;
     export function updatePet(params: UpdatePetParams3 & UpdatePetAddedParams3): UpdatePetResult3;
 
     type FindPetsByStatusParams0 = { \\"query\\": { \\"status\\": (\\"available\\" | \\"pending\\" | \\"sold\\")[]; }; };
-    type FindPetsByStatusAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
-    type FindPetsByStatusResult0 = RequestResult<({ \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]>;
+    type FindPetsByStatusAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
+    type FindPetsByStatusResult0 = RequestResult<({ \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]>;
     /**
     * Finds Pets by status
     * Multiple status values can be provided with comma separated strings
@@ -1251,13 +1251,13 @@ test("importRequest=true", async () => {
     export function findPetsByStatus(params: FindPetsByStatusParams0 & FindPetsByStatusAddedParams0): FindPetsByStatusResult0;
 
     type FindPetsByStatusParams1 = { \\"query\\": { \\"status\\": (\\"available\\" | \\"pending\\" | \\"sold\\")[]; }; };
-    type FindPetsByStatusAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type FindPetsByStatusResult1 = RequestResult<{ \\"Pet\\": ({ \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
+    type FindPetsByStatusAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type FindPetsByStatusResult1 = RequestResult<{ \\"Pet\\"?: ({ \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
     export function findPetsByStatus(params: FindPetsByStatusParams1 & FindPetsByStatusAddedParams1): FindPetsByStatusResult1;
 
     type FindPetsByTagsParams0 = { \\"query\\": { \\"tags\\": (string)[]; }; };
-    type FindPetsByTagsAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
-    type FindPetsByTagsResult0 = RequestResult<({ \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]>;
+    type FindPetsByTagsAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
+    type FindPetsByTagsResult0 = RequestResult<({ \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]>;
     /**
     * Finds Pets by tags
     * Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
@@ -1265,13 +1265,13 @@ test("importRequest=true", async () => {
     export function findPetsByTags(params: FindPetsByTagsParams0 & FindPetsByTagsAddedParams0): FindPetsByTagsResult0;
 
     type FindPetsByTagsParams1 = { \\"query\\": { \\"tags\\": (string)[]; }; };
-    type FindPetsByTagsAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type FindPetsByTagsResult1 = RequestResult<{ \\"Pet\\": ({ \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
+    type FindPetsByTagsAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type FindPetsByTagsResult1 = RequestResult<{ \\"Pet\\"?: ({ \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
     export function findPetsByTags(params: FindPetsByTagsParams1 & FindPetsByTagsAddedParams1): FindPetsByTagsResult1;
 
     type GetPetByIdParams0 = { \\"path\\": { \\"petId\\": number; }; };
-    type GetPetByIdAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
-    type GetPetByIdResult0 = RequestResult<{ \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }>;
+    type GetPetByIdAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
+    type GetPetByIdResult0 = RequestResult<{ \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }>;
     /**
     * Find pet by ID
     * Returns a single pet
@@ -1279,52 +1279,52 @@ test("importRequest=true", async () => {
     export function getPetById(params: GetPetByIdParams0 & GetPetByIdAddedParams0): GetPetByIdResult0;
 
     type GetPetByIdParams1 = { \\"path\\": { \\"petId\\": number; }; };
-    type GetPetByIdAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type GetPetByIdResult1 = RequestResult<{ \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+    type GetPetByIdAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type GetPetByIdResult1 = RequestResult<{ \\"Pet\\"?: { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function getPetById(params: GetPetByIdParams1 & GetPetByIdAddedParams1): GetPetByIdResult1;
 
-    type UpdatePetWithFormParams0 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"name\\": string; \\"status\\": string; }; };
-    type UpdatePetWithFormAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/x-www-form-urlencoded\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type UpdatePetWithFormParams0 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"name\\"?: string; \\"status\\"?: string; }; };
+    type UpdatePetWithFormAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/x-www-form-urlencoded\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type UpdatePetWithFormResult0 = RequestResult<null>;
     /**
     * Updates a pet in the store with form data
     */
     export function updatePetWithForm(params: UpdatePetWithFormParams0 & UpdatePetWithFormAddedParams0): UpdatePetWithFormResult0;
 
-    type UpdatePetWithFormParams1 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"name\\": string; \\"status\\": string; }; };
-    type UpdatePetWithFormAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/x-www-form-urlencoded\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type UpdatePetWithFormParams1 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"name\\"?: string; \\"status\\"?: string; }; };
+    type UpdatePetWithFormAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/x-www-form-urlencoded\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type UpdatePetWithFormResult1 = RequestResult<null>;
     export function updatePetWithForm(params: UpdatePetWithFormParams1 & UpdatePetWithFormAddedParams1): UpdatePetWithFormResult1;
 
-    type DeletePetParams0 = { \\"header\\"?: { \\"api_key\\": string; }; \\"path\\": { \\"petId\\": number; }; };
-    type DeletePetAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
+    type DeletePetParams0 = { \\"header\\"?: { \\"api_key\\"?: string; }; \\"path\\": { \\"petId\\": number; }; };
+    type DeletePetAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
     type DeletePetResult0 = RequestResult<null>;
     /**
     * Deletes a pet
     */
     export function deletePet(params: DeletePetParams0 & DeletePetAddedParams0): DeletePetResult0;
 
-    type DeletePetParams1 = { \\"header\\"?: { \\"api_key\\": string; }; \\"path\\": { \\"petId\\": number; }; };
-    type DeletePetAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type DeletePetParams1 = { \\"header\\"?: { \\"api_key\\"?: string; }; \\"path\\": { \\"petId\\": number; }; };
+    type DeletePetAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
     type DeletePetResult1 = RequestResult<null>;
     export function deletePet(params: DeletePetParams1 & DeletePetAddedParams1): DeletePetResult1;
 
-    type PlaceOrderParams0 = { \\"body\\": { \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }; };
-    type PlaceOrderAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
-    type PlaceOrderResult0 = RequestResult<{ \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }>;
+    type PlaceOrderParams0 = { \\"body\\": { \\"id\\"?: number; \\"petId\\"?: number; \\"quantity\\"?: number; \\"shipDate\\"?: string; \\"status\\"?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\"?: boolean; }; };
+    type PlaceOrderAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type PlaceOrderResult0 = RequestResult<{ \\"id\\"?: number; \\"petId\\"?: number; \\"quantity\\"?: number; \\"shipDate\\"?: string; \\"status\\"?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\"?: boolean; }>;
     /**
     * Place an order for a pet
     */
     export function placeOrder(params: PlaceOrderParams0 & PlaceOrderAddedParams0): PlaceOrderResult0;
 
-    type PlaceOrderParams1 = { \\"body\\": { \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }; };
-    type PlaceOrderAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
-    type PlaceOrderResult1 = RequestResult<{ \\"Order\\": { \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }; }>;
+    type PlaceOrderParams1 = { \\"body\\": { \\"id\\"?: number; \\"petId\\"?: number; \\"quantity\\"?: number; \\"shipDate\\"?: string; \\"status\\"?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\"?: boolean; }; };
+    type PlaceOrderAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type PlaceOrderResult1 = RequestResult<{ \\"Order\\"?: { \\"id\\"?: number; \\"petId\\"?: number; \\"quantity\\"?: number; \\"shipDate\\"?: string; \\"status\\"?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\"?: boolean; }; }>;
     export function placeOrder(params: PlaceOrderParams1 & PlaceOrderAddedParams1): PlaceOrderResult1;
 
     type GetOrderByIdParams0 = { \\"path\\": { \\"orderId\\": number; }; };
-    type GetOrderByIdAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
-    type GetOrderByIdResult0 = RequestResult<{ \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }>;
+    type GetOrderByIdAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
+    type GetOrderByIdResult0 = RequestResult<{ \\"id\\"?: number; \\"petId\\"?: number; \\"quantity\\"?: number; \\"shipDate\\"?: string; \\"status\\"?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\"?: boolean; }>;
     /**
     * Find purchase order by ID
     * For valid response try integer IDs with value >= 1 and <= 10. Other values will generated exceptions
@@ -1332,12 +1332,12 @@ test("importRequest=true", async () => {
     export function getOrderById(params: GetOrderByIdParams0 & GetOrderByIdAddedParams0): GetOrderByIdResult0;
 
     type GetOrderByIdParams1 = { \\"path\\": { \\"orderId\\": number; }; };
-    type GetOrderByIdAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type GetOrderByIdResult1 = RequestResult<{ \\"Order\\": { \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }; }>;
+    type GetOrderByIdAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type GetOrderByIdResult1 = RequestResult<{ \\"Order\\"?: { \\"id\\"?: number; \\"petId\\"?: number; \\"quantity\\"?: number; \\"shipDate\\"?: string; \\"status\\"?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\"?: boolean; }; }>;
     export function getOrderById(params: GetOrderByIdParams1 & GetOrderByIdAddedParams1): GetOrderByIdResult1;
 
     type DeleteOrderParams0 = { \\"path\\": { \\"orderId\\": number; }; };
-    type DeleteOrderAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
+    type DeleteOrderAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
     type DeleteOrderResult0 = RequestResult<null>;
     /**
     * Delete purchase order by ID
@@ -1346,7 +1346,7 @@ test("importRequest=true", async () => {
     export function deleteOrder(params: DeleteOrderParams0 & DeleteOrderAddedParams0): DeleteOrderResult0;
 
     type DeleteOrderParams1 = { \\"path\\": { \\"orderId\\": number; }; };
-    type DeleteOrderAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type DeleteOrderAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
     type DeleteOrderResult1 = RequestResult<null>;
     export function deleteOrder(params: DeleteOrderParams1 & DeleteOrderAddedParams1): DeleteOrderResult1;
 
@@ -1357,47 +1357,47 @@ test("importRequest=true", async () => {
     */
     export function getInventory(): GetInventoryResult0;
 
-    type CreateUsersWithArrayInputParams0 = { \\"body\\": ({ \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; })[]; };
-    type CreateUsersWithArrayInputAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type CreateUsersWithArrayInputParams0 = { \\"body\\": ({ \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; })[]; };
+    type CreateUsersWithArrayInputAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type CreateUsersWithArrayInputResult0 = RequestResult<null>;
     /**
     * Creates list of users with given input array
     */
     export function createUsersWithArrayInput(params: CreateUsersWithArrayInputParams0 & CreateUsersWithArrayInputAddedParams0): CreateUsersWithArrayInputResult0;
 
-    type CreateUsersWithArrayInputParams1 = { \\"body\\": ({ \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; })[]; };
-    type CreateUsersWithArrayInputAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type CreateUsersWithArrayInputParams1 = { \\"body\\": ({ \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; })[]; };
+    type CreateUsersWithArrayInputAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type CreateUsersWithArrayInputResult1 = RequestResult<null>;
     export function createUsersWithArrayInput(params: CreateUsersWithArrayInputParams1 & CreateUsersWithArrayInputAddedParams1): CreateUsersWithArrayInputResult1;
 
-    type CreateUsersWithListInputParams0 = { \\"body\\": ({ \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; })[]; };
-    type CreateUsersWithListInputAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type CreateUsersWithListInputParams0 = { \\"body\\": ({ \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; })[]; };
+    type CreateUsersWithListInputAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type CreateUsersWithListInputResult0 = RequestResult<null>;
     /**
     * Creates list of users with given input array
     */
     export function createUsersWithListInput(params: CreateUsersWithListInputParams0 & CreateUsersWithListInputAddedParams0): CreateUsersWithListInputResult0;
 
-    type CreateUsersWithListInputParams1 = { \\"body\\": ({ \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; })[]; };
-    type CreateUsersWithListInputAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type CreateUsersWithListInputParams1 = { \\"body\\": ({ \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; })[]; };
+    type CreateUsersWithListInputAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type CreateUsersWithListInputResult1 = RequestResult<null>;
     export function createUsersWithListInput(params: CreateUsersWithListInputParams1 & CreateUsersWithListInputAddedParams1): CreateUsersWithListInputResult1;
 
     type GetUserByNameParams0 = { \\"path\\": { \\"username\\": string; }; };
-    type GetUserByNameAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
-    type GetUserByNameResult0 = RequestResult<{ \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }>;
+    type GetUserByNameAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
+    type GetUserByNameResult0 = RequestResult<{ \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; }>;
     /**
     * Get user by user name
     */
     export function getUserByName(params: GetUserByNameParams0 & GetUserByNameAddedParams0): GetUserByNameResult0;
 
     type GetUserByNameParams1 = { \\"path\\": { \\"username\\": string; }; };
-    type GetUserByNameAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type GetUserByNameResult1 = RequestResult<{ \\"User\\": { \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }; }>;
+    type GetUserByNameAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type GetUserByNameResult1 = RequestResult<{ \\"User\\"?: { \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; }; }>;
     export function getUserByName(params: GetUserByNameParams1 & GetUserByNameAddedParams1): GetUserByNameResult1;
 
-    type UpdateUserParams0 = { \\"path\\": { \\"username\\": string; }; \\"body\\": { \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }; };
-    type UpdateUserAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type UpdateUserParams0 = { \\"path\\": { \\"username\\": string; }; \\"body\\": { \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; }; };
+    type UpdateUserAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type UpdateUserResult0 = RequestResult<null>;
     /**
     * Updated user
@@ -1405,13 +1405,13 @@ test("importRequest=true", async () => {
     */
     export function updateUser(params: UpdateUserParams0 & UpdateUserAddedParams0): UpdateUserResult0;
 
-    type UpdateUserParams1 = { \\"path\\": { \\"username\\": string; }; \\"body\\": { \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }; };
-    type UpdateUserAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type UpdateUserParams1 = { \\"path\\": { \\"username\\": string; }; \\"body\\": { \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; }; };
+    type UpdateUserAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type UpdateUserResult1 = RequestResult<null>;
     export function updateUser(params: UpdateUserParams1 & UpdateUserAddedParams1): UpdateUserResult1;
 
     type DeleteUserParams0 = { \\"path\\": { \\"username\\": string; }; };
-    type DeleteUserAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
+    type DeleteUserAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
     type DeleteUserResult0 = RequestResult<null>;
     /**
     * Delete user
@@ -1420,12 +1420,12 @@ test("importRequest=true", async () => {
     export function deleteUser(params: DeleteUserParams0 & DeleteUserAddedParams0): DeleteUserResult0;
 
     type DeleteUserParams1 = { \\"path\\": { \\"username\\": string; }; };
-    type DeleteUserAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type DeleteUserAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
     type DeleteUserResult1 = RequestResult<null>;
     export function deleteUser(params: DeleteUserParams1 & DeleteUserAddedParams1): DeleteUserResult1;
 
     type LoginUserParams0 = { \\"query\\": { \\"username\\": string; \\"password\\": string; }; };
-    type LoginUserAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
+    type LoginUserAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
     type LoginUserResult0 = RequestResult<string>;
     /**
     * Logs user into the system
@@ -1433,23 +1433,23 @@ test("importRequest=true", async () => {
     export function loginUser(params: LoginUserParams0 & LoginUserAddedParams0): LoginUserResult0;
 
     type LoginUserParams1 = { \\"query\\": { \\"username\\": string; \\"password\\": string; }; };
-    type LoginUserAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type LoginUserAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
     type LoginUserResult1 = RequestResult<string>;
     export function loginUser(params: LoginUserParams1 & LoginUserAddedParams1): LoginUserResult1;
 
-    type LogoutUserAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
+    type LogoutUserAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
     type LogoutUserResult0 = RequestResult<null>;
     /**
     * Logs out current logged in user session
     */
     export function logoutUser(params: LogoutUserAddedParams0): LogoutUserResult0;
 
-    type LogoutUserAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type LogoutUserAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
     type LogoutUserResult1 = RequestResult<null>;
     export function logoutUser(params: LogoutUserAddedParams1): LogoutUserResult1;
 
-    type CreateUserParams0 = { \\"body\\": { \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }; };
-    type CreateUserAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type CreateUserParams0 = { \\"body\\": { \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; }; };
+    type CreateUserAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type CreateUserResult0 = RequestResult<null>;
     /**
     * Create user
@@ -1457,8 +1457,8 @@ test("importRequest=true", async () => {
     */
     export function createUser(params: CreateUserParams0 & CreateUserAddedParams0): CreateUserResult0;
 
-    type CreateUserParams1 = { \\"body\\": { \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }; };
-    type CreateUserAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type CreateUserParams1 = { \\"body\\": { \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; }; };
+    type CreateUserAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type CreateUserResult1 = RequestResult<null>;
     export function createUser(params: CreateUserParams1 & CreateUserAddedParams1): CreateUserResult1;
 
@@ -1559,62 +1559,62 @@ test("originalBody=true", async () => {
     ",
       "types": "type RequestResult<Data> = Promise<{ response: Response; data: Data; }>;
 
-    type UploadFileParams0 = { \\"path\\": { \\"petId\\": number; }; \\"formData\\"?: { \\"additionalMetadata\\": string; \\"file\\": File; }; };
-    type UploadFileResult0 = RequestResult<{ \\"code\\": number; \\"type\\": string; \\"message\\": string; }>;
+    type UploadFileParams0 = { \\"path\\": { \\"petId\\": number; }; \\"formData\\"?: { \\"additionalMetadata\\"?: string; \\"file\\"?: File; }; };
+    type UploadFileResult0 = RequestResult<{ \\"code\\"?: number; \\"type\\"?: string; \\"message\\"?: string; }>;
     /**
     * uploads an image
     */
     export function uploadFile(params: UploadFileParams0): UploadFileResult0;
 
-    type AddPetParams0 = { \\"body\\": { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
-    type AddPetAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type AddPetParams0 = { \\"body\\": { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type AddPetAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type AddPetResult0 = RequestResult<null>;
     /**
     * Add a new pet to the store
     */
     export function addPet(params: AddPetParams0 & AddPetAddedParams0): AddPetResult0;
 
-    type AddPetParams1 = { \\"body\\": { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
-    type AddPetAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type AddPetParams1 = { \\"body\\": { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type AddPetAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type AddPetResult1 = RequestResult<null>;
     export function addPet(params: AddPetParams1 & AddPetAddedParams1): AddPetResult1;
 
-    type AddPetParams2 = { \\"body\\": { \\"body\\": { \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; }; };
-    type AddPetAddedParams2 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type AddPetParams2 = { \\"body\\": { \\"body\\": { \\"Pet\\"?: { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; }; };
+    type AddPetAddedParams2 = { \\"header\\"?: { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type AddPetResult2 = RequestResult<null>;
     export function addPet(params: AddPetParams2 & AddPetAddedParams2): AddPetResult2;
 
-    type AddPetParams3 = { \\"body\\": { \\"body\\": { \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; }; };
-    type AddPetAddedParams3 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type AddPetParams3 = { \\"body\\": { \\"body\\": { \\"Pet\\"?: { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; }; };
+    type AddPetAddedParams3 = { \\"header\\"?: { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type AddPetResult3 = RequestResult<null>;
     export function addPet(params: AddPetParams3 & AddPetAddedParams3): AddPetResult3;
 
-    type UpdatePetParams0 = { \\"body\\": { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
-    type UpdatePetAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type UpdatePetParams0 = { \\"body\\": { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type UpdatePetAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type UpdatePetResult0 = RequestResult<null>;
     /**
     * Update an existing pet
     */
     export function updatePet(params: UpdatePetParams0 & UpdatePetAddedParams0): UpdatePetResult0;
 
-    type UpdatePetParams1 = { \\"body\\": { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
-    type UpdatePetAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type UpdatePetParams1 = { \\"body\\": { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type UpdatePetAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type UpdatePetResult1 = RequestResult<null>;
     export function updatePet(params: UpdatePetParams1 & UpdatePetAddedParams1): UpdatePetResult1;
 
-    type UpdatePetParams2 = { \\"body\\": { \\"body\\": { \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; }; };
-    type UpdatePetAddedParams2 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type UpdatePetParams2 = { \\"body\\": { \\"body\\": { \\"Pet\\"?: { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; }; };
+    type UpdatePetAddedParams2 = { \\"header\\"?: { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type UpdatePetResult2 = RequestResult<null>;
     export function updatePet(params: UpdatePetParams2 & UpdatePetAddedParams2): UpdatePetResult2;
 
-    type UpdatePetParams3 = { \\"body\\": { \\"body\\": { \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; }; };
-    type UpdatePetAddedParams3 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type UpdatePetParams3 = { \\"body\\": { \\"body\\": { \\"Pet\\"?: { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; }; };
+    type UpdatePetAddedParams3 = { \\"header\\"?: { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type UpdatePetResult3 = RequestResult<null>;
     export function updatePet(params: UpdatePetParams3 & UpdatePetAddedParams3): UpdatePetResult3;
 
     type FindPetsByStatusParams0 = { \\"query\\": { \\"status\\": (\\"available\\" | \\"pending\\" | \\"sold\\")[]; }; };
-    type FindPetsByStatusAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
-    type FindPetsByStatusResult0 = RequestResult<({ \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]>;
+    type FindPetsByStatusAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
+    type FindPetsByStatusResult0 = RequestResult<({ \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]>;
     /**
     * Finds Pets by status
     * Multiple status values can be provided with comma separated strings
@@ -1622,13 +1622,13 @@ test("originalBody=true", async () => {
     export function findPetsByStatus(params: FindPetsByStatusParams0 & FindPetsByStatusAddedParams0): FindPetsByStatusResult0;
 
     type FindPetsByStatusParams1 = { \\"query\\": { \\"status\\": (\\"available\\" | \\"pending\\" | \\"sold\\")[]; }; };
-    type FindPetsByStatusAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type FindPetsByStatusResult1 = RequestResult<{ \\"Pet\\": ({ \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
+    type FindPetsByStatusAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type FindPetsByStatusResult1 = RequestResult<{ \\"Pet\\"?: ({ \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
     export function findPetsByStatus(params: FindPetsByStatusParams1 & FindPetsByStatusAddedParams1): FindPetsByStatusResult1;
 
     type FindPetsByTagsParams0 = { \\"query\\": { \\"tags\\": (string)[]; }; };
-    type FindPetsByTagsAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
-    type FindPetsByTagsResult0 = RequestResult<({ \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]>;
+    type FindPetsByTagsAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
+    type FindPetsByTagsResult0 = RequestResult<({ \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]>;
     /**
     * Finds Pets by tags
     * Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
@@ -1636,13 +1636,13 @@ test("originalBody=true", async () => {
     export function findPetsByTags(params: FindPetsByTagsParams0 & FindPetsByTagsAddedParams0): FindPetsByTagsResult0;
 
     type FindPetsByTagsParams1 = { \\"query\\": { \\"tags\\": (string)[]; }; };
-    type FindPetsByTagsAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type FindPetsByTagsResult1 = RequestResult<{ \\"Pet\\": ({ \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
+    type FindPetsByTagsAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type FindPetsByTagsResult1 = RequestResult<{ \\"Pet\\"?: ({ \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
     export function findPetsByTags(params: FindPetsByTagsParams1 & FindPetsByTagsAddedParams1): FindPetsByTagsResult1;
 
     type GetPetByIdParams0 = { \\"path\\": { \\"petId\\": number; }; };
-    type GetPetByIdAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
-    type GetPetByIdResult0 = RequestResult<{ \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }>;
+    type GetPetByIdAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
+    type GetPetByIdResult0 = RequestResult<{ \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }>;
     /**
     * Find pet by ID
     * Returns a single pet
@@ -1650,52 +1650,52 @@ test("originalBody=true", async () => {
     export function getPetById(params: GetPetByIdParams0 & GetPetByIdAddedParams0): GetPetByIdResult0;
 
     type GetPetByIdParams1 = { \\"path\\": { \\"petId\\": number; }; };
-    type GetPetByIdAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type GetPetByIdResult1 = RequestResult<{ \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+    type GetPetByIdAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type GetPetByIdResult1 = RequestResult<{ \\"Pet\\"?: { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function getPetById(params: GetPetByIdParams1 & GetPetByIdAddedParams1): GetPetByIdResult1;
 
-    type UpdatePetWithFormParams0 = { \\"path\\": { \\"petId\\": number; }; \\"formData\\"?: { \\"name\\": string; \\"status\\": string; }; };
-    type UpdatePetWithFormAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/x-www-form-urlencoded\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type UpdatePetWithFormParams0 = { \\"path\\": { \\"petId\\": number; }; \\"formData\\"?: { \\"name\\"?: string; \\"status\\"?: string; }; };
+    type UpdatePetWithFormAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/x-www-form-urlencoded\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type UpdatePetWithFormResult0 = RequestResult<null>;
     /**
     * Updates a pet in the store with form data
     */
     export function updatePetWithForm(params: UpdatePetWithFormParams0 & UpdatePetWithFormAddedParams0): UpdatePetWithFormResult0;
 
-    type UpdatePetWithFormParams1 = { \\"path\\": { \\"petId\\": number; }; \\"formData\\"?: { \\"name\\": string; \\"status\\": string; }; };
-    type UpdatePetWithFormAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/x-www-form-urlencoded\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type UpdatePetWithFormParams1 = { \\"path\\": { \\"petId\\": number; }; \\"formData\\"?: { \\"name\\"?: string; \\"status\\"?: string; }; };
+    type UpdatePetWithFormAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/x-www-form-urlencoded\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type UpdatePetWithFormResult1 = RequestResult<null>;
     export function updatePetWithForm(params: UpdatePetWithFormParams1 & UpdatePetWithFormAddedParams1): UpdatePetWithFormResult1;
 
-    type DeletePetParams0 = { \\"header\\"?: { \\"api_key\\": string; }; \\"path\\": { \\"petId\\": number; }; };
-    type DeletePetAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
+    type DeletePetParams0 = { \\"header\\"?: { \\"api_key\\"?: string; }; \\"path\\": { \\"petId\\": number; }; };
+    type DeletePetAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
     type DeletePetResult0 = RequestResult<null>;
     /**
     * Deletes a pet
     */
     export function deletePet(params: DeletePetParams0 & DeletePetAddedParams0): DeletePetResult0;
 
-    type DeletePetParams1 = { \\"header\\"?: { \\"api_key\\": string; }; \\"path\\": { \\"petId\\": number; }; };
-    type DeletePetAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type DeletePetParams1 = { \\"header\\"?: { \\"api_key\\"?: string; }; \\"path\\": { \\"petId\\": number; }; };
+    type DeletePetAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
     type DeletePetResult1 = RequestResult<null>;
     export function deletePet(params: DeletePetParams1 & DeletePetAddedParams1): DeletePetResult1;
 
-    type PlaceOrderParams0 = { \\"body\\": { \\"body\\": { \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }; }; };
-    type PlaceOrderAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
-    type PlaceOrderResult0 = RequestResult<{ \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }>;
+    type PlaceOrderParams0 = { \\"body\\": { \\"body\\": { \\"id\\"?: number; \\"petId\\"?: number; \\"quantity\\"?: number; \\"shipDate\\"?: string; \\"status\\"?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\"?: boolean; }; }; };
+    type PlaceOrderAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type PlaceOrderResult0 = RequestResult<{ \\"id\\"?: number; \\"petId\\"?: number; \\"quantity\\"?: number; \\"shipDate\\"?: string; \\"status\\"?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\"?: boolean; }>;
     /**
     * Place an order for a pet
     */
     export function placeOrder(params: PlaceOrderParams0 & PlaceOrderAddedParams0): PlaceOrderResult0;
 
-    type PlaceOrderParams1 = { \\"body\\": { \\"body\\": { \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }; }; };
-    type PlaceOrderAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
-    type PlaceOrderResult1 = RequestResult<{ \\"Order\\": { \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }; }>;
+    type PlaceOrderParams1 = { \\"body\\": { \\"body\\": { \\"id\\"?: number; \\"petId\\"?: number; \\"quantity\\"?: number; \\"shipDate\\"?: string; \\"status\\"?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\"?: boolean; }; }; };
+    type PlaceOrderAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type PlaceOrderResult1 = RequestResult<{ \\"Order\\"?: { \\"id\\"?: number; \\"petId\\"?: number; \\"quantity\\"?: number; \\"shipDate\\"?: string; \\"status\\"?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\"?: boolean; }; }>;
     export function placeOrder(params: PlaceOrderParams1 & PlaceOrderAddedParams1): PlaceOrderResult1;
 
     type GetOrderByIdParams0 = { \\"path\\": { \\"orderId\\": number; }; };
-    type GetOrderByIdAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
-    type GetOrderByIdResult0 = RequestResult<{ \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }>;
+    type GetOrderByIdAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
+    type GetOrderByIdResult0 = RequestResult<{ \\"id\\"?: number; \\"petId\\"?: number; \\"quantity\\"?: number; \\"shipDate\\"?: string; \\"status\\"?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\"?: boolean; }>;
     /**
     * Find purchase order by ID
     * For valid response try integer IDs with value >= 1 and <= 10. Other values will generated exceptions
@@ -1703,12 +1703,12 @@ test("originalBody=true", async () => {
     export function getOrderById(params: GetOrderByIdParams0 & GetOrderByIdAddedParams0): GetOrderByIdResult0;
 
     type GetOrderByIdParams1 = { \\"path\\": { \\"orderId\\": number; }; };
-    type GetOrderByIdAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type GetOrderByIdResult1 = RequestResult<{ \\"Order\\": { \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }; }>;
+    type GetOrderByIdAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type GetOrderByIdResult1 = RequestResult<{ \\"Order\\"?: { \\"id\\"?: number; \\"petId\\"?: number; \\"quantity\\"?: number; \\"shipDate\\"?: string; \\"status\\"?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\"?: boolean; }; }>;
     export function getOrderById(params: GetOrderByIdParams1 & GetOrderByIdAddedParams1): GetOrderByIdResult1;
 
     type DeleteOrderParams0 = { \\"path\\": { \\"orderId\\": number; }; };
-    type DeleteOrderAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
+    type DeleteOrderAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
     type DeleteOrderResult0 = RequestResult<null>;
     /**
     * Delete purchase order by ID
@@ -1717,7 +1717,7 @@ test("originalBody=true", async () => {
     export function deleteOrder(params: DeleteOrderParams0 & DeleteOrderAddedParams0): DeleteOrderResult0;
 
     type DeleteOrderParams1 = { \\"path\\": { \\"orderId\\": number; }; };
-    type DeleteOrderAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type DeleteOrderAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
     type DeleteOrderResult1 = RequestResult<null>;
     export function deleteOrder(params: DeleteOrderParams1 & DeleteOrderAddedParams1): DeleteOrderResult1;
 
@@ -1728,47 +1728,47 @@ test("originalBody=true", async () => {
     */
     export function getInventory(): GetInventoryResult0;
 
-    type CreateUsersWithArrayInputParams0 = { \\"body\\": { \\"body\\": ({ \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; })[]; }; };
-    type CreateUsersWithArrayInputAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type CreateUsersWithArrayInputParams0 = { \\"body\\": { \\"body\\": ({ \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; })[]; }; };
+    type CreateUsersWithArrayInputAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type CreateUsersWithArrayInputResult0 = RequestResult<null>;
     /**
     * Creates list of users with given input array
     */
     export function createUsersWithArrayInput(params: CreateUsersWithArrayInputParams0 & CreateUsersWithArrayInputAddedParams0): CreateUsersWithArrayInputResult0;
 
-    type CreateUsersWithArrayInputParams1 = { \\"body\\": { \\"body\\": ({ \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; })[]; }; };
-    type CreateUsersWithArrayInputAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type CreateUsersWithArrayInputParams1 = { \\"body\\": { \\"body\\": ({ \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; })[]; }; };
+    type CreateUsersWithArrayInputAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type CreateUsersWithArrayInputResult1 = RequestResult<null>;
     export function createUsersWithArrayInput(params: CreateUsersWithArrayInputParams1 & CreateUsersWithArrayInputAddedParams1): CreateUsersWithArrayInputResult1;
 
-    type CreateUsersWithListInputParams0 = { \\"body\\": { \\"body\\": ({ \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; })[]; }; };
-    type CreateUsersWithListInputAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type CreateUsersWithListInputParams0 = { \\"body\\": { \\"body\\": ({ \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; })[]; }; };
+    type CreateUsersWithListInputAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type CreateUsersWithListInputResult0 = RequestResult<null>;
     /**
     * Creates list of users with given input array
     */
     export function createUsersWithListInput(params: CreateUsersWithListInputParams0 & CreateUsersWithListInputAddedParams0): CreateUsersWithListInputResult0;
 
-    type CreateUsersWithListInputParams1 = { \\"body\\": { \\"body\\": ({ \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; })[]; }; };
-    type CreateUsersWithListInputAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type CreateUsersWithListInputParams1 = { \\"body\\": { \\"body\\": ({ \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; })[]; }; };
+    type CreateUsersWithListInputAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type CreateUsersWithListInputResult1 = RequestResult<null>;
     export function createUsersWithListInput(params: CreateUsersWithListInputParams1 & CreateUsersWithListInputAddedParams1): CreateUsersWithListInputResult1;
 
     type GetUserByNameParams0 = { \\"path\\": { \\"username\\": string; }; };
-    type GetUserByNameAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
-    type GetUserByNameResult0 = RequestResult<{ \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }>;
+    type GetUserByNameAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
+    type GetUserByNameResult0 = RequestResult<{ \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; }>;
     /**
     * Get user by user name
     */
     export function getUserByName(params: GetUserByNameParams0 & GetUserByNameAddedParams0): GetUserByNameResult0;
 
     type GetUserByNameParams1 = { \\"path\\": { \\"username\\": string; }; };
-    type GetUserByNameAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type GetUserByNameResult1 = RequestResult<{ \\"User\\": { \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }; }>;
+    type GetUserByNameAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type GetUserByNameResult1 = RequestResult<{ \\"User\\"?: { \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; }; }>;
     export function getUserByName(params: GetUserByNameParams1 & GetUserByNameAddedParams1): GetUserByNameResult1;
 
-    type UpdateUserParams0 = { \\"path\\": { \\"username\\": string; }; \\"body\\": { \\"body\\": { \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }; }; };
-    type UpdateUserAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type UpdateUserParams0 = { \\"path\\": { \\"username\\": string; }; \\"body\\": { \\"body\\": { \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; }; }; };
+    type UpdateUserAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type UpdateUserResult0 = RequestResult<null>;
     /**
     * Updated user
@@ -1776,13 +1776,13 @@ test("originalBody=true", async () => {
     */
     export function updateUser(params: UpdateUserParams0 & UpdateUserAddedParams0): UpdateUserResult0;
 
-    type UpdateUserParams1 = { \\"path\\": { \\"username\\": string; }; \\"body\\": { \\"body\\": { \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }; }; };
-    type UpdateUserAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type UpdateUserParams1 = { \\"path\\": { \\"username\\": string; }; \\"body\\": { \\"body\\": { \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; }; }; };
+    type UpdateUserAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type UpdateUserResult1 = RequestResult<null>;
     export function updateUser(params: UpdateUserParams1 & UpdateUserAddedParams1): UpdateUserResult1;
 
     type DeleteUserParams0 = { \\"path\\": { \\"username\\": string; }; };
-    type DeleteUserAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
+    type DeleteUserAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
     type DeleteUserResult0 = RequestResult<null>;
     /**
     * Delete user
@@ -1791,12 +1791,12 @@ test("originalBody=true", async () => {
     export function deleteUser(params: DeleteUserParams0 & DeleteUserAddedParams0): DeleteUserResult0;
 
     type DeleteUserParams1 = { \\"path\\": { \\"username\\": string; }; };
-    type DeleteUserAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type DeleteUserAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
     type DeleteUserResult1 = RequestResult<null>;
     export function deleteUser(params: DeleteUserParams1 & DeleteUserAddedParams1): DeleteUserResult1;
 
     type LoginUserParams0 = { \\"query\\": { \\"username\\": string; \\"password\\": string; }; };
-    type LoginUserAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
+    type LoginUserAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
     type LoginUserResult0 = RequestResult<string>;
     /**
     * Logs user into the system
@@ -1804,23 +1804,23 @@ test("originalBody=true", async () => {
     export function loginUser(params: LoginUserParams0 & LoginUserAddedParams0): LoginUserResult0;
 
     type LoginUserParams1 = { \\"query\\": { \\"username\\": string; \\"password\\": string; }; };
-    type LoginUserAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type LoginUserAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
     type LoginUserResult1 = RequestResult<string>;
     export function loginUser(params: LoginUserParams1 & LoginUserAddedParams1): LoginUserResult1;
 
-    type LogoutUserAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
+    type LogoutUserAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
     type LogoutUserResult0 = RequestResult<null>;
     /**
     * Logs out current logged in user session
     */
     export function logoutUser(params: LogoutUserAddedParams0): LogoutUserResult0;
 
-    type LogoutUserAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type LogoutUserAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
     type LogoutUserResult1 = RequestResult<null>;
     export function logoutUser(params: LogoutUserAddedParams1): LogoutUserResult1;
 
-    type CreateUserParams0 = { \\"body\\": { \\"body\\": { \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }; }; };
-    type CreateUserAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type CreateUserParams0 = { \\"body\\": { \\"body\\": { \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; }; }; };
+    type CreateUserAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type CreateUserResult0 = RequestResult<null>;
     /**
     * Create user
@@ -1828,8 +1828,8 @@ test("originalBody=true", async () => {
     */
     export function createUser(params: CreateUserParams0 & CreateUserAddedParams0): CreateUserResult0;
 
-    type CreateUserParams1 = { \\"body\\": { \\"body\\": { \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }; }; };
-    type CreateUserAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type CreateUserParams1 = { \\"body\\": { \\"body\\": { \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; }; }; };
+    type CreateUserAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type CreateUserResult1 = RequestResult<null>;
     export function createUser(params: CreateUserParams1 & CreateUserAddedParams1): CreateUserResult1;
 
@@ -1930,208 +1930,208 @@ test("ignoreDescription=true", async () => {
     ",
       "types": "type RequestResult<Data> = Promise<{ response: Response; data: Data; }>;
 
-    type UploadFileParams0 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"additionalMetadata\\": string; \\"file\\": File; }; };
-    type UploadFileResult0 = RequestResult<{ \\"code\\": number; \\"type\\": string; \\"message\\": string; }>;
+    type UploadFileParams0 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"additionalMetadata\\"?: string; \\"file\\"?: File; }; };
+    type UploadFileResult0 = RequestResult<{ \\"code\\"?: number; \\"type\\"?: string; \\"message\\"?: string; }>;
     export function uploadFile(params: UploadFileParams0): UploadFileResult0;
 
-    type AddPetParams0 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
-    type AddPetAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type AddPetParams0 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
+    type AddPetAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type AddPetResult0 = RequestResult<null>;
     export function addPet(params: AddPetParams0 & AddPetAddedParams0): AddPetResult0;
 
-    type AddPetParams1 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
-    type AddPetAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type AddPetParams1 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
+    type AddPetAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type AddPetResult1 = RequestResult<null>;
     export function addPet(params: AddPetParams1 & AddPetAddedParams1): AddPetResult1;
 
-    type AddPetParams2 = { \\"body\\": { \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
-    type AddPetAddedParams2 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type AddPetParams2 = { \\"body\\": { \\"Pet\\"?: { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type AddPetAddedParams2 = { \\"header\\"?: { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type AddPetResult2 = RequestResult<null>;
     export function addPet(params: AddPetParams2 & AddPetAddedParams2): AddPetResult2;
 
-    type AddPetParams3 = { \\"body\\": { \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
-    type AddPetAddedParams3 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type AddPetParams3 = { \\"body\\": { \\"Pet\\"?: { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type AddPetAddedParams3 = { \\"header\\"?: { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type AddPetResult3 = RequestResult<null>;
     export function addPet(params: AddPetParams3 & AddPetAddedParams3): AddPetResult3;
 
-    type UpdatePetParams0 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
-    type UpdatePetAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type UpdatePetParams0 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
+    type UpdatePetAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type UpdatePetResult0 = RequestResult<null>;
     export function updatePet(params: UpdatePetParams0 & UpdatePetAddedParams0): UpdatePetResult0;
 
-    type UpdatePetParams1 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
-    type UpdatePetAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type UpdatePetParams1 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
+    type UpdatePetAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type UpdatePetResult1 = RequestResult<null>;
     export function updatePet(params: UpdatePetParams1 & UpdatePetAddedParams1): UpdatePetResult1;
 
-    type UpdatePetParams2 = { \\"body\\": { \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
-    type UpdatePetAddedParams2 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type UpdatePetParams2 = { \\"body\\": { \\"Pet\\"?: { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type UpdatePetAddedParams2 = { \\"header\\"?: { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type UpdatePetResult2 = RequestResult<null>;
     export function updatePet(params: UpdatePetParams2 & UpdatePetAddedParams2): UpdatePetResult2;
 
-    type UpdatePetParams3 = { \\"body\\": { \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
-    type UpdatePetAddedParams3 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type UpdatePetParams3 = { \\"body\\": { \\"Pet\\"?: { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type UpdatePetAddedParams3 = { \\"header\\"?: { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type UpdatePetResult3 = RequestResult<null>;
     export function updatePet(params: UpdatePetParams3 & UpdatePetAddedParams3): UpdatePetResult3;
 
     type FindPetsByStatusParams0 = { \\"query\\": { \\"status\\": (\\"available\\" | \\"pending\\" | \\"sold\\")[]; }; };
-    type FindPetsByStatusAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
-    type FindPetsByStatusResult0 = RequestResult<({ \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]>;
+    type FindPetsByStatusAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
+    type FindPetsByStatusResult0 = RequestResult<({ \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]>;
     export function findPetsByStatus(params: FindPetsByStatusParams0 & FindPetsByStatusAddedParams0): FindPetsByStatusResult0;
 
     type FindPetsByStatusParams1 = { \\"query\\": { \\"status\\": (\\"available\\" | \\"pending\\" | \\"sold\\")[]; }; };
-    type FindPetsByStatusAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type FindPetsByStatusResult1 = RequestResult<{ \\"Pet\\": ({ \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
+    type FindPetsByStatusAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type FindPetsByStatusResult1 = RequestResult<{ \\"Pet\\"?: ({ \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
     export function findPetsByStatus(params: FindPetsByStatusParams1 & FindPetsByStatusAddedParams1): FindPetsByStatusResult1;
 
     type FindPetsByTagsParams0 = { \\"query\\": { \\"tags\\": (string)[]; }; };
-    type FindPetsByTagsAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
-    type FindPetsByTagsResult0 = RequestResult<({ \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]>;
+    type FindPetsByTagsAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
+    type FindPetsByTagsResult0 = RequestResult<({ \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]>;
     export function findPetsByTags(params: FindPetsByTagsParams0 & FindPetsByTagsAddedParams0): FindPetsByTagsResult0;
 
     type FindPetsByTagsParams1 = { \\"query\\": { \\"tags\\": (string)[]; }; };
-    type FindPetsByTagsAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type FindPetsByTagsResult1 = RequestResult<{ \\"Pet\\": ({ \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
+    type FindPetsByTagsAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type FindPetsByTagsResult1 = RequestResult<{ \\"Pet\\"?: ({ \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
     export function findPetsByTags(params: FindPetsByTagsParams1 & FindPetsByTagsAddedParams1): FindPetsByTagsResult1;
 
     type GetPetByIdParams0 = { \\"path\\": { \\"petId\\": number; }; };
-    type GetPetByIdAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
-    type GetPetByIdResult0 = RequestResult<{ \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }>;
+    type GetPetByIdAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
+    type GetPetByIdResult0 = RequestResult<{ \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }>;
     export function getPetById(params: GetPetByIdParams0 & GetPetByIdAddedParams0): GetPetByIdResult0;
 
     type GetPetByIdParams1 = { \\"path\\": { \\"petId\\": number; }; };
-    type GetPetByIdAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type GetPetByIdResult1 = RequestResult<{ \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+    type GetPetByIdAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type GetPetByIdResult1 = RequestResult<{ \\"Pet\\"?: { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function getPetById(params: GetPetByIdParams1 & GetPetByIdAddedParams1): GetPetByIdResult1;
 
-    type UpdatePetWithFormParams0 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"name\\": string; \\"status\\": string; }; };
-    type UpdatePetWithFormAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/x-www-form-urlencoded\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type UpdatePetWithFormParams0 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"name\\"?: string; \\"status\\"?: string; }; };
+    type UpdatePetWithFormAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/x-www-form-urlencoded\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type UpdatePetWithFormResult0 = RequestResult<null>;
     export function updatePetWithForm(params: UpdatePetWithFormParams0 & UpdatePetWithFormAddedParams0): UpdatePetWithFormResult0;
 
-    type UpdatePetWithFormParams1 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"name\\": string; \\"status\\": string; }; };
-    type UpdatePetWithFormAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/x-www-form-urlencoded\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type UpdatePetWithFormParams1 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"name\\"?: string; \\"status\\"?: string; }; };
+    type UpdatePetWithFormAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/x-www-form-urlencoded\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type UpdatePetWithFormResult1 = RequestResult<null>;
     export function updatePetWithForm(params: UpdatePetWithFormParams1 & UpdatePetWithFormAddedParams1): UpdatePetWithFormResult1;
 
-    type DeletePetParams0 = { \\"header\\"?: { \\"api_key\\": string; }; \\"path\\": { \\"petId\\": number; }; };
-    type DeletePetAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
+    type DeletePetParams0 = { \\"header\\"?: { \\"api_key\\"?: string; }; \\"path\\": { \\"petId\\": number; }; };
+    type DeletePetAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
     type DeletePetResult0 = RequestResult<null>;
     export function deletePet(params: DeletePetParams0 & DeletePetAddedParams0): DeletePetResult0;
 
-    type DeletePetParams1 = { \\"header\\"?: { \\"api_key\\": string; }; \\"path\\": { \\"petId\\": number; }; };
-    type DeletePetAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type DeletePetParams1 = { \\"header\\"?: { \\"api_key\\"?: string; }; \\"path\\": { \\"petId\\": number; }; };
+    type DeletePetAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
     type DeletePetResult1 = RequestResult<null>;
     export function deletePet(params: DeletePetParams1 & DeletePetAddedParams1): DeletePetResult1;
 
-    type PlaceOrderParams0 = { \\"body\\": { \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }; };
-    type PlaceOrderAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
-    type PlaceOrderResult0 = RequestResult<{ \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }>;
+    type PlaceOrderParams0 = { \\"body\\": { \\"id\\"?: number; \\"petId\\"?: number; \\"quantity\\"?: number; \\"shipDate\\"?: string; \\"status\\"?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\"?: boolean; }; };
+    type PlaceOrderAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type PlaceOrderResult0 = RequestResult<{ \\"id\\"?: number; \\"petId\\"?: number; \\"quantity\\"?: number; \\"shipDate\\"?: string; \\"status\\"?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\"?: boolean; }>;
     export function placeOrder(params: PlaceOrderParams0 & PlaceOrderAddedParams0): PlaceOrderResult0;
 
-    type PlaceOrderParams1 = { \\"body\\": { \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }; };
-    type PlaceOrderAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
-    type PlaceOrderResult1 = RequestResult<{ \\"Order\\": { \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }; }>;
+    type PlaceOrderParams1 = { \\"body\\": { \\"id\\"?: number; \\"petId\\"?: number; \\"quantity\\"?: number; \\"shipDate\\"?: string; \\"status\\"?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\"?: boolean; }; };
+    type PlaceOrderAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type PlaceOrderResult1 = RequestResult<{ \\"Order\\"?: { \\"id\\"?: number; \\"petId\\"?: number; \\"quantity\\"?: number; \\"shipDate\\"?: string; \\"status\\"?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\"?: boolean; }; }>;
     export function placeOrder(params: PlaceOrderParams1 & PlaceOrderAddedParams1): PlaceOrderResult1;
 
     type GetOrderByIdParams0 = { \\"path\\": { \\"orderId\\": number; }; };
-    type GetOrderByIdAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
-    type GetOrderByIdResult0 = RequestResult<{ \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }>;
+    type GetOrderByIdAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
+    type GetOrderByIdResult0 = RequestResult<{ \\"id\\"?: number; \\"petId\\"?: number; \\"quantity\\"?: number; \\"shipDate\\"?: string; \\"status\\"?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\"?: boolean; }>;
     export function getOrderById(params: GetOrderByIdParams0 & GetOrderByIdAddedParams0): GetOrderByIdResult0;
 
     type GetOrderByIdParams1 = { \\"path\\": { \\"orderId\\": number; }; };
-    type GetOrderByIdAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type GetOrderByIdResult1 = RequestResult<{ \\"Order\\": { \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }; }>;
+    type GetOrderByIdAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type GetOrderByIdResult1 = RequestResult<{ \\"Order\\"?: { \\"id\\"?: number; \\"petId\\"?: number; \\"quantity\\"?: number; \\"shipDate\\"?: string; \\"status\\"?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\"?: boolean; }; }>;
     export function getOrderById(params: GetOrderByIdParams1 & GetOrderByIdAddedParams1): GetOrderByIdResult1;
 
     type DeleteOrderParams0 = { \\"path\\": { \\"orderId\\": number; }; };
-    type DeleteOrderAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
+    type DeleteOrderAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
     type DeleteOrderResult0 = RequestResult<null>;
     export function deleteOrder(params: DeleteOrderParams0 & DeleteOrderAddedParams0): DeleteOrderResult0;
 
     type DeleteOrderParams1 = { \\"path\\": { \\"orderId\\": number; }; };
-    type DeleteOrderAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type DeleteOrderAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
     type DeleteOrderResult1 = RequestResult<null>;
     export function deleteOrder(params: DeleteOrderParams1 & DeleteOrderAddedParams1): DeleteOrderResult1;
 
     type GetInventoryResult0 = RequestResult<{ [nameProp: string]: number; }>;
     export function getInventory(): GetInventoryResult0;
 
-    type CreateUsersWithArrayInputParams0 = { \\"body\\": ({ \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; })[]; };
-    type CreateUsersWithArrayInputAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type CreateUsersWithArrayInputParams0 = { \\"body\\": ({ \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; })[]; };
+    type CreateUsersWithArrayInputAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type CreateUsersWithArrayInputResult0 = RequestResult<null>;
     export function createUsersWithArrayInput(params: CreateUsersWithArrayInputParams0 & CreateUsersWithArrayInputAddedParams0): CreateUsersWithArrayInputResult0;
 
-    type CreateUsersWithArrayInputParams1 = { \\"body\\": ({ \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; })[]; };
-    type CreateUsersWithArrayInputAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type CreateUsersWithArrayInputParams1 = { \\"body\\": ({ \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; })[]; };
+    type CreateUsersWithArrayInputAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type CreateUsersWithArrayInputResult1 = RequestResult<null>;
     export function createUsersWithArrayInput(params: CreateUsersWithArrayInputParams1 & CreateUsersWithArrayInputAddedParams1): CreateUsersWithArrayInputResult1;
 
-    type CreateUsersWithListInputParams0 = { \\"body\\": ({ \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; })[]; };
-    type CreateUsersWithListInputAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type CreateUsersWithListInputParams0 = { \\"body\\": ({ \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; })[]; };
+    type CreateUsersWithListInputAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type CreateUsersWithListInputResult0 = RequestResult<null>;
     export function createUsersWithListInput(params: CreateUsersWithListInputParams0 & CreateUsersWithListInputAddedParams0): CreateUsersWithListInputResult0;
 
-    type CreateUsersWithListInputParams1 = { \\"body\\": ({ \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; })[]; };
-    type CreateUsersWithListInputAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type CreateUsersWithListInputParams1 = { \\"body\\": ({ \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; })[]; };
+    type CreateUsersWithListInputAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type CreateUsersWithListInputResult1 = RequestResult<null>;
     export function createUsersWithListInput(params: CreateUsersWithListInputParams1 & CreateUsersWithListInputAddedParams1): CreateUsersWithListInputResult1;
 
     type GetUserByNameParams0 = { \\"path\\": { \\"username\\": string; }; };
-    type GetUserByNameAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
-    type GetUserByNameResult0 = RequestResult<{ \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }>;
+    type GetUserByNameAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
+    type GetUserByNameResult0 = RequestResult<{ \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; }>;
     export function getUserByName(params: GetUserByNameParams0 & GetUserByNameAddedParams0): GetUserByNameResult0;
 
     type GetUserByNameParams1 = { \\"path\\": { \\"username\\": string; }; };
-    type GetUserByNameAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type GetUserByNameResult1 = RequestResult<{ \\"User\\": { \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }; }>;
+    type GetUserByNameAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type GetUserByNameResult1 = RequestResult<{ \\"User\\"?: { \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; }; }>;
     export function getUserByName(params: GetUserByNameParams1 & GetUserByNameAddedParams1): GetUserByNameResult1;
 
-    type UpdateUserParams0 = { \\"path\\": { \\"username\\": string; }; \\"body\\": { \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }; };
-    type UpdateUserAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type UpdateUserParams0 = { \\"path\\": { \\"username\\": string; }; \\"body\\": { \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; }; };
+    type UpdateUserAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type UpdateUserResult0 = RequestResult<null>;
     export function updateUser(params: UpdateUserParams0 & UpdateUserAddedParams0): UpdateUserResult0;
 
-    type UpdateUserParams1 = { \\"path\\": { \\"username\\": string; }; \\"body\\": { \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }; };
-    type UpdateUserAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type UpdateUserParams1 = { \\"path\\": { \\"username\\": string; }; \\"body\\": { \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; }; };
+    type UpdateUserAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type UpdateUserResult1 = RequestResult<null>;
     export function updateUser(params: UpdateUserParams1 & UpdateUserAddedParams1): UpdateUserResult1;
 
     type DeleteUserParams0 = { \\"path\\": { \\"username\\": string; }; };
-    type DeleteUserAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
+    type DeleteUserAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
     type DeleteUserResult0 = RequestResult<null>;
     export function deleteUser(params: DeleteUserParams0 & DeleteUserAddedParams0): DeleteUserResult0;
 
     type DeleteUserParams1 = { \\"path\\": { \\"username\\": string; }; };
-    type DeleteUserAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type DeleteUserAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
     type DeleteUserResult1 = RequestResult<null>;
     export function deleteUser(params: DeleteUserParams1 & DeleteUserAddedParams1): DeleteUserResult1;
 
     type LoginUserParams0 = { \\"query\\": { \\"username\\": string; \\"password\\": string; }; };
-    type LoginUserAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
+    type LoginUserAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
     type LoginUserResult0 = RequestResult<string>;
     export function loginUser(params: LoginUserParams0 & LoginUserAddedParams0): LoginUserResult0;
 
     type LoginUserParams1 = { \\"query\\": { \\"username\\": string; \\"password\\": string; }; };
-    type LoginUserAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type LoginUserAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
     type LoginUserResult1 = RequestResult<string>;
     export function loginUser(params: LoginUserParams1 & LoginUserAddedParams1): LoginUserResult1;
 
-    type LogoutUserAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
+    type LogoutUserAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
     type LogoutUserResult0 = RequestResult<null>;
     export function logoutUser(params: LogoutUserAddedParams0): LogoutUserResult0;
 
-    type LogoutUserAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type LogoutUserAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
     type LogoutUserResult1 = RequestResult<null>;
     export function logoutUser(params: LogoutUserAddedParams1): LogoutUserResult1;
 
-    type CreateUserParams0 = { \\"body\\": { \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }; };
-    type CreateUserAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type CreateUserParams0 = { \\"body\\": { \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; }; };
+    type CreateUserAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type CreateUserResult0 = RequestResult<null>;
     export function createUser(params: CreateUserParams0 & CreateUserAddedParams0): CreateUserResult0;
 
-    type CreateUserParams1 = { \\"body\\": { \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }; };
-    type CreateUserAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type CreateUserParams1 = { \\"body\\": { \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; }; };
+    type CreateUserAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type CreateUserResult1 = RequestResult<null>;
     export function createUser(params: CreateUserParams1 & CreateUserAddedParams1): CreateUserResult1;
 
@@ -2231,62 +2231,62 @@ test("read apiJson and insert in config", async () => {
     ",
       "types": "type RequestResult<Data> = Promise<{ response: Response; data: Data; }>;
 
-    type UploadFileParams0 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"additionalMetadata\\": string; \\"file\\": File; }; };
-    type UploadFileResult0 = RequestResult<{ \\"code\\": number; \\"type\\": string; \\"message\\": string; }>;
+    type UploadFileParams0 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"additionalMetadata\\"?: string; \\"file\\"?: File; }; };
+    type UploadFileResult0 = RequestResult<{ \\"code\\"?: number; \\"type\\"?: string; \\"message\\"?: string; }>;
     /**
     * uploads an image
     */
     export function uploadFile(params: UploadFileParams0): UploadFileResult0;
 
-    type AddPetParams0 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
-    type AddPetAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type AddPetParams0 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
+    type AddPetAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type AddPetResult0 = RequestResult<null>;
     /**
     * Add a new pet to the store
     */
     export function addPet(params: AddPetParams0 & AddPetAddedParams0): AddPetResult0;
 
-    type AddPetParams1 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
-    type AddPetAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type AddPetParams1 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
+    type AddPetAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type AddPetResult1 = RequestResult<null>;
     export function addPet(params: AddPetParams1 & AddPetAddedParams1): AddPetResult1;
 
-    type AddPetParams2 = { \\"body\\": { \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
-    type AddPetAddedParams2 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type AddPetParams2 = { \\"body\\": { \\"Pet\\"?: { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type AddPetAddedParams2 = { \\"header\\"?: { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type AddPetResult2 = RequestResult<null>;
     export function addPet(params: AddPetParams2 & AddPetAddedParams2): AddPetResult2;
 
-    type AddPetParams3 = { \\"body\\": { \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
-    type AddPetAddedParams3 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type AddPetParams3 = { \\"body\\": { \\"Pet\\"?: { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type AddPetAddedParams3 = { \\"header\\"?: { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type AddPetResult3 = RequestResult<null>;
     export function addPet(params: AddPetParams3 & AddPetAddedParams3): AddPetResult3;
 
-    type UpdatePetParams0 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
-    type UpdatePetAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type UpdatePetParams0 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
+    type UpdatePetAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type UpdatePetResult0 = RequestResult<null>;
     /**
     * Update an existing pet
     */
     export function updatePet(params: UpdatePetParams0 & UpdatePetAddedParams0): UpdatePetResult0;
 
-    type UpdatePetParams1 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
-    type UpdatePetAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type UpdatePetParams1 = { \\"body\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
+    type UpdatePetAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type UpdatePetResult1 = RequestResult<null>;
     export function updatePet(params: UpdatePetParams1 & UpdatePetAddedParams1): UpdatePetResult1;
 
-    type UpdatePetParams2 = { \\"body\\": { \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
-    type UpdatePetAddedParams2 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type UpdatePetParams2 = { \\"body\\": { \\"Pet\\"?: { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type UpdatePetAddedParams2 = { \\"header\\"?: { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type UpdatePetResult2 = RequestResult<null>;
     export function updatePet(params: UpdatePetParams2 & UpdatePetAddedParams2): UpdatePetResult2;
 
-    type UpdatePetParams3 = { \\"body\\": { \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
-    type UpdatePetAddedParams3 = { \\"header\\": { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type UpdatePetParams3 = { \\"body\\": { \\"Pet\\"?: { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+    type UpdatePetAddedParams3 = { \\"header\\"?: { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type UpdatePetResult3 = RequestResult<null>;
     export function updatePet(params: UpdatePetParams3 & UpdatePetAddedParams3): UpdatePetResult3;
 
     type FindPetsByStatusParams0 = { \\"query\\": { \\"status\\": (\\"available\\" | \\"pending\\" | \\"sold\\")[]; }; };
-    type FindPetsByStatusAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
-    type FindPetsByStatusResult0 = RequestResult<({ \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]>;
+    type FindPetsByStatusAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
+    type FindPetsByStatusResult0 = RequestResult<({ \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]>;
     /**
     * Finds Pets by status
     * Multiple status values can be provided with comma separated strings
@@ -2294,13 +2294,13 @@ test("read apiJson and insert in config", async () => {
     export function findPetsByStatus(params: FindPetsByStatusParams0 & FindPetsByStatusAddedParams0): FindPetsByStatusResult0;
 
     type FindPetsByStatusParams1 = { \\"query\\": { \\"status\\": (\\"available\\" | \\"pending\\" | \\"sold\\")[]; }; };
-    type FindPetsByStatusAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type FindPetsByStatusResult1 = RequestResult<{ \\"Pet\\": ({ \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
+    type FindPetsByStatusAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type FindPetsByStatusResult1 = RequestResult<{ \\"Pet\\"?: ({ \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
     export function findPetsByStatus(params: FindPetsByStatusParams1 & FindPetsByStatusAddedParams1): FindPetsByStatusResult1;
 
     type FindPetsByTagsParams0 = { \\"query\\": { \\"tags\\": (string)[]; }; };
-    type FindPetsByTagsAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
-    type FindPetsByTagsResult0 = RequestResult<({ \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]>;
+    type FindPetsByTagsAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
+    type FindPetsByTagsResult0 = RequestResult<({ \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]>;
     /**
     * Finds Pets by tags
     * Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
@@ -2308,13 +2308,13 @@ test("read apiJson and insert in config", async () => {
     export function findPetsByTags(params: FindPetsByTagsParams0 & FindPetsByTagsAddedParams0): FindPetsByTagsResult0;
 
     type FindPetsByTagsParams1 = { \\"query\\": { \\"tags\\": (string)[]; }; };
-    type FindPetsByTagsAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type FindPetsByTagsResult1 = RequestResult<{ \\"Pet\\": ({ \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
+    type FindPetsByTagsAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type FindPetsByTagsResult1 = RequestResult<{ \\"Pet\\"?: ({ \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; })[]; }>;
     export function findPetsByTags(params: FindPetsByTagsParams1 & FindPetsByTagsAddedParams1): FindPetsByTagsResult1;
 
     type GetPetByIdParams0 = { \\"path\\": { \\"petId\\": number; }; };
-    type GetPetByIdAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
-    type GetPetByIdResult0 = RequestResult<{ \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\": number; \\"name\\": string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }>;
+    type GetPetByIdAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
+    type GetPetByIdResult0 = RequestResult<{ \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }>;
     /**
     * Find pet by ID
     * Returns a single pet
@@ -2322,52 +2322,52 @@ test("read apiJson and insert in config", async () => {
     export function getPetById(params: GetPetByIdParams0 & GetPetByIdAddedParams0): GetPetByIdResult0;
 
     type GetPetByIdParams1 = { \\"path\\": { \\"petId\\": number; }; };
-    type GetPetByIdAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type GetPetByIdResult1 = RequestResult<{ \\"Pet\\": { \\"id\\"?: number; \\"category\\"?: { \\"id\\": number; \\"name\\": string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\": (string)[]; }; \\"tags\\"?: { \\"tag\\": ({ \\"id\\": number; \\"name\\": string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+    type GetPetByIdAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type GetPetByIdResult1 = RequestResult<{ \\"Pet\\"?: { \\"id\\"?: number; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"name\\": string; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
     export function getPetById(params: GetPetByIdParams1 & GetPetByIdAddedParams1): GetPetByIdResult1;
 
-    type UpdatePetWithFormParams0 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"name\\": string; \\"status\\": string; }; };
-    type UpdatePetWithFormAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/x-www-form-urlencoded\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type UpdatePetWithFormParams0 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"name\\"?: string; \\"status\\"?: string; }; };
+    type UpdatePetWithFormAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/x-www-form-urlencoded\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type UpdatePetWithFormResult0 = RequestResult<null>;
     /**
     * Updates a pet in the store with form data
     */
     export function updatePetWithForm(params: UpdatePetWithFormParams0 & UpdatePetWithFormAddedParams0): UpdatePetWithFormResult0;
 
-    type UpdatePetWithFormParams1 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"name\\": string; \\"status\\": string; }; };
-    type UpdatePetWithFormAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/x-www-form-urlencoded\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type UpdatePetWithFormParams1 = { \\"path\\": { \\"petId\\": number; }; \\"body\\"?: { \\"name\\"?: string; \\"status\\"?: string; }; };
+    type UpdatePetWithFormAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/x-www-form-urlencoded\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type UpdatePetWithFormResult1 = RequestResult<null>;
     export function updatePetWithForm(params: UpdatePetWithFormParams1 & UpdatePetWithFormAddedParams1): UpdatePetWithFormResult1;
 
-    type DeletePetParams0 = { \\"header\\"?: { \\"api_key\\": string; }; \\"path\\": { \\"petId\\": number; }; };
-    type DeletePetAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
+    type DeletePetParams0 = { \\"header\\"?: { \\"api_key\\"?: string; }; \\"path\\": { \\"petId\\": number; }; };
+    type DeletePetAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
     type DeletePetResult0 = RequestResult<null>;
     /**
     * Deletes a pet
     */
     export function deletePet(params: DeletePetParams0 & DeletePetAddedParams0): DeletePetResult0;
 
-    type DeletePetParams1 = { \\"header\\"?: { \\"api_key\\": string; }; \\"path\\": { \\"petId\\": number; }; };
-    type DeletePetAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type DeletePetParams1 = { \\"header\\"?: { \\"api_key\\"?: string; }; \\"path\\": { \\"petId\\": number; }; };
+    type DeletePetAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
     type DeletePetResult1 = RequestResult<null>;
     export function deletePet(params: DeletePetParams1 & DeletePetAddedParams1): DeletePetResult1;
 
-    type PlaceOrderParams0 = { \\"body\\": { \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }; };
-    type PlaceOrderAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
-    type PlaceOrderResult0 = RequestResult<{ \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }>;
+    type PlaceOrderParams0 = { \\"body\\": { \\"id\\"?: number; \\"petId\\"?: number; \\"quantity\\"?: number; \\"shipDate\\"?: string; \\"status\\"?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\"?: boolean; }; };
+    type PlaceOrderAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type PlaceOrderResult0 = RequestResult<{ \\"id\\"?: number; \\"petId\\"?: number; \\"quantity\\"?: number; \\"shipDate\\"?: string; \\"status\\"?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\"?: boolean; }>;
     /**
     * Place an order for a pet
     */
     export function placeOrder(params: PlaceOrderParams0 & PlaceOrderAddedParams0): PlaceOrderResult0;
 
-    type PlaceOrderParams1 = { \\"body\\": { \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }; };
-    type PlaceOrderAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
-    type PlaceOrderResult1 = RequestResult<{ \\"Order\\": { \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }; }>;
+    type PlaceOrderParams1 = { \\"body\\": { \\"id\\"?: number; \\"petId\\"?: number; \\"quantity\\"?: number; \\"shipDate\\"?: string; \\"status\\"?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\"?: boolean; }; };
+    type PlaceOrderAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type PlaceOrderResult1 = RequestResult<{ \\"Order\\"?: { \\"id\\"?: number; \\"petId\\"?: number; \\"quantity\\"?: number; \\"shipDate\\"?: string; \\"status\\"?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\"?: boolean; }; }>;
     export function placeOrder(params: PlaceOrderParams1 & PlaceOrderAddedParams1): PlaceOrderResult1;
 
     type GetOrderByIdParams0 = { \\"path\\": { \\"orderId\\": number; }; };
-    type GetOrderByIdAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
-    type GetOrderByIdResult0 = RequestResult<{ \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }>;
+    type GetOrderByIdAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
+    type GetOrderByIdResult0 = RequestResult<{ \\"id\\"?: number; \\"petId\\"?: number; \\"quantity\\"?: number; \\"shipDate\\"?: string; \\"status\\"?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\"?: boolean; }>;
     /**
     * Find purchase order by ID
     * For valid response try integer IDs with value >= 1 and <= 10. Other values will generated exceptions
@@ -2375,12 +2375,12 @@ test("read apiJson and insert in config", async () => {
     export function getOrderById(params: GetOrderByIdParams0 & GetOrderByIdAddedParams0): GetOrderByIdResult0;
 
     type GetOrderByIdParams1 = { \\"path\\": { \\"orderId\\": number; }; };
-    type GetOrderByIdAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type GetOrderByIdResult1 = RequestResult<{ \\"Order\\": { \\"id\\": number; \\"petId\\": number; \\"quantity\\": number; \\"shipDate\\": string; \\"status\\": \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\": boolean; }; }>;
+    type GetOrderByIdAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type GetOrderByIdResult1 = RequestResult<{ \\"Order\\"?: { \\"id\\"?: number; \\"petId\\"?: number; \\"quantity\\"?: number; \\"shipDate\\"?: string; \\"status\\"?: \\"placed\\" | \\"approved\\" | \\"delivered\\"; \\"complete\\"?: boolean; }; }>;
     export function getOrderById(params: GetOrderByIdParams1 & GetOrderByIdAddedParams1): GetOrderByIdResult1;
 
     type DeleteOrderParams0 = { \\"path\\": { \\"orderId\\": number; }; };
-    type DeleteOrderAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
+    type DeleteOrderAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
     type DeleteOrderResult0 = RequestResult<null>;
     /**
     * Delete purchase order by ID
@@ -2389,7 +2389,7 @@ test("read apiJson and insert in config", async () => {
     export function deleteOrder(params: DeleteOrderParams0 & DeleteOrderAddedParams0): DeleteOrderResult0;
 
     type DeleteOrderParams1 = { \\"path\\": { \\"orderId\\": number; }; };
-    type DeleteOrderAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type DeleteOrderAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
     type DeleteOrderResult1 = RequestResult<null>;
     export function deleteOrder(params: DeleteOrderParams1 & DeleteOrderAddedParams1): DeleteOrderResult1;
 
@@ -2400,47 +2400,47 @@ test("read apiJson and insert in config", async () => {
     */
     export function getInventory(): GetInventoryResult0;
 
-    type CreateUsersWithArrayInputParams0 = { \\"body\\": ({ \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; })[]; };
-    type CreateUsersWithArrayInputAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type CreateUsersWithArrayInputParams0 = { \\"body\\": ({ \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; })[]; };
+    type CreateUsersWithArrayInputAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type CreateUsersWithArrayInputResult0 = RequestResult<null>;
     /**
     * Creates list of users with given input array
     */
     export function createUsersWithArrayInput(params: CreateUsersWithArrayInputParams0 & CreateUsersWithArrayInputAddedParams0): CreateUsersWithArrayInputResult0;
 
-    type CreateUsersWithArrayInputParams1 = { \\"body\\": ({ \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; })[]; };
-    type CreateUsersWithArrayInputAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type CreateUsersWithArrayInputParams1 = { \\"body\\": ({ \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; })[]; };
+    type CreateUsersWithArrayInputAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type CreateUsersWithArrayInputResult1 = RequestResult<null>;
     export function createUsersWithArrayInput(params: CreateUsersWithArrayInputParams1 & CreateUsersWithArrayInputAddedParams1): CreateUsersWithArrayInputResult1;
 
-    type CreateUsersWithListInputParams0 = { \\"body\\": ({ \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; })[]; };
-    type CreateUsersWithListInputAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type CreateUsersWithListInputParams0 = { \\"body\\": ({ \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; })[]; };
+    type CreateUsersWithListInputAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type CreateUsersWithListInputResult0 = RequestResult<null>;
     /**
     * Creates list of users with given input array
     */
     export function createUsersWithListInput(params: CreateUsersWithListInputParams0 & CreateUsersWithListInputAddedParams0): CreateUsersWithListInputResult0;
 
-    type CreateUsersWithListInputParams1 = { \\"body\\": ({ \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; })[]; };
-    type CreateUsersWithListInputAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type CreateUsersWithListInputParams1 = { \\"body\\": ({ \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; })[]; };
+    type CreateUsersWithListInputAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type CreateUsersWithListInputResult1 = RequestResult<null>;
     export function createUsersWithListInput(params: CreateUsersWithListInputParams1 & CreateUsersWithListInputAddedParams1): CreateUsersWithListInputResult1;
 
     type GetUserByNameParams0 = { \\"path\\": { \\"username\\": string; }; };
-    type GetUserByNameAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
-    type GetUserByNameResult0 = RequestResult<{ \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }>;
+    type GetUserByNameAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
+    type GetUserByNameResult0 = RequestResult<{ \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; }>;
     /**
     * Get user by user name
     */
     export function getUserByName(params: GetUserByNameParams0 & GetUserByNameAddedParams0): GetUserByNameResult0;
 
     type GetUserByNameParams1 = { \\"path\\": { \\"username\\": string; }; };
-    type GetUserByNameAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
-    type GetUserByNameResult1 = RequestResult<{ \\"User\\": { \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }; }>;
+    type GetUserByNameAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type GetUserByNameResult1 = RequestResult<{ \\"User\\"?: { \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; }; }>;
     export function getUserByName(params: GetUserByNameParams1 & GetUserByNameAddedParams1): GetUserByNameResult1;
 
-    type UpdateUserParams0 = { \\"path\\": { \\"username\\": string; }; \\"body\\": { \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }; };
-    type UpdateUserAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type UpdateUserParams0 = { \\"path\\": { \\"username\\": string; }; \\"body\\": { \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; }; };
+    type UpdateUserAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type UpdateUserResult0 = RequestResult<null>;
     /**
     * Updated user
@@ -2448,13 +2448,13 @@ test("read apiJson and insert in config", async () => {
     */
     export function updateUser(params: UpdateUserParams0 & UpdateUserAddedParams0): UpdateUserResult0;
 
-    type UpdateUserParams1 = { \\"path\\": { \\"username\\": string; }; \\"body\\": { \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }; };
-    type UpdateUserAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type UpdateUserParams1 = { \\"path\\": { \\"username\\": string; }; \\"body\\": { \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; }; };
+    type UpdateUserAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type UpdateUserResult1 = RequestResult<null>;
     export function updateUser(params: UpdateUserParams1 & UpdateUserAddedParams1): UpdateUserResult1;
 
     type DeleteUserParams0 = { \\"path\\": { \\"username\\": string; }; };
-    type DeleteUserAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
+    type DeleteUserAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
     type DeleteUserResult0 = RequestResult<null>;
     /**
     * Delete user
@@ -2463,12 +2463,12 @@ test("read apiJson and insert in config", async () => {
     export function deleteUser(params: DeleteUserParams0 & DeleteUserAddedParams0): DeleteUserResult0;
 
     type DeleteUserParams1 = { \\"path\\": { \\"username\\": string; }; };
-    type DeleteUserAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type DeleteUserAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
     type DeleteUserResult1 = RequestResult<null>;
     export function deleteUser(params: DeleteUserParams1 & DeleteUserAddedParams1): DeleteUserResult1;
 
     type LoginUserParams0 = { \\"query\\": { \\"username\\": string; \\"password\\": string; }; };
-    type LoginUserAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
+    type LoginUserAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
     type LoginUserResult0 = RequestResult<string>;
     /**
     * Logs user into the system
@@ -2476,23 +2476,23 @@ test("read apiJson and insert in config", async () => {
     export function loginUser(params: LoginUserParams0 & LoginUserAddedParams0): LoginUserResult0;
 
     type LoginUserParams1 = { \\"query\\": { \\"username\\": string; \\"password\\": string; }; };
-    type LoginUserAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type LoginUserAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
     type LoginUserResult1 = RequestResult<string>;
     export function loginUser(params: LoginUserParams1 & LoginUserAddedParams1): LoginUserResult1;
 
-    type LogoutUserAddedParams0 = { \\"header\\": { \\"Content-Type\\": \\"application/json\\"; }; };
+    type LogoutUserAddedParams0 = { \\"header\\"?: { \\"Content-Type\\": \\"application/json\\"; }; };
     type LogoutUserResult0 = RequestResult<null>;
     /**
     * Logs out current logged in user session
     */
     export function logoutUser(params: LogoutUserAddedParams0): LogoutUserResult0;
 
-    type LogoutUserAddedParams1 = { \\"header\\": { \\"Content-Type\\": \\"application/xml\\"; }; };
+    type LogoutUserAddedParams1 = { \\"header\\"?: { \\"Content-Type\\": \\"application/xml\\"; }; };
     type LogoutUserResult1 = RequestResult<null>;
     export function logoutUser(params: LogoutUserAddedParams1): LogoutUserResult1;
 
-    type CreateUserParams0 = { \\"body\\": { \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }; };
-    type CreateUserAddedParams0 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+    type CreateUserParams0 = { \\"body\\": { \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; }; };
+    type CreateUserAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
     type CreateUserResult0 = RequestResult<null>;
     /**
     * Create user
@@ -2500,8 +2500,8 @@ test("read apiJson and insert in config", async () => {
     */
     export function createUser(params: CreateUserParams0 & CreateUserAddedParams0): CreateUserResult0;
 
-    type CreateUserParams1 = { \\"body\\": { \\"id\\": number; \\"username\\": string; \\"firstName\\": string; \\"lastName\\": string; \\"email\\": string; \\"password\\": string; \\"phone\\": string; \\"userStatus\\": number; }; };
-    type CreateUserAddedParams1 = { \\"header\\": { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+    type CreateUserParams1 = { \\"body\\": { \\"id\\"?: number; \\"username\\"?: string; \\"firstName\\"?: string; \\"lastName\\"?: string; \\"email\\"?: string; \\"password\\"?: string; \\"phone\\"?: string; \\"userStatus\\"?: number; }; };
+    type CreateUserAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
     type CreateUserResult1 = RequestResult<null>;
     export function createUser(params: CreateUserParams1 & CreateUserAddedParams1): CreateUserResult1;
 
@@ -2540,7 +2540,8 @@ test("use yaml", async () => {
 
 test("use url in prop file", async () => {
   const result = await swaggerToJs({
-    file: "https://petstore.swagger.io/v2/swagger.yaml",
+    file:
+      "https://raw.githubusercontent.com/EvgenyiFedotov/swagger-to-js/next/src/mocks/petstore-v2-multi-file.yaml",
   });
   const resultByBaseConfig = await swaggerToJs(baseConfig);
 
