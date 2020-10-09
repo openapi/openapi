@@ -87,6 +87,12 @@ module.exports = {
   // Completely disable generating types file (.d.ts)
   disableTypesGenerate: true, // (default: false)
 
+  // Change file name for source code
+  templateFileNameCode: 'my-api.js', // (default: 'index.js')
+
+  // Change file name for typings
+  templateFileNameTypes: 'my-api.d.ts', // (default: 'index.d.js')
+
   // Template before main block code
   templateCodeBefore: () => "",
 
