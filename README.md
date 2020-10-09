@@ -73,6 +73,9 @@ module.exports = {
   deprecated: "warning", // "warning" | "ignore" | "exception" (default: "warning")
 
   // Import request code in out code
+  // true — add import from `swagger-to-js/request`
+  // false — embed request to `outputDir` and import from it
+  // "disabled" — completely disable imporing `request`, use `templateCodeBefore`
   importRequest: true, // (default: false)
 
   // Build with original request body
