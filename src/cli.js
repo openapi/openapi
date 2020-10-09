@@ -39,6 +39,8 @@ program
     "Action for deprecated methods: 'warning' | 'ignore' | 'exception' (default: 'warning')",
   )
   .option("--import-request", "Import request code in out code")
+  .option("--import-request-disabled", "Disable importing or generating request")
+  .option("--disable-types-generate", "Disable generating .d.ts file")
   .option("--original-body", "Build with original request body")
   .option("--ignore-description", "Ignore description of requests");
 
@@ -57,8 +59,9 @@ const config = {
 
   mode: program.mode || loadedConfig.mode,
   deprecated: program.deprecated || loadedConfig.deprecated,
-  importRequest: program.importRequest || loadedConfig.importRequest,
+  importRequest: program.importRequestDisabled ? "disabled" : (program.importRequest || loadedConfig.importRequest),
   originalBody: program.originalBody || loadedConfig.originalBody,
+  disableTypesGenerate: program.disableTypesGenerate || loadedConfig.disableTypesGenerate,
 
   templateCodeBefore: loadedConfig.templateCodeBefore,
   templateRequestCode: loadedConfig.templateRequestCode,
@@ -101,15 +104,17 @@ async function main(config) {
 
 function buildFiles({ code, types }, config = {}) {
   const { importRequest = false } = config;
-  const files = {
-    "index.d.ts": { content: types },
-  };
+  const files = {};
 
-  if (importRequest) {
+  if (!config.disableTypesGenerate) {
+    files["index.d.ts"] = { content: types };
+  }
+
+  if (importRequest === true) {
     files["index.js"] = {
       content: `import { request } from 'swagger-to-js/request';\n\n${code}`,
     };
-  } else {
+  } else if (importRequest === false) {
     files["index.js"] = {
       content: `import { request } from './request';\n\n${code}`,
     };
@@ -134,6 +139,12 @@ function buildFiles({ code, types }, config = {}) {
         },
       },
     };
+  } else if (importRequest === 'disabled') {
+    files["index.js"] = {
+      content: code,
+    };
+  } else {
+    throw new TypeError(`Passed ${importRequest} to "importRequest", while allowed true, false or "disabled" `)
   }
 
   return files;

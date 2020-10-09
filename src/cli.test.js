@@ -1901,3 +1901,49 @@ test("multi-file ref url v2 [yaml, types]", () => {
     "
   `);
 });
+
+test("disable request importing or generating [code]", () => {
+  execSync(
+    "node ./src/cli.js --file ./src/mocks/petstore-v3-short.json --import-request-disabled --output-dir ./TEST_API",
+  );
+  expect(execSync("ls ./TEST_API").toString()).toMatchInlineSnapshot(`
+    "index.d.ts
+    index.js
+    "
+  `);
+
+  const source = readFileSync("./TEST_API/index.js", "utf8");
+
+  expect(source).toMatchInlineSnapshot(`
+    "export function updatePet(params) {
+      return request(\\"put\\", \`/pet\`)(params);
+    }
+
+    "
+  `);
+});
+
+test("disable types generating [code]", () => {
+  execSync(
+    "node ./src/cli.js --file ./src/mocks/petstore-v3-short.json --disable-types-generate --output-dir ./TEST_API",
+  );
+  expect(execSync("ls ./TEST_API").toString()).toMatchInlineSnapshot(`
+    "index.js
+    json-to-xml.js
+    request.js
+    xml-to-json.js
+    "
+  `);
+
+  const source = readFileSync("./TEST_API/index.js", "utf8");
+
+  expect(source).toMatchInlineSnapshot(`
+    "import { request } from './request';
+
+    export function updatePet(params) {
+      return request(\\"put\\", \`/pet\`)(params);
+    }
+
+    "
+  `);
+});
