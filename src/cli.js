@@ -8,6 +8,7 @@ const { execSync } = require("child_process");
 const { version, name } = require("../package.json");
 const { cosmiconfigSync } = require("cosmiconfig");
 const { compilePresets } = require("./lib/presets");
+const changeCase = require("change-case");
 
 const timeLog = `✨ ${name}`;
 const defaultOutputDir = "./api";
@@ -105,7 +106,9 @@ async function main(config) {
   console.time(timeLog);
 
   // Convert to js
-  const compiledConfig = compilePresets(omitUndefined(config));
+  const compiledConfig = compilePresets(
+    resolveLocalPresets(omitUndefined(config)),
+  );
   const apiResult = await swaggerToJs(compiledConfig);
   const outputFiles = buildFiles(apiResult, compiledConfig);
 
@@ -122,11 +125,20 @@ async function main(config) {
   console.timeEnd(timeLog);
 }
 
-function buildFiles({ code, types }, config = {}) {
+function buildFiles({ code, types, swaggerData }, config = {}) {
   const { importRequest = false } = config;
   const files = {};
-  const nameTypes = config.templateFileNameTypes || "index.d.ts";
-  const nameCode = config.templateFileNameCode || "index.js";
+  const parameter = { swaggerData, changeCase };
+  const nameTypes = compileFileName(
+    config.templateFileNameTypes,
+    "index.d.ts",
+    parameter,
+  );
+  const nameCode = compileFileName(
+    config.templateFileNameCode,
+    "index.js",
+    parameter,
+  );
 
   if (!config.disableTypesGenerate) {
     files[nameTypes] = { content: types };
@@ -172,6 +184,25 @@ function buildFiles({ code, types }, config = {}) {
   }
 
   return files;
+}
+
+function resolveLocalPresets(config) {
+  if (Array.isArray(config.presets)) {
+    config.presets = config.presets.map((preset) => {
+      if (preset[0] === ".") {
+        return path.resolve(process.cwd(), preset);
+      }
+      return preset;
+    });
+  }
+  return config;
+}
+
+function compileFileName(option, initial, parameter) {
+  if (typeof option === "function") {
+    return option(parameter);
+  }
+  return option || initial;
 }
 
 function readFile(value, callback = (content) => content) {

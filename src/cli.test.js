@@ -1,8 +1,9 @@
 const { execSync } = require("child_process");
-const { readFileSync } = require("fs");
+const { readFileSync, writeFileSync } = require("fs");
 
 afterEach(() => {
   execSync("rm -fr ./TEST_API");
+  execSync("rm -fr ./TEST_CONFIG.js");
 });
 
 test("simple v2 [json, code]", () => {
@@ -2007,6 +2008,25 @@ test("applies preset from package", () => {
       return request(\\"put\\", \`/pet\`)(params);
     }
 
+    "
+  `);
+});
+
+test("allow to change files name based on api config and changeCase", () => {
+  writeFileSync(
+    "./TEST_CONFIG.js",
+    `module.exports = {
+      file: "./src/mocks/petstore-v3-short.json",
+      outputDir: "./TEST_API",
+      importRequest: "disabled",
+      templateFileNameCode: ({ swaggerData, changeCase }) => \`\${changeCase.paramCase(swaggerData.info.title)}.js\`,
+      templateFileNameTypes: ({ swaggerData, changeCase }) => \`\${changeCase.paramCase(swaggerData.info.title)}.d.ts\`,
+    }`,
+  );
+  execSync("node ./src/cli.js --config ./TEST_CONFIG.js");
+  expect(execSync("ls ./TEST_API").toString()).toMatchInlineSnapshot(`
+    "swagger-petstore-short-open-api-3-0.d.ts
+    swagger-petstore-short-open-api-3-0.js
     "
   `);
 });

@@ -87,10 +87,20 @@ module.exports = {
   // Completely disable generating types file (.d.ts)
   disableTypesGenerate: true, // (default: false)
 
-  // Change file name for source code
+  /**
+   * Change file name for source code
+   * Also it can be a function
+   * @example
+   * templateFileNameCode: ({ swaggerData, changeCase }) => string,
+   */
   templateFileNameCode: 'my-api.js', // (default: 'index.js')
 
-  // Change file name for typings
+  /**
+   * Change file name for typing
+   * Also it can be a function
+   * @example
+   * templateFileNameTypes: ({ swaggerData, changeCase }) => string,
+   */
   templateFileNameTypes: 'my-api.d.ts', // (default: 'index.d.js')
 
   // Load presets and merge local properties to it
@@ -109,8 +119,13 @@ module.exports = {
    *  isExistParams: boolean;
    *  defaultParams: object;
    * }} params
+   * @param {{
+   *  swaggerData: { info: object; paths: object; components: object; };
+   *  requestSwaggerData: { operationId: string; requestBody?: object; responses: object };
+   *  changeCase: { paramCase: Function; camelCase: Function; pascalCase: Function; ... };
+   * }} extra
    */
-  templateRequestCode: (params) => "",
+  templateRequestCode: (params, extra) => "",
 
   // Template after maon block code
   templateCodeAfter: () => "",

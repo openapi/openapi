@@ -17,8 +17,9 @@ async function swaggerToJs(_config = {}) {
   validConfig(config);
 
   const apiJson = await loadApiJson(config);
+  const { code, types } = await byVersion(apiJson, config);
 
-  return byVersion(apiJson, config);
+  return { code, types, swaggerData: apiJson };
 }
 
 function buildConfig(config = {}) {

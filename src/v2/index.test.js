@@ -7,9 +7,9 @@ const baseConfig = {
 };
 
 test("without config", async () => {
-  const result = await swaggerToJs(baseConfig);
+  const { code, types } = await swaggerToJs(baseConfig);
 
-  expect(result).toMatchInlineSnapshot(`
+  expect({ code, types }).toMatchInlineSnapshot(`
     Object {
       "code": "export function uploadFile(params) {
       return request(\\"post\\", \`/pet/\${params.path.petId}/uploadImage\`, { \\"header\\": { \\"accept\\": \\"multipart/form-data\\", \\"Content-Type\\": \\"application/json\\", }, })(params);
@@ -375,12 +375,12 @@ test("without config", async () => {
 });
 
 test("deprecated=ignore", async () => {
-  const result = await swaggerToJs({
+  const { code, types } = await swaggerToJs({
     ...baseConfig,
     deprecated: "ignore",
   });
 
-  expect(result).toMatchInlineSnapshot(`
+  expect({ code, types }).toMatchInlineSnapshot(`
     Object {
       "code": "export function uploadFile(params) {
       return request(\\"post\\", \`/pet/\${params.path.petId}/uploadImage\`, { \\"header\\": { \\"accept\\": \\"multipart/form-data\\", \\"Content-Type\\": \\"application/json\\", }, })(params);
@@ -745,12 +745,12 @@ test("deprecated=ignore", async () => {
 });
 
 test("deprecated=exception", async () => {
-  const result = await swaggerToJs({
+  const { code, types } = await swaggerToJs({
     ...baseConfig,
     deprecated: "exception",
   });
 
-  expect(result).toMatchInlineSnapshot(`
+  expect({ code, types }).toMatchInlineSnapshot(`
     Object {
       "code": "export function uploadFile(params) {
       return request(\\"post\\", \`/pet/\${params.path.petId}/uploadImage\`, { \\"header\\": { \\"accept\\": \\"multipart/form-data\\", \\"Content-Type\\": \\"application/json\\", }, })(params);
@@ -1097,12 +1097,12 @@ test("deprecated=exception", async () => {
 });
 
 test("importRequest=true", async () => {
-  const result = await swaggerToJs({
+  const { code, types } = await swaggerToJs({
     ...baseConfig,
     importRequest: true,
   });
 
-  expect(result).toMatchInlineSnapshot(`
+  expect({ code, types }).toMatchInlineSnapshot(`
     Object {
       "code": "export function uploadFile(params) {
       return request(\\"post\\", \`/pet/\${params.path.petId}/uploadImage\`, { \\"header\\": { \\"accept\\": \\"multipart/form-data\\", \\"Content-Type\\": \\"application/json\\", }, })(params);
@@ -1468,12 +1468,12 @@ test("importRequest=true", async () => {
 });
 
 test("originalBody=true", async () => {
-  const result = await swaggerToJs({
+  const { code, types } = await swaggerToJs({
     ...baseConfig,
     originalBody: true,
   });
 
-  expect(result).toMatchInlineSnapshot(`
+  expect({ code, types }).toMatchInlineSnapshot(`
     Object {
       "code": "export function uploadFile(params) {
       return request(\\"post\\", \`/pet/\${params.path.petId}/uploadImage\`, { \\"header\\": { \\"accept\\": \\"multipart/form-data\\", \\"Content-Type\\": \\"application/json\\", }, })(params);
@@ -1839,12 +1839,12 @@ test("originalBody=true", async () => {
 });
 
 test("ignoreDescription=true", async () => {
-  const result = await swaggerToJs({
+  const { code, types } = await swaggerToJs({
     ...baseConfig,
     ignoreDescription: true,
   });
 
-  expect(result).toMatchInlineSnapshot(`
+  expect({ code, types }).toMatchInlineSnapshot(`
     Object {
       "code": "export function uploadFile(params) {
       return request(\\"post\\", \`/pet/\${params.path.petId}/uploadImage\`, { \\"header\\": { \\"accept\\": \\"multipart/form-data\\", \\"Content-Type\\": \\"application/json\\", }, })(params);
@@ -2143,9 +2143,9 @@ test("ignoreDescription=true", async () => {
 test("read apiJson and insert in config", async () => {
   const apiJsonPath = path.resolve(process.cwd(), baseConfig.file);
   const apiJson = JSON.parse(readFileSync(apiJsonPath, "utf8"));
-  const result = await swaggerToJs({ apiJson });
+  const { code, types } = await swaggerToJs({ apiJson });
 
-  expect(result).toMatchInlineSnapshot(`
+  expect({ code, types }).toMatchInlineSnapshot(`
     Object {
       "code": "export function uploadFile(params) {
       return request(\\"post\\", \`/pet/\${params.path.petId}/uploadImage\`, { \\"header\\": { \\"accept\\": \\"multipart/form-data\\", \\"Content-Type\\": \\"application/json\\", }, })(params);
@@ -2510,11 +2510,15 @@ test("read apiJson and insert in config", async () => {
   `);
 });
 
+/* eslint-disable no-unused-vars */
+
 test("apiJson equal api by file", async () => {
   const apiJsonPath = path.resolve(process.cwd(), baseConfig.file);
   const apiJson = JSON.parse(readFileSync(apiJsonPath, "utf8"));
-  const result = await swaggerToJs({ apiJson });
-  const resultByBaseConfig = await swaggerToJs(baseConfig);
+  const { swaggerData: _, ...result } = await swaggerToJs({ apiJson });
+  const { swaggerData: _s, ...resultByBaseConfig } = await swaggerToJs(
+    baseConfig,
+  );
 
   expect(result).toEqual(resultByBaseConfig);
 });
@@ -2522,56 +2526,70 @@ test("apiJson equal api by file", async () => {
 test("apiJson important than file", async () => {
   const apiJsonPath = path.resolve(process.cwd(), baseConfig.file);
   const apiJson = JSON.parse(readFileSync(apiJsonPath, "utf8"));
-  const result = await swaggerToJs({
+  const { swaggerData: _, ...result } = await swaggerToJs({
     apiJson,
     file: "./src/mocks/petstore-v3.json",
   });
-  const resultByBaseConfig = await swaggerToJs(baseConfig);
+  const { swaggerData: _s, ...resultByBaseConfig } = await swaggerToJs(
+    baseConfig,
+  );
 
   expect(result).toEqual(resultByBaseConfig);
 });
 
 test("use yaml", async () => {
-  const result = await swaggerToJs({ file: "./src/mocks/petstore-v2.yaml" });
-  const resultByBaseConfig = await swaggerToJs(baseConfig);
+  const { swaggerData: _, ...result } = await swaggerToJs({
+    file: "./src/mocks/petstore-v2.yaml",
+  });
+  const { swaggerData: _s, ...resultByBaseConfig } = await swaggerToJs(
+    baseConfig,
+  );
 
   expect(result).toEqual(resultByBaseConfig);
 });
 
 test("use url in prop file", async () => {
-  const result = await swaggerToJs({
+  const { swaggerData: _, ...result } = await swaggerToJs({
     file:
       "https://raw.githubusercontent.com/EvgenyiFedotov/swagger-to-js/next/src/mocks/petstore-v2-multi-file.yaml",
   });
-  const resultByBaseConfig = await swaggerToJs(baseConfig);
+  const { swaggerData: _s, ...resultByBaseConfig } = await swaggerToJs(
+    baseConfig,
+  );
 
   expect(result).toEqual(resultByBaseConfig);
 });
 
 test("multifile", async () => {
-  const result = await swaggerToJs({
+  const { swaggerData: _, ...result } = await swaggerToJs({
     file: "./src/mocks/petstore-v2-multi-file.yaml",
   });
-  const resultByBaseConfig = await swaggerToJs(baseConfig);
+  const { swaggerData: _s, ...resultByBaseConfig } = await swaggerToJs(
+    baseConfig,
+  );
 
   expect(result).toEqual(resultByBaseConfig);
 });
 
 test("multifile and root file by url", async () => {
-  const result = await swaggerToJs({
+  const { swaggerData: _, ...result } = await swaggerToJs({
     file:
       "https://raw.githubusercontent.com/EvgenyiFedotov/swagger-to-js/next/src/mocks/petstore-v2-multi-file.yaml",
   });
-  const resultByBaseConfig = await swaggerToJs(baseConfig);
+  const { swaggerData: _s, ...resultByBaseConfig } = await swaggerToJs(
+    baseConfig,
+  );
 
   expect(result).toEqual(resultByBaseConfig);
 });
 
 test("multifile with ref how url", async () => {
-  const result = await swaggerToJs({
+  const { swaggerData: _, ...result } = await swaggerToJs({
     file: "./src/mocks/petstore-v2-ref-url.yaml",
   });
-  const resultByBaseConfig = await swaggerToJs(baseConfig);
+  const { swaggerData: _s, ...resultByBaseConfig } = await swaggerToJs(
+    baseConfig,
+  );
 
   expect(result).toEqual(resultByBaseConfig);
 });
