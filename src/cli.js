@@ -40,6 +40,7 @@ program
   )
   .option("--import-request", "Import request code in out code")
   .option("--import-request-disabled", "Disable importing or generating request")
+  .option("--disable-types-generate", "Disable generating .d.ts file")
   .option("--original-body", "Build with original request body")
   .option("--ignore-description", "Ignore description of requests");
 
@@ -60,6 +61,7 @@ const config = {
   deprecated: program.deprecated || loadedConfig.deprecated,
   importRequest: program.importRequestDisabled ? "disabled" : (program.importRequest || loadedConfig.importRequest),
   originalBody: program.originalBody || loadedConfig.originalBody,
+  disableTypesGenerate: program.disableTypesGenerate || loadedConfig.disableTypesGenerate,
 
   templateCodeBefore: loadedConfig.templateCodeBefore,
   templateRequestCode: loadedConfig.templateRequestCode,
@@ -102,9 +104,11 @@ async function main(config) {
 
 function buildFiles({ code, types }, config = {}) {
   const { importRequest = false } = config;
-  const files = {
-    "index.d.ts": { content: types },
-  };
+  const files = {};
+
+  if (!config.disableTypesGenerate) {
+    files["index.d.ts"] = { content: types };
+  }
 
   if (importRequest === true) {
     files["index.js"] = {

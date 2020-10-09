@@ -84,6 +84,9 @@ module.exports = {
   // Ignore description of requests
   ignoreDescription: true, // default: false
 
+  // Completely disable generating types file (.d.ts)
+  disableTypesGenerate: true, // (default: false)
+
   // Template before main block code
   templateCodeBefore: () => "",
 
