@@ -1947,3 +1947,45 @@ test("disable types generating [code]", () => {
     "
   `);
 });
+
+test("change types file name [types]", () => {
+  execSync(
+    "node ./src/cli.js --file ./src/mocks/petstore-v3-short.json --template-file-name-types demo.d.ts  --output-dir ./TEST_API",
+  );
+  expect(execSync("ls ./TEST_API").toString()).toMatchInlineSnapshot(`
+    "demo.d.ts
+    index.js
+    json-to-xml.js
+    request.js
+    xml-to-json.js
+    "
+  `);
+});
+
+test("change code file name [code]", () => {
+  execSync(
+    "node ./src/cli.js --file ./src/mocks/petstore-v3-short.json --template-file-name-code demo.ts  --output-dir ./TEST_API",
+  );
+  expect(execSync("ls ./TEST_API").toString()).toMatchInlineSnapshot(`
+    "demo.ts
+    index.d.ts
+    json-to-xml.js
+    request.js
+    xml-to-json.js
+    "
+  `);
+});
+
+test("change code and types file name [code, types]", () => {
+  execSync(
+    "node ./src/cli.js --file ./src/mocks/petstore-v3-short.json --template-file-name-types demo.d.ts --template-file-name-code demo.js  --output-dir ./TEST_API",
+  );
+  expect(execSync("ls ./TEST_API").toString()).toMatchInlineSnapshot(`
+    "demo.d.ts
+    demo.js
+    json-to-xml.js
+    request.js
+    xml-to-json.js
+    "
+  `);
+});

@@ -42,7 +42,9 @@ program
   .option("--import-request-disabled", "Disable importing or generating request")
   .option("--disable-types-generate", "Disable generating .d.ts file")
   .option("--original-body", "Build with original request body")
-  .option("--ignore-description", "Ignore description of requests");
+  .option("--ignore-description", "Ignore description of requests")
+  .option('--template-file-name-code <name>', "Set name for file with code")
+  .option('--template-file-name-types <name>', "Set name for file with types");
 
 program.parse(process.argv);
 
@@ -62,6 +64,9 @@ const config = {
   importRequest: program.importRequestDisabled ? "disabled" : (program.importRequest || loadedConfig.importRequest),
   originalBody: program.originalBody || loadedConfig.originalBody,
   disableTypesGenerate: program.disableTypesGenerate || loadedConfig.disableTypesGenerate,
+
+  templateFileNameCode: program.templateFileNameCode || loadedConfig.templateFileNameCode,
+  templateFileNameTypes: program.templateFileNameTypes || loadedConfig.templateFileNameTypes,
 
   templateCodeBefore: loadedConfig.templateCodeBefore,
   templateRequestCode: loadedConfig.templateRequestCode,
@@ -105,17 +110,19 @@ async function main(config) {
 function buildFiles({ code, types }, config = {}) {
   const { importRequest = false } = config;
   const files = {};
+  const nameTypes = config.templateFileNameTypes || 'index.d.ts';
+  const nameCode = config.templateFileNameCode || 'index.js';
 
   if (!config.disableTypesGenerate) {
-    files["index.d.ts"] = { content: types };
+    files[nameTypes] = { content: types };
   }
 
   if (importRequest === true) {
-    files["index.js"] = {
+    files[nameCode] = {
       content: `import { request } from 'swagger-to-js/request';\n\n${code}`,
     };
   } else if (importRequest === false) {
-    files["index.js"] = {
+    files[nameCode] = {
       content: `import { request } from './request';\n\n${code}`,
     };
 
@@ -140,7 +147,7 @@ function buildFiles({ code, types }, config = {}) {
       },
     };
   } else if (importRequest === 'disabled') {
-    files["index.js"] = {
+    files[nameCode] = {
       content: code,
     };
   } else {
