@@ -8,11 +8,12 @@ const {
 const {
   templateTypesBefore: _templateTypesBefore,
 } = require("./common/templates/types-before");
+const { compilePresets } = require("./lib/presets");
 const { swaggerV2ToJs } = require("./v2");
 const { swaggerV3ToJs } = require("./v3");
 
 async function swaggerToJs(_config = {}) {
-  const config = buildConfig(_config);
+  const config = buildConfig(compilePresets(_config));
 
   validConfig(config);
 
