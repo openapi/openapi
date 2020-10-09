@@ -1,0 +1,23 @@
+{
+  "name": "demo2-swagger-to-js-preset",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "local.js"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evgenyifedotov/swagger-to-js.git"
+  },
+  "author": "Sergey Sova <mail@sergeysova.com> (https://sergeysova.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/evgenyifedotov/swagger-to-js/issues"
+  },
+  "homepage": "https://github.com/evgenyifedotov/swagger-to-js#readme"
+}

@@ -93,6 +93,9 @@ module.exports = {
   // Change file name for typings
   templateFileNameTypes: 'my-api.d.ts', // (default: 'index.d.js')
 
+  // Load presets and merge local properties to it
+  presets: ['my-super-swagger-to-js-preset'], // (default: [])
+
   // Template before main block code
   templateCodeBefore: () => "",
 
@@ -160,12 +163,25 @@ console.log(types);
 - If you will use this package after application created, you will have problem with generated api,
   because current api in your app will have different with your swagger api maybe.
 
+## How to create custom preset
+
+1. Create new NPM package (create directory and `npm init` there)
+1. Name your package with `-swagger-to-js-preset` suffix
+1. Create `index.js` and set `"main": "index.js"` in your package.json
+1. Fill your `index.js` with any properties from list before
+1. Save and publish
+1. Use it like: `presets: ['example-swagger-to-js-preset']`
+
+> Hint: if you want to use local file as a preset, just use `require.resolve`:
+> `presets: [require.resolve('./local-preset')]`
+> It is works only in `.js` configs
+
 ## Tests swagger versions
 
 - 2.0
 - 3.0.1
 - 3.0.2
 
-## Next
+## Roadmap
 
 - [ ] Struct generated files by tags
