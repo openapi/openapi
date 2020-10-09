@@ -5,9 +5,9 @@ const baseConfig = {
 };
 
 test("without config", async () => {
-  const result = await swaggerToJs(baseConfig);
+  const { code, types } = await swaggerToJs(baseConfig);
 
-  expect(result).toMatchInlineSnapshot(`
+  expect({ code, types }).toMatchInlineSnapshot(`
     Object {
       "code": "export function updatePet(params) {
       return request(\\"put\\", \`/pet\`)(params);
@@ -365,12 +365,12 @@ test("without config", async () => {
 });
 
 test("deprecated=ignore", async () => {
-  const result = await swaggerToJs({
+  const { code, types } = await swaggerToJs({
     ...baseConfig,
     deprecated: "ignore",
   });
 
-  expect(result).toMatchInlineSnapshot(`
+  expect({ code, types }).toMatchInlineSnapshot(`
     Object {
       "code": "export function updatePet(params) {
       return request(\\"put\\", \`/pet\`)(params);
@@ -728,12 +728,12 @@ test("deprecated=ignore", async () => {
 });
 
 test("deprecated=exception", async () => {
-  const result = await swaggerToJs({
+  const { code, types } = await swaggerToJs({
     ...baseConfig,
     deprecated: "exception",
   });
 
-  expect(result).toMatchInlineSnapshot(`
+  expect({ code, types }).toMatchInlineSnapshot(`
     Object {
       "code": "export function updatePet(params) {
       return request(\\"put\\", \`/pet\`)(params);
@@ -1091,12 +1091,12 @@ test("deprecated=exception", async () => {
 });
 
 test("importRequest=true", async () => {
-  const result = await swaggerToJs({
+  const { code, types } = await swaggerToJs({
     ...baseConfig,
     importRequest: true,
   });
 
-  expect(result).toMatchInlineSnapshot(`
+  expect({ code, types }).toMatchInlineSnapshot(`
     Object {
       "code": "export function updatePet(params) {
       return request(\\"put\\", \`/pet\`)(params);
@@ -1454,12 +1454,12 @@ test("importRequest=true", async () => {
 });
 
 test("originalBody=true", async () => {
-  const result = await swaggerToJs({
+  const { code, types } = await swaggerToJs({
     ...baseConfig,
     originalBody: true,
   });
 
-  expect(result).toMatchInlineSnapshot(`
+  expect({ code, types }).toMatchInlineSnapshot(`
     Object {
       "code": "export function updatePet(params) {
       return request(\\"put\\", \`/pet\`)(params);
@@ -1817,12 +1817,12 @@ test("originalBody=true", async () => {
 });
 
 test("ignoreDescription=true", async () => {
-  const result = await swaggerToJs({
+  const { code, types } = await swaggerToJs({
     ...baseConfig,
     ignoreDescription: true,
   });
 
-  expect(result).toMatchInlineSnapshot(`
+  expect({ code, types }).toMatchInlineSnapshot(`
     Object {
       "code": "export function updatePet(params) {
       return request(\\"put\\", \`/pet\`)(params);

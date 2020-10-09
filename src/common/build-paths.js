@@ -1,5 +1,6 @@
 const { isPathException } = require("../common/is-path-exception");
 const { buildPathName } = require("../common/build-path-name");
+const changeCase = require("change-case");
 
 function buildPaths(buildOptions) {
   const {
@@ -23,7 +24,11 @@ function buildPaths(buildOptions) {
 
         // Path code
         const pathCodeParams = buildPathCodeParams(pathParams, state);
-        const resultRequestCode = config.templateRequestCode(pathCodeParams);
+        const resultRequestCode = config.templateRequestCode(pathCodeParams, {
+          swaggerData: apiJson,
+          requestSwaggerData: pathConfig,
+          changeCase,
+        });
 
         if (resultRequestCode) {
           content.code += `${resultRequestCode}\n\n`;
