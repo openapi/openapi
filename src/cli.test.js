@@ -1989,3 +1989,24 @@ test("change code and types file name [code, types]", () => {
     "
   `);
 });
+
+test("applies preset from package", () => {
+  execSync(
+    "node ./src/cli.js --file ./src/mocks/petstore-v3-short.json --output-dir ./TEST_API --presets demo3-swagger-to-js-preset",
+  );
+  expect(execSync("ls ./TEST_API").toString()).toMatchInlineSnapshot(`
+    "from-demo.d.ts
+    from-demo.js
+    "
+  `);
+
+  const source = readFileSync("./TEST_API/from-demo.js", "utf8");
+
+  expect(source).toMatchInlineSnapshot(`
+    "// This is from \`demo3-swagger-to-js-preset\`export function updatePet(params) {
+      return request(\\"put\\", \`/pet\`)(params);
+    }
+
+    "
+  `);
+});

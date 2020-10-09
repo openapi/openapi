@@ -7,6 +7,7 @@ const { existsSync, writeFileSync, readFileSync } = require("fs");
 const { execSync } = require("child_process");
 const { version, name } = require("../package.json");
 const { cosmiconfigSync } = require("cosmiconfig");
+const { compilePresets } = require("./lib/presets");
 
 const timeLog = `✨ ${name}`;
 const defaultOutputDir = "./api";
@@ -39,12 +40,19 @@ program
     "Action for deprecated methods: 'warning' | 'ignore' | 'exception' (default: 'warning')",
   )
   .option("--import-request", "Import request code in out code")
-  .option("--import-request-disabled", "Disable importing or generating request")
+  .option(
+    "--import-request-disabled",
+    "Disable importing or generating request",
+  )
   .option("--disable-types-generate", "Disable generating .d.ts file")
   .option("--original-body", "Build with original request body")
   .option("--ignore-description", "Ignore description of requests")
-  .option('--template-file-name-code <name>', "Set name for file with code")
-  .option('--template-file-name-types <name>', "Set name for file with types");
+  .option("--template-file-name-code <name>", "Set name for file with code")
+  .option("--template-file-name-types <name>", "Set name for file with types")
+  .option(
+    "--presets <presets...>",
+    "Load options from presets. Options merged from right to left",
+  );
 
 program.parse(process.argv);
 
@@ -61,12 +69,18 @@ const config = {
 
   mode: program.mode || loadedConfig.mode,
   deprecated: program.deprecated || loadedConfig.deprecated,
-  importRequest: program.importRequestDisabled ? "disabled" : (program.importRequest || loadedConfig.importRequest),
+  importRequest: program.importRequestDisabled
+    ? "disabled"
+    : program.importRequest || loadedConfig.importRequest,
   originalBody: program.originalBody || loadedConfig.originalBody,
-  disableTypesGenerate: program.disableTypesGenerate || loadedConfig.disableTypesGenerate,
+  disableTypesGenerate:
+    program.disableTypesGenerate || loadedConfig.disableTypesGenerate,
+  presets: program.presets || loadedConfig.presets || [],
 
-  templateFileNameCode: program.templateFileNameCode || loadedConfig.templateFileNameCode,
-  templateFileNameTypes: program.templateFileNameTypes || loadedConfig.templateFileNameTypes,
+  templateFileNameCode:
+    program.templateFileNameCode || loadedConfig.templateFileNameCode,
+  templateFileNameTypes:
+    program.templateFileNameTypes || loadedConfig.templateFileNameTypes,
 
   templateCodeBefore: loadedConfig.templateCodeBefore,
   templateRequestCode: loadedConfig.templateRequestCode,
@@ -91,11 +105,12 @@ async function main(config) {
   console.time(timeLog);
 
   // Convert to js
-  const apiResult = await swaggerToJs(config);
-  const outputFiles = buildFiles(apiResult, config);
+  const compiledConfig = compilePresets(omitUndefined(config));
+  const apiResult = await swaggerToJs(compiledConfig);
+  const outputFiles = buildFiles(apiResult, compiledConfig);
 
   // Check and create output dir
-  const pathOutputDir = path.resolve(process.cwd(), config.outputDir);
+  const pathOutputDir = path.resolve(process.cwd(), compiledConfig.outputDir);
 
   if (existsSync(pathOutputDir) === false) {
     execSync(`mkdir -p ${pathOutputDir}`);
@@ -110,8 +125,8 @@ async function main(config) {
 function buildFiles({ code, types }, config = {}) {
   const { importRequest = false } = config;
   const files = {};
-  const nameTypes = config.templateFileNameTypes || 'index.d.ts';
-  const nameCode = config.templateFileNameCode || 'index.js';
+  const nameTypes = config.templateFileNameTypes || "index.d.ts";
+  const nameCode = config.templateFileNameCode || "index.js";
 
   if (!config.disableTypesGenerate) {
     files[nameTypes] = { content: types };
@@ -146,12 +161,14 @@ function buildFiles({ code, types }, config = {}) {
         },
       },
     };
-  } else if (importRequest === 'disabled') {
+  } else if (importRequest === "disabled") {
     files[nameCode] = {
       content: code,
     };
   } else {
-    throw new TypeError(`Passed ${importRequest} to "importRequest", while allowed true, false or "disabled" `)
+    throw new TypeError(
+      `Passed ${importRequest} to "importRequest", while allowed true, false or "disabled" `,
+    );
   }
 
   return files;
@@ -185,6 +202,16 @@ function writeFilesSync(files, outputDir = "") {
       }
     }
   });
+}
+
+function omitUndefined(object) {
+  const result = {};
+  for (const key in object) {
+    if (typeof object[key] !== "undefined") {
+      result[key] = object[key];
+    }
+  }
+  return result;
 }
 
 main(config);
