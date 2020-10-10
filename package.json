@@ -27,6 +27,7 @@
   "files": [
     "src/common",
     "src/lib",
+    "!src/lib/presets/mocks",
     "src/v2/index.js",
     "src/v3/index.js",
     "src/cli/index.js",
