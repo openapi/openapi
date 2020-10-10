@@ -357,6 +357,136 @@ export function updatePet(params: UpdatePetParams5 & UpdatePetAddedParams5): Upd
 "
 `;
 
+exports[`CLI Should pass change case to templates: code 1`] = `
+"// Before this-is-a-sample-pet-store-server-based-on-the-open-api-3-0-specification-you-can-find-out-more-about-swagger-at-http-swagger-io-http-swagger-io-in-the-third-iteration-of-the-pet-store-we-ve-switched-to-the-design-first-approach-you-can-now-help-us-improve-the-api-whether-it-s-by-making-changes-to-the-definition-itself-or-to-the-code-that-way-with-time-we-can-improve-the-api-in-general-and-expose-some-of-the-new-features-in-oas3-some-useful-links-the-pet-store-repository-https-github-com-swagger-api-swagger-petstore-the-source-api-definition-for-the-pet-store-https-github-com-swagger-api-swagger-petstore-blob-master-src-main-resources-openapi-yaml 
+
+updatePetswaggerPetstoreShortOpenApi_3_0
+
+// After this-is-a-sample-pet-store-server-based-on-the-open-api-3-0-specification-you-can-find-out-more-about-swagger-at-http-swagger-io-http-swagger-io-in-the-third-iteration-of-the-pet-store-we-ve-switched-to-the-design-first-approach-you-can-now-help-us-improve-the-api-whether-it-s-by-making-changes-to-the-definition-itself-or-to-the-code-that-way-with-time-we-can-improve-the-api-in-general-and-expose-some-of-the-new-features-in-oas3-some-useful-links-the-pet-store-repository-https-github-com-swagger-api-swagger-petstore-the-source-api-definition-for-the-pet-store-https-github-com-swagger-api-swagger-petstore-blob-master-src-main-resources-openapi-yaml 
+
+"
+`;
+
+exports[`CLI Should pass change case to templates: files 1`] = `
+"swagger-petstore-short-open-api-3-0.d.ts
+swagger-petstore-short-open-api-3-0.js
+"
+`;
+
+exports[`CLI Should pass change case to templates: types 1`] = `
+"// Before this-is-a-sample-pet-store-server-based-on-the-open-api-3-0-specification-you-can-find-out-more-about-swagger-at-http-swagger-io-http-swagger-io-in-the-third-iteration-of-the-pet-store-we-ve-switched-to-the-design-first-approach-you-can-now-help-us-improve-the-api-whether-it-s-by-making-changes-to-the-definition-itself-or-to-the-code-that-way-with-time-we-can-improve-the-api-in-general-and-expose-some-of-the-new-features-in-oas3-some-useful-links-the-pet-store-repository-https-github-com-swagger-api-swagger-petstore-the-source-api-definition-for-the-pet-store-https-github-com-swagger-api-swagger-petstore-blob-master-src-main-resources-openapi-yaml 
+
+updatePetswaggerPetstoreShortOpenApi_3_0
+
+updatePetswaggerPetstoreShortOpenApi_3_0
+
+updatePetswaggerPetstoreShortOpenApi_3_0
+
+updatePetswaggerPetstoreShortOpenApi_3_0
+
+updatePetswaggerPetstoreShortOpenApi_3_0
+
+updatePetswaggerPetstoreShortOpenApi_3_0
+
+// After this-is-a-sample-pet-store-server-based-on-the-open-api-3-0-specification-you-can-find-out-more-about-swagger-at-http-swagger-io-http-swagger-io-in-the-third-iteration-of-the-pet-store-we-ve-switched-to-the-design-first-approach-you-can-now-help-us-improve-the-api-whether-it-s-by-making-changes-to-the-definition-itself-or-to-the-code-that-way-with-time-we-can-improve-the-api-in-general-and-expose-some-of-the-new-features-in-oas3-some-useful-links-the-pet-store-repository-https-github-com-swagger-api-swagger-petstore-the-source-api-definition-for-the-pet-store-https-github-com-swagger-api-swagger-petstore-blob-master-src-main-resources-openapi-yaml 
+
+"
+`;
+
+exports[`CLI Should pass request swagger data to templates: code 1`] = `
+"update.pet
+
+"
+`;
+
+exports[`CLI Should pass request swagger data to templates: files 1`] = `
+"index.d.ts
+index.js
+"
+`;
+
+exports[`CLI Should pass request swagger data to templates: types 1`] = `
+"type RequestResult<Data> = Promise<{ response: Response; data: Data; }>;
+
+update.pet
+
+update.pet
+
+update.pet
+
+update.pet
+
+update.pet
+
+update.pet
+
+"
+`;
+
+exports[`CLI Should pass swagger data to templates: code 1`] = `
+"// Before This is a sample Pet Store Server based on the OpenAPI 3.0 specification.  You can find out more about
+Swagger at [http://swagger.io](http://swagger.io). In the third iteration of the pet store, we've switched to the design first approach!
+You can now help us improve the API whether it's by making changes to the definition itself or to the code.
+That way, with time, we can improve the API in general, and expose some of the new features in OAS3.
+
+Some useful links:
+- [The Pet Store repository](https://github.com/swagger-api/swagger-petstore)
+- [The source API definition for the Pet Store](https://github.com/swagger-api/swagger-petstore/blob/master/src/main/resources/openapi.yaml)  
+
+updatePetSwagger Petstore Short - OpenAPI 3.0
+
+// After This is a sample Pet Store Server based on the OpenAPI 3.0 specification.  You can find out more about
+Swagger at [http://swagger.io](http://swagger.io). In the third iteration of the pet store, we've switched to the design first approach!
+You can now help us improve the API whether it's by making changes to the definition itself or to the code.
+That way, with time, we can improve the API in general, and expose some of the new features in OAS3.
+
+Some useful links:
+- [The Pet Store repository](https://github.com/swagger-api/swagger-petstore)
+- [The source API definition for the Pet Store](https://github.com/swagger-api/swagger-petstore/blob/master/src/main/resources/openapi.yaml)  
+
+"
+`;
+
+exports[`CLI Should pass swagger data to templates: files 1`] = `
+"swagger-petstore-short-open-api-3-0.d.ts
+swagger-petstore-short-open-api-3-0.js
+"
+`;
+
+exports[`CLI Should pass swagger data to templates: types 1`] = `
+"// Before This is a sample Pet Store Server based on the OpenAPI 3.0 specification.  You can find out more about
+Swagger at [http://swagger.io](http://swagger.io). In the third iteration of the pet store, we've switched to the design first approach!
+You can now help us improve the API whether it's by making changes to the definition itself or to the code.
+That way, with time, we can improve the API in general, and expose some of the new features in OAS3.
+
+Some useful links:
+- [The Pet Store repository](https://github.com/swagger-api/swagger-petstore)
+- [The source API definition for the Pet Store](https://github.com/swagger-api/swagger-petstore/blob/master/src/main/resources/openapi.yaml)  
+
+updatePetSwagger Petstore Short - OpenAPI 3.0
+
+updatePetSwagger Petstore Short - OpenAPI 3.0
+
+updatePetSwagger Petstore Short - OpenAPI 3.0
+
+updatePetSwagger Petstore Short - OpenAPI 3.0
+
+updatePetSwagger Petstore Short - OpenAPI 3.0
+
+updatePetSwagger Petstore Short - OpenAPI 3.0
+
+// After This is a sample Pet Store Server based on the OpenAPI 3.0 specification.  You can find out more about
+Swagger at [http://swagger.io](http://swagger.io). In the third iteration of the pet store, we've switched to the design first approach!
+You can now help us improve the API whether it's by making changes to the definition itself or to the code.
+That way, with time, we can improve the API in general, and expose some of the new features in OAS3.
+
+Some useful links:
+- [The Pet Store repository](https://github.com/swagger-api/swagger-petstore)
+- [The source API definition for the Pet Store](https://github.com/swagger-api/swagger-petstore/blob/master/src/main/resources/openapi.yaml)  
+
+"
+`;
+
 exports[`CLI Should works with v2 on js: code 1`] = `
 "import { request } from './request';
 

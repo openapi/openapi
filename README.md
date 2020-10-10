@@ -106,8 +106,14 @@ module.exports = {
   // Load presets and merge local properties to it
   presets: ['my-super-swagger-to-js-preset'], // (default: [])
 
-  // Template before main block code
-  templateCodeBefore: () => "",
+  /**
+   * Template before main block code
+   * @param {{
+   *  swaggerData: { info: object; paths: object; components: object; };
+   *  changeCase: { paramCase: Function; camelCase: Function; pascalCase: Function; ... };
+   * }} extra
+   */
+  templateCodeBefore: (extra) => "",
 
   /**
    * Template request code
@@ -127,11 +133,23 @@ module.exports = {
    */
   templateRequestCode: (params, extra) => "",
 
-  // Template after maon block code
-  templateCodeAfter: () => "",
+  /**
+   * Template after maon block code
+   * @param {{
+   *  swaggerData: { info: object; paths: object; components: object; };
+   *  changeCase: { paramCase: Function; camelCase: Function; pascalCase: Function; ... };
+   * }} extra
+   */
+  templateCodeAfter: (extra) => "",
 
-  // Template before main block types
-  templateTypesBefore: () => "",
+  /**
+   * Template before main block types
+   * @param {{
+   *  swaggerData: { info: object; paths: object; components: object; };
+   *  changeCase: { paramCase: Function; camelCase: Function; pascalCase: Function; ... };
+   * }} extra
+   */
+  templateTypesBefore: (extra) => "",
 
   /**
    * Template request types
@@ -145,13 +163,24 @@ module.exports = {
    *  addedParams: SwaggerData | null;
    *  result: SwaggerData | null;
    * }} params
+   * * @param {{
+   *  swaggerData: { info: object; paths: object; components: object; };
+   *  requestSwaggerData: { operationId: string; requestBody?: object; responses: object };
+   *  changeCase: { paramCase: Function; camelCase: Function; pascalCase: Function; ... };
+   * }} extra
    *
    * @type {https://swagger.io/docs/specification/data-models/} SwaggerData
    */
-  templateRequestTypes: (param) => "",
+  templateRequestTypes: (param, extra) => "",
 
-  // Template after main block types
-  templateTypesAfter: () => "",
+  /**
+   * Template after main block types
+   * @param {{
+   *  swaggerData: { info: object; paths: object; components: object; };
+   *  changeCase: { paramCase: Function; camelCase: Function; pascalCase: Function; ... };
+   * }} extra
+   */
+  templateTypesAfter: (extra) => "",
 };
 ```
 

@@ -22,13 +22,18 @@ function buildPaths(buildOptions) {
         // Path name
         pathParams.name = buildPathName(pathParams);
 
-        // Path code
-        const pathCodeParams = buildPathCodeParams(pathParams, state);
-        const resultRequestCode = config.templateRequestCode(pathCodeParams, {
+        const extra = {
           swaggerData: apiJson,
           requestSwaggerData: pathConfig,
           changeCase,
-        });
+        };
+
+        // Path code
+        const pathCodeParams = buildPathCodeParams(pathParams, state);
+        const resultRequestCode = config.templateRequestCode(
+          pathCodeParams,
+          extra,
+        );
 
         if (resultRequestCode) {
           content.code += `${resultRequestCode}\n\n`;
@@ -48,6 +53,7 @@ function buildPaths(buildOptions) {
 
           const resultRequestTypes = config.templateRequestTypes(
             pathVariantTypesParams,
+            extra,
           );
 
           if (resultRequestTypes) {

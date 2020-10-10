@@ -17,6 +17,7 @@ async function swaggerV2ToJs(apiJson, config = {}) {
 
   return buildBase(
     (content) => buildPaths(buildPathOptions)(content, state),
+    nextApiJson,
     config,
   );
 }
