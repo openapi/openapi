@@ -20,22 +20,23 @@
     "url": "https://github.com/EvgenyiFedotov/swagger-to-js/issues"
   },
   "scripts": {
-    "test": "jest",
-    "prepack": "yarn test",
-    "test-pack": "rm -rf test-pack && yarn pack --filename package-pack.tgz && mkdir -pv test-pack && tar -xvzf package-pack.tgz -C test-pack && rm package-pack.tgz"
+    "test": "jest --testPathIgnorePatterns package.test",
+    "prepublishOnly": "yarn test && yarn test-pack",
+    "test-pack": "yarn jest -i ./src/package.test.js"
   },
   "files": [
     "src/common",
     "src/lib",
+    "!src/lib/presets/mocks",
     "src/v2/index.js",
     "src/v3/index.js",
-    "src/cli.js",
+    "src/cli/index.js",
     "src/index.d.ts",
     "src/index.js",
     "request.js"
   ],
   "bin": {
-    "swagger-to-js": "./src/cli.js"
+    "swagger-to-js": "./src/cli/index.js"
   },
   "dependencies": {
     "@types/jest": "^26.0.14",

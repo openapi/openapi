@@ -1,6 +1,3 @@
 *.test.js
+*.snap.js
 src/lib/presets/mocks
-src/lib/v2/fixtures
-src/lib/v2/mocks
-src/lib/v3/fixtures
-src/lib/v3/mocks
