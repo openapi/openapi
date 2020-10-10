@@ -21,7 +21,7 @@
   },
   "scripts": {
     "test": "jest",
-    "prepack": "yarn test",
+    "prepublishOnly": "yarn test",
     "test-pack": "rm -rf test-pack && yarn pack --filename package-pack.tgz && mkdir -pv test-pack && tar -xvzf package-pack.tgz -C test-pack && rm package-pack.tgz"
   },
   "files": [
