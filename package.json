@@ -29,13 +29,13 @@
     "src/lib",
     "src/v2/index.js",
     "src/v3/index.js",
-    "src/cli.js",
+    "src/cli/index.js",
     "src/index.d.ts",
     "src/index.js",
     "request.js"
   ],
   "bin": {
-    "swagger-to-js": "./src/cli.js"
+    "swagger-to-js": "./src/cli/index.js"
   },
   "dependencies": {
     "@types/jest": "^26.0.14",

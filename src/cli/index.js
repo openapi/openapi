@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
 const { program } = require("commander");
-const { swaggerToJs } = require("./index");
+const { swaggerToJs } = require("../index");
 const path = require("path");
 const { existsSync, writeFileSync, readFileSync } = require("fs");
 const { execSync } = require("child_process");
-const { version, name } = require("../package.json");
+const { version, name } = require("../../package.json");
 const { cosmiconfigSync } = require("cosmiconfig");
-const { compilePresets } = require("./lib/presets");
+const { compilePresets } = require("../lib/presets");
 const changeCase = require("change-case");
 
 const timeLog = `✨ ${name}`;
@@ -154,7 +154,7 @@ function buildFiles({ code, types, swaggerData }, config = {}) {
     };
 
     files["request.js"] = {
-      content: readFile("./lib/request.js", (content) => {
+      content: readFile("../lib/request.js", (content) => {
         const contentLines = content.split("\n").slice(0, -2);
 
         contentLines[0] = "import { jsonToXml } from './json-to-xml';";
@@ -166,10 +166,10 @@ function buildFiles({ code, types, swaggerData }, config = {}) {
       }),
       dependencies: {
         "xml-to-json.js": {
-          content: readFile("./lib/xml-to-json.js", exportOneFunction),
+          content: readFile("../lib/xml-to-json.js", exportOneFunction),
         },
         "json-to-xml.js": {
-          content: readFile("./lib/json-to-xml.js", exportOneFunction),
+          content: readFile("../lib/json-to-xml.js", exportOneFunction),
         },
       },
     };
