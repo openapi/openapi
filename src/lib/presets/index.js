@@ -13,8 +13,8 @@ function compilePresets(config) {
     }
 
     let presetsMerged = {};
-    for (const name of config.presets) {
-      const imported = require(name);
+    for (const preset of config.presets) {
+      const imported = loadPreset(preset);
       presetsMerged = {
         ...presetsMerged,
         ...compilePresets(imported),
@@ -26,6 +26,31 @@ function compilePresets(config) {
     return final;
   }
   return config;
+}
+
+function loadPreset(preset) {
+  if (Array.isArray(preset)) {
+    const [name, options] = preset;
+    if (typeof name !== "string") {
+      throw new TypeError(
+        `A name of preset should be a string. "${
+          name === null ? "null" : typeof name
+        }" passed`,
+      );
+    }
+
+    const imported = require(name);
+
+    if (typeof imported !== "function") {
+      throw new TypeError(`Preset "${name}" must be used without options`);
+    }
+    return imported(options || {});
+  }
+  const imported = require(preset);
+  if (typeof imported === "function") {
+    return imported({});
+  }
+  return imported;
 }
 
 module.exports = { compilePresets };

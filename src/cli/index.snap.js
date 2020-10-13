@@ -1,5 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`CLI Should apply preset from file: code 1`] = `
+"PASSED
+
+"
+`;
+
+exports[`CLI Should apply preset from file: files 1`] = `
+"index.d.ts
+index.js
+"
+`;
+
+exports[`CLI Should apply preset from file: types 1`] = `
+"type RequestResult<Data> = Promise<{ response: Response; data: Data; }>;
+
+type UpdatePetParams0 = { \\"body\\"?: { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
+type UpdatePetAddedParams0 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+type UpdatePetResult0 = RequestResult<{ \\"pet\\"?: { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+/**
+* Update an existing pet
+* Update an existing pet by Id
+*/
+export function updatePet(params: UpdatePetParams0 & UpdatePetAddedParams0): UpdatePetResult0;
+
+type UpdatePetParams1 = { \\"body\\"?: { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
+type UpdatePetAddedParams1 = { \\"header\\"?: { \\"accept\\": \\"application/json\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+type UpdatePetResult1 = RequestResult<{ \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }>;
+export function updatePet(params: UpdatePetParams1 & UpdatePetAddedParams1): UpdatePetResult1;
+
+type UpdatePetParams2 = { \\"body\\"?: { \\"pet\\"?: { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+type UpdatePetAddedParams2 = { \\"header\\"?: { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+type UpdatePetResult2 = RequestResult<{ \\"pet\\"?: { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+export function updatePet(params: UpdatePetParams2 & UpdatePetAddedParams2): UpdatePetResult2;
+
+type UpdatePetParams3 = { \\"body\\"?: { \\"pet\\"?: { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }; };
+type UpdatePetAddedParams3 = { \\"header\\"?: { \\"accept\\": \\"application/xml\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+type UpdatePetResult3 = RequestResult<{ \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }>;
+export function updatePet(params: UpdatePetParams3 & UpdatePetAddedParams3): UpdatePetResult3;
+
+type UpdatePetParams4 = { \\"body\\"?: { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
+type UpdatePetAddedParams4 = { \\"header\\"?: { \\"accept\\": \\"application/x-www-form-urlencoded\\"; \\"Content-Type\\": \\"application/xml\\"; }; };
+type UpdatePetResult4 = RequestResult<{ \\"pet\\"?: { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"photoUrls\\": { \\"photoUrl\\"?: (string)[]; }; \\"tags\\"?: { \\"tag\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; }; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; }>;
+export function updatePet(params: UpdatePetParams4 & UpdatePetAddedParams4): UpdatePetResult4;
+
+type UpdatePetParams5 = { \\"body\\"?: { \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }; };
+type UpdatePetAddedParams5 = { \\"header\\"?: { \\"accept\\": \\"application/x-www-form-urlencoded\\"; \\"Content-Type\\": \\"application/json\\"; }; };
+type UpdatePetResult5 = RequestResult<{ \\"id\\"?: number; \\"name\\": string; \\"category\\"?: { \\"id\\"?: number; \\"name\\"?: string; }; \\"photoUrls\\": (string)[]; \\"tags\\"?: ({ \\"id\\"?: number; \\"name\\"?: string; })[]; \\"status\\"?: \\"available\\" | \\"pending\\" | \\"sold\\"; }>;
+export function updatePet(params: UpdatePetParams5 & UpdatePetAddedParams5): UpdatePetResult5;
+
+"
+`;
+
 exports[`CLI Should apply preset from package: code 1`] = `
 "// This is from \`demo3-swagger-to-js-preset\`export function updatePet(params) {
   return request(\\"put\\", \`/pet\`)(params);

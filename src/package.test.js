@@ -150,6 +150,8 @@ describe("yarn pack", () => {
         "/src/lib/presets/mocks/demo3-preset/unused.js",
         "/src/lib/presets/mocks/demo3-preset/yarn.lock",
         "/src/lib/presets/mocks/preset-nested.js",
+        "/src/lib/presets/mocks/preset-options-nested.js",
+        "/src/lib/presets/mocks/preset-options.js",
         "/src/lib/presets/mocks/preset-second.js",
         "/src/lib/presets/mocks/preset-simple.js",
         "/src/lib/presets/presets.test.js",
