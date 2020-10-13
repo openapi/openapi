@@ -103,7 +103,16 @@ module.exports = {
    */
   templateFileNameTypes: 'my-api.d.ts', // (default: 'index.d.js')
 
-  // Load presets and merge local properties to it
+  /**
+   * Load presets and merge local properties to it
+   * If preset created as a function, options can be passed
+   * @example
+   * presets: [
+   *  ['my-super-swagger-to-js-preset', { passed: 'options' }],
+   *  ['another-swagger-to-js-preset', { beautiful: 'options' }],
+   * ]
+   * If no options passed or used simple form, empty object passed to functional preset
+   */
   presets: ['my-super-swagger-to-js-preset'], // (default: [])
 
   /**
@@ -219,6 +228,38 @@ console.log(types);
 > Hint: if you want to use local file as a preset, just use `require.resolve`:
 > `presets: [require.resolve('./local-preset')]`
 > It is works only in `.js` configs
+
+### Preset with options
+
+1. Export from your javascript file function with single argument
+1. Add valid options to your README.md
+1. Use nested array form to pass options to preset
+
+#### Example preset with options
+
+```js
+module.exports = (options) => ({
+  templateRequestCode: (request, extra) =>
+    options.parseBody
+      ? generatorWithParser(request, extra)
+      : simpleGenerator(request, extra),
+});
+```
+
+Usage `swagger-to-js.config.js`:
+
+```js
+module.exports = {
+  file: "./swagger-api.json",
+  presets: [
+    ["example-swagger-to-js-preset", { parseBody: true }],
+    [
+      "another-swagger-to-js-preset",
+      { requestImport: { module: "./axios-fabric", name: "axios" } },
+    ],
+  ],
+};
+```
 
 ## Tests swagger versions
 
