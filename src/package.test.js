@@ -77,7 +77,11 @@ describe("yarn pack", () => {
     expect(list).toMatchInlineSnapshot(`
       Array [
         "/.eslintrc",
+        "/.github/pr-labeler.yml",
+        "/.github/release-drafter.yml",
         "/.github/workflows/nodejs.yml",
+        "/.github/workflows/pr-labeler.yml",
+        "/.github/workflows/release-drafter.yml",
         "/.gitignore",
         "/.npmignore",
         "/.prettierrc",
@@ -95,6 +99,7 @@ describe("yarn pack", () => {
         "/package.json",
         "/request.js",
         "/snapshot-resolver.js",
+        "/src/cli/fixtures/apply-preset-from-file.js",
         "/src/cli/fixtures/apply-preset-from-package.js",
         "/src/cli/fixtures/change-code-and-types-file-name.js",
         "/src/cli/fixtures/change-code-file-name.js",
