@@ -1,0 +1,6 @@
+chore: chore/*
+documentation: ["docs/*"]
+feature: ["feature/*", "feat/*"]
+fix: ["fix/*", "hotfix/*", "bugfix/*"]
+refactor: ["refactor/*", "refactoring/*"]
+test: ["test/*", "tests/*"]
