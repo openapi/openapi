@@ -261,7 +261,7 @@ module.exports = {
 };
 ```
 
-## Tests swagger versions
+## Tested generation on swagger versions
 
 - 2.0
 - 3.0.1
@@ -270,3 +270,17 @@ module.exports = {
 ## Roadmap
 
 - [ ] Struct generated files by tags
+
+## Development
+
+### How to release a new version
+
+1. Wait for release-drafter to generates a new draft release
+1. Pull all changes to local repository
+1. Run tests `yarn test && yarn test-pack`
+1. Create a new tag and change package.json `npm version 1.2.3` (use the version from a draft release)
+1. Publish new version `npm publish`
+1. Push tags and changes `git push origin master --tags`
+1. Go to [Releases](https://github.com/evgenyifedotov/swagger-to-js/releases) and press "Edit" on draft release
+1. Check and fix release text
+1. Press "Publish release" button
