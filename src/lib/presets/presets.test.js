@@ -151,3 +151,75 @@ test("preset from package requires another package preset that use local preset"
     fourth: "SHOULD BE!",
   });
 });
+
+describe("options", () => {
+  test("should be passed as argument to functional preset", () => {
+    const config = {
+      demo: 0,
+      another: true,
+      presets: [[require.resolve("./mocks/preset-options.js"), { wow: true }]],
+    };
+    expect(compilePresets(config)).toEqual({
+      demo: 0,
+      another: true,
+      options: {
+        wow: true,
+      },
+      just: 2,
+    });
+  });
+
+  test("should throw if passed options to non-functional preset", () => {
+    const config = {
+      demo: 0,
+      another: true,
+      presets: [[require.resolve("./mocks/preset-simple.js"), { wow: true }]],
+    };
+    expect(() => {
+      compilePresets(config);
+    }).toThrowError(/must be used without options/);
+  });
+
+  test("should pass empty object if functional preset used without options", () => {
+    const config = {
+      demo: 0,
+      another: true,
+      presets: [require.resolve("./mocks/preset-options.js")],
+    };
+    expect(compilePresets(config)).toEqual({
+      demo: 0,
+      another: true,
+      options: {},
+      just: 2,
+    });
+  });
+
+  test("should pass empty object if functional preset used without options", () => {
+    const config = {
+      demo: 0,
+      another: true,
+      presets: [
+        [
+          require.resolve("./mocks/preset-options-nested.js"),
+          { passed: "options" },
+        ],
+      ],
+    };
+    expect(compilePresets(config)).toMatchInlineSnapshot(`
+      Object {
+        "another": true,
+        "deep": true,
+        "demo": 0,
+        "just": 5,
+        "options": Object {
+          "options": Object {
+            "passed": "options",
+          },
+        },
+        "parentOptions": Object {
+          "passed": "options",
+        },
+      }
+    `);
+  });
+});
