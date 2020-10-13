@@ -1,8 +1,7 @@
 const { execSync } = require("child_process");
-const { readFileSync, writeFileSync } = require("fs");
-
-const fs = require("fs");
 const path = require("path");
+const { readFileSync, writeFileSync, readdirSync } = require("fs");
+
 const { sentenceCase } = require("change-case");
 
 afterEach(() => {
@@ -10,10 +9,23 @@ afterEach(() => {
   execSync("rm -fr ./TEST_CONFIG.js");
 });
 
+test("should regenerate nonstandard file names", () => {
+  execSync(
+    `node ./src/cli --output-dir ./TEST_API --file ./src/mocks/petstore-v3-short.json --template-file-name-code random.js`,
+  );
+  const first = readFileSync("./TEST_API/random.js", "utf8");
+
+  execSync(
+    `node ./src/cli --output-dir ./TEST_API --file ./src/mocks/petstore-v3.json --template-file-name-code random.js`,
+  );
+  const second = readFileSync("./TEST_API/random.js", "utf8");
+
+  expect(first).not.toBe(second);
+});
+
 describe("CLI", () => {
   const fixturesDir = path.join(__dirname, "fixtures");
-  const testCases = fs
-    .readdirSync(fixturesDir)
+  const testCases = readdirSync(fixturesDir)
     .filter((file) => file.endsWith(".js"))
     .sort();
 

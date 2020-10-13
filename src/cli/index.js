@@ -12,7 +12,6 @@ const changeCase = require("change-case");
 
 const timeLog = `✨ ${name}`;
 const defaultOutputDir = "./api";
-const changeAlways = ["index.js", "index.d.ts"];
 
 program
   .version(version)
@@ -110,7 +109,10 @@ async function main(config) {
     resolveLocalPresets(omitUndefined(config)),
   );
   const apiResult = await swaggerToJs(compiledConfig);
-  const outputFiles = buildFiles(apiResult, compiledConfig);
+  const { all: outputFiles, source: sourceFilesNames } = buildFiles(
+    apiResult,
+    compiledConfig,
+  );
 
   // Check and create output dir
   const pathOutputDir = path.resolve(process.cwd(), compiledConfig.outputDir);
@@ -120,7 +122,7 @@ async function main(config) {
   }
 
   // Write files
-  writeFilesSync(outputFiles, pathOutputDir);
+  writeFilesSync(outputFiles, sourceFilesNames, pathOutputDir);
 
   console.timeEnd(timeLog);
 }
@@ -183,7 +185,7 @@ function buildFiles({ code, types, swaggerData }, config = {}) {
     );
   }
 
-  return files;
+  return { all: files, source: [nameCode, nameTypes] };
 }
 
 function resolveLocalPresets(config) {
@@ -219,7 +221,11 @@ function exportOneFunction(content) {
   return contentLines.join("\n");
 }
 
-function writeFilesSync(files, outputDir = "") {
+function writeFilesSync(
+  files,
+  changeAlways = ["index.d.ts", "index.js"],
+  outputDir = "",
+) {
   Object.keys(files).forEach((fileName) => {
     const filePath = path.resolve(outputDir, fileName);
 
@@ -229,7 +235,7 @@ function writeFilesSync(files, outputDir = "") {
       writeFileSync(filePath, fileConfig.content);
 
       if (fileConfig.dependencies) {
-        writeFilesSync(fileConfig.dependencies, outputDir);
+        writeFilesSync(fileConfig.dependencies, changeAlways, outputDir);
       }
     }
   });
