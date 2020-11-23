@@ -189,6 +189,8 @@ describe("yarn pack", () => {
         "/src/v2/index.snap.js",
         "/src/v2/index.test.js",
         "/src/v2/mocks/example-preset.js",
+        "/src/v3/extended.snap.js",
+        "/src/v3/extended.test.js",
         "/src/v3/fixtures/add-original-body.js",
         "/src/v3/fixtures/ignore-deprecated.js",
         "/src/v3/fixtures/ignore-description.js",
