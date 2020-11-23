@@ -32,7 +32,7 @@ schemes:
   - "https"
   - "http"
 paths:
-  $ref: "https://raw.githubusercontent.com/EvgenyiFedotov/swagger-to-js/next/src/mocks/petstore-v2-multi-file/paths.yaml"
+  $ref: "https://raw.githubusercontent.com/EvgenyiFedotov/swagger-to-js/master/src/mocks/petstore-v2-multi-file/paths.yaml"
 securityDefinitions:
   api_key:
     type: "apiKey"
