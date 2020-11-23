@@ -9,6 +9,23 @@ function buildObjectByMode(object, mode = "json") {
       next = buildObjectByMode(next.schema, mode);
     } else if (next.type) {
       next = buildObjectTypeByType(next, mode);
+    } else if (next.allOf) {
+      next = buildObjectByMode(
+        next.allOf.reduce((memo, item) => ({ ...memo, ...item }), {}),
+        mode,
+      );
+    } else if (next.oneOf) {
+      // TODO Now I don't know how it resolve, so it work how 'allOf'
+      next = buildObjectByMode(
+        next.oneOf.reduce((memo, item) => ({ ...memo, ...item }), {}),
+        mode,
+      );
+    } else if (next.anyOf) {
+      // TODO Now I don't know how it resolve, so it work how 'allOf'
+      next = buildObjectByMode(
+        next.anyOf.reduce((memo, item) => ({ ...memo, ...item }), {}),
+        mode,
+      );
     } else {
       next = rebuildObject(next, rebuildObjectValue(mode));
     }

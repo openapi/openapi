@@ -270,6 +270,9 @@ module.exports = {
 ## Roadmap
 
 - [ ] Struct generated files by tags
+- [ ] Detect `nullable`
+- [ ] Validate by schema
+- [ ] Combine types by
 
 ## Development
 

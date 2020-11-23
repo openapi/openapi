@@ -14,7 +14,8 @@ function contentToJson(pathFile, getContent) {
     try {
       apiJson = JSON.parse(fileContent);
     } catch (error) {
-      throw new Error("Selected file have incorrect format.");
+      console.warn("Selected file has incorrect format.");
+      apiJson = null;
     }
   }
 

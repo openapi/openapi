@@ -28,6 +28,7 @@ function printObjectTypeByType(object) {
     case "string":
       return printObjectTypeHowString(object);
     case "integer":
+    case "number":
       return "number";
     case "boolean":
       return "boolean";
