@@ -203,6 +203,7 @@ describe("yarn pack", () => {
         "/src/v3/index.js",
         "/src/v3/index.snap.js",
         "/src/v3/index.test.js",
+        "/src/v3/mocks/api.github.com.json",
         "/src/v3/mocks/example-preset.js",
         "/yarn.lock",
       ]
