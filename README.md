@@ -1,6 +1,6 @@
 # openapijs/openapi
 
-Convert swagger api to JS or TS
+Generate JavaScript or TypeScript code from Swagger/OpenAPI specification.
 
 ## Install
 
