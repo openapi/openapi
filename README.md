@@ -1,30 +1,30 @@
-# Swagger-to-js
+# openapijs/openapi
 
-Convert swagger api to js (with types for typescript)
+Convert swagger api to JS or TS
 
 ## Install
 
 ```sh
-npm install swagger-to-js
+npm install openapi
 # or
-yarn add swagger-to-js
+yarn add openapi
 # or to global space
 ```
 
 ## Examples
 
 ```sh
-yarn swagger-to-js --file ../src/mocks/local-file-api.json
+yarn openapi --file ../src/mocks/local-file-api.json
 # or
-yarn swagger-to-js --file ../src/mocks/local-file-api.yaml
+yarn openapi --file ../src/mocks/local-file-api.yaml
 # or
-yarn swagger-to-js --file protocol://url/api.json
+yarn openapi --file protocol://url/api.json
 ```
 
 ## Usage CLI
 
 ```sh
-yarn swagger-to-js [options]
+yarn openapi [options]
 
 Options:
   -V, --version            output the version number
@@ -46,11 +46,11 @@ This package use [`cosmiconfig`](https://github.com/davidtheclark/cosmiconfig) f
 
 ### Config can exist next places
 
-- a swagger-to-js property in package.json
-- a .swagger-to-jsrc file in JSON or YAML format
-- a .swagger-to-jsrc.json file
-- a .swagger-to-jsrc.yaml, .swagger-to-jsrc.yml, or .swagger-to-jsrc.js file
-- a swagger-to-js.config.js file exporting a JS object
+- a openapi property in package.json
+- a .openapirc file in JSON or YAML format
+- a .openapirc.json file
+- a .openapirc.yaml, .openapirc.yml, or .openapirc.js file
+- a openapi.config.js file exporting a JS object
 
 ```js
 module.exports = {
@@ -73,7 +73,7 @@ module.exports = {
   deprecated: "warning", // "warning" | "ignore" | "exception" (default: "warning")
 
   // Import request code in out code
-  // true — add import from `swagger-to-js/request`
+  // true — add import from `openapi/request`
   // false — embed request to `outputDir` and import from it
   // "disabled" — completely disable imporing `request`, use `templateCodeBefore`
   importRequest: true, // (default: false)
@@ -108,12 +108,12 @@ module.exports = {
    * If preset created as a function, options can be passed
    * @example
    * presets: [
-   *  ['my-super-swagger-to-js-preset', { passed: 'options' }],
-   *  ['another-swagger-to-js-preset', { beautiful: 'options' }],
+   *  ['my-super-openapi-preset', { passed: 'options' }],
+   *  ['another-openapi-preset', { beautiful: 'options' }],
    * ]
    * If no options passed or used simple form, empty object passed to functional preset
    */
-  presets: ['my-super-swagger-to-js-preset'], // (default: [])
+  presets: ['my-super-openapi-preset'], // (default: [])
 
   /**
    * Template before main block code
@@ -196,9 +196,9 @@ module.exports = {
 ## API
 
 ```js
-import { swaggerToJs } from "swagger-to-js";
+import { openapiGenerate } from "openapi";
 
-const { code, types } = swaggerToJs({
+const { code, types } = openapiGenerate({
   file: "./swagger-api.json",
 });
 
@@ -209,7 +209,7 @@ console.log(types);
 // => typescript types
 ```
 
-[More examples](https://github.com/EvgenyiFedotov/swagger-to-js/tree/next/examples)
+[More examples](https://github.com/openapijs/openapi/tree/next/examples)
 
 ## Additional notes
 
@@ -219,11 +219,11 @@ console.log(types);
 ## How to create custom preset
 
 1. Create new NPM package (create directory and `npm init` there)
-1. Name your package with `-swagger-to-js-preset` suffix
+1. Name your package with `-openapi-preset` suffix
 1. Create `index.js` and set `"main": "index.js"` in your package.json
 1. Fill your `index.js` with any properties from list before
 1. Save and publish
-1. Use it like: `presets: ['example-swagger-to-js-preset']`
+1. Use it like: `presets: ['example-openapi-preset']`
 
 > Hint: if you want to use local file as a preset, just use `require.resolve`:
 > `presets: [require.resolve('./local-preset')]`
@@ -246,15 +246,15 @@ module.exports = (options) => ({
 });
 ```
 
-Usage `swagger-to-js.config.js`:
+Usage `openapi.config.js`:
 
 ```js
 module.exports = {
   file: "./swagger-api.json",
   presets: [
-    ["example-swagger-to-js-preset", { parseBody: true }],
+    ["example-openapi-preset", { parseBody: true }],
     [
-      "another-swagger-to-js-preset",
+      "another-openapi-preset",
       { requestImport: { module: "./axios-fabric", name: "axios" } },
     ],
   ],
@@ -284,6 +284,6 @@ module.exports = {
 1. Create a new tag and change package.json `npm version 1.2.3` (use the version from a draft release)
 1. Publish new version `npm publish`
 1. Push tags and changes `git push origin master --tags`
-1. Go to [Releases](https://github.com/evgenyifedotov/swagger-to-js/releases) and press "Edit" on draft release
+1. Go to [Releases](https://github.com/openapijs/openapi/releases) and press "Edit" on draft release
 1. Check and fix release text
 1. Press "Publish release" button

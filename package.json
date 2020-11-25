@@ -1,11 +1,14 @@
 {
-  "name": "swagger-to-js",
-  "version": "1.2.1",
-  "description": "⚡️ Convert swagger json api to js (with types fo typescript)",
+  "name": "openapi",
+  "version": "1.0.0",
+  "description": "⚡️ Convert swagger json api to js and ts",
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
-  "repository": "git@github.com:EvgenyiFedotov/swagger-to-js.git",
-  "author": "e.fedotov <fedotov1290@gmail.com>",
+  "repository": "openapijs/openapi",
+  "contributors": [
+    "e.fedotov <fedotov1290@gmail.com>",
+    "Sergey Sova <mail@sergeysova.com> (https://sova.dev)"
+  ],
   "license": "MIT",
   "keywords": [
     "convert",
@@ -13,11 +16,12 @@
     "api",
     "js",
     "types",
+    "openapi",
     "typescript"
   ],
-  "homepage": "https://github.com/EvgenyiFedotov/swagger-to-js",
+  "homepage": "https://github.com/openapijs/openapi",
   "bugs": {
-    "url": "https://github.com/EvgenyiFedotov/swagger-to-js/issues"
+    "url": "https://github.com/openapijs/openapi/issues"
   },
   "scripts": {
     "test": "jest --testPathIgnorePatterns package.test",
@@ -36,7 +40,7 @@
     "request.js"
   ],
   "bin": {
-    "swagger-to-js": "./src/cli/index.js"
+    "openapi": "./src/cli/index.js"
   },
   "dependencies": {
     "@types/jest": "^26.0.14",

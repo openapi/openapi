@@ -1,5 +1,5 @@
 const path = require("path");
-const { swaggerToJs } = require("../index");
+const { openapiGenerate: swaggerToJs } = require("../index");
 
 test("use github api", async () => {
   const result = await swaggerToJs({

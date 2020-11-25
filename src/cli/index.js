@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const { program } = require("commander");
-const { swaggerToJs } = require("../index");
+const { openapiGenerate } = require("../index");
 const path = require("path");
 const { existsSync, writeFileSync, readFileSync } = require("fs");
 const { execSync } = require("child_process");
@@ -56,7 +56,7 @@ program
 
 program.parse(process.argv);
 
-const exlorerConfig = cosmiconfigSync("swagger-to-js");
+const exlorerConfig = cosmiconfigSync("openapi");
 const searchedConfig = program.config
   ? exlorerConfig.load(program.config)
   : exlorerConfig.search() || {};
@@ -108,7 +108,7 @@ async function main(config) {
   const compiledConfig = compilePresets(
     resolveLocalPresets(omitUndefined(config)),
   );
-  const apiResult = await swaggerToJs(compiledConfig);
+  const apiResult = await openapiGenerate(compiledConfig);
   const { all: outputFiles, source: sourceFilesNames } = buildFiles(
     apiResult,
     compiledConfig,
@@ -148,7 +148,7 @@ function buildFiles({ code, types, swaggerData }, config = {}) {
 
   if (importRequest === true) {
     files[nameCode] = {
-      content: `import { request } from 'swagger-to-js/request';\n\n${code}`,
+      content: `import { request } from 'openapi/request';\n\n${code}`,
     };
   } else if (importRequest === false) {
     files[nameCode] = {

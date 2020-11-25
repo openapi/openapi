@@ -12,7 +12,7 @@ const { compilePresets } = require("./lib/presets");
 const { swaggerV2ToJs } = require("./v2");
 const { swaggerV3ToJs } = require("./v3");
 
-async function swaggerToJs(_config = {}) {
+async function openapiGenerate(_config = {}) {
   const config = buildConfig(compilePresets(_config));
 
   validConfig(config);
@@ -83,4 +83,4 @@ async function byVersion(apiJson, config) {
   throw new Error("Swagger version didn't detect");
 }
 
-module.exports = { swaggerToJs };
+module.exports = { openapiGenerate };

@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const { swaggerToJs } = require("../../../src");
+const { openapiGenerate: swaggerToJs } = require("../../../src");
 
 swaggerToJs({
   file: "./src/mocks/petstore-v2.json",

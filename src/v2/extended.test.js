@@ -1,4 +1,4 @@
-const { swaggerToJs } = require("../index");
+const { openapiGenerate: swaggerToJs } = require("../index");
 const { readFileSync } = require("fs");
 const path = require("path");
 

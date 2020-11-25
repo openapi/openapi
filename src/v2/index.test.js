@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { sentenceCase } = require("change-case");
-const { swaggerToJs } = require("../index");
+const { openapiGenerate: swaggerToJs } = require("../index");
 
 describe("v2", () => {
   const fixturesDir = path.join(__dirname, "fixtures");

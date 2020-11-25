@@ -53,4 +53,4 @@ type Result = {
   [nameFile: string]: string;
 };
 
-export function swaggerToJs(config?: Config): Result;
+export function openapiGenerate(config?: Config): Result;
