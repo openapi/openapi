@@ -19,9 +19,9 @@
     "openapi",
     "typescript"
   ],
-  "homepage": "https://github.com/openapijs/openapi",
+  "homepage": "https://github.com/openapi/openapi",
   "bugs": {
-    "url": "https://github.com/openapijs/openapi/issues"
+    "url": "https://github.com/openapi/openapi/issues"
   },
   "scripts": {
     "test": "jest --testPathIgnorePatterns package.test",
