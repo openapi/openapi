@@ -42,8 +42,7 @@ function pathParametersByIn(pathParams, state) {
       const bodyKeys = Object.keys(paramsByIn.properties.body.properties);
 
       if (bodyKeys.length === 1) {
-        paramsByIn.properties.body =
-          paramsByIn.properties.body.properties[bodyKeys[0]];
+        paramsByIn.properties.body = paramsByIn.properties.body.properties[bodyKeys[0]];
       }
     }
   }

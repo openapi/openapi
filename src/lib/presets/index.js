@@ -33,9 +33,7 @@ function loadPreset(preset) {
     const [name, options] = preset;
     if (typeof name !== "string") {
       throw new TypeError(
-        `A name of preset should be a string. "${
-          name === null ? "null" : typeof name
-        }" passed`,
+        `A name of preset should be a string. "${name === null ? "null" : typeof name}" passed`,
       );
     }
 

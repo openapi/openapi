@@ -60,11 +60,7 @@ function templateUrl(props) {
 function templateDefaultParams(props) {
   const { defaultParams } = props;
 
-  if (
-    defaultParams &&
-    typeof defaultParams === "object" &&
-    Object.keys(defaultParams).length
-  ) {
+  if (defaultParams && typeof defaultParams === "object" && Object.keys(defaultParams).length) {
     return printObject(objectToArray(defaultParams), (propValue) =>
       printObject(objectToArray(propValue)),
     );

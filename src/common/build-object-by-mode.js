@@ -49,15 +49,9 @@ function buildObjectTypeByType(object, mode) {
 
 function buildObjectTypeHowObject(object, mode) {
   if (object.additionalProperties) {
-    object.additionalProperties = buildObjectByMode(
-      object.additionalProperties,
-      mode,
-    );
+    object.additionalProperties = buildObjectByMode(object.additionalProperties, mode);
   } else if (object.properties) {
-    object.properties = rebuildObject(
-      object.properties,
-      rebuildObjectValue(mode),
-    );
+    object.properties = rebuildObject(object.properties, rebuildObjectValue(mode));
 
     if (mode === "xml" && object.xml && object.xml.name) {
       object = {

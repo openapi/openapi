@@ -15,17 +15,12 @@ async function swaggerV3ToJs(apiJson, config = {}) {
   };
   const state = { apiJson: nextApiJson, config };
 
-  return buildBase(
-    (content) => buildPaths(buildPathOptions)(content, state),
-    nextApiJson,
-    config,
-  );
+  return buildBase((content) => buildPaths(buildPathOptions)(content, state), nextApiJson, config);
 }
 
 function buildPathCodeParams(pathParams, state) {
   const { pathConfig } = pathParams;
-  const isWarningDeprecated =
-    pathConfig.deprecated && state.config.deprecated !== "ignore";
+  const isWarningDeprecated = pathConfig.deprecated && state.config.deprecated !== "ignore";
   const isExistParams =
     Boolean(pathConfig.requestBody && pathConfig.requestBody.content) ||
     (pathConfig.parameters || []).length > 0;
@@ -40,13 +35,7 @@ function buildPathCodeParams(pathParams, state) {
   };
 }
 
-function buildPathVariantTypesParams({
-  variant,
-  index,
-  variants,
-  pathParams,
-  state,
-}) {
+function buildPathVariantTypesParams({ variant, index, variants, pathParams, state }) {
   const { pathConfig } = pathParams;
   const { config } = state;
 

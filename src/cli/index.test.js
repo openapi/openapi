@@ -48,14 +48,9 @@ describe("CLI", () => {
       expect(execSync("ls ./TEST_API").toString()).toMatchSnapshot("files");
 
       if (fileTypes)
-        expect(readFileSync(`./TEST_API/${fileTypes}`, "utf8")).toMatchSnapshot(
-          "types",
-        );
+        expect(readFileSync(`./TEST_API/${fileTypes}`, "utf8")).toMatchSnapshot("types");
 
-      if (fileCode)
-        expect(readFileSync(`./TEST_API/${fileCode}`, "utf8")).toMatchSnapshot(
-          "code",
-        );
+      if (fileCode) expect(readFileSync(`./TEST_API/${fileCode}`, "utf8")).toMatchSnapshot("code");
     });
   }
 });

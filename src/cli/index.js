@@ -24,35 +24,23 @@ program
   .option("--config <path>", "Path to config")
 
   // Common options
-  .option(
-    "--mode <type>",
-    "Mode for additional info: 'prod' | 'dev' (default: 'prod')",
-  )
+  .option("--mode <type>", "Mode for additional info: 'prod' | 'dev' (default: 'prod')")
 
   // Api options
   .option("--file <path>", "Path to file with api (*.json, *.yaml, url)")
-  .option(
-    "--authorization <value>",
-    "Auth token for get api by url (it is header for request)",
-  )
+  .option("--authorization <value>", "Auth token for get api by url (it is header for request)")
   .option(
     "--deprecated <type>",
     "Action for deprecated methods: 'warning' | 'ignore' | 'exception' (default: 'warning')",
   )
   .option("--import-request", "Import request code in out code")
-  .option(
-    "--import-request-disabled",
-    "Disable importing or generating request",
-  )
+  .option("--import-request-disabled", "Disable importing or generating request")
   .option("--disable-types-generate", "Disable generating .d.ts file")
   .option("--original-body", "Build with original request body")
   .option("--ignore-description", "Ignore description of requests")
   .option("--template-file-name-code <name>", "Set name for file with code")
   .option("--template-file-name-types <name>", "Set name for file with types")
-  .option(
-    "--presets <presets...>",
-    "Load options from presets. Options merged from right to left",
-  );
+  .option("--presets <presets...>", "Load options from presets. Options merged from right to left");
 
 program.parse(process.argv);
 
@@ -73,14 +61,11 @@ const config = {
     ? "disabled"
     : program.importRequest || loadedConfig.importRequest,
   originalBody: program.originalBody || loadedConfig.originalBody,
-  disableTypesGenerate:
-    program.disableTypesGenerate || loadedConfig.disableTypesGenerate,
+  disableTypesGenerate: program.disableTypesGenerate || loadedConfig.disableTypesGenerate,
   presets: program.presets || loadedConfig.presets || [],
 
-  templateFileNameCode:
-    program.templateFileNameCode || loadedConfig.templateFileNameCode,
-  templateFileNameTypes:
-    program.templateFileNameTypes || loadedConfig.templateFileNameTypes,
+  templateFileNameCode: program.templateFileNameCode || loadedConfig.templateFileNameCode,
+  templateFileNameTypes: program.templateFileNameTypes || loadedConfig.templateFileNameTypes,
 
   templateCodeBefore: loadedConfig.templateCodeBefore,
   templateRequestCode: loadedConfig.templateRequestCode,
@@ -105,14 +90,9 @@ async function main(config) {
   console.time(timeLog);
 
   // Convert to js
-  const compiledConfig = compilePresets(
-    resolveLocalPresets(omitUndefined(config)),
-  );
+  const compiledConfig = compilePresets(resolveLocalPresets(omitUndefined(config)));
   const apiResult = await openapiGenerate(compiledConfig);
-  const { all: outputFiles, source: sourceFilesNames } = buildFiles(
-    apiResult,
-    compiledConfig,
-  );
+  const { all: outputFiles, source: sourceFilesNames } = buildFiles(apiResult, compiledConfig);
 
   // Check and create output dir
   const pathOutputDir = path.resolve(process.cwd(), compiledConfig.outputDir);
@@ -131,16 +111,8 @@ function buildFiles({ code, types, swaggerData }, config = {}) {
   const { importRequest = false } = config;
   const files = {};
   const parameter = { swaggerData, changeCase };
-  const nameTypes = compileFileName(
-    config.templateFileNameTypes,
-    "index.d.ts",
-    parameter,
-  );
-  const nameCode = compileFileName(
-    config.templateFileNameCode,
-    "index.js",
-    parameter,
-  );
+  const nameTypes = compileFileName(config.templateFileNameTypes, "index.d.ts", parameter);
+  const nameCode = compileFileName(config.templateFileNameCode, "index.js", parameter);
 
   if (!config.disableTypesGenerate) {
     files[nameTypes] = { content: types };
@@ -221,11 +193,7 @@ function exportOneFunction(content) {
   return contentLines.join("\n");
 }
 
-function writeFilesSync(
-  files,
-  changeAlways = ["index.d.ts", "index.js"],
-  outputDir = "",
-) {
+function writeFilesSync(files, changeAlways = ["index.d.ts", "index.js"], outputDir = "") {
   Object.keys(files).forEach((fileName) => {
     const filePath = path.resolve(outputDir, fileName);
 

@@ -3,11 +3,7 @@ const { buildPathName } = require("../common/build-path-name");
 const changeCase = require("change-case");
 
 function buildPaths(buildOptions) {
-  const {
-    buildPathCodeParams,
-    getPathVariants,
-    buildPathVariantTypesParams,
-  } = buildOptions;
+  const { buildPathCodeParams, getPathVariants, buildPathVariantTypesParams } = buildOptions;
 
   return (content, state) => {
     const { apiJson, config } = state;
@@ -30,10 +26,7 @@ function buildPaths(buildOptions) {
 
         // Path code
         const pathCodeParams = buildPathCodeParams(pathParams, state);
-        const resultRequestCode = config.templateRequestCode(
-          pathCodeParams,
-          extra,
-        );
+        const resultRequestCode = config.templateRequestCode(pathCodeParams, extra);
 
         if (resultRequestCode) {
           content.code += `${resultRequestCode}\n\n`;
@@ -51,10 +44,7 @@ function buildPaths(buildOptions) {
             state,
           });
 
-          const resultRequestTypes = config.templateRequestTypes(
-            pathVariantTypesParams,
-            extra,
-          );
+          const resultRequestTypes = config.templateRequestTypes(pathVariantTypesParams, extra);
 
           if (resultRequestTypes) {
             content.types += `${resultRequestTypes}\n\n`;

@@ -21,18 +21,12 @@ async function buildObjectByRefs(object, state) {
     } else if (next.type) {
       next = await buildObjectTypeByType(next, state);
     } else {
-      next = await asyncRebuildObject(
-        next,
-        async (value) => await buildObjectByRefs(value, state),
-      );
+      next = await asyncRebuildObject(next, async (value) => await buildObjectByRefs(value, state));
     }
 
     return next;
   } else if (object instanceof Array) {
-    return await asyncMap(
-      object,
-      async (item) => await buildObjectByRefs(item, state),
-    );
+    return await asyncMap(object, async (item) => await buildObjectByRefs(item, state));
   }
 
   return object;
@@ -66,9 +60,7 @@ async function checkGetRefIsUrl(ref, state) {
     authorization: config.authorization,
   });
 
-  const nextObject = fileRef.subRef
-    ? getRef(content, `#${fileRef.subRef}`)
-    : content;
+  const nextObject = fileRef.subRef ? getRef(content, `#${fileRef.subRef}`) : content;
 
   return await buildObjectByRefs(nextObject, {
     ...state,
@@ -89,9 +81,7 @@ async function checkGetRefIsLocalFile(ref, state) {
       authorization: config.authorization,
     });
 
-    const nextObject = fileRef.subRef
-      ? getRef(content, `#${fileRef.subRef}`)
-      : content;
+    const nextObject = fileRef.subRef ? getRef(content, `#${fileRef.subRef}`) : content;
 
     return await buildObjectByRefs(nextObject, {
       ...state,
@@ -147,10 +137,7 @@ async function buildObjectTypeByType(object, state) {
 
 async function buildObjectTypeHowObject(object, state) {
   if (object.additionalProperties) {
-    object.additionalProperties = await buildObjectByRefs(
-      object.additionalProperties,
-      state,
-    );
+    object.additionalProperties = await buildObjectByRefs(object.additionalProperties, state);
   } else if (object.properties) {
     object.properties = await asyncRebuildObject(
       object.properties,

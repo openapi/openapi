@@ -15,11 +15,7 @@ async function swaggerV2ToJs(apiJson, config = {}) {
   };
   const state = { apiJson: nextApiJson, config };
 
-  return buildBase(
-    (content) => buildPaths(buildPathOptions)(content, state),
-    nextApiJson,
-    config,
-  );
+  return buildBase((content) => buildPaths(buildPathOptions)(content, state), nextApiJson, config);
 }
 
 function buildPathCodeParams(pathParams, state) {
@@ -30,19 +26,12 @@ function buildPathCodeParams(pathParams, state) {
     isExistParams: (pathConfig.parameters || []).length > 0,
     method: pathParams.method,
     url: pathParams.url,
-    isWarningDeprecated:
-      pathConfig.deprecated && state.config.deprecated !== "ignore",
+    isWarningDeprecated: pathConfig.deprecated && state.config.deprecated !== "ignore",
     defaultParams: pathDefaultParams(getPathVariants(pathParams)),
   };
 }
 
-function buildPathVariantTypesParams({
-  variant,
-  index,
-  variants,
-  pathParams,
-  state,
-}) {
+function buildPathVariantTypesParams({ variant, index, variants, pathParams, state }) {
   const { pathConfig } = pathParams;
   const { config } = state;
 
@@ -100,9 +89,7 @@ function buildPathAddedParamsTypes(variant) {
 
 function buildPathResultTypes(variant, pathParams) {
   const { pathConfig } = pathParams;
-  const object = pathConfig.responses
-    ? pathConfig.responses["200"] || null
-    : null;
+  const object = pathConfig.responses ? pathConfig.responses["200"] || null : null;
 
   if (object) {
     object.type = object.type || "swagger-to-js/path-result";

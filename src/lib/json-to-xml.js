@@ -1,9 +1,5 @@
 function jsonToXml(o) {
-  if (
-    typeof o === "object" &&
-    o.constructor === Object &&
-    Object.keys(o).length === 1
-  ) {
+  if (typeof o === "object" && o.constructor === Object && Object.keys(o).length === 1) {
     for (var a in o) {
       return toXML(a, o[a]);
     }

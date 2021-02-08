@@ -45,9 +45,7 @@ function request(method, url, defaultParams = {}) {
       let data = null;
 
       const headersValues = Object.values(headers);
-      const headersKeys = Object.keys(headers).map((value) =>
-        value.toLocaleLowerCase(),
-      );
+      const headersKeys = Object.keys(headers).map((value) => value.toLocaleLowerCase());
 
       switch (headersValues[headersKeys.indexOf("content-type")]) {
         case "multipart/form-data":

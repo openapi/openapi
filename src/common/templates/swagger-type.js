@@ -1,7 +1,4 @@
-const {
-  printObjectType,
-  objectToArrayType,
-} = require("../../lib/print-object");
+const { printObjectType, objectToArrayType } = require("../../lib/print-object");
 
 function templateSwaggerType(object) {
   let type = "unknown";
@@ -50,9 +47,7 @@ function printObjectTypeHowObject(object) {
   } else if (object.properties) {
     const properties = Object.keys(object.properties).map((propName) => {
       const objectRequired = object.required || [];
-      const required = objectRequired.length
-        ? objectRequired.includes(propName)
-        : false;
+      const required = objectRequired.length ? objectRequired.includes(propName) : false;
       let value = object.properties[propName];
 
       return [propName, { value, required }];

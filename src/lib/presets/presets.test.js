@@ -28,39 +28,25 @@ test("remove property if empty", () => {
 });
 
 test("breaks on invalid type", () => {
-  expect(() =>
-    compilePresets({ presets: null }),
-  ).toThrowErrorMatchingInlineSnapshot(
+  expect(() => compilePresets({ presets: null })).toThrowErrorMatchingInlineSnapshot(
     `"property \\"presets\\" should be an array. null passed"`,
   );
-  expect(() =>
-    compilePresets({ presets: 1 }),
-  ).toThrowErrorMatchingInlineSnapshot(
+  expect(() => compilePresets({ presets: 1 })).toThrowErrorMatchingInlineSnapshot(
     `"property \\"presets\\" should be an array. number passed"`,
   );
-  expect(() =>
-    compilePresets({ presets: "" }),
-  ).toThrowErrorMatchingInlineSnapshot(
+  expect(() => compilePresets({ presets: "" })).toThrowErrorMatchingInlineSnapshot(
     `"property \\"presets\\" should be an array. string passed"`,
   );
-  expect(() =>
-    compilePresets({ presets: {} }),
-  ).toThrowErrorMatchingInlineSnapshot(
+  expect(() => compilePresets({ presets: {} })).toThrowErrorMatchingInlineSnapshot(
     `"property \\"presets\\" should be an array. object passed"`,
   );
-  expect(() =>
-    compilePresets({ presets: global }),
-  ).toThrowErrorMatchingInlineSnapshot(
+  expect(() => compilePresets({ presets: global })).toThrowErrorMatchingInlineSnapshot(
     `"property \\"presets\\" should be an array. object passed"`,
   );
-  expect(() =>
-    compilePresets({ presets: true }),
-  ).toThrowErrorMatchingInlineSnapshot(
+  expect(() => compilePresets({ presets: true })).toThrowErrorMatchingInlineSnapshot(
     `"property \\"presets\\" should be an array. boolean passed"`,
   );
-  expect(() =>
-    compilePresets({ presets: undefined }),
-  ).toThrowErrorMatchingInlineSnapshot(
+  expect(() => compilePresets({ presets: undefined })).toThrowErrorMatchingInlineSnapshot(
     `"property \\"presets\\" should be an array. undefined passed"`,
   );
 });
@@ -198,12 +184,7 @@ describe("options", () => {
     const config = {
       demo: 0,
       another: true,
-      presets: [
-        [
-          require.resolve("./mocks/preset-options-nested.js"),
-          { passed: "options" },
-        ],
-      ],
+      presets: [[require.resolve("./mocks/preset-options-nested.js"), { passed: "options" }]],
     };
     expect(compilePresets(config)).toMatchInlineSnapshot(`
       Object {
