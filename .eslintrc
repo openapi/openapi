@@ -1,19 +1,24 @@
 {
-  "parser": "babel-eslint",
-  "rules": {
-    "no-unused-vars": [
-      "warn",
-      {
-        "vars": "all",
-        "args": "after-used",
-        "ignoreRestSiblings": false
+  "overrides": [
+    {
+      "files": ["*.js"],
+      "parser": "babel-eslint",
+      "rules": {
+        "no-unused-vars": [
+          "warn",
+          {
+            "vars": "all",
+            "args": "after-used",
+            "ignoreRestSiblings": false
+          }
+        ]
+      },
+      "parserOptions": {
+        "ecmaVersion": 2017
+      },
+      "env": {
+        "es6": true
       }
-    ]
-  },
-  "parserOptions": {
-    "ecmaVersion": 2017
-  },
-  "env": {
-    "es6": true
-  }
+    }
+  ]
 }

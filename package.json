@@ -25,7 +25,7 @@
   },
   "scripts": {
     "test": "jest --testPathIgnorePatterns package.test",
-    "prepublishOnly": "yarn test && yarn test-pack",
+    "prepublishOnly": "yarn test --passWIthNoTests && yarn test-pack",
     "test-pack": "yarn jest -i ./src/package.test.js",
     "build": "babel -d ./dist --extensions '.ts' ./src"
   },
@@ -50,9 +50,10 @@
     "cosmiconfig": "^7.0.0",
     "debug": "^4.3.1",
     "is-url": "^1.2.4",
-    "js-yaml": "^3.13.1",
-    "node-fetch": "^2.6.0",
+    "js-yaml": "^4.0.0",
+    "node-fetch": "^2.6.1",
     "object-hash": "^2.0.3",
+    "openapi-types": "^7.2.3",
     "swagger2openapi": "^7.0.5",
     "url-parse": "^1.4.7"
   },
@@ -63,8 +64,11 @@
     "@babel/preset-typescript": "^7.12.17",
     "@tsconfig/node14": "^1.0.0",
     "@types/debug": "^4.1.5",
+    "@types/is-url": "^1.2.28",
     "@types/jest": "^26.0.14",
+    "@types/js-yaml": "^4.0.0",
     "@types/node": "^14.14.31",
+    "@types/node-fetch": "^2.5.8",
     "babel-eslint": "^10.1.0",
     "demo-swagger-to-js-preset": "^0.2.0",
     "demo2-swagger-to-js-preset": "^0.1.0",
