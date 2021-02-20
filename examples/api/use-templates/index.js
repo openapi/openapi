@@ -1,14 +1,13 @@
 const fs = require("fs");
 const path = require("path");
 
-const { openapiGenerate: swaggerToJs } = require("../../../src");
+const { openapiGenerate: swaggerToJs } = require("../../../lib");
 
 swaggerToJs({
   file: "./src/mocks/petstore-v3.json",
 
   templateCodeBefore: () => `import * as ef from "effector";\n\n`,
-  templateRequestCode: ({ name }) =>
-    `export function ${name}() {\n  return ef.createEffect();\n};`,
+  templateRequestCode: ({ name }) => `export function ${name}() {\n  return ef.createEffect();\n};`,
 
   templateTypesBefore: () => `import * as ef from "effector";\n\n`,
   templateRequestTypes: ({ name, index }) =>
