@@ -6,7 +6,7 @@ import * as changeCase from "change-case";
 
 import { Config } from "./config";
 import { parseContent, readApiFile, createFetchOptions } from "./api-file";
-import { createPresetIterator, Preset, FilesApi } from "./presets";
+import { createPresetIterator, Preset, FilesApi, forEach } from "./presets";
 
 // File system per preset
 interface PFileSystem {
@@ -41,15 +41,15 @@ export async function openapi(config: Config) {
     fileSystemsMap.set(preset, system);
   });
 
-  forEach(api.components?.parameters, (name, parameter) =>
-    presets.forEach((preset) => preset.onParameter(name, parameter)),
-  );
+  presets.traverse(api.components?.callbacks, (preset) => preset.onCallback);
+  presets.traverse(api.components?.headers, (preset) => preset.onHeader);
+  presets.traverse(api.components?.links, (preset) => preset.onLink);
+  presets.traverse(api.components?.parameters, (preset) => preset.onParameter);
+  presets.traverse(api.components?.requestBodies, (preset) => preset.onRequestBody);
+  presets.traverse(api.components?.responses, (preset) => preset.onResponse);
+  presets.traverse(api.components?.schemas, (preset) => preset.onSchema);
+  presets.traverse(api.components?.securitySchemes, (preset) => preset.onSecurityScheme);
 
-  forEach(api.components?.schemas, (name, schema) =>
-    presets.forEach((preset) => preset.onSchema(name, schema)),
-  );
-
-  // TODO: add hooks for each component type
   // TODO: add hook for operation
   // TODO: add pre/post hooks
 
@@ -71,20 +71,6 @@ export async function openapi(config: Config) {
     const files = Object.fromEntries(fs.files.entries());
     console.log(`File system of preset "${preset.name}":`, files);
   }
-}
-
-function forEach<T>(
-  map: Record<string, T> | undefined,
-  fn: (name: string, value: Exclude<T, OpenAPIV3.ReferenceObject | undefined>) => void,
-) {
-  for (const name in map) {
-    const value: OpenAPIV3.ReferenceObject | T | undefined = map[name];
-    if (noRef(value) && value) fn(name, value as any);
-  }
-}
-
-function noRef<T>(value: OpenAPIV3.ReferenceObject | T): value is Exclude<T, undefined> {
-  return typeof value && !(value as any)["$ref"];
 }
 
 function isSwagger(input: OpenAPIV3.Document | OpenAPIV2.Document): input is OpenAPIV2.Document {

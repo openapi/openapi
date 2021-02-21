@@ -8,16 +8,28 @@ export interface FilesApi {
 
 export interface Preset {
   name: string;
-  onSchema: (name: string, schema: OpenAPIV3.SchemaObject) => void;
-  onParameter: (name: string, schema: OpenAPIV3.ParameterObject) => void;
   build(filesApi: FilesApi): void;
+  onCallback: (name: string, callback: OpenAPIV3.CallbackObject) => void;
+  onHeader: (name: string, header: OpenAPIV3.HeaderObject) => void;
+  onLink: (name: string, link: OpenAPIV3.LinkObject) => void;
+  onParameter: (name: string, parameter: OpenAPIV3.ParameterObject) => void;
+  onRequestBody: (name: string, requestBody: OpenAPIV3.RequestBodyObject) => void;
+  onResponse: (name: string, response: OpenAPIV3.ResponseObject) => void;
+  onSchema: (name: string, schema: OpenAPIV3.SchemaObject) => void;
+  onSecurityScheme: (name: string, securityScheme: OpenAPIV3.SecuritySchemeObject) => void;
 }
 
 const defaultPreset: Preset = {
   name: "(default)",
-  onSchema() {},
-  onParameter() {},
   build() {},
+  onCallback() {},
+  onHeader() {},
+  onLink() {},
+  onParameter() {},
+  onRequestBody() {},
+  onResponse() {},
+  onSchema() {},
+  onSecurityScheme() {},
 };
 
 type OptionalPreset = Partial<Preset>;
@@ -34,7 +46,31 @@ export function createPresetIterator(list: PresetConfig[], internal: unknown) {
     forEach(fn: (preset: Preset) => void) {
       presets.forEach((preset) => fn(preset));
     },
+    traverse<T>(
+      schemas: Record<string, T> | undefined,
+      fn: (
+        preset: Preset,
+      ) => (name: string, item: Exclude<T, OpenAPIV3.ReferenceObject | undefined>) => void,
+    ) {
+      forEach(schemas, (name, schema) => {
+        presets.forEach((preset) => fn(preset)(name, schema));
+      });
+    },
   };
+}
+
+export function forEach<T>(
+  map: Record<string, T> | undefined,
+  fn: (name: string, value: Exclude<T, OpenAPIV3.ReferenceObject | undefined>) => void,
+) {
+  for (const name in map) {
+    const value: OpenAPIV3.ReferenceObject | T | undefined = map[name];
+    if (noRef(value) && value) fn(name, value as any);
+  }
+}
+
+function noRef<T>(value: OpenAPIV3.ReferenceObject | T): value is Exclude<T, undefined> {
+  return typeof value && !(value as any)["$ref"];
 }
 
 function loadPreset(presetConfig: PresetConfig, internal: unknown): [string, OptionalPreset] {
