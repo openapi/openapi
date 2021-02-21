@@ -6,7 +6,7 @@ import * as changeCase from "change-case";
 
 import { Config } from "./config";
 import { parseContent, readApiFile, createFetchOptions } from "./api-file";
-import { createPresetIterator, Preset, FilesApi, forEach } from "./presets";
+import { createPresetIterator, Preset, FilesApi, forEach, noRef, Method } from "./presets";
 
 // File system per preset
 interface PFileSystem {
@@ -22,7 +22,7 @@ export async function openapi(config: Config) {
     ? (await convertObj(apiObject, { fetchOptions: createFetchOptions(config) })).openapi
     : apiObject;
 
-  const internal = { changeCase };
+  const internal = { changeCase, root: () => api };
   const fileSystemsMap = new Map<Preset, PFileSystem>();
   const presets = createPresetIterator(config.presets, internal);
 
@@ -50,7 +50,24 @@ export async function openapi(config: Config) {
   presets.traverse(api.components?.schemas, (preset) => preset.onSchema);
   presets.traverse(api.components?.securitySchemes, (preset) => preset.onSecurityScheme);
 
-  // TODO: add hook for operation
+  // Call hook for operation
+  forEach(api.paths, (pattern, path) => {
+    const methods = pick(path, [
+      "get",
+      "put",
+      "post",
+      "delete",
+      "options",
+      "head",
+      "patch",
+      "trace",
+    ]);
+
+    forEach(methods, (method, operation) =>
+      presets.forEach((preset) => preset.onOperation(pattern, method as Method, operation, path)),
+    );
+  });
+
   // TODO: add pre/post hooks
 
   presets.forEach((preset) => {
@@ -71,6 +88,22 @@ export async function openapi(config: Config) {
     const files = Object.fromEntries(fs.files.entries());
     console.log(`File system of preset "${preset.name}":`, files);
   }
+}
+
+function onOperation(
+  path: OpenAPIV3.PathItemObject,
+  method: Method,
+  fn: (operation: OpenAPIV3.OperationObject) => void,
+) {
+  const operation = path[method];
+  if (operation) {
+    fn(operation);
+  }
+}
+
+function pick<T extends object, K extends keyof T>(object: T, keys: K[]): Pick<T, K> {
+  const entries = (Object.entries(object) as [K, T[K]][]).filter(([key]) => keys.includes(key));
+  return Object.fromEntries(entries) as Pick<T, K>;
 }
 
 function isSwagger(input: OpenAPIV3.Document | OpenAPIV2.Document): input is OpenAPIV2.Document {

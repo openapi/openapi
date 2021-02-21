@@ -6,12 +6,20 @@ export interface FilesApi {
   addFile(name: string, content: string, options?: { overwrite?: boolean }): void;
 }
 
+export type Method = "get" | "put" | "post" | "delete" | "options" | "head" | "patch" | "trace";
+
 export interface Preset {
   name: string;
   build(filesApi: FilesApi): void;
   onCallback: (name: string, callback: OpenAPIV3.CallbackObject) => void;
   onHeader: (name: string, header: OpenAPIV3.HeaderObject) => void;
   onLink: (name: string, link: OpenAPIV3.LinkObject) => void;
+  onOperation: (
+    pattern: string,
+    method: Method,
+    operation: OpenAPIV3.OperationObject,
+    path: OpenAPIV3.PathItemObject,
+  ) => void;
   onParameter: (name: string, parameter: OpenAPIV3.ParameterObject) => void;
   onRequestBody: (name: string, requestBody: OpenAPIV3.RequestBodyObject) => void;
   onResponse: (name: string, response: OpenAPIV3.ResponseObject) => void;
@@ -25,6 +33,7 @@ const defaultPreset: Preset = {
   onCallback() {},
   onHeader() {},
   onLink() {},
+  onOperation() {},
   onParameter() {},
   onRequestBody() {},
   onResponse() {},
@@ -69,7 +78,7 @@ export function forEach<T>(
   }
 }
 
-function noRef<T>(value: OpenAPIV3.ReferenceObject | T): value is Exclude<T, undefined> {
+export function noRef<T>(value: OpenAPIV3.ReferenceObject | T): value is Exclude<T, undefined> {
   return typeof value && !(value as any)["$ref"];
 }
 
