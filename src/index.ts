@@ -6,13 +6,8 @@ import * as changeCase from "change-case";
 
 import { Config } from "./config";
 import { parseContent, readApiFile, createFetchOptions } from "./api-file";
-import { createPresetIterator, FilesApi, forEach, Internal, Method, Preset } from "./presets";
-
-// File system per preset
-interface PFileSystem {
-  files: Map<string, string>;
-  api: FilesApi;
-}
+import { createPresetIterator, forEach, Internal, Method, Preset } from "./presets";
+import { SeparatedFileSystem } from "./fs";
 
 export async function openapi(config: Config) {
   assertDirectory(config.outputDir);
@@ -23,23 +18,11 @@ export async function openapi(config: Config) {
     : apiObject;
 
   const internal: Internal = { changeCase, root: () => api };
-  const fileSystemsMap = new Map<Preset, PFileSystem>();
+  const fileSystems = new SeparatedFileSystem<Preset>();
   const presets = createPresetIterator(config.presets, internal);
 
   // Create files API for each preset
-  presets.forEach((preset) => {
-    const files = new Map<string, string>();
-    const api: FilesApi = {
-      addFile(name, content, { overwrite } = {}) {
-        if (files.has(name) && !overwrite) {
-          return;
-        }
-        files.set(name, content);
-      },
-    };
-    const system: PFileSystem = { files, api };
-    fileSystemsMap.set(preset, system);
-  });
+  presets.forEach((preset) => fileSystems.createFor(preset));
 
   presets.forEach((preset) => preset.preComponents());
   presets.traverse(api.components?.callbacks, (preset) => preset.onCallback);
@@ -72,35 +55,18 @@ export async function openapi(config: Config) {
   });
   presets.forEach((preset) => preset.postOperations());
 
-  presets.forEach((preset) => {
-    const fileSystem = fileSystemsMap.get(preset);
-    if (!fileSystem) {
-      throw new ReferenceError(
-        `Cannot find fileSystem for preset "${preset.name}". Unexpected error`,
-      );
-    }
-    preset.build(fileSystem.api);
-  });
+  // Finish building and create files in Virtual file system
+  presets.forEach((preset) => preset.build(fileSystems.get(preset).api));
 
   // TODO: merge all filesystems into single one
   // TODO: validate that files has no conflicts
   // TODO: save files to FS
 
-  for (const [preset, fs] of fileSystemsMap.entries()) {
-    const files = Object.fromEntries(fs.files.entries());
-    console.log(`File system of preset "${preset.name}":`, files);
-  }
-}
-
-function onOperation(
-  path: OpenAPIV3.PathItemObject,
-  method: Method,
-  fn: (operation: OpenAPIV3.OperationObject) => void,
-) {
-  const operation = path[method];
-  if (operation) {
-    fn(operation);
-  }
+  // for (const [preset, fs] of fileSystems.entries()) {
+  //   const files = Object.fromEntries(fs.files.entries());
+  //   console.log(`File system of preset "${preset.name}":`, files);
+  // }
+  console.log(Object.fromEntries(fileSystems.combineTogether().entries()));
 }
 
 function pick<T extends object, K extends keyof T>(object: T, keys: K[]): Pick<T, K> {
