@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { program } from "commander";
 import { cosmiconfigSync } from "cosmiconfig";
 import { openapi } from "..";
