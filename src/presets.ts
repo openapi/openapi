@@ -1,7 +1,6 @@
 import path from "path";
 import { OpenAPIV3 } from "openapi-types";
 import * as changeCase from "change-case";
-import get from "lodash.get";
 import { PresetConfig } from "./config";
 
 export interface FilesApi {

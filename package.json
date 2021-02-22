@@ -1,6 +1,6 @@
 {
   "name": "openapi",
-  "version": "2.0.0-5",
+  "version": "2.0.0-6",
   "description": "Generate JavaScript or TypeScript code from Swagger/OpenAPI specifications",
   "main": "./dist/index.js",
   "--types": "./src/index.d.ts",
@@ -25,7 +25,7 @@
   },
   "scripts": {
     "test": "jest --testPathIgnorePatterns package.test --passWithNoTests",
-    "prepublishOnly": "yarn test --passWithNoTests && yarn test-pack",
+    "prepublishOnly": "yarn build && yarn test --passWithNoTests && yarn test-pack",
     "test-pack": "yarn jest --passWithNoTests -i ./src/package.test.js",
     "build": "babel -d ./dist --extensions '.ts' ./src"
   },
