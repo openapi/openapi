@@ -6,7 +6,7 @@ import * as changeCase from "change-case";
 
 import { Config } from "./config";
 import { parseContent, readApiFile, createFetchOptions } from "./api-file";
-import { createPresetIterator, Preset, FilesApi, forEach, noRef, Method } from "./presets";
+import { createPresetIterator, FilesApi, forEach, Internal, Method, Preset } from "./presets";
 
 // File system per preset
 interface PFileSystem {
@@ -22,7 +22,7 @@ export async function openapi(config: Config) {
     ? (await convertObj(apiObject, { fetchOptions: createFetchOptions(config) })).openapi
     : apiObject;
 
-  const internal = { changeCase, root: () => api };
+  const internal: Internal = { changeCase, root: () => api };
   const fileSystemsMap = new Map<Preset, PFileSystem>();
   const presets = createPresetIterator(config.presets, internal);
 
@@ -41,6 +41,7 @@ export async function openapi(config: Config) {
     fileSystemsMap.set(preset, system);
   });
 
+  presets.forEach((preset) => preset.preComponents());
   presets.traverse(api.components?.callbacks, (preset) => preset.onCallback);
   presets.traverse(api.components?.headers, (preset) => preset.onHeader);
   presets.traverse(api.components?.links, (preset) => preset.onLink);
@@ -49,7 +50,9 @@ export async function openapi(config: Config) {
   presets.traverse(api.components?.responses, (preset) => preset.onResponse);
   presets.traverse(api.components?.schemas, (preset) => preset.onSchema);
   presets.traverse(api.components?.securitySchemes, (preset) => preset.onSecurityScheme);
+  presets.forEach((preset) => preset.postComponents());
 
+  presets.forEach((preset) => preset.preOperations());
   // Call hook for operation
   forEach(api.paths, (pattern, path) => {
     const methods = pick(path, [
@@ -67,8 +70,7 @@ export async function openapi(config: Config) {
       presets.forEach((preset) => preset.onOperation(pattern, method as Method, operation, path)),
     );
   });
-
-  // TODO: add pre/post hooks
+  presets.forEach((preset) => preset.postOperations());
 
   presets.forEach((preset) => {
     const fileSystem = fileSystemsMap.get(preset);

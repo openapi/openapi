@@ -1,10 +1,18 @@
 import path from "path";
 import { OpenAPIV3 } from "openapi-types";
+import * as changeCase from "change-case";
 import { PresetConfig } from "./config";
 
 export interface FilesApi {
   addFile(name: string, content: string, options?: { overwrite?: boolean }): void;
 }
+
+export interface Internal {
+  changeCase: typeof changeCase;
+  root(): OpenAPIV3.Document;
+}
+
+export type PresetConstructor = <T extends object>(options: T, internal: Internal) => Preset;
 
 export type Method = "get" | "put" | "post" | "delete" | "options" | "head" | "patch" | "trace";
 
@@ -25,6 +33,10 @@ export interface Preset {
   onResponse: (name: string, response: OpenAPIV3.ResponseObject) => void;
   onSchema: (name: string, schema: OpenAPIV3.SchemaObject) => void;
   onSecurityScheme: (name: string, securityScheme: OpenAPIV3.SecuritySchemeObject) => void;
+  postComponents: () => void;
+  postOperations: () => void;
+  preComponents: () => void;
+  preOperations: () => void;
 }
 
 const defaultPreset: Preset = {
@@ -39,6 +51,10 @@ const defaultPreset: Preset = {
   onResponse() {},
   onSchema() {},
   onSecurityScheme() {},
+  postComponents() {},
+  postOperations() {},
+  preComponents() {},
+  preOperations() {},
 };
 
 type OptionalPreset = Partial<Preset>;
