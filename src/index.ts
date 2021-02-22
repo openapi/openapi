@@ -58,15 +58,9 @@ export async function openapi(config: Config) {
   // Finish building and create files in Virtual file system
   presets.forEach((preset) => preset.build(fileSystems.get(preset).api));
 
-  // TODO: merge all filesystems into single one
-  // TODO: validate that files has no conflicts
-  // TODO: save files to FS
-
-  // for (const [preset, fs] of fileSystems.entries()) {
-  //   const files = Object.fromEntries(fs.files.entries());
-  //   console.log(`File system of preset "${preset.name}":`, files);
-  // }
-  console.log(Object.fromEntries(fileSystems.combineTogether().entries()));
+  for (const file of fileSystems.combineTogether().values()) {
+    fs.writeFileSync(path.join(config.outputDir, file.name), file.content);
+  }
 }
 
 function pick<T extends object, K extends keyof T>(object: T, keys: K[]): Pick<T, K> {
