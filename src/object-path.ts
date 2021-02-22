@@ -9,7 +9,7 @@ export function getByPath(path: string, object: object): unknown | null {
   while (chunks.length) {
     const key = chunks.shift() as string;
     const value = (level as any)[key];
-    if (value) {
+    if (value !== undefined) {
       level = value;
     } else {
       return null;
