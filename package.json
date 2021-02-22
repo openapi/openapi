@@ -1,6 +1,6 @@
 {
   "name": "openapi",
-  "version": "2.0.0-2",
+  "version": "2.0.0-4",
   "description": "Generate JavaScript or TypeScript code from Swagger/OpenAPI specifications",
   "main": "./dist/index.js",
   "--types": "./src/index.d.ts",
@@ -38,7 +38,8 @@
     "src/cli/index.js",
     "src/index.d.ts",
     "src/index.js",
-    "request.js"
+    "request.js",
+    "dist/"
   ],
   "bin": {
     "openapi": "./dist/cli/index.js"
