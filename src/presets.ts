@@ -1,6 +1,7 @@
 import path from "path";
 import { OpenAPIV3 } from "openapi-types";
 import * as changeCase from "change-case";
+import get from "lodash.get";
 import { PresetConfig } from "./config";
 
 export interface FilesApi {
@@ -10,6 +11,8 @@ export interface FilesApi {
 export interface Internal {
   changeCase: typeof changeCase;
   root(): OpenAPIV3.Document;
+  resolveRef(ref: string): unknown | null;
+  isRef(object: unknown): boolean;
 }
 
 export type PresetConstructor = <T extends object>(options: T, internal: Internal) => Preset;

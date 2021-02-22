@@ -8,6 +8,7 @@ import { Config } from "./config";
 import { parseContent, readApiFile, createFetchOptions } from "./api-file";
 import { createPresetIterator, forEach, Internal, Method, Preset } from "./presets";
 import { SeparatedFileSystem } from "./fs";
+import { getByPath } from "./object-path";
 
 export async function openapi(config: Config) {
   assertDirectory(config.outputDir);
@@ -17,7 +18,20 @@ export async function openapi(config: Config) {
     ? (await convertObj(apiObject, { fetchOptions: createFetchOptions(config) })).openapi
     : apiObject;
 
-  const internal: Internal = { changeCase, root: () => api };
+  function resolveRef(path: string): unknown | null {
+    if (path[0] !== "#") {
+      throw new TypeError(`Passed non local reference ${path}. Unexpected error`);
+    }
+    return getByPath(path.substr(1), api);
+  }
+
+  function isRef(object: unknown | Record<string, unknown>): boolean {
+    return (
+      typeof object === "object" && object !== null && typeof (object as any)["$ref"] === "string"
+    );
+  }
+
+  const internal: Internal = { changeCase, root: () => api, isRef, resolveRef };
   const fileSystems = new SeparatedFileSystem<Preset>();
   const presets = createPresetIterator(config.presets, internal);
 
