@@ -11,7 +11,7 @@ export interface Internal {
   changeCase: typeof changeCase;
   root(): OpenAPIV3.Document;
   resolveRef(ref: string): unknown | null;
-  isRef(object: unknown): boolean;
+  isRef(object: unknown): object is OpenAPIV3.ReferenceObject;
 }
 
 export type PresetConstructor<T extends object> = (options: T, internal: Internal) => Preset;

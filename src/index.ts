@@ -38,7 +38,7 @@ export async function openapi(config: Config) {
     return getByPath(path.substr(1), api);
   }
 
-  function isRef(object: unknown | Record<string, unknown>): boolean {
+  function isRef(object: unknown | Record<string, unknown>): object is OpenAPIV3.ReferenceObject {
     return (
       typeof object === "object" && object !== null && typeof (object as any)["$ref"] === "string"
     );

@@ -1,6 +1,6 @@
 {
   "name": "openapi",
-  "version": "2.0.0-12",
+  "version": "2.0.0-13",
   "description": "Generate JavaScript or TypeScript code from Swagger/OpenAPI specifications",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
