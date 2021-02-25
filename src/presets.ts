@@ -14,11 +14,11 @@ export interface Internal {
   isRef(object: unknown): boolean;
 }
 
-export type PresetConstructor = <T extends object>(options: T, internal: Internal) => Preset;
+export type PresetConstructor = <T extends object>(options: T, internal: Internal) => PresetCore;
 
 export type Method = "get" | "put" | "post" | "delete" | "options" | "head" | "patch" | "trace";
 
-export interface Preset {
+export interface PresetCore {
   name: string;
   build(filesApi: FilesApi): void;
   onCallback: (name: string, callback: OpenAPIV3.CallbackObject) => void;
@@ -41,7 +41,7 @@ export interface Preset {
   preOperations: () => void;
 }
 
-const defaultPreset: Preset = {
+const defaultPreset: PresetCore = {
   name: "(default)",
   build() {},
   onCallback() {},
@@ -59,10 +59,10 @@ const defaultPreset: Preset = {
   preOperations() {},
 };
 
-type OptionalPreset = Partial<Preset>;
+export type Preset = Partial<PresetCore>;
 
 export function createPresetIterator(list: PresetConfig[], internal: unknown) {
-  const presets: Preset[] = [];
+  const presets: PresetCore[] = [];
 
   list.forEach((presetConfigName) => {
     const [name, readPreset] = loadPreset(presetConfigName, internal);
@@ -70,13 +70,13 @@ export function createPresetIterator(list: PresetConfig[], internal: unknown) {
   });
 
   return {
-    forEach(fn: (preset: Preset) => void) {
+    forEach(fn: (preset: PresetCore) => void) {
       presets.forEach((preset) => fn(preset));
     },
     traverse<T>(
       schemas: Record<string, T> | undefined,
       fn: (
-        preset: Preset,
+        preset: PresetCore,
       ) => (name: string, item: Exclude<T, OpenAPIV3.ReferenceObject | undefined>) => void,
     ) {
       forEach(schemas, (name, schema) => {
@@ -100,7 +100,7 @@ export function noRef<T>(value: OpenAPIV3.ReferenceObject | T): value is Exclude
   return typeof value && !(value as any)["$ref"];
 }
 
-function loadPreset(presetConfig: PresetConfig, internal: unknown): [string, OptionalPreset] {
+function loadPreset(presetConfig: PresetConfig, internal: unknown): [string, Preset] {
   if (Array.isArray(presetConfig)) {
     const [name, options] = presetConfig;
     if (typeof name !== "string") {

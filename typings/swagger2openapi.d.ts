@@ -1,6 +1,6 @@
 declare module "swagger2openapi" {
   import { OpenAPIV3 } from "openapi-types";
-  declare function convertObj(
+  export function convertObj(
     swagger: object,
     options?: {
       fetchOptions?: Record<string, any>;

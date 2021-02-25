@@ -1,14 +1,11 @@
 {
   "compilerOptions": {
-    "declaration": true,
-    "emitDeclarationOnly": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "lib": ["es2020", "ESNext"],
     "module": "commonjs",
     "moduleResolution": "Node",
     "noImplicitAny": true,
-    "outDir": "./dist",
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
@@ -16,6 +13,6 @@
     "target": "es2020",
     "types": ["jest", "node", "./typings/swagger2openapi"]
   },
-  "include": ["src/**/*"],
+  // "include": ["src/**/*"],
   "exclude": ["node_modules", "**/*.test.ts", "**/*.spec.ts"]
 }

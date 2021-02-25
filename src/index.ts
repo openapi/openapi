@@ -6,9 +6,20 @@ import * as changeCase from "change-case";
 
 import { Config } from "./config";
 import { parseContent, readApiFile, createFetchOptions } from "./api-file";
-import { createPresetIterator, forEach, Internal, Method, Preset } from "./presets";
+import {
+  createPresetIterator,
+  FilesApi,
+  forEach,
+  Internal,
+  Method,
+  Preset,
+  PresetConstructor,
+  PresetCore,
+} from "./presets";
 import { SeparatedFileSystem } from "./fs";
 import { getByPath } from "./object-path";
+
+export { PresetConstructor, Preset, OpenAPIV3, Internal, FilesApi };
 
 export async function openapi(config: Config) {
   assertDirectory(config.outputDir);
@@ -32,7 +43,7 @@ export async function openapi(config: Config) {
   }
 
   const internal: Internal = { changeCase, root: () => api, isRef, resolveRef };
-  const fileSystems = new SeparatedFileSystem<Preset>();
+  const fileSystems = new SeparatedFileSystem<PresetCore>();
   const presets = createPresetIterator(config.presets, internal);
 
   // Create files API for each preset
