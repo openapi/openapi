@@ -19,6 +19,8 @@ import {
 import { SeparatedFileSystem } from "./fs";
 import { getByPath } from "./object-path";
 
+export { status } from "./status";
+
 export { PresetConstructor, Preset, OpenAPIV3, Internal, FilesApi };
 
 export async function openapi(config: Config) {
