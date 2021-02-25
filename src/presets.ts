@@ -14,7 +14,7 @@ export interface Internal {
   isRef(object: unknown): boolean;
 }
 
-export type PresetConstructor = <T extends object>(options: T, internal: Internal) => PresetCore;
+export type PresetConstructor = <T extends object>(options: T, internal: Internal) => Preset;
 
 export type Method = "get" | "put" | "post" | "delete" | "options" | "head" | "patch" | "trace";
 
