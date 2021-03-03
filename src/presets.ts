@@ -1,7 +1,11 @@
 import path from "path";
 import { OpenAPIV3 } from "openapi-types";
 import * as changeCase from "change-case";
+import createDebug from "debug";
+
 import { PresetConfig } from "./config";
+
+const debug = createDebug("openapi:presets");
 
 export interface FilesApi {
   addFile(name: string, content: string, options?: { overwrite?: boolean }): void;
@@ -61,11 +65,19 @@ const defaultPreset: PresetCore = {
 
 export type Preset = Partial<PresetCore>;
 
-export function createPresetIterator(list: PresetConfig[], internal: unknown) {
+interface PresetIteratorOptions {
+  resolveLocalPresetsDir: string;
+}
+
+export function createPresetIterator(
+  list: PresetConfig[],
+  internal: unknown,
+  options: PresetIteratorOptions,
+) {
   const presets: PresetCore[] = [];
 
   list.forEach((presetConfigName) => {
-    const [name, readPreset] = loadPreset(presetConfigName, internal);
+    const [name, readPreset] = loadPreset(presetConfigName, internal, options);
     presets.push({ ...defaultPreset, name, ...readPreset });
   });
 
@@ -100,7 +112,11 @@ export function noRef<T>(value: OpenAPIV3.ReferenceObject | T): value is Exclude
   return typeof value && !(value as any)["$ref"];
 }
 
-function loadPreset(presetConfig: PresetConfig, internal: unknown): [string, Preset] {
+function loadPreset(
+  presetConfig: PresetConfig,
+  internal: unknown,
+  iteratorOptions: PresetIteratorOptions,
+): [string, Preset] {
   if (Array.isArray(presetConfig)) {
     const [name, options] = presetConfig;
     if (typeof name !== "string") {
@@ -109,7 +125,7 @@ function loadPreset(presetConfig: PresetConfig, internal: unknown): [string, Pre
       );
     }
 
-    const imported = require(resolvePath(name));
+    const imported = require(resolvePath(name, iteratorOptions.resolveLocalPresetsDir));
 
     // Here we know that user passed options to preset
     if (typeof imported !== "function") {
@@ -123,7 +139,7 @@ function loadPreset(presetConfig: PresetConfig, internal: unknown): [string, Pre
     return [name, preset];
   }
 
-  const imported = require(resolvePath(presetConfig));
+  const imported = require(resolvePath(presetConfig, iteratorOptions.resolveLocalPresetsDir));
   // Package exports preset constructor
   if (typeof imported === "function") {
     const preset = imported({}, internal);
@@ -135,9 +151,9 @@ function loadPreset(presetConfig: PresetConfig, internal: unknown): [string, Pre
   return [presetConfig, imported];
 }
 
-function resolvePath(name: string): string {
+function resolvePath(name: string, resolveAt: string): string {
   if (name[0] === ".") {
-    return path.resolve(process.cwd(), name);
+    return path.resolve(resolveAt, name);
   }
   return name;
 }

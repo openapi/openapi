@@ -5,7 +5,11 @@ import { OpenAPIV2, OpenAPIV3 } from "openapi-types";
 import isUrl from "is-url";
 import fetch from "node-fetch";
 import yaml from "js-yaml";
+import createDebug from "debug";
+
 import { Config } from "./config";
+
+const debug = createDebug("openapi:api-file");
 
 export async function readApiFile(config: Config): Promise<string> {
   return isUrl(config.file) ? await readFileFromWeb(config) : await readFileFromDisk(config);

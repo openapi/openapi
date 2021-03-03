@@ -5,4 +5,5 @@ export interface Config {
   file: string;
   authorization: string | void;
   presets: PresetConfig[];
+  workingDirectory?: string;
 }

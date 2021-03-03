@@ -2,9 +2,15 @@
 
 import { program } from "commander";
 import { cosmiconfigSync } from "cosmiconfig";
+import path from "path";
 import { openapi } from "..";
+import isUrl from "is-url";
+import createDebug from "debug";
 
 import Package from "../../package.json";
+import { Config } from "../config";
+
+const debug = createDebug("openapi:cli");
 
 program
   .version(Package.version)
@@ -21,21 +27,37 @@ program
 
 async function main() {
   program.parse(process.argv);
-
+  const workingDirectory = process.cwd();
   const cosmic = cosmiconfigSync(Package.name);
-  const resolved = program.config ? cosmic.load(program.config) : cosmic.search() || { config: {} };
-  const loaded = resolved?.config || {};
+
+  const configFullPath = program.config
+    ? path.resolve(workingDirectory, program.config)
+    : cosmic.search()?.filepath;
+
+  const resolved = configFullPath ? cosmic.load(configFullPath) : null;
+  const configFromFs: Partial<Config> = resolved?.config ?? {};
+
+  const configDirectory = configFullPath ? path.dirname(configFullPath) : process.cwd();
 
   const config = {
-    outputDir: program.outputDir || loaded.outputDir || "./api",
-    file: program.file || loaded.file,
-    authorization: program.authorization || loaded.authorization,
-    presets: program.presets || loaded.presets || [],
+    outputDir:
+      resolveDirectory(workingDirectory, program.outputDir) ||
+      resolveDirectory(configDirectory, configFromFs.outputDir) ||
+      path.resolve(workingDirectory, "./api"),
+    file:
+      resolveDirectory(process.cwd(), program.file) ||
+      resolveDirectory(configDirectory, configFromFs.file),
+    authorization: program.authorization || configFromFs.authorization,
+    presets: program.presets || configFromFs.presets || [],
+    workingDirectory: configDirectory,
   };
 
   if (!config.file) {
-    throw new Error("Please, provide path to a file with Swagger/OpenAPI spec");
+    throw new Error(
+      "Please, provide path to a file with Swagger/OpenAPI spec via --file parameter",
+    );
   }
+
   if (config.presets.length === 0) {
     console.warn("[openapi] No presets were specified. Nothing to generate.");
   }
@@ -50,3 +72,9 @@ main().catch((error) => {
   console.error(error);
   process.exit(1);
 });
+
+function resolveDirectory(relates: string, link?: string): string | void {
+  if (link) {
+    return path.resolve(relates, link);
+  }
+}

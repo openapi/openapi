@@ -1,8 +1,9 @@
-import * as fs from "fs";
-import * as path from "path";
+import fs from "fs";
+import path from "path";
 import { OpenAPIV2, OpenAPIV3 } from "openapi-types";
 import { convertObj } from "swagger2openapi";
-import * as changeCase from "change-case";
+import changeCase from "change-case";
+import createDebug from "debug";
 
 import { Config } from "./config";
 import { parseContent, readApiFile, createFetchOptions } from "./api-file";
@@ -21,10 +22,16 @@ import { getByPath } from "./object-path";
 
 export { status } from "./status";
 
-export { PresetConstructor, Preset, OpenAPIV3, Internal, FilesApi };
+export { PresetConstructor, Preset, Internal, FilesApi };
+
+const debug = createDebug("openapi:core");
 
 export async function openapi(config: Config) {
-  assertDirectory(config.outputDir);
+  const openapiFileDirectory = config.workingDirectory
+    ? path.resolve(config.workingDirectory)
+    : path.dirname(path.resolve(process.cwd(), config.file));
+  assertDirectory(config.outputDir, openapiFileDirectory);
+
   const content = await readApiFile(config);
   const apiObject = await parseContent(config.file, content);
   const api = isSwagger(apiObject)
@@ -46,7 +53,9 @@ export async function openapi(config: Config) {
 
   const internal: Internal = { changeCase, root: () => api, isRef, resolveRef };
   const fileSystems = new SeparatedFileSystem<PresetCore>();
-  const presets = createPresetIterator(config.presets, internal);
+  const presets = createPresetIterator(config.presets, internal, {
+    resolveLocalPresetsDir: openapiFileDirectory,
+  });
 
   // Create files API for each preset
   presets.forEach((preset) => fileSystems.createFor(preset));
@@ -99,8 +108,8 @@ function isSwagger(input: OpenAPIV3.Document | OpenAPIV2.Document): input is Ope
   return typeof (input as any)["swagger"] === "string";
 }
 
-function assertDirectory(dir: string): void {
-  const outputDirPath = path.resolve(process.cwd(), dir);
+function assertDirectory(dir: string, relatesAt: string = process.cwd()): void {
+  const outputDirPath = path.resolve(relatesAt, dir);
   if (!fs.existsSync(outputDirPath)) {
     fs.mkdirSync(outputDirPath, { recursive: true });
   }
