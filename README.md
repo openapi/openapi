@@ -219,11 +219,11 @@ console.log(types);
 ## How to create custom preset
 
 1. Create new NPM package (create directory and `npm init` there)
-1. Name your package with `-openapi-preset` suffix
+1. Name your package with `openapi-preset-` prefix (ex.: `openapi-preset-effector`)
 1. Create `index.js` and set `"main": "index.js"` in your package.json
 1. Fill your `index.js` with any properties from list before
 1. Save and publish
-1. Use it like: `presets: ['example-openapi-preset']`
+1. Use it like: `presets: ['openapi-preset-example']`
 
 > Hint: if you want to use local file as a preset, just use `require.resolve`:
 > `presets: [require.resolve('./local-preset')]`
@@ -252,9 +252,9 @@ Usage `openapi.config.js`:
 module.exports = {
   file: "./swagger-api.json",
   presets: [
-    ["example-openapi-preset", { parseBody: true }],
+    ["openapi-preset-example", { parseBody: true }],
     [
-      "another-openapi-preset",
+      "openapi-preset-another",
       { requestImport: { module: "./axios-fabric", name: "axios" } },
     ],
   ],
