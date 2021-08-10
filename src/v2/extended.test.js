@@ -38,7 +38,7 @@ test("use yaml", async () => {
   expect(result).toEqual(resultByBaseConfig);
 });
 
-test("use url in prop file", async () => {
+test.skip("use url in prop file", async () => {
   const { swaggerData: _, ...result } = await swaggerToJs({
     file:
       "https://raw.githubusercontent.com/openapi/openapi/master/src/mocks/petstore-v2-multi-file.yaml",
