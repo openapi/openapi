@@ -280,11 +280,7 @@ module.exports = {
 ### How to release a new version
 
 1. Wait for release-drafter to generates a new draft release
-1. Pull all changes to local repository
-1. Run tests `pnpm test && pnpm test-pack`
-1. Create a new tag and change package.json `npm version 1.2.3` (use the version from a draft release)
-1. Publish new version `npm publish`
-1. Push tags and changes `git push origin master --tags`
-1. Go to [Releases](https://github.com/openapi/openapi/releases) and press "Edit" on draft release
-1. Check and fix release text
-1. Press "Publish release" button
+1. All PRs should have correct labels and useful titles. You can [review available labels here](https://github.com/openapi/openapi/blob/master/.github/release-drafter.yml).
+1. Update labels for PRs and titles, next [manually run the release drafter action](https://github.com/openapi/openapi/actions/workflows/release-drafter.yml) to regenerate the draft release.
+1. Review the new version and press "Publish"
+1. If required check "Create discussion for this release"
