@@ -61,18 +61,20 @@ function validConfig(config) {
   const isExistApiJson = Boolean(config.apiJson);
 
   if (isExistFile === false && isExistApiJson === false) {
-    throw new Error("Setup path to file with swagger api or insert content apiJson.");
+    throw new Error("Please, fill `file` or `apiJson` option in the config.");
   }
 }
 
 async function byVersion(apiJson, config) {
   if (apiJson.openapi) {
     return await swaggerV3ToJs(apiJson, config);
-  } else if (apiJson.swagger) {
+  }
+
+  if (apiJson.swagger) {
     return await swaggerV2ToJs(apiJson, config);
   }
 
-  throw new Error("Swagger version didn't detect");
+  throw new Error("Unable to determine the version of OpenAPI/Swagger");
 }
 
 module.exports = { openapiGenerate };

@@ -22,3 +22,5 @@ ttt.js
 */**/code.d.ts
 examples/**/api.idea
 .idea
+gen/*
+!.gitkeep

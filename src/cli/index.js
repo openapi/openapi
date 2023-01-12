@@ -44,41 +44,41 @@ program
 
 program.parse(process.argv);
 
-const exlorerConfig = cosmiconfigSync("openapi");
-const searchedConfig = program.config
-  ? exlorerConfig.load(program.config)
-  : exlorerConfig.search() || {};
-const loadedConfig = searchedConfig.config || {};
+const configExplorer = cosmiconfigSync("openapi");
+const foundConfig = program.config
+  ? configExplorer.load(program.config)
+  : configExplorer.search() || {};
+const resolvedConfig = foundConfig.config || {};
 
 const config = {
-  file: program.file || loadedConfig.file,
-  outputDir: program.outputDir || loadedConfig.outputDir || defaultOutputDir,
-  authorization: program.authorization || loadedConfig.authorization,
+  file: program.file || resolvedConfig.file,
+  outputDir: program.outputDir || resolvedConfig.outputDir || defaultOutputDir,
+  authorization: program.authorization || resolvedConfig.authorization,
 
-  mode: program.mode || loadedConfig.mode,
-  deprecated: program.deprecated || loadedConfig.deprecated,
+  mode: program.mode || resolvedConfig.mode,
+  deprecated: program.deprecated || resolvedConfig.deprecated,
   importRequest: program.importRequestDisabled
     ? "disabled"
-    : program.importRequest || loadedConfig.importRequest,
-  originalBody: program.originalBody || loadedConfig.originalBody,
-  disableTypesGenerate: program.disableTypesGenerate || loadedConfig.disableTypesGenerate,
-  presets: program.presets || loadedConfig.presets || [],
+    : program.importRequest || resolvedConfig.importRequest,
+  originalBody: program.originalBody || resolvedConfig.originalBody,
+  disableTypesGenerate: program.disableTypesGenerate || resolvedConfig.disableTypesGenerate,
+  presets: program.presets || resolvedConfig.presets || [],
 
-  templateFileNameCode: program.templateFileNameCode || loadedConfig.templateFileNameCode,
-  templateFileNameTypes: program.templateFileNameTypes || loadedConfig.templateFileNameTypes,
+  templateFileNameCode: program.templateFileNameCode || resolvedConfig.templateFileNameCode,
+  templateFileNameTypes: program.templateFileNameTypes || resolvedConfig.templateFileNameTypes,
 
-  templateCodeBefore: loadedConfig.templateCodeBefore,
-  templateRequestCode: loadedConfig.templateRequestCode,
-  templateCodeAfter: loadedConfig.templateCodeAfter,
+  templateCodeBefore: resolvedConfig.templateCodeBefore,
+  templateRequestCode: resolvedConfig.templateRequestCode,
+  templateCodeAfter: resolvedConfig.templateCodeAfter,
 
-  templateTypesBefore: loadedConfig.templateTypesBefore,
-  templateRequestTypes: loadedConfig.templateRequestTypes,
-  templateTypesAfter: loadedConfig.templateTypesAfter,
+  templateTypesBefore: resolvedConfig.templateTypesBefore,
+  templateRequestTypes: resolvedConfig.templateRequestTypes,
+  templateTypesAfter: resolvedConfig.templateTypesAfter,
 };
 
 async function main(config) {
   if (config.mode === "dev") {
-    const pathConfig = program.config || searchedConfig.filepath;
+    const pathConfig = program.config || foundConfig.filepath;
 
     if (pathConfig) {
       console.log("configPath:", pathConfig);
@@ -92,6 +92,7 @@ async function main(config) {
   // Convert to js
   const compiledConfig = compilePresets(resolveLocalPresets(omitUndefined(config)));
   const apiResult = await openapiGenerate(compiledConfig);
+  console.log(">>", apiResult);
   const { all: outputFiles, source: sourceFilesNames } = buildFiles(apiResult, compiledConfig);
 
   // Check and create output dir

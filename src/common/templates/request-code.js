@@ -16,15 +16,15 @@ function templateParams(props) {
 }
 
 function templateBody(props) {
-  const wariningDeprecated = templateWariningDeprecated(props);
+  const warningDeprecated = templateWarningDeprecated(props);
   const request = templateRequest(props);
   const joinConfig = { before: "  ", separator: "\n" };
-  const body = joinStrings([wariningDeprecated, request], joinConfig);
+  const body = joinStrings([warningDeprecated, request], joinConfig);
 
   return lineBreak(body, { before: true, after: true });
 }
 
-function templateWariningDeprecated(props) {
+function templateWarningDeprecated(props) {
   const { isWarningDeprecated, name } = props;
 
   if (isWarningDeprecated) {

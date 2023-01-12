@@ -40,8 +40,7 @@ test("use yaml", async () => {
 
 test.skip("use url in prop file", async () => {
   const { swaggerData: _, ...result } = await swaggerToJs({
-    file:
-      "https://raw.githubusercontent.com/openapi/openapi/master/src/mocks/petstore-v2-multi-file.yaml",
+    file: "https://raw.githubusercontent.com/openapi/openapi/master/src/mocks/petstore-v2-multi-file.yaml",
   });
   const { swaggerData: _s, ...resultByBaseConfig } = await swaggerToJs(config);
 
@@ -59,8 +58,7 @@ test("multifile", async () => {
 
 test("multifile and root file by url", async () => {
   const { swaggerData: _, ...result } = await swaggerToJs({
-    file:
-      "https://raw.githubusercontent.com/openapi/openapi/master/src/mocks/petstore-v2-multi-file.yaml",
+    file: "https://raw.githubusercontent.com/openapi/openapi/master/src/mocks/petstore-v2-multi-file.yaml",
   });
   const { swaggerData: _s, ...resultByBaseConfig } = await swaggerToJs(config);
 
