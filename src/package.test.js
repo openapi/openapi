@@ -77,9 +77,9 @@ describe("npm pack", () => {
   });
 });
 
-describe("yarn pack", () => {
+describe("pnpm pack", () => {
   it("should pack all required files", () => {
-    execSync("yarn pack");
+    execSync("pnpm pack");
     execSync("mkdir -pv TEST_PACK");
     execSync(`tar -xvzf ${name}-v${version}.tgz -C TEST_PACK`);
     const list = execSync("find ./TEST_PACK/package/ -type file")
@@ -221,7 +221,7 @@ describe("yarn pack", () => {
         "/src/v3/index.test.js",
         "/src/v3/mocks/api.github.com.json",
         "/src/v3/mocks/example-preset.js",
-        "/yarn.lock",
+        "/pnpm-lock.yaml",
       ]
     `);
   });

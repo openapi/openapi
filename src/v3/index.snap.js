@@ -11075,7 +11075,9 @@ export function deleteUser(params: DeleteUserParams0): DeleteUserResult0;
 `;
 
 exports[`v3 Should works with preset: code 1`] = `
-"// This is from \`demo3-swagger-to-js-preset\`export const uploadFile = \\"EXAMPLE\\"; 
+"// This is from \`demo3-swagger-to-js-preset\`
+
+export const uploadFile = \\"EXAMPLE\\"; 
 
 
 export const addPet = \\"EXAMPLE\\"; 

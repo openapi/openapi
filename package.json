@@ -1,14 +1,18 @@
 {
   "name": "openapi",
-  "version": "1.0.1",
+  "version": "2.0.0-alpha.0",
   "description": "Generate JavaScript or TypeScript code from Swagger/OpenAPI specifications",
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
-  "repository": "openapijs/openapi",
+  "repository": "openapi/openapi",
   "contributors": [
     "e.fedotov <fedotov1290@gmail.com>",
-    "Sergey Sova <mail@sergeysova.com> (https://sova.dev)"
+    "Sergey Sova <mail@sergeysova.com> (https://sergeysova.com)"
   ],
+  "packageManager": "pnpm@7.24.3",
+  "engines": {
+    "node": ">=14 < 19"
+  },
   "license": "MIT",
   "keywords": [
     "convert",
@@ -25,8 +29,9 @@
   },
   "scripts": {
     "test": "jest --testPathIgnorePatterns package.test",
-    "prepublishOnly": "yarn test && yarn test-pack",
-    "test-pack": "yarn jest -i ./src/package.test.js"
+    "prepublishOnly": "pnpm test && pnpm test-pack",
+    "test-pack": "jest -i ./src/package.test.js",
+    "prepare": "husky install"
   },
   "files": [
     "src/common",
@@ -60,14 +65,8 @@
     "demo3-swagger-to-js-preset": "^0.1.0",
     "eslint": "^6.8.0",
     "eslint-plugin-prettier": "^3.1.3",
-    "husky": "^4.2.5",
+    "husky": "^8.0.3",
     "jest": "^26.5.2",
-    "prettier": "^2.1.2"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn eslint ./src",
-      "pre-push": "yarn test"
-    }
+    "prettier": "^2.8.2"
   }
 }

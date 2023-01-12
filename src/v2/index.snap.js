@@ -12710,7 +12710,9 @@ export function createUser(params: CreateUserParams1 & CreateUserAddedParams1): 
 `;
 
 exports[`v2 Should works with preset: code 1`] = `
-"// This is from \`demo3-swagger-to-js-preset\`export const uploadFile = \\"EXAMPLE\\"; 
+"// This is from \`demo3-swagger-to-js-preset\`
+
+export const uploadFile = \\"EXAMPLE\\"; 
 
 
 export const addPet = \\"EXAMPLE\\"; 

@@ -1,30 +1,31 @@
-# openapijs/openapi
+# openapi/openapi
 
 Generate JavaScript or TypeScript code from Swagger/OpenAPI specification.
 
 ## Install
 
 ```sh
-npm install openapi
+npm install -D openapi
 # or
-yarn add openapi
-# or to global space
+pnpm add -D openapi
+# or
+yarn add -D openapi
 ```
 
 ## Examples
 
 ```sh
-yarn openapi --file ../src/mocks/local-file-api.json
+pnpm openapi --file ../src/mocks/local-file-api.json
 # or
-yarn openapi --file ../src/mocks/local-file-api.yaml
+pnpm openapi --file ../src/mocks/local-file-api.yaml
 # or
-yarn openapi --file protocol://url/api.json
+pnpm openapi --file protocol://url/api.json
 ```
 
 ## Usage CLI
 
 ```sh
-yarn openapi [options]
+pnpm openapi [options]
 
 Options:
   -V, --version            output the version number
@@ -42,15 +43,15 @@ Options:
 
 ## Usage config in file
 
-This package use [`cosmiconfig`](https://github.com/davidtheclark/cosmiconfig) for find config.
+This package use [`cosmiconfig`](https://github.com/davidtheclark/cosmiconfig) for finding config.
 
 ### Config can exist next places
 
-- a openapi property in package.json
-- a .openapirc file in JSON or YAML format
-- a .openapirc.json file
-- a .openapirc.yaml, .openapirc.yml, or .openapirc.js file
-- a openapi.config.js file exporting a JS object
+- a `openapi` property in `package.json`
+- a `.openapirc` file in JSON or YAML format
+- a `.openapirc.json` file
+- a `.openapirc.yaml`, `.openapirc.yml`, or `.openapirc.js` file
+- a `openapi.config.js` file exporting a JS object
 
 ```js
 module.exports = {
@@ -209,7 +210,7 @@ console.log(types);
 // => typescript types
 ```
 
-[More examples](https://github.com/openapijs/openapi/tree/next/examples)
+[More examples](https://github.com/openapi/openapi/tree/next/examples)
 
 ## Additional notes
 
@@ -280,10 +281,10 @@ module.exports = {
 
 1. Wait for release-drafter to generates a new draft release
 1. Pull all changes to local repository
-1. Run tests `yarn test && yarn test-pack`
+1. Run tests `pnpm test && pnpm test-pack`
 1. Create a new tag and change package.json `npm version 1.2.3` (use the version from a draft release)
 1. Publish new version `npm publish`
 1. Push tags and changes `git push origin master --tags`
-1. Go to [Releases](https://github.com/openapijs/openapi/releases) and press "Edit" on draft release
+1. Go to [Releases](https://github.com/openapi/openapi/releases) and press "Edit" on draft release
 1. Check and fix release text
 1. Press "Publish release" button

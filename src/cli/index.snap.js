@@ -53,7 +53,9 @@ export function updatePet(params: UpdatePetParams5 & UpdatePetAddedParams5): Upd
 `;
 
 exports[`CLI Should apply preset from package: code 1`] = `
-"// This is from \`demo3-swagger-to-js-preset\`export function updatePet(params) {
+"// This is from \`demo3-swagger-to-js-preset\`
+
+export function updatePet(params) {
   return request(\\"put\\", \`/pet\`)(params);
 }
 
