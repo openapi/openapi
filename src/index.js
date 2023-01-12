@@ -71,6 +71,9 @@ async function byVersion(apiJson, config) {
   }
 
   if (apiJson.swagger) {
+    console.info(
+      "[deprecated] OpenAPI/Swagger v2 is deprecated and support will be removed. Please, convert v2 into v3 before generating code.",
+    );
     return await swaggerV2ToJs(apiJson, config);
   }
 
